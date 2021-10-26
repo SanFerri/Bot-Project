@@ -6,9 +6,9 @@ namespace ClassLibrary
     /// </summary>
     public class Conversacion
     {
-        
+
         public List<string> conversacion{get; set;} = new List<string>();
-        public static Dictionary<Usuario, Conversacion> usuarioConversacion = new Dictionary<Usuario, Conversacion>();
+        public static Dictionary<IUsuario, Conversacion> usuarioConversacion = new Dictionary<IUsuario, Conversacion>();
 
         public void AddMessage(string message)
         {
@@ -20,14 +20,14 @@ namespace ClassLibrary
             conversacion.Remove(message);
         }
 
-        public void AddConversacionUsuario(Usuario usuario, Conversacion conversacion)
+        public void AddConversacionUsuario(IUsuario usuario, Conversacion conversacion)
         {
             usuarioConversacion.Add(usuario, conversacion);
         }
 
-        public void RemoveConversacionUsuario(Usuario usuario, Conversacion conversacion)
+        public void RemoveConversacionUsuario(IUsuario usuario)
         {
-            usuarioConversacion.Remove(usuario, conversacion);
+            usuarioConversacion.Remove(usuario);
         }
     }
 }

@@ -3,7 +3,7 @@ namespace ClassLibrary
 {
     public interface IUsuario
     {
-        string name{get; set;}
+        string nombre{get; set;}
         int invitacion{get; set;}
         int id{get; set;}
     }

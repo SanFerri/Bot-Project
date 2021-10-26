@@ -6,16 +6,16 @@ namespace ClassLibrary
     /// </summary>
     public class Empresario : IUsuario
     {
-        public string name{get; set;}
-        public string empresa{get; set;}
+        public string nombre{get; set;}
+        public Empresa empresa{get; set;}
         public int id{get; set;}
         public int invitacion{get; set;}
 
-        public Empresario(int invitacion, string name, Empresa empresa)
+        public Empresario(int invitacion, string nombre, Empresa empresa)
         {
             this.empresa = empresa;
             this.invitacion = invitacion;
-            this.name = name;
+            this.nombre = nombre;
         }
     }
 }

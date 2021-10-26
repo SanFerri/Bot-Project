@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
@@ -7,7 +8,7 @@ namespace ClassLibrary
     /// </summary>
     public class InvitationGenerator
     {
-        private static List<invitation>
+        private static List<int> invitaciones{get;set;} = new List<int>();
         /// <summary>
         /// Generamos un randomizer
         /// </summary>

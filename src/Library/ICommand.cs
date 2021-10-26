@@ -9,7 +9,7 @@ namespace ClassLibrary
         /// Metodo que evalua si el mensaje enviado era dirigido a una respuesta de este comando o no.
         /// En caso de que no sea el mensaje indicado para este comando se vera y ejecutara el Do del proximo comando.
         /// </summary>
-        void Do();
+        void Do(IUsuario usuario, string message);
 
         /// <summary>
         /// Property que indica cual es el proximo comando a ejecutarse.

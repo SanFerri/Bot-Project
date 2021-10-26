@@ -3,7 +3,7 @@ namespace ClassLibrary
 {
     public static class ListaEmpresas
     {
-        public static List<Empresa> listaEmpresas = new List<Empresa>();
+        public static List<Empresa> empresas = new List<Empresa>();
 
         /// <summary>
         /// AddEmpresa es un metodo que se encarga de agregar empresas a la lista.
@@ -11,7 +11,7 @@ namespace ClassLibrary
         /// <param name="empresa"></param>
         public static void AddEmpresa(Empresa empresa)
         {
-            listaEmpresas.Add(empresa);
+            empresas.Add(empresa);
         }
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace ClassLibrary
         /// <param name="empresa"></param>
         public static void RemoveEmpresa(Empresa empresa)
         {
-            listaEmpresas.Remove(empresa);
+            empresas.Remove(empresa);
         }
     }
 }

@@ -8,21 +8,22 @@ namespace ClassLibrary
     /// </summary>
     public class InvitarCommand : ICommand
     {
+        public static Administrador auxiliar;
         /// <summary>
         /// Proximo comando es para ver las ofertas
         /// </summary>
-        public OfertasCommand Next = new OfertasCommand();
+        public ICommand next{get;set;} = new OfertasCommand();
 
         /// <summary>
         /// Metodo Do que se encarga de crear un nuevo usuario y su ID
         /// </summary>
         /// <param name="administrador"></param>
         /// <param name="message"></param>
-        public void Do(Usuario administrador, string message)
+        public void Do(IUsuario administrador, string message)
         {
             if(message == "Invitar")
             {
-                if(administrador.type(Administrador))
+                if(administrador.GetType() == auxiliar.GetType())
                 {
                     bool elegido = false;
                     int invitacion = InvitationGenerator.Generate();
@@ -41,20 +42,27 @@ namespace ClassLibrary
                                 Console.WriteLine("{contador}. {empresa.nombre}");
                                 contador += 1;
                             }
-                            Empresa empresaElegida = ListaEmpresas.empresas[contador - 1];
-                            Empresario empresario = new Empresario(invitacion, empresaElegida);
+                            int eleccion2 = Convert.ToInt32(Console.ReadLine());
+                            Empresa empresaElegida = ListaEmpresas.empresas[eleccion2];
+                            Console.WriteLine("¿Cual es su nombre?");
+                            string nombre = Console.ReadLine();
+                            Empresario empresario = new Empresario(invitacion, nombre, empresaElegida);
                             elegido = true;
                         }
 
                         else if(eleccion == 2)
                         {
-                            Emprendedor emprendedor = new Emprendedor(invitacion);
+                             Console.WriteLine("¿Cual es su nombre?");
+                            string nombre = Console.ReadLine();
+                            Emprendedor emprendedor = new Emprendedor(invitacion, nombre);
                             elegido = true;
                         }
 
                         else if(eleccion == 3)
                         {
-                            Administrador administrador1 = new Administrador(invitacion);
+                            Console.WriteLine("¿Cual es su nombre?");
+                            string nombre = Console.ReadLine();
+                            Administrador administrador1 = new Administrador(invitacion, nombre);
                             elegido = true;
                         }
 
@@ -67,7 +75,7 @@ namespace ClassLibrary
             }
             else
             {
-                Next.Do(administrador, message);
+                next.Do(administrador, message);
             }
         }
     }
