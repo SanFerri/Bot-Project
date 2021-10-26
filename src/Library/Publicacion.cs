@@ -1,0 +1,15 @@
+namespace ClassLibrary
+{
+    public class Publicacion
+    {
+        public Residuo residuo{get; set;}
+        public string fecha{get; set;}
+        public Ubicacion ubicacion{get; set;}
+        public Publicacion(Residuo residuo, string fecha, Ubicacion ubicacion)
+        {
+            this.residuo = residuo;
+            this.fecha = fecha;
+            this.ubicacion = ubicacion;
+        }
+    }
+}
