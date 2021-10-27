@@ -52,23 +52,15 @@ namespace ClassLibrary
 
                         else if(eleccion == 2)
                         {
-                             Console.WriteLine("¿Cual es su nombre?");
+                            Console.WriteLine("¿Cual es su nombre?");
                             string nombre = Console.ReadLine();
                             Emprendedor emprendedor = new Emprendedor(invitacion, nombre);
                             elegido = true;
                         }
 
-                        else if(eleccion == 3)
-                        {
-                            Console.WriteLine("¿Cual es su nombre?");
-                            string nombre = Console.ReadLine();
-                            Administrador administrador1 = new Administrador(invitacion, nombre);
-                            elegido = true;
-                        }
-
                         else
                         {
-                            Console.WriteLine("No elegiste un numero entre 1-3");
+                            Console.WriteLine("No elegiste un numero entre 1 y 2");
                         }
                     }
                 }
