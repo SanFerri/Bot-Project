@@ -4,11 +4,11 @@ namespace ClassLibrary
    public class OfertasCommand : ICommand
    {
         public ICommand next;
-        public void Do(Usuario emprendedor, string message)
+        public void Do(IUsuario emprendedor, string message)
         {
             if(message == "Ofertas")
             {
-               if(emprendedor.GetType == typeof(Emprendedor))
+               if(emprendedor.GetType() == typeof(Emprendedor))
                {
                   Console.WriteLine("¿Cual es el residuo que busca?");
                   int eleccion = Convert.ToInt32(Console.ReadLine());
