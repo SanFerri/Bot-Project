@@ -1,7 +1,7 @@
 namespace ClassLibrary
 {
-    public class Mercado
+    public class Buscador
     {
-        
+        public void Buscar();
     }
 }

@@ -11,7 +11,10 @@ namespace ClassLibrary
         /// <summary>
         /// Proximo comando es Invitar
         /// </summary>
-        public static InvitarCommand Next = new InvitarCommand();
+        public static ICommand Next = new InvitarCommand();
+        public Residuo residuoElegido{get;set;}
+        public int contacto{get;set;}
+        public Ubicacion ubicacion{get;set;}
 
         /// <summary>
         /// Metodo que evalua si el usuario completa los requerimientos (ser un empresario) y ve si el mensaje es
@@ -19,13 +22,13 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="empresario"></param>
         /// <param name="message"></param>
-        public void Do(Usuario empresario, string message)
+        public void Do(IUsuario empresario, string message)
         {
             // Verificamos que el mensaje sea el correcto
-            if(message == "Publicar")
+            if(message == "/publicar")
             {
                 // Verificamos los requerimientos (ser un empresario)
-                if(empresario.type(Empresario))
+                if(empresario.GetType() == typeof(Empresario))
                 {
                     Console.WriteLine("¿Una publicacion de cual de sus residuos quiere hacer?");
 

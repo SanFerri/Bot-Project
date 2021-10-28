@@ -1,7 +1,10 @@
+using System;
+using System.Collections.Generic;
 namespace ClassLibrary
 {
     public class chatBot
     {
+        IUsuario usuario1;
         public void MessageHandling(string message, int id)
         {
             bool registrado = false;
@@ -11,10 +14,10 @@ namespace ClassLibrary
                 if(usuario.id == id)
                 {
                     registrado = true;
-                    IUsuario usuario1 = usuario;
+                    usuario1 = usuario;
                 }
-                
             }
+            
             if(registrado == false)
             {
                 bool eleccion = false;
@@ -26,9 +29,10 @@ namespace ClassLibrary
                     {
                         if(usuario.invitacion == invitacion)
                         {
-                            Console.WriteLine("Se te ha registrado con exito");
+                            ListaUsuarios.AddUsuario(usuario);
                             usuario.id = id;
                             eleccion = true;
+                            Console.WriteLine("Se te ha registrado con exito");
                         }                                            
                     }
 
@@ -41,7 +45,7 @@ namespace ClassLibrary
                 bool AConversacion = false;
                 foreach(KeyValuePair<IUsuario,Conversacion> values in Conversacion.usuarioConversacion)
                 {
-                    if(values.Key == Usuario1)
+                    if(values.Key == usuario1)
                     {
                         values.Value.AddMessage(message);
                         AConversacion = true;
@@ -50,9 +54,10 @@ namespace ClassLibrary
                 if(AConversacion == false)
                 {
                     Conversacion conversacion = new Conversacion(message);
-                    Conversacion.AddConversacionUsuario(usuario1, conversacion);
-                    Conversacion.AddMessage(message);
+                    conversacion.AddConversacionUsuario(usuario1, conversacion);
+                    conversacion.AddMessage(message);
                 }
+                PublicarCommand command = new PublicarCommand();
                 PublicarCommand.Do(usuario1, message);
                 if(usuarioConversación[usuario1][-1][0] == '/')
                 {

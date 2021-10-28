@@ -7,6 +7,10 @@ namespace ClassLibrary
     public class Conversacion
     {
 
+        public Conversacion(string message)
+        {
+            this.conversacion.Add(message);
+        }
         public List<string> conversacion{get; set;} = new List<string>();
         public static Dictionary<IUsuario, Conversacion> usuarioConversacion = new Dictionary<IUsuario, Conversacion>();
 
