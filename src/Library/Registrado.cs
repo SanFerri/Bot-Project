@@ -1,7 +1,6 @@
 namespace ClassLibrary
 {
-    public class registrado
+    public class Registrado
     {
-        
     }
 }
