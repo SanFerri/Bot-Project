@@ -11,7 +11,7 @@ namespace ClassLibrary
         /// <summary>
         /// Proximo comando es Invitar
         /// </summary>
-        public static ICommand Next = new InvitarCommand();
+        public ICommand next{get;set;} = new InvitarCommand();
         public Residuo residuoElegido{get;set;}
         public int contacto{get;set;}
         public Ubicacion ubicacion{get;set;}
