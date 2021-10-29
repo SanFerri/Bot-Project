@@ -1,7 +1,16 @@
 namespace ClassLibrary
 {
-    public class Buscador
+    public static class Buscador
     {
-        public void Buscar();
+        public static void Buscar(Residuo residuo)
+        {
+            foreach(Publicacion publicacion in Mercado.mercado)
+            {
+                if(publicacion.residuo == residuo)
+                {
+                    
+                }
+            }
+        }
     }
 }
