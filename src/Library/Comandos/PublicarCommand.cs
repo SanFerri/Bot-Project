@@ -22,7 +22,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="empresario"></param>
         /// <param name="message"></param>
-        public void Do(IUsuario empresario, string message)
+        public void Do(Empresario empresario, string message)
         {
             // Verificamos que el mensaje sea el correcto
             if(message == "/publicar")
@@ -30,26 +30,25 @@ namespace ClassLibrary
                 // Verificamos los requerimientos (ser un empresario)
                 if(empresario.GetType() == typeof(Empresario))
                 {
+                    Registrado.VerifyConversation(empresario, message);
                     Console.WriteLine("¿Una publicacion de cual de sus residuos quiere hacer?");
 
                     int contador = 0;
-                    foreach(Residuo residuo in empresario.Empresa.residuos)
+                    foreach(Residuo residuo in empresario.empresa.residuos)
                     {
                         Console.WriteLine($"{contador}. {residuo.tipo} ");
                         contador += 1;
                     }
-                    int eleccion = Convert.ToInt32(Console.ReadLine());
-
-                    Console.WriteLine("Ingrese un numero de contacto");
-                    int contacto = Convert.ToInt32(Console.ReadLine());
-                    Publicacion publicacion = new Publicacion(empresario.Empresa.residuos[eleccion - 1], empresario.Empresa.ubicacion, contacto, DateTime.Now, empresario.Empresa);
-                    empresario.Empresa.publicaciones.AddPublicacion(publicacion);
+                }
+                else
+                {
+                    Console.WriteLine("Usted no es un empresario");
                 }
             }
 
             else
             {
-                Next.Do(empresario);
+                next.Do(empresario);
             }
         }
     }
