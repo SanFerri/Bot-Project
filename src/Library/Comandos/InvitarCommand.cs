@@ -20,13 +20,14 @@ namespace ClassLibrary
         /// <param name="message"></param>
         public void Do(IUsuario administrador, string message)
         {
-            if(message == "Invitar")
+            if(message == "/invitar")
             {
                 if(administrador.GetType() == typeof(Administrador))
                 {
+                    Registrado.VerifyConversation(administrador, message);
                     int invitacion = InvitationGenerator.Generate();
-                    Console.WriteLine("¿Cual es ")
-                    Empresa empresa = new Empresa();
+                    Console.WriteLine($"Esta es la invitacion {invitacion}");
+                    Console.WriteLine("¿Cual es el nombre?");
                 }
             }
             else
