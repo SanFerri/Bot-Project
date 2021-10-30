@@ -6,15 +6,15 @@ namespace ClassLibrary
     /// para añadir o remover elementos de una property de la clase llamada ListaResiudo, es el encargado
     /// de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
     /// </summary>
-    public static class ListaResiduos
+    public class ListaResiduos
     {
-        public static List<Residuo> listaResiduos = new List<Residuo>();
+        public List<Residuo> listaResiduos = new List<Residuo>();
 
         /// <summary>
         /// AddResiduo es un metodo que se encarga de agregar residuos a la lista.
         /// </summary>
         /// <param name="residuo"></param>
-        public static void AddResiduo(Residuo residuo)
+        public void AddResiduo(Residuo residuo)
         {
             listaResiduos.Add(residuo);
         }
@@ -23,7 +23,7 @@ namespace ClassLibrary
         /// RemoveResiduo es un metodo que se encarga de eliminar residuos de la lista.
         /// </summary>
         /// <param name="residuo"></param>
-        public static void RemoveResiduo(Residuo residuo)
+        public void RemoveResiduo(Residuo residuo)
         {
             listaResiduos.Remove(residuo);
         }

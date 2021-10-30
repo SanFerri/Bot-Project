@@ -24,19 +24,20 @@ namespace ClassLibrary
                 while(eleccion = false)
                 {
                     Console.WriteLine("No está registrado, ingrese una invitación si es parte de una empresa, en caso de no serlo responda con un 0");
-
-                    if()
-                    foreach(IUsuario usuario in ListaUsuarios.usuarios)
+                    Registrado.VerifyConversation(usuario1, "previoInvitacion");
+                    if(UsuarioConversacion.usuarioConversacion[usuario1][-1] == "previoInvitacion")
                     {
-                        if(usuario.invitacion == invitacion)
+                        foreach(Empresario usuario in ListaEmpresarios.empresarios)
                         {
-                            ListaUsuarios.AddUsuario(usuario);
-                            usuario.id = id;
-                            eleccion = true;
-                            Console.WriteLine("Se te ha registrado con exito");
-                        }                                            
+                            if(usuario.invitacion == invitacion)
+                            {
+                                ListaEmpresarios.AddUsuario(usuario);
+                                usuario.id = id;
+                                eleccion = true;
+                                Console.WriteLine("Se te ha registrado con exito");
+                            }                                            
+                        }
                     }
-
                 } 
             }
             message.ToLower();
@@ -45,25 +46,17 @@ namespace ClassLibrary
             {
                 Registrado.VerifyConversation(usuario1, message);
                 PublicarCommand command = new PublicarCommand();
-                PublicarCommand.Do(usuario1, message);
-                if(Conversacion.usuarioConversacion[usuario1].conversacion[-1][0] == '/')
+                command.Do(usuario1, message);
+                if(UsuarioConversacion.usuarioConversacion[usuario1].conversacion[-1][0] == '/')
                 {
                      
                 }
             }
             else
             {
-                if(UsuarioConversacion[usuario1].conversacion[-1] == "/ofertas")
+                if(UsuarioConversacion.usuarioConversacion[usuario1].conversacion[-1] == "/ofertas")
                 {
-                    Residuo residuoBuscado = new Residuo("NULL", 0);
-                    foreach(Residuo residuo in ListaResiduos.listaResiduos)
-                    {
-                        if(residuo.tipo == message)
-                        {
-                            residuoBuscado = residuo;
-                        }
-                    }
-                    List<Publicacion> ofertas = Buscador.Buscar(residuoBuscado);
+                    List<Publicacion> ofertas = Buscador.Buscar(message);
                     Registrado.VerifyConversation(usuario1, message);
                     Registrado.VerifyConversation(usuario1, "resputaofertas");
                     int contador = 0;
@@ -73,19 +66,12 @@ namespace ClassLibrary
                         contador += 1;
                     }
                 }
-                else if(UsuarioConversacion[usuario1].conversacion[-1] == "respuestaofertas")
+                else if(UsuarioConversacion.usuarioConversacion[usuario1].conversacion[-1] == "respuestaofertas")
                 {
-                    string buscado = UsuarioConversacion[usuario1].conversacion[-2];
-                    Residuo residuoBuscado = new Residuo("NULL", 0);
-                    foreach(Residuo residuo in ListaResiduos.listaResiduos)
-                    {
-                        if(residuo.tipo == buscado)
-                        {
-                            residuoBuscado = residuo;
-                        }
-                    }
-                    List<Publicacion> ofertas = Buscador.Buscar(residuoBuscado);
+                    string buscado = UsuarioConversacion.usuarioConversacion[usuario1].conversacion[-2];
+                    List<Publicacion> ofertas = Buscador.Buscar(buscado);
                     Publicacion publicacion = ofertas[Convert.ToInt32(message)];
+                    Console.WriteLine($"Dicha publicacion le pertenece a la empresa {publicacion.empresa.nombre}, este es el contacto: {publicacion.empresa.contacto}");
                 }
             }
         }
