@@ -12,11 +12,11 @@ namespace ClassLibrary
             return handler;
         }
 
-        public virtual object Handle(object request)
+        public virtual object Handle(IUsuario usuario, string message)
         {
             if (this._nextHandler != null)
             {
-                return this._nextHandler.Handle(request);
+                return this._nextHandler.Handle(usuario, message);
             }
             else
             {
