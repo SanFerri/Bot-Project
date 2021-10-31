@@ -4,14 +4,13 @@ namespace ClassLibrary
 {
     class OfertasHandler : AbstractHandlerRespuestas
     {
-        public override object Handle(object request)
-        {
-            //if (request.ToString() == "/ofertas")
-            if(UsuarioConversacion.usuarioConversacion[usuario1].conversacion[-1] == "/ofertas")
+        public override object Handle(IUsuario usuario, string message)
+        {   
+            if(UsuarioConversacion.usuarioConversacion[usuario].conversacion[-1] == "/ofertas")
             {
                 List<Publicacion> ofertas = Buscador.Buscar(message);
-                Registrado.VerifyConversation(usuario1, message);
-                Registrado.VerifyConversation(usuario1, "resputaofertas");
+                Registrado.VerifyConversation(usuario, message);
+                Registrado.VerifyConversation(usuario, "resputaofertas");
                 int contador = 0;
                 foreach(Publicacion publicacion1 in ofertas)
                 {
@@ -21,7 +20,7 @@ namespace ClassLibrary
             }   
             else
             {
-                return base.Handle(request);    
+                return base.Handle(usuario, message);    
             }
             
         }

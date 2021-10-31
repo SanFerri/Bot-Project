@@ -61,7 +61,8 @@ namespace ClassLibrary
                      
                 }
             }
-            else
+             
+            /*else
             {
                 if(UsuarioConversacion.usuarioConversacion[usuario1].conversacion[-1] == "/ofertas")
                 {
@@ -108,7 +109,9 @@ namespace ClassLibrary
                     Ubicacion ubicacion = new Ubicacion(Convert.ToInt32(UsuarioConversacion.usuarioConversacion[usuario1].conversacion[-2]))
                     Empresa empresa = new Empresa(nombre, contacto, ubicacion);
                 }
+                
             }
-        }
+            */
+        }   
     }
 }

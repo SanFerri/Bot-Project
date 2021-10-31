@@ -6,6 +6,6 @@ namespace ClassLibrary
     {
         IHandlerRespuestas SetNext(IHandlerRespuestas handler);
 
-        object Handle(object request);
+        object Handle(IUsuario usuario, string message);
     }
 }
