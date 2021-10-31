@@ -17,7 +17,7 @@ namespace ClassLibrary
 
             this.direccion = direccion;
         }
-        public int distancia(Ubicacion ubicacion)
+        public int Distancia(Ubicacion ubicacion)
         {
             Distance distance = await client.GetDistance(this.coordenadas, ubicacion.coordenadas);
 
