@@ -11,7 +11,7 @@ namespace ClassLibrary
             {
                if(emprendedor.GetType() == typeof(Emprendedor))
                {
-                  Console.WriteLine("¿Cual es el residuo que busca?");
+                  Console.WriteLine("¿Cual es tu ubicación?");
                }
             }
         }

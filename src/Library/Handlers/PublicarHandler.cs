@@ -2,19 +2,19 @@ using System;
 using System.Collections.Generic;
 namespace ClassLibrary
 {
-    class PublicarHandler : AbstractHandlerRespuestas
+    class PublicarHandler : AbstractHandlerRespuestas 
     {
-        public override object Handle(IUsuario usuario, string message)
+        public override object Handle(Empresario empresario, string message)
         {
             
-            if(UsuarioConversacion.usuarioConversacion[usuario].conversacion[-1] == "/publicar")
+            if(UsuarioConversacion.usuarioConversacion[empresario].conversacion[-1] == "/publicar")
             {
-                Publicacion publicacion = new Publicacion(usuario.Empresa.residuos[Convert.ToInt32(message) - 1], empresario.Empresa.ubicacion, DateTime.Now, empresario.Empresa);
-                empresario.Empresa.publicaciones.AddPublicacion(publicacion);
+                Publicacion publicacion = new Publicacion(empresario.empresa.residuos[Convert.ToInt32(message) - 1], empresario.empresa.ubicacion, DateTime.Now, empresario.empresa);
+                empresario.empresa.publicaciones.AddPublicacion(publicacion);
             }
             else
             {
-                return base.Handle(usuario, message);    
+                return base.Handle(empresario, message);    
             }
             
         }
