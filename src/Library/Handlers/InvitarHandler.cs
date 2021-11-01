@@ -4,10 +4,13 @@ namespace ClassLibrary
 {
     class InvitarHandler : AbstractHandler
     {
-        public override object Handle(IUsuario usuario, string message)
+        public override object Handle(string message, out string response, IUsuario usuario)
         {
-            
-            if(UsuarioConversacion.usuarioConversacion[usuario].conversacion[-1] == "/invitar")
+            if(usuario != "administrador")
+            {
+                return "usted no tiene autorización para realizar este comando";
+            }
+            if(message == "/invitar")
             {
                 Registrado.VerifyConversation(usuario, message);
                 Registrado.VerifyConversation(usuario, "Respuesta_nombre");
