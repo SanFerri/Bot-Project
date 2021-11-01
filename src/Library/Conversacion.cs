@@ -2,7 +2,7 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Clase que conoce la conversacion del bot con usuarios 
+    /// Clase que conoce la conversacion (es decir una lista de mensajes) 
     /// </summary>
     public class Conversacion
     {

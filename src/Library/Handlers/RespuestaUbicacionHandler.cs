@@ -17,7 +17,6 @@ namespace ClassLibrary
             {
                 return base.Handle(usuario, message);    
             }
-            
         }
 
     }

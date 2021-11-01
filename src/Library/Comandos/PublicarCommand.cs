@@ -22,7 +22,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="empresario"></param>
         /// <param name="message"></param>
-        public void Do(Empresario empresario, string message)
+        public void Do(IUsuario empresario, string message)
         {
             // Verificamos que el mensaje sea el correcto
             if(message == "/publicar")
