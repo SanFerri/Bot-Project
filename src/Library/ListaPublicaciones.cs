@@ -16,7 +16,7 @@ namespace ClassLibrary
         public List<Publicacion> listaPublicaciones = new List<Publicacion>();
 
         /// <summary>
-        /// AddPublicaciones es un metodo que se encarga de agregar publicaciones a la lista
+        /// AddPublicacion es un metodo que se encarga de agregar publicaciones a la lista
         /// </summary>
         /// <param name="publicacion"></param>
         public void AddPublicacion(Publicacion publicacion)
@@ -25,7 +25,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// RemovePublicaciones es un metodo que se encarga de eliminar publicaciones de la lista.
+        /// RemovePublicacion es un metodo que se encarga de eliminar publicaciones de la lista.
         /// </summary>
         /// <param name="publicacion"></param>
         public void RemovePublicacion(Publicacion publicacion)
