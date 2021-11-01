@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 namespace ClassLibrary
 {
-    class PublicarHandler : AbstractHandlerRespuestas 
+    class PublicarHandler : AbstractHandler
     {
         public override object Handle(Empresario empresario, string message)
         {
