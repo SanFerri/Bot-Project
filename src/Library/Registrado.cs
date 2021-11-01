@@ -5,13 +5,14 @@ namespace ClassLibrary
 {
     public static class Registrado
     {
-        public static void VerifyUser(IUsuario usuario)
+        public static void VerifyUser(int id, string invitacion)
         {
+            IUsuario usuario;
             bool registrado = false;
 
             foreach(Empresario usuario1 in ListaEmpresarios.empresarios)
             {
-                if(usuario.id == usuario1.id)
+                if(id == usuario1.id)
                 {
                     registrado = true;
                     usuario = usuario1;
@@ -21,7 +22,7 @@ namespace ClassLibrary
             {
                 foreach(IUsuario usuario1 in ListaUsuarios.usuarios)
                 {
-                    if(usuario.id == usuario1.id)
+                    if(id == usuario1.id)
                     {
                         registrado = true;
                         usuario = usuario1;
@@ -31,24 +32,16 @@ namespace ClassLibrary
             
             if(registrado == false)
             {
-                bool eleccion = false;
-                    Console.WriteLine("No está registrado, ingrese una invitación si es parte de una empresa, en caso de no serlo responda con un no");
-                    Registrado.VerifyConversation(usuario, "previoInvitacion");
-                    while(eleccion = false)
+                Console.WriteLine("No está registrado, ingrese una invitación si es parte de una empresa, en caso de no serlo responda con un no");
+
+                foreach(Empresario usuario1 in ListaEmpresarios.empresarios)
+                {
+                    if(usuario1.invitacion == Convert.ToInt32(invitacion))
                     {
-                        if(UsuarioConversacion.usuarioConversacion[usuario1].conversacion[-1] == "previoInvitacion")
-                        {
-                            foreach(Empresario usuario in ListaEmpresarios.empresarios)
-                            {
-                                if(usuario.invitacion == Convert.ToInt32(message))
-                                {
-                                    usuario.id = id;
-                                    eleccion = true;
-                                    Console.WriteLine("Se te ha registrado con exito");
-                                }                                            
-                            }
-                        }
-                    } 
+                        usuario1.id = id;
+                        Console.WriteLine("Se te ha registrado con exito");
+                    }                                            
+                }
             }
         }
         public static void VerifyConversation(IUsuario usuario, string message)

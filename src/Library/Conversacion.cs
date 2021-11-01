@@ -6,7 +6,7 @@ namespace ClassLibrary
     /// </summary>
     public class Conversacion
     {
-        public List<string> conversacion{get;set;} = new List<string>();
+        public List<string> conversacion {get; set;} = new List<string>();
         public Conversacion(string message)
         {
             this.conversacion.Add(message);

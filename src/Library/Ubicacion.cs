@@ -1,10 +1,22 @@
-using LocationApi;
+// using Ucu.Poo.Locations.Client;
 using Nito.AsyncEx;
 
 namespace ClassLibrary
 {
     public class Ubicacion
     {
+        public Ubicacion(string direccion)
+        {
+
+        }
+        
+        public int Distancia(Ubicacion ubicacion)
+        {
+            return 0;
+        }
+    }
+}
+        /*
         public Location coordenadas{get; set;}
         public string direccion{get; set;}
 
@@ -29,3 +41,4 @@ namespace ClassLibrary
         }
     }
 }
+*/

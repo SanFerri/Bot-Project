@@ -1,3 +1,4 @@
+// Interfaz comando
 namespace ClassLibrary
 {
     /// <summary>
@@ -12,7 +13,7 @@ namespace ClassLibrary
         void Do(IUsuario usuario, string message);
 
         /// <summary>
-        /// Property que indica cual es el proximo comando a ejecutarse.
+        /// Obtiene o estable Property que indica cual es el proximo comando a ejecutarse.
         /// </summary>
         /// <value></value>
         ICommand next {get; set;}
