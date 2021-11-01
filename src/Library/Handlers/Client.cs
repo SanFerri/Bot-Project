@@ -4,7 +4,7 @@ namespace ClassLibrary
 {
     class Client
     {
-        public static void ClientCode(AbstractHandler handler)
+        public static void ClientCode(AbstractHandlerRespuestas handler)
         {
             
         }
