@@ -21,7 +21,6 @@ namespace ClassLibrary
         /// Constructor de una instancia de administrador. 
         /// </summary>
         /// <param name="invitacion"></param>
-        /// <param name="nombre"></param>
 
         public Administrador(int invitacion)
         {

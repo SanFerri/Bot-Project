@@ -29,7 +29,6 @@ namespace ClassLibrary
         /// Constructor de una instancia de Empresario.
         /// </summary>
         /// <param name="invitacion"></param>
-        /// <param name="nombre"></param>
         /// <param name="empresa"></param>
         public Empresario(int invitacion, Empresa empresa)
         {
