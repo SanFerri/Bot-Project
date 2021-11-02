@@ -35,12 +35,12 @@ namespace ClassLibrary
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
-        protected override bool InternalHandle(string message, IUsuario usuario, out string response)
+        protected override bool InternalHandle(string message, int id, out string response)
         {
             bool realEmpresario = false;
             foreach(Empresario empresario in ListaEmpresarios.empresarios)
             {
-                if(empresario.id == usuario.id)
+                if(empresario.id == id)
                 {
                     this.empresaUsuario = empresario.empresa;
                     realEmpresario = true;

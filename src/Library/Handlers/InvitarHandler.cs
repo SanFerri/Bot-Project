@@ -35,12 +35,12 @@ namespace ClassLibrary
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
-        protected override bool InternalHandle(string message, IUsuario usuario, out string response)
+        protected override bool InternalHandle(string message, int id, out string response)
         {
             bool realAdministrador = false;
             foreach(Administrador administrador in ListaAdministradores.administradores)
             {
-                if(administrador.id == usuario.id)
+                if(administrador.id == id)
                 {
                     realAdministrador = true;
                 }
@@ -91,7 +91,7 @@ namespace ClassLibrary
             else if (State == InvitarState.EmpresarioPrompt)
             {
                 int invitacion = InvitationGenerator.Generate();
-                Empresario empresario = new Empresario(invitacion, this.nombreEmpresa, this.empresaData);
+                Empresario empresario = new Empresario(invitacion, this.empresaData);
                 response = "Se ha creado el empresario y esta es la invitacion que debe usar para acceder a su status: {invitacion}";
 
                 return true;

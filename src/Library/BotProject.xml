@@ -1,0 +1,667 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BotProject</name>
+    </assembly>
+    <members>
+        <member name="T:ClassLibrary.Administrador">
+            <summary>
+            Clase Administrador del tipo IUsuario, posee, ademas de las property id, name e invitacion de toda clase 
+            usuario, una property empresa que indica la empresa de la que participa el Empresario.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Administrador.id">
+            <summary>
+            Property id, es el encargado de conocer el numero entero del id del administrador.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Administrador.invitacion">
+            <summary>
+            Property invitacion, es el encargado de conocer el numero entero de la invitacion del 
+            adminitrador.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.Administrador.#ctor(System.Int32)">
+            <summary>
+            Constructor de una instancia de administrador. 
+            </summary>
+            <param name="invitacion"></param>
+            <param name="nombre"></param>
+        </member>
+        <member name="T:ClassLibrary.Buscador">
+            <summary>
+            Buscador es el experto en conocer las busquedas.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.Buscador.client">
+            <summary>
+            Variable estatica Buscar porque es una lista de instancia de publicación que lleva 
+            el registro de todas las busquedas que hay.
+            </summary>
+            <param name="tipo"></param>
+            <param name="ubicacion"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.ChatBot">
+            <summary>
+            Clase ChatBot vacia 
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.Conversacion">
+            <summary>
+            Clase que conoce la conversacion (es decir una lista de mensajes) 
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.Emprendedor">
+            <summary>
+            Clase Emprendedor del tipo IUsuario, posee el nombre, invitacion e id del emprendedor.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Emprendedor.invitacion">
+            <summary>
+            Property invitación, es la invitación que se le hace al emprendedor para ingresar y poder 
+            acceder a los residuos publicados por las empresas.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Emprendedor.id">
+            <summary>
+            Property id, es el id que se le asigna al emprededor para poder reconocerlo como tal.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.Emprendedor.#ctor(System.Int32)">
+            <summary>
+            Constructor de una instancia de Emprendedor. 
+            </summary>
+            <param name="invitacion"></param>
+            <param name="nombre"></param>
+        </member>
+        <member name="T:ClassLibrary.Empresa">
+            <summary>
+            Empresa es una clase que conoce la información de las empresas, el nombre, la ubicación, el
+            contacto, los residuos, sus publicaciones y a el empresario.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Empresa.nombre">
+            <summary>
+            Property nombre, es el nombre que tiene la empresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Empresa.ubicacion">
+            <summary>
+            Property ubicacion, es la ubicación donde se encuentra la empresa. 
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Empresa.contacto">
+            <summary>
+            Property contacto, es el contacto de la empresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Empresa.residuos">
+            <summary>
+            Es la lista de residuos que lleva el registro de todos los residuos que tiene la empresa 
+            publicados.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:ClassLibrary.Empresa.publicaciones">
+            <summary>
+            Es la lista que lleva el registro de todas las publicaciones que tiene la empresa
+            realizadas. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:ClassLibrary.Empresa.empresario">
+            <summary>
+            Property empresario, es el encargado de la empresa. 
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.Empresa.#ctor(System.String,ClassLibrary.Ubicacion,System.Int32)">
+            <summary>
+            Constructor de una instancia de Empresa.
+            </summary>
+            <param name="nombre"></param>
+            <param name="ubicacion"></param>
+            <param name="contacto"></param>
+        </member>
+        <member name="T:ClassLibrary.Empresario">
+            <summary>
+            Clase Empresario del tipo IUsuario, posee, ademas de las property id e invitacion de toda clase 
+            usuario, una property empresa que indica la empresa de la que participa el Empresario.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Empresario.empresa">
+            <summary>
+            Es el encargado de conocer la empresa de la que es parte.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Empresario.id">
+            <summary>
+            Es el encargado de conocer el id del empresario.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Empresario.invitacion">
+            <summary>
+            Es el encargado de conocer el valor de una invitación de acceso.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.Empresario.#ctor(System.Int32,ClassLibrary.Empresa)">
+            <summary>
+            Constructor de una instancia de Empresario.
+            </summary>
+            <param name="invitacion"></param>
+            <param name="nombre"></param>
+            <param name="empresa"></param>
+        </member>
+        <member name="T:ClassLibrary.BaseHandler">
+            <summary>
+            Clase base para implementar el patrón Chain of Responsibility. En ese patrón se pasa un mensaje a través de una
+            cadena de "handlers" que pueden procesar o no el mensaje. Cada "handler" decide si procesa el mensaje, o si se lo
+            pasa al siguiente. Esta clase base implmementa la responsabilidad de recibir el mensaje y pasarlo al siguiente
+            "handler" en caso que el mensaje no sea procesado. La responsabilidad de decidir si el mensaje se procesa o no, y
+            de procesarlo, se delega a las clases sucesoras de esta clase base.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.BaseHandler.Next">
+            <summary>
+            Obtiene el próximo "handler".
+            </summary>
+            <value>El "handler" que será invocado si este "handler" no procesa el mensaje.</value>
+        </member>
+        <member name="P:ClassLibrary.BaseHandler.Keywords">
+            <summary>
+            Obtiene o asigna el conjunto de palabras clave que este "handler" puede procesar.
+            </summary>
+            <value>Un array de palabras clave.</value>
+        </member>
+        <member name="M:ClassLibrary.BaseHandler.#ctor(ClassLibrary.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:ClassLibrary.BaseHandler"/>.
+            </summary>
+            <param name="next">El próximo "handler".</param>
+        </member>
+        <member name="M:ClassLibrary.BaseHandler.#ctor(System.String[],ClassLibrary.IHandler)">
+            <summary>
+            Inicializa una nueva instancia de la clase <see cref="T:ClassLibrary.BaseHandler"/> con una lista de comandos.
+            </summary>
+            <param name="keywords">La lista de comandos.</param>
+            <param name="next">El próximo "handler".</param>
+        </member>
+        <member name="M:ClassLibrary.BaseHandler.InternalHandle(System.String,System.Int32,System.String@)">
+            <summary>
+            Este método debe ser sobreescrito por las clases sucesores. La clase sucesora procesa el mensaje y retorna
+            true o no lo procesa y retorna false.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario</returns>
+        </member>
+        <member name="M:ClassLibrary.BaseHandler.InternalCancel">
+            <summary>
+            Este método puede ser sobreescrito en las clases sucesores que procesan varios mensajes cambiando de estado
+            entre mensajes deben sobreescribir este método para volver al estado inicial. En la clase base no hace nada.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.BaseHandler.CanHandle(System.String)">
+            <summary>
+            Determina si este "handler" puede procesar el mensaje. En la clase base se utiliza el array
+            <see cref="P:ClassLibrary.BaseHandler.Keywords"/> para buscar el texto en el mensaje ignorando mayúsculas y minúsculas. Las
+            clases sucesores pueden sobreescribir este método para proveer otro mecanismo para determina si procesan o no
+            un mensaje.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <returns>true si el mensaje puede ser pocesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:ClassLibrary.BaseHandler.Handle(System.String,System.Int32,System.String@)">
+            <summary>
+            Procesa el mensaje o la pasa al siguiente "handler" si existe.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+            <returns>El "handler" que procesó el mensaje si el mensaje fue procesado; null en caso contrario.</returns>
+        </member>
+        <member name="M:ClassLibrary.BaseHandler.Cancel">
+            <summary>
+            Retorna este "handler" al estado inicial. En los "handler" sin estado no hace nada. Los "handlers" que
+            procesan varios mensajes cambiando de estado entre mensajes deben sobreescribir este método para volver al
+            estado inicial.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:ClassLibrary.IHandler" -->
+        <member name="P:ClassLibrary.IHandler.Next">
+            <summary>
+            Obtiene el próximo "handler".
+            </summary>
+            <value>El "handler" que será invocado si este "handler" no procesa el mensaje.</value>
+        </member>
+        <member name="M:ClassLibrary.IHandler.Handle(System.String,System.Int32,System.String@)">
+            <summary>
+            Procesa el mensaje o la pasa al siguiente "handler" si existe.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado.</param>
+            <returns>El "handler" que procesó el mensaje si el mensaje fue procesado; null en caso contrario.</returns>
+        </member>
+        <member name="M:ClassLibrary.IHandler.Cancel">
+            <summary>
+            Retorna este "handler" al estado inicial y cancela el próximo "handler" si existe. Es utilizado para que los
+            "handlers" que procesan varios mensajes cambiando de estado entre mensajes puedan volver al estado inicial en
+            caso de error por ejemplo.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.InvitarHandler">
+            <summary>
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "distancia".
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.InvitarHandler.State">
+            <summary>
+            El estado del comando.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.InvitarHandler.UbicacionData">
+            <summary>
+            Los datos que va obteniendo el comando en los diferentes estados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.InvitarHandler.InternalHandle(System.String,System.Int32,System.String@)">
+            <summary>
+            Procesa todos los mensajes y retorna true siempre.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:ClassLibrary.InvitarHandler.InternalCancel">
+            <summary>
+            Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.InvitarHandler.InvitarState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando DistanceHandler.
+            - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
+            siguiente estado.
+            - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
+            destino y pasa al siguiente estado.
+            - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
+            y vuelve al estado Start.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.InvitationGenerator">
+            <summary>
+            Clase que se encarga de generar invitaciones, si en algun momento debemos cambiar el modo de la invitacion
+            entonces solo tendremos que cambiar esta clase y no todas las otras.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.InvitationGenerator.random">
+            <summary>
+            Generamos un randomizer
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.InvitationGenerator.Generate">
+            <summary>
+            Este es un metodo que genera una contraseña que se usa como codigo de invitacion, esta posee menos de
+            7 digitos.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.PublicarHandler">
+            <summary>
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "distancia".
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.PublicarHandler.State">
+            <summary>
+            El estado del comando.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.PublicarHandler.UbicacionData">
+            <summary>
+            Los datos que va obteniendo el comando en los diferentes estados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.PublicarHandler.InternalHandle(System.String,System.Int32,System.String@)">
+            <summary>
+            Procesa todos los mensajes y retorna true siempre.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:ClassLibrary.PublicarHandler.InternalCancel">
+            <summary>
+            Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.PublicarHandler.PublicarState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando DistanceHandler.
+            - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
+            siguiente estado.
+            - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
+            destino y pasa al siguiente estado.
+            - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
+            y vuelve al estado Start.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.IUsuario">
+            <summary>
+            IUsuario es una interfaz, todos los usuarios (ya sean emprendedores, empresarios o administradores)
+            implementan esta interfaz.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.IUsuario.id">
+            <summary>
+            El unico valor que comparte todo usuario es un valor id que es un int.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:ClassLibrary.ListaAdministradores">
+            <summary>
+            ListaEmpresarios es el experto en conocer a los empresarios, y 
+            por el patron Expert este tambien es quien
+            posee la responsabilidad de agregar Empresarios y/o remover Empresarios.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.ListaAdministradores.administradores">
+            <summary>
+            Variable estatica empresarios, porque es una lista de instancias de Empresario
+            que lleva un registro de todos los empresarios que hay.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ListaAdministradores.AddAdministrador(ClassLibrary.Administrador)">
+            <summary>
+            Metodo que agrega un empresario a la lista de empresarios, desginado a esta clase por Expert.
+            </summary>
+            <param name="empresario"></param>
+        </member>
+        <member name="M:ClassLibrary.ListaAdministradores.RemoveAdministrador(ClassLibrary.Administrador)">
+            <summary>
+            Metodo que remove un empresario a la lista de empresarios, desginado a esta clase por Expert.
+            </summary>
+            <param name="empresario"></param>
+        </member>
+        <member name="T:ClassLibrary.ListaEmpresarios">
+            <summary>
+            ListaEmpresarios es el experto en conocer a los empresarios, y 
+            por el patron Expert este tambien es quien
+            posee la responsabilidad de agregar Empresarios y/o remover Empresarios.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.ListaEmpresarios.empresarios">
+            <summary>
+            Variable estatica empresarios, porque es una lista de instancias de Empresario
+            que lleva un registro de todos los empresarios que hay.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ListaEmpresarios.AddEmpresario(ClassLibrary.Empresario)">
+            <summary>
+            Metodo que agrega un empresario a la lista de empresarios, desginado a esta clase por Expert.
+            </summary>
+            <param name="empresario"></param>
+        </member>
+        <member name="M:ClassLibrary.ListaEmpresarios.RemoveEmpresario(ClassLibrary.Empresario)">
+            <summary>
+            Metodo que remove un empresario a la lista de empresarios, desginado a esta clase por Expert.
+            </summary>
+            <param name="empresario"></param>
+        </member>
+        <member name="T:ClassLibrary.ListaEmpresas">
+            <summary>
+            ListaEmpresas es el experto en conocer a las empresas, y 
+            por el patron Expert este tambien es quien
+            posee la responsabilidad de agregar Empresas y/o remover Empresas.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ListaEmpresas.empresas">
+            <summary>
+            Variable estatica empresas, porque es una lista de instancias de Empresa
+            que lleva un registro de todos las empresas que hay.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ListaEmpresas.AddEmpresa(ClassLibrary.Empresa)">
+            <summary>
+            AddEmpresa es un metodo que se encarga de agregar una empresa a la lista, 
+            desginado  a esta clase por Expert.
+            </summary>
+            <param name="empresa"></param>
+        </member>
+        <member name="M:ClassLibrary.ListaEmpresas.RemoveEmpresa(ClassLibrary.Empresa)">
+            <summary>
+            RemoveEmpresa es un metodo que se encarga de eliminar una empresa de la lista.
+            </summary>
+            <param name="empresa"></param>
+        </member>
+        <member name="T:ClassLibrary.ListaPublicaciones">
+            <summary>
+            Lista publicaciones es un structurer de publicación que posee dos metodos AddPublicacione y removePublicaciones
+            para añadir o remover elementos de una property de la clase llamada ListaPublicaciones, es el encargado
+            de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ListaPublicaciones.listaPublicaciones">
+            <summary>
+            Property publicación, es una lista de instancias de Publicacion
+            que lleva el registro de las publicaciones de una empresa.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ListaPublicaciones.AddPublicacion(ClassLibrary.Publicacion)">
+            <summary>
+            AddPublicacion es un metodo que se encarga de agregar publicaciones a la lista
+            </summary>
+            <param name="publicacion"></param>
+        </member>
+        <member name="M:ClassLibrary.ListaPublicaciones.RemovePublicacion(ClassLibrary.Publicacion)">
+            <summary>
+            RemovePublicacion es un metodo que se encarga de eliminar publicaciones de la lista.
+            </summary>
+            <param name="publicacion"></param>
+        </member>
+        <member name="T:ClassLibrary.ListaResiduos">
+            <summary>
+            Lista residuos es un structurer de residuo que posee dos metodos AddResiudo y removeresiduo
+            para añadir o remover elementos de una property de la clase llamada ListaResiudo, es el encargado
+            de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ListaResiduos.listaResiduos">
+            <summary>
+            Property int residuo, es una lista de instancias de Residuo
+            que lleva el registro de los residuos de una empresa.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ListaResiduos.AddResiduo(ClassLibrary.Residuo)">
+            <summary>
+            AddResiduo es un metodo que se encarga de agregar residuos a la lista.
+            </summary>
+            <param name="residuo"></param>
+        </member>
+        <member name="M:ClassLibrary.ListaResiduos.RemoveResiduo(ClassLibrary.Residuo)">
+            <summary>
+            RemoveResiduo es un metodo que se encarga de eliminar residuos de la lista.
+            </summary>
+            <param name="residuo"></param>
+        </member>
+        <member name="T:ClassLibrary.ListaUsuarios">
+            <summary>
+            ListaUsuario es el experto en conocer a todos los usuarios, y 
+            por el patron Expert este tambien es quien
+            posee la responsabilidad de agregar y/o remover Usuarios.
+            A su vez depende de IUsuario para agregar cualquier tipo de usuario (emprendedor,
+            administrador o usuarios).
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.ListaUsuarios.usuarios">
+            <summary>
+            Variable estatica Usuarios, porque es una lista de instancias de Usuarios
+            que lleva un registro de todos las usuarios que hay.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ListaUsuarios.AddUsuario(ClassLibrary.IUsuario)">
+            <summary>
+            AddUsuarios es el encargado de agregar usuarios a la lista.
+            </summary>
+            <param name="usuario"></param>
+        </member>
+        <member name="M:ClassLibrary.ListaUsuarios.RemoveUsuario(ClassLibrary.IUsuario)">
+            <summary>
+            RemoveUsuario es el encargado de remover usuarios de la lista.
+            </summary>
+            <param name="usuario"></param>
+        </member>
+        <member name="T:ClassLibrary.Mercado">
+            <summary>
+            La clase mercado es estatica porque el esta conoce todas las publicaciones
+            existentes, indepedientemente de a que empresa pertenezcan. Como esta es
+            la experta en la informacion de todas las publicaciones tambien es la
+            encargada atraves de sus 2 metodo Add y Remove Mercado de agregar o remover publicaciones.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.Mercado.mercado">
+            <summary>
+            Property 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Mercado.AddMercado(ClassLibrary.Publicacion)">
+            <summary>
+            AddMercado, metodo para agregar publicaciones al mercado, designado por Expert.
+            </summary>
+            <param name="publicacion"></param>
+        </member>
+        <member name="M:ClassLibrary.Mercado.RemoveMercado(ClassLibrary.Publicacion)">
+            <summary>
+            RemoveMercado, metodo para remover publicaciones al mercado, designado por Expert.
+            </summary>
+            <param name="publicacion"></param>
+        </member>
+        <member name="T:ClassLibrary.Publicacion">
+            <summary>
+            Publicacion es una clase que conoce la informacion de empresa, residuo, la fecha
+            y ubicacion de una publicacion hecha por una X empresa.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Publicacion.empresa">
+            <summary>
+            Property empresa, es la empresa que crea la publicacion.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Publicacion.residuo">
+            <summary>
+            Property residuo, es el residuo que se esta ofertando en la publicacion.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Publicacion.ubicacion">
+            <summary>
+            Property ubicacion, es la ubicacion de donde se encuentran los residuos de la oferta.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.Publicacion.#ctor(ClassLibrary.Residuo,ClassLibrary.Ubicacion,ClassLibrary.Empresa)">
+            <summary>
+            Constructor de una instancia de Publicacion.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.Residuo">
+            <summary>
+            Residuo es una clase que conoce la informacion de los residuos publicados, el tipo y la cantidad
+            de una publicacion hecha por una X empresa.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Residuo.tipo">
+            <summary>
+            Es el encargado de conocer el tipo de material que se esta ofreciendo.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Residuo.cantidad">
+            <summary>
+            Es el encargado de conocer la cantidad que hay de cada material.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.Residuo.#ctor(System.String,System.Int32)">
+            <summary>
+            Constructor de una instancia de Residuo.
+            </summary>
+            <param name="tipo"></param>
+            <param name="cantidad"></param>
+        </member>
+        <member name="T:ClassLibrary.Train">
+            <summary>
+            Esta clase representa un tren muy básico.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Train.IsEngineStarted">
+            <summary>
+            Obtiene un valor que indica si las maquinas del tren han sido encendidas o no.
+            </summary>
+            <value><c>true</c> si las máquinas fueron encendidas, <c>false</c> en caso contrario.</value>
+        </member>
+        <member name="M:ClassLibrary.Train.StartEngines">
+            <summary>
+            Enciende las máquinas del tren.
+            </summary>
+            <returns>
+            <c>true</c> si las máquinas pueden ser encendidas, <c>false</c> en caso contrario.
+            </returns>
+        </member>
+        <member name="M:ClassLibrary.Train.StopEngines">
+            <summary>
+            Detiene las máquinas del tren.
+            </summary>
+            <returns>
+            <c>true</c> si las máquinas pueden ser detenidas, <c>false</c> en caso contrario.
+            </returns>
+        </member>
+        <member name="T:ClassLibrary.UsuarioConversacion">
+            <summary>
+            UsuarioConversacion es el experto en conocer a las Conversaciones junto a su respectivo usuario, 
+            por ello es que se implementa con una property Dictionary, por el patron Expert este tambien es quien
+            posee la responsabilidad de agregar y/o remover pares key(IUsuario) y value(Conversacion).
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.UsuarioConversacion.usuarioConversacion">
+            <summary>
+            UsuarioConversacion es una property Dictionary que recibe como parametros una key que es
+            IUsuario, IUsuario es una interfaz aqui aplicamos la convencion de inversion de
+            dependencia.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.UsuarioConversacion.AddConversacionUsuario(ClassLibrary.IUsuario,ClassLibrary.Conversacion)">
+            <summary>
+            AddConversacionUsuario es un metodo que se encarga de agregar al diccionario
+            usuarioConversacion una key usuario y su value conversacion, metodo designado por Expert.
+            </summary>
+            <param name="usuario"></param>
+            <param name="conversacion"></param>
+        </member>
+        <member name="M:ClassLibrary.UsuarioConversacion.RemoveConversacionUsuario(ClassLibrary.IUsuario)">
+            <summary>
+            RemoveConversacionUsuario es un metodo que se encarga de remover del diccionario
+            usuarioConversacion una key usuario y su value conversacion, metodo designado por Expert.
+            </summary>
+        </member>
+    </members>
+</doc>

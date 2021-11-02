@@ -7,11 +7,6 @@ namespace ClassLibrary
     public class Administrador : IUsuario
     {
         /// <summary>
-        /// Property nombre, es el encargado de conocer el nombre del administrador.
-        /// </summary>
-        /// <value></value>
-        public string nombre{get; set;}
-        /// <summary>
         /// Property id, es el encargado de conocer el numero entero del id del administrador.
         /// </summary>
         /// <value></value>
@@ -28,10 +23,9 @@ namespace ClassLibrary
         /// <param name="invitacion"></param>
         /// <param name="nombre"></param>
 
-        public Administrador(int invitacion, string nombre)
+        public Administrador(int invitacion)
         {
             this.invitacion = invitacion;
-            this.nombre = nombre;
         }
     }
 }

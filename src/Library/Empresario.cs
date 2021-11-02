@@ -6,11 +6,6 @@ namespace ClassLibrary
     /// </summary>
     public class Empresario : IUsuario
     {
-        /// <summary>
-        /// Es el encargado de conocer el nombre del empresario. 
-        /// </summary>
-        /// <value></value>
-        public string nombre{get; set;}
        
         /// <summary>
         /// Es el encargado de conocer la empresa de la que es parte.
@@ -36,11 +31,10 @@ namespace ClassLibrary
         /// <param name="invitacion"></param>
         /// <param name="nombre"></param>
         /// <param name="empresa"></param>
-        public Empresario(int invitacion, string nombre, Empresa empresa)
+        public Empresario(int invitacion, Empresa empresa)
         {
             this.empresa = empresa;
             this.invitacion = invitacion;
-            this.nombre = nombre;
         }
     }
 }
