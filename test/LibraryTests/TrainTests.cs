@@ -1,85 +1,52 @@
-//--------------------------------------------------------------------------------
-// <copyright file="TrainTests.cs" company="Universidad Católica del Uruguay">
-//     Copyright (c) Programación II. Derechos reservados.
-// </copyright>
-//--------------------------------------------------------------------------------
-
-using ClassLibrary;
 using NUnit.Framework;
+using ClassLibrary;
+using Telegram.Bot.Types;
 
 namespace Tests
 {
-    /// <summary>
-    /// Prueba de la clase <see cref="Train"/>.
-    /// </summary>
-    [TestFixture]
-    public class TrainTests
+    public class HandlerTests
     {
-        /// <summary>
-        /// El tren para probar.
-        /// </summary>
-        private Train train;
+        PublicarHandler handler;
+        string message;
+        Empresa empresa;
+        Empresario Usuario;
+        Ubicacion ubicacion;
+        int id;
 
-        /// <summary>
-        /// Crea un tren para probar.
-        /// </summary>
         [SetUp]
         public void Setup()
         {
-            this.train = new Train();
+            handler = new PublicarHandler(null);
+            int invitacion = InvitationGenerator.Generate();
+            ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
+            empresa = new Empresa("MercadoPrivado", ubicacion, 099679938);
+            Usuario = new Empresario(invitacion, empresa);
+            id = 12345678;
+            Usuario.id = id;
+            ListaEmpresarios.AddEmpresario(Usuario);
         }
 
-        /// <summary>
-        /// Prueba que el tren arranque.
-        /// </summary>
         [Test]
-        public void DistanciaTest()
+        public void PublicarHandle()
         {
-            
+            message = handler.Keywords[0];
+            string response;
+
+            IHandler result = handler.Handle(message, id, out response);
+
+            Assert.That(response, Is.EqualTo("Porfavor ingrese la direccion de los residuos."));
         }
 
-        /// <summary>
-        /// Prueba que el tren arranque.
-        /// </summary>
         [Test]
-        public void Buscador()
+        public void PublicarCantHandle()
         {
+            Emprendedor emprendedor = new Emprendedor(34314458);
+            message = handler.Keywords[0];
+            string response;
 
-        }
+            IHandler result = handler.Handle(message, emprendedor.id, out response);
 
-        /// <summary>
-        /// Prueba que el tren arranque.
-        /// </summary>
-        [Test]
-        public void OfertasTest()
-        {
-            Assert.NotNull(this.train);
-            this.train.StartEngines();
-            Assert.True(this.train.IsEngineStarted);
-        }
-
-        /// <summary>
-        /// Prueba que el tren se detenga.
-        /// </summary>
-        [Test]
-        public void PublicarTest()
-        {
-            Assert.NotNull(this.train);
-            this.train.StartEngines();
-            this.train.StopEngines();
-            Assert.False(this.train.IsEngineStarted);
-        }
-
-        /// <summary>
-        /// Prueba que el tren se detenga.
-        /// </summary>
-        [Test]
-        public void InvitarTest()
-        {
-            Assert.NotNull(this.train);
-            this.train.StartEngines();
-            this.train.StopEngines();
-            Assert.False(this.train.IsEngineStarted);
+            Assert.That(response, Is.EqualTo("Usted no es un empresario, no puede usar el codigo..."));
         }
     }
 }

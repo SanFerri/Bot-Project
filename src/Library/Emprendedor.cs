@@ -8,11 +8,6 @@ namespace ClassLibrary
     public class Emprendedor : IUsuario
     {
         /// <summary>
-        /// Property nombre, es el nombre del emprendedor.
-        /// </summary>
-        /// <value></value>
-        public string nombre{get;set;}
-        /// <summary>
         /// Property invitación, es la invitación que se le hace al emprendedor para ingresar y poder 
         /// acceder a los residuos publicados por las empresas.
         /// </summary>
@@ -29,10 +24,9 @@ namespace ClassLibrary
         /// <param name="invitacion"></param>
         /// <param name="nombre"></param>
 
-        public Emprendedor(int invitacion, string nombre)
+        public Emprendedor(int id)
         {
-            this.nombre = nombre;
-            this.invitacion = invitacion;
+            this.id = id;
         }
     }
 
