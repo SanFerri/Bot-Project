@@ -19,12 +19,6 @@ namespace ClassLibrary
         public Residuo residuo{get; set;}
 
         /// <summary>
-        /// Property fecha, es la fecha en la que se creo la publicacion.
-        /// </summary>
-        /// <value></value>
-        public string fecha{get; set;}
-
-        /// <summary>
         /// Property ubicacion, es la ubicacion de donde se encuentran los residuos de la oferta.
         /// </summary>
         /// <value></value>
@@ -33,10 +27,9 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de una instancia de Publicacion.
         /// </summary>
-        public Publicacion(Residuo residuo, string fecha, Ubicacion ubicacion, Empresa empresa)
+        public Publicacion(Residuo residuo, Ubicacion ubicacion, Empresa empresa)
         {
             this.residuo = residuo;
-            this.fecha = fecha;
             this.ubicacion = ubicacion;
             this.empresa = empresa;
         }

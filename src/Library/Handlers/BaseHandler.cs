@@ -52,7 +52,7 @@ namespace ClassLibrary
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
-        protected virtual bool InternalHandle(string message, out string responder)
+        protected virtual bool InternalHandle(string message, IUsuario usuario, out string responder)
         {
             throw new InvalidOperationException("Este método debe ser sobrescrito");
         }
