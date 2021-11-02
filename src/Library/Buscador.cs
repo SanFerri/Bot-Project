@@ -1,4 +1,5 @@
 using System;
+using LocationApi;
 using System.Collections.Generic;
 namespace ClassLibrary
 {
@@ -7,6 +8,7 @@ namespace ClassLibrary
     /// </summary>
     public static class Buscador
     {
+
         /// <summary>
         /// Variable estatica Buscar porque es una lista de instancia de publicación que lleva 
         /// el registro de todas las busquedas que hay.
@@ -14,14 +16,21 @@ namespace ClassLibrary
         /// <param name="tipo"></param>
         /// <param name="ubicacion"></param>
         /// <returns></returns>
+
+        private static LocationApiClient client = new LocationApiClient();
         public static List<Publicacion> Buscar(string tipo, Ubicacion ubicacion)
         {
+            DistanciaUbicacion distanciaUbicacion = new DistanciaUbicacion(client);
             List<Publicacion> ofertas = new List<Publicacion>();
             foreach(Publicacion publicacion in Mercado.mercado)
             {
-                if(publicacion.residuo.tipo == tipo && ubicacion.Distancia(publicacion.ubicacion) < 100)
+                if(publicacion.residuo.tipo == tipo)
                 {
-                    ofertas.Add(publicacion);
+                    distanciaUbicacion.Distancia(publicacion.ubicacion, ubicacion);
+                    if(distanciaUbicacion.LocationsDistance < 100)
+                    {
+                        ofertas.Add(publicacion);
+                    }
                 }
             }
             return ofertas;

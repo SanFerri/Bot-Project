@@ -5,7 +5,7 @@ namespace ClassLibrary
 {
     public static class Registrado
     {
-        public static void VerifyUser(IUsuario usuario)
+        public static void VerifyUser(IUsuario usuario, string message)
         {
             bool registrado = false;
 
@@ -36,13 +36,13 @@ namespace ClassLibrary
                     Registrado.VerifyConversation(usuario, "previoInvitacion");
                     while(eleccion = false)
                     {
-                        if(UsuarioConversacion.usuarioConversacion[usuario1].conversacion[-1] == "previoInvitacion")
+                        if(UsuarioConversacion.usuarioConversacion[usuario].conversacion[-1] == "previoInvitacion")
                         {
-                            foreach(Empresario usuario in ListaEmpresarios.empresarios)
+                            foreach(Empresario usuario1 in ListaEmpresarios.empresarios)
                             {
-                                if(usuario.invitacion == Convert.ToInt32(message))
+                                if(usuario1.invitacion == Convert.ToInt32(message))
                                 {
-                                    usuario.id = id;
+                                    usuario1.id = usuario.id;
                                     eleccion = true;
                                     Console.WriteLine("Se te ha registrado con exito");
                                 }                                            

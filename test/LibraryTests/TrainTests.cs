@@ -33,7 +33,25 @@ namespace Tests
         /// Prueba que el tren arranque.
         /// </summary>
         [Test]
-        public void StartTrainTest()
+        public void DistanciaTest()
+        {
+            
+        }
+
+        /// <summary>
+        /// Prueba que el tren arranque.
+        /// </summary>
+        [Test]
+        public void Buscador()
+        {
+
+        }
+
+        /// <summary>
+        /// Prueba que el tren arranque.
+        /// </summary>
+        [Test]
+        public void OfertasTest()
         {
             Assert.NotNull(this.train);
             this.train.StartEngines();
@@ -44,7 +62,19 @@ namespace Tests
         /// Prueba que el tren se detenga.
         /// </summary>
         [Test]
-        public void StopTrainTest()
+        public void PublicarTest()
+        {
+            Assert.NotNull(this.train);
+            this.train.StartEngines();
+            this.train.StopEngines();
+            Assert.False(this.train.IsEngineStarted);
+        }
+
+        /// <summary>
+        /// Prueba que el tren se detenga.
+        /// </summary>
+        [Test]
+        public void InvitarTest()
         {
             Assert.NotNull(this.train);
             this.train.StartEngines();
