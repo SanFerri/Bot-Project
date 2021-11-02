@@ -1,3 +1,5 @@
+using Telegram.Bot.Types;
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -17,7 +19,7 @@ namespace ClassLibrary
         /// Obtiene el próximo "handler".
         /// </summary>
         /// <value>El "handler" que será invocado si este "handler" no procesa el mensaje.</value>
-        BaseHandler Next { get; set; }
+        IHandler Next { get; set; }
 
         /// <summary>
         /// Procesa el mensaje o la pasa al siguiente "handler" si existe.

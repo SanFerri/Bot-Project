@@ -23,11 +23,11 @@ namespace ClassLibrary
         public Publicacion result { get; private set; }
         public Empresa empresaUsuario { get; private set; }
 
-        public PublicarHandler(string[] keywords, BaseHandler next)
+        public PublicarHandler(BaseHandler next) : base(next)
         {
-            this.Next = next;
-            this.State = PublicarState.Start;
+            this.Keywords = new string[] { "/publicar" };
         }
+
 
         /// <summary>
         /// Procesa todos los mensajes y retorna true siempre.
