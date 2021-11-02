@@ -57,15 +57,14 @@ namespace ClassLibrary
             else if (State == OfertasState.ResiduoPrompt)
             {
                 int contador = 0;
-                StringBuilder builderResponse;
+                StringBuilder builderResponse = new StringBuilder("");
                 this.residuoTipo = message;
                 List<Publicacion> ofertas = Buscador.Buscar(this.residuoTipo, this.UbicacionData);
                 foreach(Publicacion publicacion in ofertas)
                 {
-                    builderResponse += $"{contador}. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion}\n";
+                    builderResponse.Append($"{contador}. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion}\n");
                 }
-                builderResponse += "Ingrese el número de la publicación para ver más información de la misma";
-                response = builderResponse;    
+                builderResponse.Append("Ingrese el número de la publicación para ver más información de la misma");    
                 if(ofertas == new List<Publicacion>())
                 {
                     // Si no encuentra alguna publicacion se las pide de nuevo y vuelve al estado ResiduosPrompt.
@@ -73,9 +72,18 @@ namespace ClassLibrary
                     // estado en el que se pide la dirección que falta.
                     response = "No se ha podido encontrar una publicacion en esa categoría, vuelva a intentarlo en otro momento.";
                     this.State = OfertasState.Start;
+
+                    return false;
+                }
+                else
+                {
+                    response = builderResponse.ToString();
+                    this.State = OfertasState.NumeroPrompt;
+
+                    return true;
                 }
 
-                return true;
+            
             }
             else
             {
@@ -108,7 +116,8 @@ namespace ClassLibrary
         {
             Start,
             UbicacionPrompt,
-            ResiduoPrompt
+            ResiduoPrompt,
+            NumeroPrompt
         }
     
     }
