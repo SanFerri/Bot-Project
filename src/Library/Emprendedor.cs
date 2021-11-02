@@ -21,8 +21,7 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de una instancia de Emprendedor. 
         /// </summary>
-        /// <param name="invitacion"></param>
-        /// <param name="nombre"></param>
+        /// <param name="id"></param>
 
         public Emprendedor(int id)
         {

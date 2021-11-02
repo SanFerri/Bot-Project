@@ -18,7 +18,7 @@ namespace ClassLibrary
         /// <summary>
         /// Metodo que agrega un empresario a la lista de empresarios, desginado a esta clase por Expert.
         /// </summary>
-        /// <param name="empresario"></param>
+        /// <param name="administrador"></param>
         public static void AddAdministrador(Administrador administrador)
         {
             administradores.Add(administrador);
@@ -27,7 +27,7 @@ namespace ClassLibrary
         /// <summary>
         /// Metodo que remove un empresario a la lista de empresarios, desginado a esta clase por Expert.
         /// </summary>
-        /// <param name="empresario"></param>
+        /// <param name="administrador"></param>
         public static void RemoveAdministrador(Administrador administrador)
         {
             administradores.Remove(administrador);
