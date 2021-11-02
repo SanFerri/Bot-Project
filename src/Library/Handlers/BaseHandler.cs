@@ -52,7 +52,7 @@ namespace ClassLibrary
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
-        protected virtual bool InternalHandle(string message, out string responder)
+        protected virtual bool InternalHandle(string message, IUsuario usuario, out string responder)
         {
             throw new InvalidOperationException("Este método debe ser sobrescrito");
         }
@@ -92,15 +92,15 @@ namespace ClassLibrary
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
         /// <returns>El "handler" que procesó el mensaje si el mensaje fue procesado; null en caso contrario.</returns>
-        public IHandler Handle(string message, out string response)
+        public IHandler Handle(string message, IUsuario usuario, out string response)
         {
-            if (this.InternalHandle(message, out response))
+            if (this.InternalHandle(message, usuario, out response))
             {
                 return this;
             }
             else if (this.Next != null)
             {
-                return this.Next.Handle(message, out response);
+                return this.Next.Handle(message, usuario, out response);
             }
             else
             {
