@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using ClassLibrary;
-using Telegram.Bot.Types;
 
 namespace Tests
 {

@@ -1,5 +1,4 @@
 using LocationApi;
-using Nito.AsyncEx;
 using System;
 using System.Threading.Tasks;
 
