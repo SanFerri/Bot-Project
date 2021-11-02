@@ -19,14 +19,12 @@ namespace ClassLibrary
         /// Los datos que va obteniendo el comando en los diferentes estados.
         /// </summary>
         public Ubicacion UbicacionData { get; private set; }
-
         public string residuoTipo { get; private set; }
         public Residuo ResiduoElegido { get; private set; }
         public Publicacion result { get; private set; }
         public Empresa empresaUsuario { get; private set; }
         public int Eleccion { get; private set; }
         public List<Publicacion> ofertasData { get; private set; }
-
         public OfertasHandler(BaseHandler next) : base(next)
         {
             this.Keywords = new string[] { "/ofertas" };
@@ -111,6 +109,8 @@ namespace ClassLibrary
             this.residuoTipo = null;
             this.ResiduoElegido = null;
             this.empresaUsuario = null;
+            this.result = null;
+            this.ofertasData = null;
         }
         /// <summary>
         /// Indica los diferentes estados que puede tener el comando OfertasHandler.
