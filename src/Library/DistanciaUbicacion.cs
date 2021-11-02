@@ -1,14 +1,27 @@
+using LocationApi;
+using Nito.AsyncEx;
+using System;
+using System.Threading.Tasks;
+
 namespace ClassLibrary
 {
-    public static class DistanciaUbicacion
+    public class DistanciaUbicacion
     {
-        
-        public static int Distancia(Ubicacion ubicacion1, Ubicacion ubicacion2)
-        {
-            Distance distance = AsyncContext. Run(() => client.GetDistanceAsync(fromLocation, toLocation));
-            Distance distance = await client.GetDistance(ubicacion1.coordenadas, ubicacion2.coordenadas);
+        private LocationApiClient client;
+        public double LocationsDistance { get; private set; }
 
-            return distance.TravelDistance;
+        public DistanciaUbicacion(LocationApiClient client)
+        {
+            this.client = client;
+        }
+        
+        public async void Distancia(Ubicacion ubicacion1, Ubicacion ubicacion2)
+        {
+            Distance distance = await client.GetDistance(ubicacion1.location, ubicacion2.location);
+
+            double result = distance.TravelDistance;
+
+            this.LocationsDistance = result;
         }
     }
 }

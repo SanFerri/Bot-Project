@@ -1,23 +1,25 @@
 using LocationApi;
 using Nito.AsyncEx;
+using System;
+using System.Threading.Tasks;
 
 namespace ClassLibrary
 {
     public class Ubicacion
     {
-        public Location coordenadas{get; set;}
+        public Location location{ get; set; }
         public string direccion{get; set;}
+        private LocationApiClient client { get; set; }
 
         public Ubicacion(string direccion)
         {
-            
-            LocationApiClient client = new LocationApiClient();
-
-            Location ubicacion = await client.GetLocation(direccion);
-
-            this.coordenadas = ubicacion;
-
             this.direccion = direccion;
+            this.CalculateLocation();
+        }
+
+        public async void CalculateLocation()
+        {
+            this.location = await client.GetLocation(this.direccion);
         }
     }
 }
