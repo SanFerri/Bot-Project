@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-
+using Telegram.Bot.Types;
 
 namespace ClassLibrary
 {
@@ -17,7 +17,7 @@ namespace ClassLibrary
         /// Obtiene el próximo "handler".
         /// </summary>
         /// <value>El "handler" que será invocado si este "handler" no procesa el mensaje.</value>
-        public BaseHandler Next { get; set; }
+        public IHandler Next { get; set; }
 
         /// <summary>
         /// Obtiene o asigna el conjunto de palabras clave que este "handler" puede procesar.
@@ -29,7 +29,7 @@ namespace ClassLibrary
         /// Inicializa una nueva instancia de la clase <see cref="BaseHandler"/>.
         /// </summary>
         /// <param name="next">El próximo "handler".</param>
-        public BaseHandler(BaseHandler next)
+        public BaseHandler(IHandler next)
         {
             this.Next = next;
         }
@@ -39,7 +39,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="keywords">La lista de comandos.</param>
         /// <param name="next">El próximo "handler".</param>
-        public BaseHandler(string[] keywords, BaseHandler next)
+        public BaseHandler(string[] keywords, IHandler next)
         {
             this.Keywords = keywords;
             this.Next = next;
@@ -52,7 +52,7 @@ namespace ClassLibrary
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
-        protected virtual bool InternalHandle(string message, IUsuario usuario, out string responder)
+        protected virtual bool InternalHandle(string message, out string responder)
         {
             throw new InvalidOperationException("Este método debe ser sobrescrito");
         }
@@ -83,7 +83,7 @@ namespace ClassLibrary
                 throw new InvalidOperationException("No hay palabras clave que puedan ser procesadas");
             }
 
-            return this.Keywords.Any(s => message.Text.Equals(s, StringComparison.InvariantCultureIgnoreCase));
+            return this.Keywords.Any(s => message.Equals(s, StringComparison.InvariantCultureIgnoreCase));
         }
 
         /// <summary>
@@ -121,5 +121,5 @@ namespace ClassLibrary
                 this.Next.Cancel();
             }
         }
-    }      
+    }
 }
