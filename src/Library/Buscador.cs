@@ -9,7 +9,7 @@ namespace ClassLibrary
             List<Publicacion> ofertas = new List<Publicacion>();
             foreach(Publicacion publicacion in Mercado.mercado)
             {
-                if(publicacion.residuo.tipo == tipo && ubicacion.Distancia(publicacion.ubicacion) < 100)
+                if(publicacion.residuo.tipo == tipo && DistanciaUbicacion.Distancia(publicacion.ubicacion, ubicacion) < 100)
                 {
                     ofertas.Add(publicacion);
                 }

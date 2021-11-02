@@ -19,13 +19,5 @@ namespace ClassLibrary
 
             this.direccion = direccion;
         }
-        public int Distancia(Ubicacion ubicacion)
-        {
-            Distance distance = AsyncContext. Run(() => client.GetDistanceAsync(fromLocation, toLocation));
-            Distance distance = await client.GetDistance(this.coordenadas, ubicacion.coordenadas);
-
-            return distance.TravelDistance;
-
-        }
     }
 }
