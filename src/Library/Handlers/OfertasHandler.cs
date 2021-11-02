@@ -24,6 +24,8 @@ namespace ClassLibrary
         public Residuo ResiduoElegido { get; private set; }
         public Publicacion result { get; private set; }
         public Empresa empresaUsuario { get; private set; }
+        public int Eleccion { get; private set; }
+        public List<Publicacion> ofertasData { get; private set; }
 
         public OfertasHandler(BaseHandler next) : base(next)
         {
@@ -59,13 +61,13 @@ namespace ClassLibrary
                 int contador = 0;
                 StringBuilder builderResponse = new StringBuilder("");
                 this.residuoTipo = message;
-                List<Publicacion> ofertas = Buscador.Buscar(this.residuoTipo, this.UbicacionData);
-                foreach(Publicacion publicacion in ofertas)
+                this.ofertasData = Buscador.Buscar(this.residuoTipo, this.UbicacionData);
+                foreach(Publicacion publicacion in this.ofertasData)
                 {
                     builderResponse.Append($"{contador}. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion}\n");
                 }
                 builderResponse.Append("Ingrese el número de la publicación para ver más información de la misma");    
-                if(ofertas == new List<Publicacion>())
+                if(this.ofertasData == new List<Publicacion>())
                 {
                     // Si no encuentra alguna publicacion se las pide de nuevo y vuelve al estado ResiduosPrompt.
                     // Una versión más sofisticada podría determinar cuál de las dos direcciones no existe y volver al
@@ -83,8 +85,15 @@ namespace ClassLibrary
                     return true;
                 }
 
-            
             }
+            else if (State == OfertasState.NumeroPrompt)
+            {
+                this.Eleccion = Convert.ToInt32(message);
+                Publicacion publicacion = this.ofertasData[this.Eleccion];
+                response = $"El número de contacto de esta publicación es {publicacion.empresa.contacto}";
+
+                return true;
+            }            
             else
             {
                 response = string.Empty;
@@ -119,35 +128,5 @@ namespace ClassLibrary
             ResiduoPrompt,
             NumeroPrompt
         }
-    
     }
-    /*
-    class OfertasHandler : AbstractHandler
-    {
-        public override object Handle(IUsuario usuario, string message)
-        {   
-            if(UsuarioConversacion.usuarioConversacion[usuario].conversacion[-1] == "usuario_ubicacion")
-            {
-                Ubicacion ubicacion = new Ubicacion(UsuarioConversacion.usuarioConversacion[usuario].conversacion[-2]);
-                List<Publicacion> ofertas = Buscador.Buscar(message);
-                Registrado.VerifyConversation(usuario, message);
-                Registrado.VerifyConversation(usuario, "resputaofertas");
-                int contador = 0;
-                foreach(Publicacion publicacion1 in ofertas)
-                {
-                    Console.WriteLine($"{contador}. {publicacion1.residuo.cantidad} Kg de {publicacion1.residuo.tipo} en {publicacion1.ubicacion}");
-                    contador += 1;
-                }
-            
-                Console.WriteLine("\n Ingrese el numero de la publicacion que quiere ver.");
-            } 
-            else
-            {
-                return base.Handle(usuario, message);    
-            }
-            
-        }
-
-    }
-    */
 }
