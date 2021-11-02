@@ -29,7 +29,7 @@ namespace Tests
         }
 
         [Test]
-        public void PublicarHandle()
+        public void PublicarCanHandle()
         {
             message = handler.Keywords[0];
             string response;
