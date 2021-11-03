@@ -68,7 +68,12 @@ namespace ClassLibrary
             }
             return residuosPuntuales;
         }
-
+        /// <summary>
+        /// Variable estatica BuscarConPalabraClave porque es una lista de instancia de publicación que lleva 
+        /// el registro de todas las busquedas que hay con la palabra clave otorgada como parametro.
+        /// </summary>
+        /// <param name="palabraclave"></param>
+        /// <returns></returns>
         public static List<Publicacion> BuscarConPalabraClave(string palabraclave)
         {
             List<Publicacion> ofertas = new List<Publicacion>();

@@ -7,6 +7,7 @@
         <member name="T:Tests.OfertasHandlerTests">
             <summary>
             Clase de test que se encarga de probar las distintas funciones del OfertasHandler.
+            Los test individualmente utilizando "run test" funcionan correctamente, pero al intentar usar "run all tests" no detecta ninguno.
             </summary>
         </member>
         <member name="M:Tests.OfertasHandlerTests.Setup">
@@ -32,6 +33,11 @@
         <member name="M:Tests.OfertasHandlerTests.WithoutKeywordOfertasHandlerTest">
             <summary>
             Este test se encarga de comprobar la funcionalidad de buscar una publicación sin usar una palabra clave.
+            </summary>
+        </member>
+        <member name="M:Tests.ResiduosConstantesTests.Setup">
+            <summary>
+            El Setup de los test
             </summary>
         </member>
     </members>

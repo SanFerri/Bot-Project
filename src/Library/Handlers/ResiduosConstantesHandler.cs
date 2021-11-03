@@ -27,6 +27,7 @@ namespace ClassLibrary
         /// Procesa todos los mensajes y retorna true siempre.
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
+        /// <param name="id">La id del usuario.</param>
         /// <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
@@ -69,6 +70,7 @@ namespace ClassLibrary
         /// </summary>
         public enum ResiduosConstantesState
         {
+            ///-Start: El estado inicial del comando.
             Start
         }
     }
