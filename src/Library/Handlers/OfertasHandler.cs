@@ -85,7 +85,7 @@ namespace ClassLibrary
         {
             if(State ==  OfertasState.Start && message == "/ofertas")
             {
-                // En el estado Start le pide la dirección de origen y pasa al estado FromAddressPrompt
+                // En el estado Start le pide la dirección de origen y pasa al estado ClavePrompt
                 this.State = OfertasState.ClavePrompt;
                 response = "¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no";
                 return true;
@@ -231,11 +231,13 @@ namespace ClassLibrary
             ///-Start: El estado inicial del comando. En este estado el comando pide la dirección de origen 
             ///y pasa al siguiente estado.
             Start,
-
-            ///-ClavePrompt: En este estado va a mostrarle al usuario las palabras claves que hay.
+            
+            ///-ClavePrompt: En este estado el comando pregunta si el usuario quiere utilizar una palabra clave, mostrandole las 
+            ///palabras clave disponibles y pasa al siguiente estado.
             ClavePrompt,
 
-            ///-RespuetasClavePrompt: En este estado tiene que elegir la palabra clave.
+            ///-RspuestaClavePrompt: En este estado el comando le pide al usuario el número de la palabra clave 
+            /// que desea utilizar y pasa al siguiente estado.
             RespuestaClavePrompt,
 
             ///-UbicacionPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de 
