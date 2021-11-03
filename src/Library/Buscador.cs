@@ -14,9 +14,18 @@ namespace ClassLibrary
         /// Variable estatica Buscar porque es una lista de instancia de publicación que lleva 
         /// el registro de todas las busquedas que hay.
         /// </summary>
+        /// <returns></returns>
+
+        private static LocationApiClient client = new LocationApiClient();
+
+        /// <summary>
+        /// Property publicacion, es una lista de instancia publicación.
+        /// Lleva el registro de las publicaciones.
+        /// </summary>
         /// <param name="tipo"></param>
         /// <param name="ubicacion"></param>
         /// <returns></returns>
+
         public static List<Publicacion> Buscar(string tipo, Ubicacion ubicacion)
         {
             DistanciaUbicacion distanciaUbicacion = new DistanciaUbicacion(client);
@@ -34,11 +43,13 @@ namespace ClassLibrary
             }
             return ofertas;
         }
+
         /// <summary>
         /// Variable estatica ResiduosConstantes porque es una lista de instancia de string que lleva
         /// el registro de todos los residuos en publicacion cuya property constante devuelve true.
         /// </summary>
         /// <returns></returns>
+
         public static List<string> ResiduosConstantes()
         {
             List<string> residuosConstantes = new List<string>();
@@ -51,6 +62,7 @@ namespace ClassLibrary
             }
             return residuosConstantes;
         }
+
         /// <summary>
         /// Variable estatica ResiduosPuntuales porque es una lista de instancia de string que lleva
         /// el registro de todos los residuos en publicacion cuya property constante devuelve false.
