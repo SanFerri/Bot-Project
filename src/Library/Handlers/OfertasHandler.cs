@@ -20,12 +20,43 @@ namespace ClassLibrary
         /// Los datos que va obteniendo el comando en los diferentes estados.
         /// </summary>
         public Ubicacion UbicacionData { get; private set; }
+
+        /// <summary>
+        /// Los tipos de residuos.
+        /// </summary>
+        /// <value></value>
         public string residuoTipo { get; private set; }
-        public Residuo ResiduoElegido { get; private set; }
+
+        /// <summary>
+        /// Es el resultado de la busqueda del emprendedor.
+        /// </summary>
+        /// <value></value>
+
         public Publicacion result { get; private set; }
+
+        /// <summary>
+        /// Es el usuario registrado de la empresa.
+        /// </summary>
+        /// <value></value>
         public Empresa empresaUsuario { get; private set; }
+
+        /// <summary>
+        /// La eleccion número de la oferta de la cual quiere obtener el usuario.
+        /// </summary>
+        /// <value></value>
         public int Eleccion { get; private set; }
+
+        /// <summary>
+        /// Es una lista que almacena las publicaciones que hay.
+        /// </summary>
+        /// <value></value>
         public List<Publicacion> ofertasData { get; private set; }
+
+        /// <summary>
+        /// Esta clase procesa el mensaje /ofertas.
+        /// </summary>
+        /// <param name="next"></param>
+        /// <returns></returns>
         public OfertasHandler(BaseHandler next) : base(next)
         {
             this.Keywords = new string[] { "/ofertas" };
@@ -37,6 +68,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+        /// <param name="id">Es el id de un usuario.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
@@ -108,7 +140,6 @@ namespace ClassLibrary
             this.State = OfertasState.Start;
             this.UbicacionData = null;
             this.residuoTipo = null;
-            this.ResiduoElegido = null;
             this.empresaUsuario = null;
             this.result = null;
             this.ofertasData = null;
@@ -124,9 +155,20 @@ namespace ClassLibrary
         /// </summary>
         public enum OfertasState
         {
+
+            ///-Start: El estado inicial del comando. En este estado el comando pide la dirección de origen 
+            ///y pasa al siguiente estado.
             Start,
+
+            ///-UbicacionPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de 
+            ///destino y pasa al siguiente estado.
             UbicacionPrompt,
+
+            ///-ResiduoPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
+            ///y vuelve al estado Start.
             ResiduoPrompt,
+
+            ///-NumeroPrompt: En este estado el comando envia el numero de ese tipo de ofertas que hay.
             NumeroPrompt
         }
     }

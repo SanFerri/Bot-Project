@@ -17,12 +17,40 @@ namespace ClassLibrary
         /// Los datos que va obteniendo el comando en los diferentes estados.
         /// </summary>
         public Ubicacion UbicacionData { get; private set; }
+
         public int invitacion { get; private set; }
+
+        /// <summary>
+        /// Los datos de la empresa.
+        /// </summary>
+        /// <value></value>
+
         public Empresa empresaData { get; private set; }
 
+        /// <summary>
+        /// El nombre de la empresa.
+        /// </summary>
+        /// <value></value>
+
         public string nombreEmpresa { get; private set; }
+
+        /// <summary>
+        /// Es el contacto de la empresa.
+        /// </summary>
+        /// <value></value>
         public int contactoData { get; private set; }
+
+        /// <summary>
+        /// Es el resultado de la publicación.
+        /// </summary>
+        /// <value></value>
         public Publicacion result { get; private set; }
+
+        /// <summary>
+        /// Esta clase procesa el mensaje /invitar.
+        /// </summary>
+        /// <param name="next"></param>
+        /// <returns></returns>
 
         public InvitarHandler(BaseHandler next) : base(next)
         {
@@ -35,6 +63,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+        /// <param name="id">Es el id de un usuario.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
@@ -123,22 +152,29 @@ namespace ClassLibrary
             this.empresaData = null;
             this.nombreEmpresa = null;
         }
-
         /// <summary>
-        /// Indica los diferentes estados que puede tener el comando DistanceHandler.
-        /// - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
-        /// siguiente estado.
-        /// - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
-        /// destino y pasa al siguiente estado.
-        /// - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
-        /// y vuelve al estado Start.
+        /// Indica los diferentes estados que puede tener el comando InvitarState.
         /// </summary>
+
         public enum InvitarState
         {
+            ///-Start: Es el estado inicial del comando. 
             Start,
+ 
+            ///-NombrePrompt: En este estado el comando pide el nombre de la empresa y pasa al siguiente 
+            ///estado.
             NombrePrompt,
+
+            ///-UbicacionPrompt: En este estado el comando pide la ubicación de la empresa y pasa al siguiente
+            ///estado
             UbicacionPrompt,
+
+            ///-ContactoPrompt: En este estado el comando pide el contacto de la empresa y pasa al siguiente
+            ///estado 
             ContactoPrompt,
+
+            ///EmpresarioPrompt: En este estado el comando envia el contacto del empresario para asi ponerse
+            ///en contacto. 
             EmpresarioPrompt
         }
     }
