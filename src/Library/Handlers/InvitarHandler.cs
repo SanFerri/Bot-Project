@@ -18,6 +18,11 @@ namespace ClassLibrary
         /// </summary>
         public Ubicacion UbicacionData { get; private set; }
 
+        /// <summary>
+        /// Pide la invitación.
+        /// </summary>
+        /// <value></value>
+
         public int invitacion { get; private set; }
 
         /// <summary>

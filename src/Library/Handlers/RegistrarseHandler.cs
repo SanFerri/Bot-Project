@@ -28,6 +28,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+        /// <param name="id">Es el id del usuario.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
@@ -85,19 +86,19 @@ namespace ClassLibrary
         {
             this.State = RegistrarseState.Start;
         }
-
+        
         /// <summary>
-        /// Indica los diferentes estados que puede tener el comando DistanceHandler.
-        /// - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
-        /// siguiente estado.
-        /// - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
-        /// destino y pasa al siguiente estado.
-        /// - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
-        /// y vuelve al estado Start.
+        /// Estados por los que pasara el handler para asi saber que mensaje esperar y que respuesta dar.
         /// </summary>
         public enum RegistrarseState
         {
+
+            ///-Start: Es el estadio inicial del comando. En este comando pide el mensaje de invitación para
+            ///asi pasar al siguiente estado.
             Start,
+
+            ///-InvitacionPrompt: Luego de pedir el mensaje de invitación, se hace la logica sobre la invitación
+            ///y se vera si esta es correcta o no.
             InvitacionPrompt
         }
     }
