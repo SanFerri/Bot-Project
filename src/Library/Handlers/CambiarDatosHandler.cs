@@ -126,7 +126,7 @@ namespace ClassLibrary
             ///-Start: Es el estado inicial del comando. En este estado el comando pide /cambiardatos
             Start,
 
-            ///-NombrePromp: En este estado el comando pide que coloques el nombre de la empresa a la cual
+            ///-NombrePrompt: En este estado el comando pide que coloques el nombre de la empresa a la cual
             ///quieres cambiar.
             NombrePrompt,
 
