@@ -68,6 +68,12 @@ namespace Tests
             string response;
 
             IHandler result = handler.Handle(message, id, out response);
+            Assert.That(response, Is.EqualTo("Ingrese el numero de la palabra clave que quiera agregar:\n0. Barato.\n1. Envio Gratis.\n2. Usado.\n3. Nuevo.\n"));
+            message = "1";
+            handler.Handle(message, emprendedor.id, out response);
+            Assert.That(response, Is.EqualTo("Porfavor ingrese la habilitacion para los residuos."));
+            message = "Necesitara un camion o vehiculo";
+            handler.Handle(message, emprendedor.id, out response);
             Assert.That(response, Is.EqualTo("Porfavor ingrese la direccion de los residuos."));
             message = ubicacion.direccion;
             handler.Handle(message, emprendedor.id, out response);

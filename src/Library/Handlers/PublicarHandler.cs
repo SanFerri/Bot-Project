@@ -17,9 +17,10 @@ namespace ClassLibrary
         /// Los datos que va obteniendo el comando en los diferentes estados.
         /// </summary>
         public Ubicacion UbicacionData { get; private set; }
-
+        public ListaPalabrasClave clave { get; private set; }
         public string residuoTipo { get; private set; }
         public Residuo ResiduoElegido { get; private set; }
+        public string PalabraClave { get; private set; }
         public Publicacion result { get; private set; }
         public Empresa empresaUsuario { get; private set; }
         public string habilitacionData { get; private set; }
@@ -50,6 +51,21 @@ namespace ClassLibrary
             if(realEmpresario == true && State ==  PublicarState.Start && message == "/publicar")
             {
                 // En el estado Start le pide la dirección de origen y pasa al estado FromAddressPrompt
+                ListaPalabrasClave claves = new ListaPalabrasClave();
+                int contador = 0;
+                this.State = PublicarState.PalabrasClavePrompt;
+                string unfinishedResponse = "Ingrese el numero de la palabra clave que quiera agregar:\n";
+                foreach(string palabra in ListaPalabrasClave.palabras)
+                {
+                    unfinishedResponse += $"{contador}. {palabra}.\n";
+                    contador += 1;
+                }
+                response = unfinishedResponse;
+                return true;
+            }
+            else if (State == PublicarState.PalabrasClavePrompt)
+            {
+                this.PalabraClave = ListaPalabrasClave.palabras[(Convert.ToInt32(message))];
                 this.State = PublicarState.HabilitacionPrompt;
                 response = "Porfavor ingrese la habilitacion para los residuos.";
                 return true;
@@ -135,6 +151,7 @@ namespace ClassLibrary
         public enum PublicarState
         {
             Start,
+            PalabrasClavePrompt,
             HabilitacionPrompt,
             UbicacionPrompt,
             ResiduoPrompt

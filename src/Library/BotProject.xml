@@ -706,6 +706,32 @@
             </summary>
             <param name="empresa"></param>
         </member>
+        <member name="T:ClassLibrary.ListaPalabrasClave">
+            <summary>
+            Lista residuos es un structurer de residuo que posee dos metodos AddResiudo y removeresiduo
+            para añadir o remover elementos de una property de la clase llamada ListaResiudo, es el encargado
+            de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ListaPalabrasClave.palabras">
+            <summary>
+            Property int residuo, es una lista de instancias de Residuo
+            que lleva el registro de los residuos de una empresa.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ListaPalabrasClave.AddPalabra(System.String)">
+            <summary>
+            AddResiduo es un metodo que se encarga de agregar residuos a la lista.
+            </summary>
+            <param name="residuo"></param>
+        </member>
+        <member name="M:ClassLibrary.ListaPalabrasClave.RemovePalabra(System.String)">
+            <summary>
+            RemoveResiduo es un metodo que se encarga de eliminar residuos de la lista.
+            </summary>
+            <param name="residuo"></param>
+        </member>
         <member name="T:ClassLibrary.ListaPublicaciones">
             <summary>
             Lista publicaciones es un structurer de publicación que posee dos metodos AddPublicacione y removePublicaciones
