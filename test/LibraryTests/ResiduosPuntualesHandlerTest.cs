@@ -3,6 +3,10 @@ using ClassLibrary;
 
 namespace Tests
 {
+    /// <summary>
+    /// Clase de test que se encarga de probar las distintas funciones del ResiduosPuntualesHandler.
+    /// Los test individualmente utilizando "run test" funcionan correctamente, pero al intentar usar "run all tests" no detecta ninguno.
+    /// </summary>
     public class ResiduosPuntualesTests
     {
         Residuo residuo;
@@ -14,6 +18,9 @@ namespace Tests
         Ubicacion ubicacion;
         int id;
 
+        /// <summary>
+        /// El Setup de los test
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -36,8 +43,11 @@ namespace Tests
             Mercado.AddMercado(publicacion);
         }
 
+        /// <summary>
+        /// Este test se encarga de comprobar que funciona el comando /residuospuntuales.
+        /// </summary>
         [Test]
-        public void PuntualesCanHandle()
+        public void PuntualesCanHandleTest()
         {
             message = handler.Keywords[0];
             string response;
@@ -47,8 +57,12 @@ namespace Tests
             Assert.That(response, Is.EqualTo("Estos son los residuos puntuales:\nmetal"));
         }
 
+        /// <summary>
+        /// Este test se encarga de comprobar que el handler no responde nada si se utiliza 
+        /// un comando distinto de /residuospuntuales.
+        /// </summary>
         [Test]
-        public void PuntualesCantHandle()
+        public void PuntualesCantHandleTest()
         {
             Emprendedor emprendedor = new Emprendedor(34314458);
             message = "/residuosconsantes";
