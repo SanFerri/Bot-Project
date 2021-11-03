@@ -8,10 +8,8 @@ namespace ClassLibrary
     /// pasa al siguiente. Esta interfaz define un atributo para definir el próximo "handler" y una una operación para
     /// recibir el mensaje y pasarlo al siguiente "handler" en caso que el mensaje no sea procesado. La responsabilidad de
     /// decidir si el mensaje se procesa o no, y de procesarlo, se realiza en las clases que implementan esta interfaz.
-    /// <remarks>
     /// La interfaz se crea en función del principio de inversión de dependencias, para que los clientes de la cadena de
     /// responsabilidad, que pueden ser concretos, no dependan de una clase "handler" que potencialmente es abstracta.
-    /// <remarks/>
     /// </summary>
     public interface IHandler
     {
@@ -26,6 +24,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
+        /// <param name="id">Es el id de un usuario.</param>
         /// <returns>El "handler" que procesó el mensaje si el mensaje fue procesado; null en caso contrario.</returns>
         IHandler Handle(string message, int id, out string response);
 

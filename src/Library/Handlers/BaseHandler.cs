@@ -50,7 +50,8 @@ namespace ClassLibrary
         /// true o no lo procesa y retorna false.
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
-        /// <param name="response">La respuesta al mensaje procesado.</param>
+        /// <param name="responder">La respuesta al mensaje procesado.</param>
+        /// <param name="id">Es el id de un usuario.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario</returns>
         protected virtual bool InternalHandle(string message, int id, out string responder)
         {
@@ -91,6 +92,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado.</param>
+        /// <param name="id">Es el id de un usuario.</param>
         /// <returns>El "handler" que procesó el mensaje si el mensaje fue procesado; null en caso contrario.</returns>
         public IHandler Handle(string message, int id, out string response)
         {
