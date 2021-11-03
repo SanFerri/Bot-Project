@@ -126,7 +126,7 @@ namespace ClassLibrary
                 builderResponse += "Ingrese el número de la publicación para ver más información de la misma:\n"; 
                 foreach(Publicacion publicacion in this.ofertasData)
                 {
-                    builderResponse += ($"{contador}. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion.direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.habilitacion}\n");
+                    builderResponse += $"{contador}. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion.direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.habilitacion}\n";
                     contador += 1;
                 }   
                 if(this.ofertasData == new List<Publicacion>())
