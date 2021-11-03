@@ -34,13 +34,27 @@
             Buscador es el experto en conocer las busquedas.
             </summary>
         </member>
-        <member name="F:ClassLibrary.Buscador.client">
+        <member name="M:ClassLibrary.Buscador.Buscar(System.String,ClassLibrary.Ubicacion)">
             <summary>
             Variable estatica Buscar porque es una lista de instancia de publicación que lleva 
             el registro de todas las busquedas que hay.
             </summary>
             <param name="tipo"></param>
             <param name="ubicacion"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Buscador.ResiduosConstantes">
+            <summary>
+            Variable estatica ResiduosConstantes porque es una lista de instancia de string que lleva
+            el registro de todos los residuos en publicacion cuya property constante devuelve true.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Buscador.ResiduosPuntuales">
+            <summary>
+            Variable estatica ResiduosPuntuales porque es una lista de instancia de string que lleva
+            el registro de todos los residuos en publicacion cuya property constante devuelve false.
+            </summary>
             <returns></returns>
         </member>
         <member name="T:ClassLibrary.ChatBot">
@@ -582,6 +596,18 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.OfertasHandler.PalabraClave">
+            <summary>
+            Es una string que almacena una palabra clave.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.OfertasHandler.BuscarConPalabraClave">
+            <summary>
+            Es una variable booleana que se 
+            </summary>
+            <value></value>
+        </member>
         <member name="M:ClassLibrary.OfertasHandler.#ctor(ClassLibrary.BaseHandler)">
             <summary>
             Esta clase procesa el mensaje /ofertas.
@@ -1052,6 +1078,12 @@
             <summary>
             Constructor de una instancia de Publicacion.
             </summary>
+        </member>
+        <member name="M:ClassLibrary.Publicacion.AgregarPalabraClave(System.String)">
+            <summary>
+            Método que se encarga de agregar palabras clave a la publicación
+            </summary>
+            <param name="PalabraClave"></param>
         </member>
         <member name="T:ClassLibrary.Registrado">
             <summary>

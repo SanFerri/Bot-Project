@@ -30,7 +30,14 @@ namespace ClassLibrary
         /// <value></value>
         public Ubicacion ubicacion{get; set;}
 
+        /// <summary>
+        /// Property constante, indica si un residuo es constante o no.
+        /// </summary>
+        /// <value></value>
+
         public bool constante { get; set; }
+
+        public string palabraClave {get; set;}
 
         /// <summary>
         /// Constructor de una instancia de Publicacion.
@@ -42,5 +49,16 @@ namespace ClassLibrary
             this.ubicacion = ubicacion;
             this.empresa = empresa;
         }
+
+        /// <summary>
+        /// Método que se encarga de agregar palabras clave a la publicación
+        /// </summary>
+        /// <param name="PalabraClave"></param>
+        public void AgregarPalabraClave(string PalabraClave)
+        {
+            this.palabraClave = PalabraClave;
+        }
+    
+    
     }
 }

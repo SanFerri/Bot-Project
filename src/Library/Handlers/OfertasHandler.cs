@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Un "handler" del patrón Chain of Responsibility que implementa el comando "ofertas".
+    /// Un "handler" del patrón Chain of Responsibility que implementa el comando "Ofertas".
     /// </summary>
     
     public class OfertasHandler : BaseHandler
@@ -50,7 +50,18 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public List<Publicacion> ofertasData { get; private set; }
+
+
+        /// <summary>
+        /// La palabra clave la cual quiere el emprendedor.
+        /// </summary>
+        /// <value></value>
         public string PalabraClave { get; private set; }
+        /// <summary>
+        /// Es una variable booleana que se 
+        /// </summary>
+        /// <value></value>
+        public bool BuscarConPalabraClave {get; private set;}
 
         /// <summary>
         /// Esta clase procesa el mensaje /ofertas.
@@ -76,7 +87,7 @@ namespace ClassLibrary
             {
                 // En el estado Start le pide la dirección de origen y pasa al estado FromAddressPrompt
                 this.State = OfertasState.ClavePrompt;
-                response = "¿Quieres realizar tu busqueda usando una palabra clave? Responsa si o no";
+                response = "¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no";
                 return true;
             }
             else if (State == OfertasState.ClavePrompt)
@@ -85,6 +96,7 @@ namespace ClassLibrary
                 {
                     ListaPalabrasClave claves = new ListaPalabrasClave();
                     int contador = 0;
+                    this.BuscarConPalabraClave = true;
                     string unfinishedResponse = "Ingrese el numero de la palabra clave que buscar:\n";
                     foreach(string palabra in ListaPalabrasClave.palabras)
                     {
@@ -97,8 +109,9 @@ namespace ClassLibrary
                 }
                 else
                 {
+                    this.BuscarConPalabraClave = false;
                     this.State = OfertasState.UbicacionPrompt;
-                    response = "¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad";
+                    response = "¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad)";
                     return true;
                 }
             }
@@ -106,7 +119,7 @@ namespace ClassLibrary
             {
                 this.State = OfertasState.UbicacionPrompt;
                 this.PalabraClave = ListaPalabrasClave.palabras[(Convert.ToInt32(message))];
-                response = "¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad";
+                response = "¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad)";
                 return true;
             }
             else if (State == OfertasState.UbicacionPrompt)
@@ -119,34 +132,67 @@ namespace ClassLibrary
             }
             else if (State == OfertasState.ResiduoPrompt)
             {
-                int contador = 0;
-                string builderResponse = "";
-                this.residuoTipo = message;
-                this.ofertasData = Buscador.Buscar(this.residuoTipo, this.UbicacionData);
-                builderResponse += "Ingrese el número de la publicación para ver más información de la misma:\n"; 
-                foreach(Publicacion publicacion in this.ofertasData)
+                if(this.BuscarConPalabraClave == false)
                 {
-                    builderResponse += $"{contador}. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion.direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.habilitacion}\n";
-                    contador += 1;
-                }   
-                if(this.ofertasData == new List<Publicacion>())
-                {
-                    // Si no encuentra alguna publicacion se las pide de nuevo y vuelve al estado ResiduosPrompt.
-                    // Una versión más sofisticada podría determinar cuál de las dos direcciones no existe y volver al
-                    // estado en el que se pide la dirección que falta.
-                    response = "No se ha podido encontrar una publicacion en esa categoría, vuelva a intentarlo en otro momento.";
-                    this.State = OfertasState.Start;
+                    int contador = 0;
+                    string builderResponse = "";
+                    this.residuoTipo = message;
+                    this.ofertasData = Buscador.Buscar(this.residuoTipo, this.UbicacionData);
+                    builderResponse += "Ingrese el número de la publicación para ver más información de la misma:\n"; 
+                    foreach(Publicacion publicacion in this.ofertasData)
+                    {
+                        builderResponse += ($"{contador}. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion.direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.habilitacion}\n");
+                        contador += 1;
+                    }   
+                    if(this.ofertasData == new List<Publicacion>())
+                    {
+                        // Si no encuentra alguna publicacion se las pide de nuevo y vuelve al estado ResiduosPrompt.
+                        // Una versión más sofisticada podría determinar cuál de las dos direcciones no existe y volver al
+                        // estado en el que se pide la dirección que falta.
+                        response = "No se ha podido encontrar una publicacion en esa categoría, vuelva a intentarlo en otro momento.";
+                        this.State = OfertasState.Start;
 
-                    return false;
+                        return false;
+                    }
+                    else
+                    {
+                        response = builderResponse;
+                        this.State = OfertasState.NumeroPrompt;
+
+                        return true;
+                    }
                 }
                 else
                 {
-                    response = builderResponse;
-                    this.State = OfertasState.NumeroPrompt;
+                    this.ofertasData = Buscador.BuscarConPalabraClave(PalabraClave);
+                    int contador = 0;
+                    string builderResponse = "";
+                    this.residuoTipo = message;
+                    builderResponse += "Ingrese el número de la publicación para ver más información de la misma:\n"; 
+                    foreach(Publicacion publicacion in this.ofertasData)
+                    {
+                        builderResponse += ($"{contador}. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion.direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.habilitacion}\n");
+                        contador += 1;
+                    }   
+                    if(this.ofertasData == new List<Publicacion>())
+                    {
+                        // Si no encuentra alguna publicacion se las pide de nuevo y vuelve al estado ResiduosPrompt.
+                        // Una versión más sofisticada podría determinar cuál de las dos direcciones no existe y volver al
+                        // estado en el que se pide la dirección que falta.
+                        response = "No se ha podido encontrar una publicacion en esa categoría, vuelva a intentarlo en otro momento.";
+                        this.State = OfertasState.Start;
 
-                    return true;
+                        return false;
+                    }
+                    else
+                    {
+                        response = builderResponse;
+                        this.State = OfertasState.NumeroPrompt;
+
+                        return true;
+                    }
+
                 }
-
             }
             else if (State == OfertasState.NumeroPrompt)
             {
@@ -175,14 +221,9 @@ namespace ClassLibrary
             this.result = null;
             this.ofertasData = null;
         }
+
         /// <summary>
-        /// Indica los diferentes estados que puede tener el comando OfertasHandler.
-        /// - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
-        /// siguiente estado.
-        /// - UbicacionPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
-        /// destino y pasa al siguiente estado.
-        /// - ResiduoPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
-        /// y vuelve al estado Start.
+        /// Indica los diferentes estados que puede tener el comando OfertasState.
         /// </summary>
         public enum OfertasState
         {
@@ -190,7 +231,11 @@ namespace ClassLibrary
             ///-Start: El estado inicial del comando. En este estado el comando pide la dirección de origen 
             ///y pasa al siguiente estado.
             Start,
+
+            ///-ClavePrompt: En este estado va a mostrarle al usuario las palabras claves que hay.
             ClavePrompt,
+
+            ///-RespuetasClavePrompt: En este estado tiene que elegir la palabra clave.
             RespuestaClavePrompt,
 
             ///-UbicacionPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de 
