@@ -159,6 +159,7 @@ namespace ClassLibrary
                     }
                 }
                 this.result = new Publicacion(this.ResiduoElegido, this.UbicacionData, this.empresaUsuario, this.habilitacionData, this.Constante);
+                this.result.AgregarPalabraClave(this.PalabraClave);
                 if(this.ResiduoElegido != null && this.result != null)
                 {
                     response = $"Se ha publicado la oferta de {this.result.residuo.tipo} de la empresa {this.result.empresa.nombre}. En la ubicacion {this.result.ubicacion.direccion}";

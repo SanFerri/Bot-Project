@@ -3,6 +3,10 @@ using ClassLibrary;
 
 namespace Tests
 {
+    /// <summary>
+    /// Clase de test que se encarga de probar las distintas funciones del OfertasHandler.
+    /// Los test individualmente utilizando "run test" funcionan correctamente, pero al intentar usar "run all tests" no detecta ninguno.
+    /// </summary>
     public class OfertasHandlerTests
     {
         Residuo residuo;
@@ -18,7 +22,10 @@ namespace Tests
         Ubicacion ubicacion2;
 
         int id2;
-
+        
+        /// <summary>
+        /// El Setup de los test
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -39,11 +46,15 @@ namespace Tests
             ListaUsuarios.AddUsuario(UsuarioEmprendedor);
             contador = 0;
             publicacion = new Publicacion(residuo, ubicacion2, empresa, "tener un camion", true);
+            publicacion.AgregarPalabraClave("Envio Gratis");
             Mercado.AddMercado(publicacion);
         }
 
+        /// <summary>
+        /// Este test se encarga de comprobar que funciona el comando /ofertas.
+        /// </summary>
         [Test]
-        public void OfertasCanHandle()
+        public void OfertasCanHandleTest()
         {
             message = handler.Keywords[0];
             string response;
@@ -53,8 +64,11 @@ namespace Tests
             Assert.That(response, Is.EqualTo("¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no"));
         }
 
+        /// <summary>
+        /// Este test se encarga de comprobar que funciona el comando /ofertas con un usuario que no es un emprendedor.
+        /// </summary>
         [Test]
-        public void OfertasEmpresarioCanHandle()
+        public void OfertasEmpresarioCanHandleTest()
         {
             message = handler.Keywords[0];
             string response;
@@ -63,9 +77,11 @@ namespace Tests
 
             Assert.That(response, Is.EqualTo("¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no"));
         }
-
+        /// <summary>
+        /// Este test se encarga de comprobar la funcionalidad de buscar una publicación con palabra clave.
+        /// </summary>
         [Test]
-        public void OfertasEnOfertasHandler()
+        public void WithKeywordOfertasHandlerTest()
         {
             message = handler.Keywords[0];
             string response;
@@ -86,7 +102,28 @@ namespace Tests
             handler.Handle(message, UsuarioEmprendedor.id, out response);
             Assert.That(response, Is.EqualTo($"Ingrese el número de la publicación para ver más información de la misma:\n0. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} {publicacion.residuo.unidad} de {publicacion.residuo.tipo} en {publicacion.ubicacion.direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.habilitacion}\n"));
         }
-    
+        /// <summary>
+        /// Este test se encarga de comprobar la funcionalidad de buscar una publicación sin usar una palabra clave.
+        /// </summary>
+        [Test]
+        public void WithoutKeywordOfertasHandlerTest()
+        {
+            message = handler.Keywords[0];
+            string response;
+
+            IHandler result = handler.Handle(message, id, out response);
+            
+            Assert.That(response, Is.EqualTo("¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no"));
+            message = "no";
+            handler.Handle(message, UsuarioEmprendedor.id, out response);
+            Assert.That(response, Is.EqualTo("¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad)"));
+            message = ubicacion2.direccion;
+            handler.Handle(message, UsuarioEmprendedor.id, out response);  
+            Assert.That(response, Is.EqualTo("Ahora dime que tipo de residuos estas buscando?"));
+            message = residuo.tipo;
+            handler.Handle(message, UsuarioEmprendedor.id, out response);
+            Assert.That(response, Is.EqualTo($"Ingrese el número de la publicación para ver más información de la misma:\n0. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} {publicacion.residuo.unidad} de {publicacion.residuo.tipo} en {publicacion.ubicacion.direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.habilitacion}\n"));
+        }
     
     }
 

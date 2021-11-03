@@ -8,7 +8,8 @@ namespace ClassLibrary
     /// </summary>
     public static class Buscador
     {
-
+        private static LocationApiClient client = new LocationApiClient();
+        
         /// <summary>
         /// Variable estatica Buscar porque es una lista de instancia de publicación que lleva 
         /// el registro de todas las busquedas que hay.
@@ -44,8 +45,8 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Property string, es una lista de instancias de List
-        /// que lleva el registro de los residuos de los residuos constantes.
+        /// Variable estatica ResiduosConstantes porque es una lista de instancia de string que lleva
+        /// el registro de todos los residuos en publicacion cuya property constante devuelve true.
         /// </summary>
         /// <returns></returns>
 
@@ -63,8 +64,8 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Property string, es una lista de instancias de List
-        /// que lleva el registro de los residuos de los residuos puntuales.
+        /// Variable estatica ResiduosPuntuales porque es una lista de instancia de string que lleva
+        /// el registro de todos los residuos en publicacion cuya property constante devuelve false.
         /// </summary>
         /// <returns></returns>
         public static List<string> ResiduosPuntuales()
@@ -79,6 +80,20 @@ namespace ClassLibrary
             }
             return residuosPuntuales;
         }
+
+        public static List<Publicacion> BuscarConPalabraClave(string palabraclave)
+        {
+            List<Publicacion> ofertas = new List<Publicacion>();
+            foreach(Publicacion publicacion in Mercado.mercado)
+            {
+                if(publicacion.palabraClave == palabraclave)
+                {
+                    ofertas.Add(publicacion);
+                }
+            }
+            return ofertas;
+        }
+
 
     }
 }

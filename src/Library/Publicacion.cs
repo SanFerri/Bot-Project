@@ -37,6 +37,8 @@ namespace ClassLibrary
 
         public bool constante { get; set; }
 
+        public string palabraClave {get; set;}
+
         /// <summary>
         /// Constructor de una instancia de Publicacion.
         /// </summary>
@@ -47,5 +49,16 @@ namespace ClassLibrary
             this.ubicacion = ubicacion;
             this.empresa = empresa;
         }
+
+        /// <summary>
+        /// Método que se encarga de agregar palabras clave a la publicación
+        /// </summary>
+        /// <param name="PalabraClave"></param>
+        public void AgregarPalabraClave(string PalabraClave)
+        {
+            this.palabraClave = PalabraClave;
+        }
+    
+    
     }
 }
