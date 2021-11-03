@@ -3,7 +3,11 @@ using ClassLibrary;
 
 namespace Tests
 {
-    public class HandlerTests
+    /// <summary>
+    /// Clase de test que se encarga de probar las distintas funciones del PublicarHandler.
+    /// Los test individualmente utilizando "run test" funcionan correctamente, pero al intentar usar "run all tests" no detecta ninguno.
+    /// </summary>
+    public class PublicarHandlerTests
     {
         Residuo residuo;
         PublicarHandler handler;
@@ -15,6 +19,9 @@ namespace Tests
         Ubicacion ubicacion;
         int id;
 
+        /// <summary>
+        /// el set up de los test.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -37,8 +44,11 @@ namespace Tests
             ListaAdministradores.AddAdministrador(Usuario2);
         }
 
+        /// <summary>
+        /// Este test se encarga de comprobar que funciona el comando /publicar.
+        /// </summary>
         [Test]
-        public void PublicarCanHandle()
+        public void PublicarCanHandleTest()
         {
             message = handler.Keywords[0];
             string response;
@@ -48,8 +58,11 @@ namespace Tests
             Assert.That(response, Is.EqualTo("Ingrese el numero de la palabra clave que quiera agregar:\n0. Barato.\n1. Envio Gratis.\n2. Usado.\n3. Nuevo.\n"));
         }
 
+        /// <summary>
+        /// Este test se encarga de comprobar que el comando /publicar no funciona con un usuario que no es un empresario.
+        /// </summary>
         [Test]
-        public void PublicarCantHandle()
+        public void PublicarCantHandleTest()
         {
             Emprendedor emprendedor = new Emprendedor(34314458);
             message = handler.Keywords[0];
@@ -60,8 +73,11 @@ namespace Tests
             Assert.That(response, Is.EqualTo("Usted no es un empresario, no puede usar el codigo..."));
         }
 
+        /// <summary>
+        /// Este test se encarga de comprobar la funcionalidad de crear una publicación.
+        /// </summary>
         [Test]
-        public void WorkingPublicarHandler()
+        public void WorkingPublicarHandlerTest()
         {
             Emprendedor emprendedor = new Emprendedor(34314458);
             message = handler.Keywords[0];
@@ -89,49 +105,6 @@ namespace Tests
             message = residuo.tipo;
             handler.Handle(message, id, out response);
             Assert.That(response, Is.EqualTo($"Se ha publicado la oferta de {residuo.tipo} de la empresa {empresa.nombre}. En la ubicacion {ubicacion.direccion}"));
-        }
-
-        [Test]
-        public void InvitarAdministradorHandle()
-        {
-            message = handler2.Keywords[0];
-            string response;
-
-            IHandler result = handler2.Handle(message, id, out response);
-
-            Assert.That(response, Is.EqualTo("¿Cual es el nombre de la empresa que quiere invitar?"));
-        }
-
-        [Test]
-        public void InvitarUsuarioHandle()
-        {
-            message = handler2.Keywords[0];
-            string response;
-
-            IHandler result = handler2.Handle(message, 38291203, out response);
-
-            Assert.That(response, Is.EqualTo("Usted no es un administrador, no puede usar el codigo..."));
-        }
-
-        [Test]
-        public void WorkingInvitarHandler()
-        {
-            message = handler2.Keywords[0];
-            string response;
-
-            IHandler result = handler2.Handle(message, Usuario2.id, out response);
-            
-            message = "WCDONALDS";
-            handler2.Handle(message, Usuario2.id, out response);
-            message = ubicacion.direccion;
-            handler2.Handle(message, Usuario2.id, out response);
-            message = "099328938";
-            handler2.Handle(message, Usuario2.id, out response);
-            message = "ok";
-            handler2.Handle(message, Usuario2.id, out response);
-
-
-            Assert.That(response, Is.EqualTo($"Se ha creado el empresario y esta es la invitacion que debe usar para acceder a su status: {handler2.invitacion}"));
         }
     }
 }
