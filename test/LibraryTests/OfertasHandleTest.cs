@@ -50,7 +50,7 @@ namespace Tests
 
             IHandler result = handler.Handle(message, id, out response);
 
-            Assert.That(response, Is.EqualTo("¿Cual es tu ubicación?"));
+            Assert.That(response, Is.EqualTo("¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no"));
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Tests
 
             IHandler result = handler.Handle(message, UsuarioEmpresario.id, out response);
 
-            Assert.That(response, Is.EqualTo("¿Cual es tu ubicación?"));
+            Assert.That(response, Is.EqualTo("¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no"));
         }
 
         [Test]
@@ -72,11 +72,18 @@ namespace Tests
 
             IHandler result = handler.Handle(message, id, out response);
             
+            Assert.That(response, Is.EqualTo("¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no"));
+            message = "si";
+            handler.Handle(message, UsuarioEmprendedor.id, out response);
+            Assert.That(response, Is.EqualTo("Ingrese el numero de la palabra clave que buscar:\n0. Barato.\n1. Envio Gratis.\n2. Usado.\n3. Nuevo.\n"));
+            message = "1";
+            handler.Handle(message, UsuarioEmprendedor.id, out response);
+            Assert.That(response, Is.EqualTo("¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad)"));
             message = ubicacion2.direccion;
             handler.Handle(message, UsuarioEmprendedor.id, out response);
+            Assert.That(response, Is.EqualTo("Ahora dime que tipo de residuos estas buscando?"));
             message = residuo.tipo;
-            handler.Handle(message, id, out response);
-
+            handler.Handle(message, UsuarioEmprendedor.id, out response);
             Assert.That(response, Is.EqualTo($"Ingrese el número de la publicación para ver más información de la misma:\n0. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} {publicacion.residuo.unidad} de {publicacion.residuo.tipo} en {publicacion.ubicacion.direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.habilitacion}\n"));
         }
     
