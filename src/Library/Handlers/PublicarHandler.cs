@@ -22,6 +22,7 @@ namespace ClassLibrary
         public Residuo ResiduoElegido { get; private set; }
         public Publicacion result { get; private set; }
         public Empresa empresaUsuario { get; private set; }
+        public string habilitacionData { get; private set; }
 
         public PublicarHandler(BaseHandler next) : base(next)
         {
@@ -49,6 +50,13 @@ namespace ClassLibrary
             if(realEmpresario == true && State ==  PublicarState.Start && message == "/publicar")
             {
                 // En el estado Start le pide la dirección de origen y pasa al estado FromAddressPrompt
+                this.State = PublicarState.HabilitacionPrompt;
+                response = "Porfavor ingrese la habilitacion para los residuos.";
+                return true;
+            }
+            else if (State == PublicarState.HabilitacionPrompt)
+            {
+                this.habilitacionData = message;
                 this.State = PublicarState.UbicacionPrompt;
                 response = "Porfavor ingrese la direccion de los residuos.";
                 return true;
@@ -71,7 +79,7 @@ namespace ClassLibrary
                         this.ResiduoElegido = residuo;
                     }
                 }
-                this.result = new Publicacion(this.ResiduoElegido, this.UbicacionData, this.empresaUsuario);
+                this.result = new Publicacion(this.ResiduoElegido, this.UbicacionData, this.empresaUsuario, this.habilitacionData);
                 if(this.ResiduoElegido != null && this.result != null)
                 {
                     response = $"Se ha publicado la oferta de {this.result.residuo.tipo} de la empresa {this.result.empresa.nombre}. En la ubicacion {this.result.ubicacion.direccion}";
@@ -127,6 +135,7 @@ namespace ClassLibrary
         public enum PublicarState
         {
             Start,
+            HabilitacionPrompt,
             UbicacionPrompt,
             ResiduoPrompt
         }

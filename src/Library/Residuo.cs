@@ -17,15 +17,26 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public int cantidad{get; set;}
+        public string unidad { get; set; }
+
+        public int cost { get; set; }
+        public string moneda { get; set; }
+    
         /// <summary>
         /// Constructor de una instancia de Residuo.
         /// </summary>
         /// <param name="tipo"></param>
         /// <param name="cantidad"></param>
-        public Residuo(string tipo, int cantidad)
+        /// <param name="unidad"></param>
+        /// <param name="cost"></param>
+        /// <param name="moneda"></param>
+        public Residuo(string tipo, int cantidad, string unidad, int cost, string moneda)
         {
             this.tipo = tipo;
             this.cantidad = cantidad;
+            this.unidad = unidad;
+            this.cost = cost;
+            this.moneda = moneda;
         }
     }
 }

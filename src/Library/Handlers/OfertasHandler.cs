@@ -1,4 +1,3 @@
-/*
 using System;
 using System.Text;
 using System.Collections.Generic;
@@ -90,14 +89,15 @@ namespace ClassLibrary
             else if (State == OfertasState.ResiduoPrompt)
             {
                 int contador = 0;
-                StringBuilder builderResponse = new StringBuilder("");
+                string builderResponse = "";
                 this.residuoTipo = message;
                 this.ofertasData = Buscador.Buscar(this.residuoTipo, this.UbicacionData);
+                builderResponse += "Ingrese el número de la publicación para ver más información de la misma:\n"; 
                 foreach(Publicacion publicacion in this.ofertasData)
                 {
-                    builderResponse.Append($"{contador}. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion}\n");
-                }
-                builderResponse.Append("Ingrese el número de la publicación para ver más información de la misma");    
+                    builderResponse += ($"{contador}. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion.direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.habilitacion}\n");
+                    contador += 1;
+                }   
                 if(this.ofertasData == new List<Publicacion>())
                 {
                     // Si no encuentra alguna publicacion se las pide de nuevo y vuelve al estado ResiduosPrompt.
@@ -110,7 +110,7 @@ namespace ClassLibrary
                 }
                 else
                 {
-                    response = builderResponse.ToString();
+                    response = builderResponse;
                     this.State = OfertasState.NumeroPrompt;
 
                     return true;
@@ -173,4 +173,3 @@ namespace ClassLibrary
         }
     }
 }
-*/

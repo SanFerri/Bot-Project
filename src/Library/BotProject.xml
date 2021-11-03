@@ -28,7 +28,6 @@
             Constructor de una instancia de administrador. 
             </summary>
             <param name="invitacion"></param>
-            <param name="nombre"></param>
         </member>
         <member name="T:ClassLibrary.Buscador">
             <summary>
@@ -47,11 +46,6 @@
         <member name="T:ClassLibrary.ChatBot">
             <summary>
             Clase ChatBot vacia 
-            </summary>
-        </member>
-        <member name="T:ClassLibrary.Conversacion">
-            <summary>
-            Clase que conoce la conversacion (es decir una lista de mensajes) 
             </summary>
         </member>
         <member name="T:ClassLibrary.Emprendedor">
@@ -76,8 +70,7 @@
             <summary>
             Constructor de una instancia de Emprendedor. 
             </summary>
-            <param name="invitacion"></param>
-            <param name="nombre"></param>
+            <param name="id"></param>
         </member>
         <member name="T:ClassLibrary.Empresa">
             <summary>
@@ -160,8 +153,46 @@
             Constructor de una instancia de Empresario.
             </summary>
             <param name="invitacion"></param>
-            <param name="nombre"></param>
             <param name="empresa"></param>
+        </member>
+        <member name="T:ClassLibrary.AgregarResiduoHandler">
+            <summary>
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "distancia".
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.AgregarResiduoHandler.State">
+            <summary>
+            El estado del comando.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.AgregarResiduoHandler.empresaUsuario">
+            <summary>
+            Los datos que va obteniendo el comando en los diferentes estados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.AgregarResiduoHandler.InternalHandle(System.String,System.Int32,System.String@)">
+            <summary>
+            Procesa todos los mensajes y retorna true siempre.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:ClassLibrary.AgregarResiduoHandler.InternalCancel">
+            <summary>
+            Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.AgregarResiduoHandler.AgregarResiduoState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando DistanceHandler.
+            - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
+            siguiente estado.
+            - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
+            destino y pasa al siguiente estado.
+            - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
+            y vuelve al estado Start.
+            </summary>
         </member>
         <member name="T:ClassLibrary.BaseHandler">
             <summary>
@@ -203,7 +234,8 @@
             true o no lo procesa y retorna false.
             </summary>
             <param name="message">El mensaje a procesar.</param>
-            <param name="response">La respuesta al mensaje procesado.</param>
+            <param name="responder">La respuesta al mensaje procesado.</param>
+            <param name="id">Es el id de un usuario.</param>
             <returns>true si el mensaje fue procesado; false en caso contrario</returns>
         </member>
         <member name="M:ClassLibrary.BaseHandler.InternalCancel">
@@ -228,6 +260,7 @@
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
+            <param name="id">Es el id de un usuario.</param>
             <returns>El "handler" que procesó el mensaje si el mensaje fue procesado; null en caso contrario.</returns>
         </member>
         <member name="M:ClassLibrary.BaseHandler.Cancel">
@@ -237,7 +270,56 @@
             estado inicial.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:ClassLibrary.IHandler" -->
+        <member name="T:ClassLibrary.CambiarDatosHandler">
+            <summary>
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "distancia".
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.CambiarDatosHandler.State">
+            <summary>
+            El estado del comando.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.CambiarDatosHandler.empresaUsuario">
+            <summary>
+            Los datos que va obteniendo el comando en los diferentes estados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.CambiarDatosHandler.InternalHandle(System.String,System.Int32,System.String@)">
+            <summary>
+            Procesa todos los mensajes y retorna true siempre.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:ClassLibrary.CambiarDatosHandler.InternalCancel">
+            <summary>
+            Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.CambiarDatosHandler.CambiarDatosState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando DistanceHandler.
+            - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
+            siguiente estado.
+            - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
+            destino y pasa al siguiente estado.
+            - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
+            y vuelve al estado Start.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.IHandler">
+            <summary>
+            Interfaz para implementar el patrón Chain of Responsibility. En ese patrón se pasa un mensaje a través de una
+            cadena de "handlers" que pueden procesar o no el mensaje. Cada "handler" decide si procesa el mensaje, o si se lo
+            pasa al siguiente. Esta interfaz define un atributo para definir el próximo "handler" y una una operación para
+            recibir el mensaje y pasarlo al siguiente "handler" en caso que el mensaje no sea procesado. La responsabilidad de
+            decidir si el mensaje se procesa o no, y de procesarlo, se realiza en las clases que implementan esta interfaz.
+            La interfaz se crea en función del principio de inversión de dependencias, para que los clientes de la cadena de
+            responsabilidad, que pueden ser concretos, no dependan de una clase "handler" que potencialmente es abstracta.
+            </summary>
+        </member>
         <member name="P:ClassLibrary.IHandler.Next">
             <summary>
             Obtiene el próximo "handler".
@@ -250,6 +332,7 @@
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado.</param>
+            <param name="id">Es el id de un usuario.</param>
             <returns>El "handler" que procesó el mensaje si el mensaje fue procesado; null en caso contrario.</returns>
         </member>
         <member name="M:ClassLibrary.IHandler.Cancel">
@@ -274,12 +357,44 @@
             Los datos que va obteniendo el comando en los diferentes estados.
             </summary>
         </member>
+        <member name="P:ClassLibrary.InvitarHandler.empresaData">
+            <summary>
+            Los datos de la empresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.InvitarHandler.nombreEmpresa">
+            <summary>
+            El nombre de la empresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.InvitarHandler.contactoData">
+            <summary>
+            Es el contacto de la empresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.InvitarHandler.result">
+            <summary>
+            Es el resultado de la publicación.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.InvitarHandler.#ctor(ClassLibrary.BaseHandler)">
+            <summary>
+            Esta clase procesa el mensaje /invitar.
+            </summary>
+            <param name="next"></param>
+            <returns></returns>
+        </member>
         <member name="M:ClassLibrary.InvitarHandler.InternalHandle(System.String,System.Int32,System.String@)">
             <summary>
             Procesa todos los mensajes y retorna true siempre.
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <param name="id">Es el id de un usuario.</param>
             <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="M:ClassLibrary.InvitarHandler.InternalCancel">
@@ -289,14 +404,27 @@
         </member>
         <member name="T:ClassLibrary.InvitarHandler.InvitarState">
             <summary>
-            Indica los diferentes estados que puede tener el comando DistanceHandler.
-            - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
-            siguiente estado.
-            - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
-            destino y pasa al siguiente estado.
-            - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
-            y vuelve al estado Start.
+            Indica los diferentes estados que puede tener el comando InvitarState.
             </summary>
+        </member>
+        <member name="F:ClassLibrary.InvitarHandler.InvitarState.Start">
+            -Start: Es el estado inicial del comando. 
+        </member>
+        <member name="F:ClassLibrary.InvitarHandler.InvitarState.NombrePrompt">
+            -NombrePrompt: En este estado el comando pide el nombre de la empresa y pasa al siguiente 
+            estado.
+        </member>
+        <member name="F:ClassLibrary.InvitarHandler.InvitarState.UbicacionPrompt">
+            -UbicacionPrompt: En este estado el comando pide la ubicación de la empresa y pasa al siguiente
+            estado
+        </member>
+        <member name="F:ClassLibrary.InvitarHandler.InvitarState.ContactoPrompt">
+            -ContactoPrompt: En este estado el comando pide el contacto de la empresa y pasa al siguiente
+            estado 
+        </member>
+        <member name="F:ClassLibrary.InvitarHandler.InvitarState.EmpresarioPrompt">
+            EmpresarioPrompt: En este estado el comando envia el contacto del empresario para asi ponerse
+            en contacto. 
         </member>
         <member name="T:ClassLibrary.InvitationGenerator">
             <summary>
@@ -316,6 +444,98 @@
             7 digitos.
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.OfertasHandler">
+            <summary>
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "ofertas".
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.OfertasHandler.State">
+            <summary>
+            El estado del comando.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.OfertasHandler.UbicacionData">
+            <summary>
+            Los datos que va obteniendo el comando en los diferentes estados.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.OfertasHandler.residuoTipo">
+            <summary>
+            Los tipos de residuos.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.OfertasHandler.result">
+            <summary>
+            Es el resultado de la busqueda del emprendedor.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.OfertasHandler.empresaUsuario">
+            <summary>
+            Es el usuario registrado de la empresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.OfertasHandler.Eleccion">
+            <summary>
+            La eleccion número de la oferta de la cual quiere obtener el usuario.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.OfertasHandler.ofertasData">
+            <summary>
+            Es una lista que almacena las publicaciones que hay.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.OfertasHandler.#ctor(ClassLibrary.BaseHandler)">
+            <summary>
+            Esta clase procesa el mensaje /ofertas.
+            </summary>
+            <param name="next"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.OfertasHandler.InternalHandle(System.String,System.Int32,System.String@)">
+            <summary>
+            Procesa todos los mensajes y retorna true siempre.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <param name="id">Es el id de un usuario.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:ClassLibrary.OfertasHandler.InternalCancel">
+            <summary>
+            Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.OfertasHandler.OfertasState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando OfertasHandler.
+            - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
+            siguiente estado.
+            - UbicacionPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
+            destino y pasa al siguiente estado.
+            - ResiduoPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
+            y vuelve al estado Start.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.OfertasHandler.OfertasState.Start">
+            -Start: El estado inicial del comando. En este estado el comando pide la dirección de origen 
+            y pasa al siguiente estado.
+        </member>
+        <member name="F:ClassLibrary.OfertasHandler.OfertasState.UbicacionPrompt">
+            -UbicacionPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de 
+            destino y pasa al siguiente estado.
+        </member>
+        <member name="F:ClassLibrary.OfertasHandler.OfertasState.ResiduoPrompt">
+            -ResiduoPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
+            y vuelve al estado Start.
+        </member>
+        <member name="F:ClassLibrary.OfertasHandler.OfertasState.NumeroPrompt">
+            -NumeroPrompt: En este estado el comando envia el numero de ese tipo de ofertas que hay.
         </member>
         <member name="T:ClassLibrary.PublicarHandler">
             <summary>
@@ -356,6 +576,45 @@
             y vuelve al estado Start.
             </summary>
         </member>
+        <member name="T:ClassLibrary.RegistrarseHandler">
+            <summary>
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "distancia".
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.RegistrarseHandler.State">
+            <summary>
+            El estado del comando.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.RegistrarseHandler.#ctor(ClassLibrary.BaseHandler)">
+            <summary>
+            Los datos que va obteniendo el comando en los diferentes estados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.RegistrarseHandler.InternalHandle(System.String,System.Int32,System.String@)">
+            <summary>
+            Procesa todos los mensajes y retorna true siempre.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:ClassLibrary.RegistrarseHandler.InternalCancel">
+            <summary>
+            Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.RegistrarseHandler.RegistrarseState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando DistanceHandler.
+            - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
+            siguiente estado.
+            - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
+            destino y pasa al siguiente estado.
+            - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
+            y vuelve al estado Start.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.IUsuario">
             <summary>
             IUsuario es una interfaz, todos los usuarios (ya sean emprendedores, empresarios o administradores)
@@ -386,13 +645,13 @@
             <summary>
             Metodo que agrega un empresario a la lista de empresarios, desginado a esta clase por Expert.
             </summary>
-            <param name="empresario"></param>
+            <param name="administrador"></param>
         </member>
         <member name="M:ClassLibrary.ListaAdministradores.RemoveAdministrador(ClassLibrary.Administrador)">
             <summary>
             Metodo que remove un empresario a la lista de empresarios, desginado a esta clase por Expert.
             </summary>
-            <param name="empresario"></param>
+            <param name="administrador"></param>
         </member>
         <member name="T:ClassLibrary.ListaEmpresarios">
             <summary>
@@ -577,7 +836,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Publicacion.#ctor(ClassLibrary.Residuo,ClassLibrary.Ubicacion,ClassLibrary.Empresa)">
+        <member name="M:ClassLibrary.Publicacion.#ctor(ClassLibrary.Residuo,ClassLibrary.Ubicacion,ClassLibrary.Empresa,System.String)">
             <summary>
             Constructor de una instancia de Publicacion.
             </summary>
@@ -600,12 +859,15 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Residuo.#ctor(System.String,System.Int32)">
+        <member name="M:ClassLibrary.Residuo.#ctor(System.String,System.Int32,System.String,System.Int32,System.String)">
             <summary>
             Constructor de una instancia de Residuo.
             </summary>
             <param name="tipo"></param>
             <param name="cantidad"></param>
+            <param name="unidad"></param>
+            <param name="cost"></param>
+            <param name="moneda"></param>
         </member>
         <member name="T:ClassLibrary.Train">
             <summary>
@@ -633,35 +895,6 @@
             <returns>
             <c>true</c> si las máquinas pueden ser detenidas, <c>false</c> en caso contrario.
             </returns>
-        </member>
-        <member name="T:ClassLibrary.UsuarioConversacion">
-            <summary>
-            UsuarioConversacion es el experto en conocer a las Conversaciones junto a su respectivo usuario, 
-            por ello es que se implementa con una property Dictionary, por el patron Expert este tambien es quien
-            posee la responsabilidad de agregar y/o remover pares key(IUsuario) y value(Conversacion).
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.UsuarioConversacion.usuarioConversacion">
-            <summary>
-            UsuarioConversacion es una property Dictionary que recibe como parametros una key que es
-            IUsuario, IUsuario es una interfaz aqui aplicamos la convencion de inversion de
-            dependencia.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:ClassLibrary.UsuarioConversacion.AddConversacionUsuario(ClassLibrary.IUsuario,ClassLibrary.Conversacion)">
-            <summary>
-            AddConversacionUsuario es un metodo que se encarga de agregar al diccionario
-            usuarioConversacion una key usuario y su value conversacion, metodo designado por Expert.
-            </summary>
-            <param name="usuario"></param>
-            <param name="conversacion"></param>
-        </member>
-        <member name="M:ClassLibrary.UsuarioConversacion.RemoveConversacionUsuario(ClassLibrary.IUsuario)">
-            <summary>
-            RemoveConversacionUsuario es un metodo que se encarga de remover del diccionario
-            usuarioConversacion una key usuario y su value conversacion, metodo designado por Expert.
-            </summary>
         </member>
     </members>
 </doc>

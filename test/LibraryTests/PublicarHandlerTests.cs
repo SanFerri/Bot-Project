@@ -18,7 +18,7 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            residuo = new Residuo("metal", 100);
+            residuo = new Residuo("metal", 100, "kg", 250, "$");
             handler = new PublicarHandler(null);
             
             int invitacion = InvitationGenerator.Generate();

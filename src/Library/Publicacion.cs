@@ -11,6 +11,7 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public Empresa empresa{get;set;}
+        public string habilitacion { get; set; }
 
         /// <summary>
         /// Property residuo, es el residuo que se esta ofertando en la publicacion.
@@ -27,7 +28,7 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de una instancia de Publicacion.
         /// </summary>
-        public Publicacion(Residuo residuo, Ubicacion ubicacion, Empresa empresa)
+        public Publicacion(Residuo residuo, Ubicacion ubicacion, Empresa empresa, string habilitacion)
         {
             this.residuo = residuo;
             this.ubicacion = ubicacion;
