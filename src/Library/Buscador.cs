@@ -8,7 +8,6 @@ namespace ClassLibrary
     /// </summary>
     public static class Buscador
     {
-        private static LocationApiClient client = new LocationApiClient();
         
         /// <summary>
         /// Variable estatica Buscar porque es una lista de instancia de publicación que lleva 
