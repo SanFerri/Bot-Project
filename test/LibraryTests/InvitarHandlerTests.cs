@@ -47,7 +47,7 @@ namespace Tests
         /// (En este caso deberia pasar almenos el primer Handle).
         /// </summary>
         [Test]
-        public void InvitarAdministradorHandle()
+        public void InvitarAdministradorHandleTest()
         {
             message = handler.Keywords[0];
             string response;
@@ -61,7 +61,7 @@ namespace Tests
         /// (En este caso no deberia pasar los handles y por eso devuelva)
         /// </summary>
         [Test]
-        public void InvitarUsuarioHandle()
+        public void InvitarUsuarioHandleTest()
         {
             message = handler.Keywords[0];
             string response;
@@ -75,7 +75,7 @@ namespace Tests
         /// proceso de la forma prevista.
         /// </summary>
         [Test]
-        public void WorkingInvitarHandler()
+        public void WorkingInvitarHandlerTest()
         {
             message = handler.Keywords[0];
             string response;
