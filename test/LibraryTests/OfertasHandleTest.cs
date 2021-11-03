@@ -38,7 +38,7 @@ namespace Tests
             ListaEmpresarios.AddEmpresario(UsuarioEmpresario);
             ListaUsuarios.AddUsuario(UsuarioEmprendedor);
             contador = 0;
-            publicacion = new Publicacion(residuo, ubicacion2, empresa, "tener un camion");
+            publicacion = new Publicacion(residuo, ubicacion2, empresa, "tener un camion", true);
             Mercado.AddMercado(publicacion);
         }
 

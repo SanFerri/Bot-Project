@@ -30,11 +30,14 @@ namespace ClassLibrary
         /// <value></value>
         public Ubicacion ubicacion{get; set;}
 
+        public bool constante { get; set; }
+
         /// <summary>
         /// Constructor de una instancia de Publicacion.
         /// </summary>
-        public Publicacion(Residuo residuo, Ubicacion ubicacion, Empresa empresa, string habilitacion)
+        public Publicacion(Residuo residuo, Ubicacion ubicacion, Empresa empresa, string habilitacion, bool constante)
         {
+            this.constante = constante;
             this.residuo = residuo;
             this.ubicacion = ubicacion;
             this.empresa = empresa;

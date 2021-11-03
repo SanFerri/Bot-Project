@@ -36,5 +36,30 @@ namespace ClassLibrary
             return ofertas;
         }
 
+        public static List<string> ResiduosConstantes()
+        {
+            List<string> residuosConstantes = new List<string>();
+            foreach(Publicacion publicacion in Mercado.mercado)
+            {
+                if(publicacion.constante == true)
+                {
+                    residuosConstantes.Add(publicacion.residuo.tipo);
+                }
+            }
+            return residuosConstantes;
+        }
+        public static List<string> ResiduosPuntuales()
+        {
+            List<string> residuosPuntuales = new List<string>();
+            foreach(Publicacion publicacion in Mercado.mercado)
+            {
+                if(publicacion.constante == false)
+                {
+                    residuosPuntuales.Add(publicacion.residuo.tipo);
+                }
+            }
+            return residuosPuntuales;
+        }
+
     }
 }
