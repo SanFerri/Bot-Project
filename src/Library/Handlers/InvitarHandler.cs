@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Un "handler" del patrón Chain of Responsibility que implementa el comando "distancia".
+    /// Un "handler" del patrón Chain of Responsibility que implementa el comando "Invitar".
     /// </summary>
     public class InvitarHandler : BaseHandler
     {
