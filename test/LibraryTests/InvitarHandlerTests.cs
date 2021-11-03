@@ -17,6 +17,10 @@ namespace Tests
         Ubicacion ubicacion;
         int id;
 
+        /// <summary>
+        /// SetUp de las instancias de clases y distintos elementos necesarios
+        /// para llevar asi acabo los tests.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
@@ -38,6 +42,10 @@ namespace Tests
             ListaAdministradores.AddAdministrador(Usuario2);
         }
 
+        /// <summary>
+        /// Si el que trata de usar el comando /invitar es un administrador 
+        /// (En este caso deberia pasar almenos el primer Handle).
+        /// </summary>
         [Test]
         public void InvitarAdministradorHandle()
         {
@@ -48,7 +56,10 @@ namespace Tests
 
             Assert.That(response, Is.EqualTo("¿Cual es el nombre de la empresa que quiere invitar?"));
         }
-
+        /// <summary>
+        /// Si el que trata de usar el comando /invitar no es un administrador
+        /// (En este caso no deberia pasar los handles y por eso devuelva)
+        /// </summary>
         [Test]
         public void InvitarUsuarioHandle()
         {
@@ -59,7 +70,10 @@ namespace Tests
 
             Assert.That(response, Is.EqualTo("Usted no es un administrador, no puede usar el codigo..."));
         }
-
+        /// <summary>
+        /// Aqui comprobamos que funcione el handler si se pasa por todo el
+        /// proceso de la forma prevista.
+        /// </summary>
         [Test]
         public void WorkingInvitarHandler()
         {
