@@ -6,18 +6,19 @@ namespace ClassLibrary
     /// <summary>
     /// Un "handler" del patrón Chain of Responsibility que implementa el comando "distancia".
     /// </summary>
-    public class RegistrarseHandler : BaseHandler
+    public class CambiarDatosHandler : BaseHandler
     {
         /// <summary>
         /// El estado del comando.
         /// </summary>
-        public RegistrarseState State { get; private set; }
+        public CambiarDatosState State { get; private set; }
 
         /// <summary>
         /// Los datos que va obteniendo el comando en los diferentes estados.
         /// </summary>
+        public Empresa empresaUsuario { get; private set; }
 
-        public RegistrarseHandler(BaseHandler next) : base(next)
+        public CambiarDatosHandler(BaseHandler next) : base(next)
         {
             this.Keywords = new string[] { "/registrarme" };
         }
@@ -31,45 +32,37 @@ namespace ClassLibrary
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
-            bool registrado = Registrado.VerifyUser(id);
-
-            if(registrado == false)
+            bool realEmpresario = false;
+            foreach(Empresario empresario in ListaEmpresarios.empresarios)
             {
-                response = "No está registrado, ingrese una invitación si es parte de una empresa, en caso de no serlo responda con un no";
-                this.State = RegistrarseState.InvitacionPrompt;
+                if(empresario.id == id)
+                {
+                    this.empresaUsuario = empresario.empresa;
+                    realEmpresario = true;
+                }
+            }
+            if (State == CambiarDatosState.Start && message == "/cambiardatos" && realEmpresario == true)
+            {
+                this.State = CambiarDatosState.NombrePrompt;
+                response = "Ingrese el nombre de su empresa.";
+
                 return true;
             }
-            else if(State == RegistrarseState.InvitacionPrompt)
+            else if (State == CambiarDatosState.NombrePrompt)
             {
-                bool confirmRegistrado = false;
-                int invitacion = Convert.ToInt32(message);
-                foreach(Empresario empresario in ListaEmpresarios.empresarios)
-                {
-                    if(empresario.invitacion == invitacion)
-                    {
-                        empresario.id = id;
-                        
-                        confirmRegistrado = true;
-                        this.State = RegistrarseState.Start;
-                    }
-                }
-                if(confirmRegistrado == false)
-                {
-                    response = "La invitacion no es la correcta, si cree haberla escrito mal vuelva a ingresar el comando.";
-                }
-                else
-                {
-                    response = "Se te ha registrado correctamente, en caso de querer cambiar los datos predeterminados de la empresa use el comando /cambiardatos";
-                }
-                return confirmRegistrado;
-            } 
-            else if (registrado == true)
+                // En el estado FromAddressPrompt el mensaje recibido es la respuesta con la dirección de origen
+                this.nombreEmpresa = message;
+                this.State = InvitarState.UbicacionPrompt;
+                response = "Ahora dime la ubicacion de dicha empresa";
+                return true;
+            }
+            else if (State == InvitarState.UbicacionPrompt)
             {
-                // En los estados FromAddressPrompt o ToAddressPrompt si no hay un buscador de direcciones hay que
-                // responder que hubo un error y volver al estado inicial.
-                response = "Usted ya esta registrado como un empresario";
+                this.UbicacionData = new Ubicacion(message);
+                this.State = InvitarState.ContactoPrompt;
+                response = "Por ultimo dime el contacto de la empresa";
 
-                return false;
+                return true;
             }
             else
             {
@@ -83,7 +76,7 @@ namespace ClassLibrary
         /// </summary>
         protected override void InternalCancel()
         {
-            this.State = RegistrarseState.Start;
+            this.State = CambiarDatosState.Start;
         }
 
         /// <summary>
@@ -95,10 +88,10 @@ namespace ClassLibrary
         /// - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
         /// y vuelve al estado Start.
         /// </summary>
-        public enum RegistrarseState
+        public enum CambiarDatosState
         {
             Start,
-            InvitacionPrompt
+            NombrePrompt
         }
     }
 }
