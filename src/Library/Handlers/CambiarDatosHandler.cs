@@ -17,9 +17,30 @@ namespace ClassLibrary
         /// Los datos que va obteniendo el comando en los diferentes estados.
         /// </summary>
         public Empresa empresaUsuario { get; private set; }
+
+        /// <summary>
+        /// Es el nombre de la empresa.
+        /// </summary>
+        /// <value></value>
         public string nombreEmpresa { get; private set; }
+
+        /// <summary>
+        /// Es la ubicación de la empresa.
+        /// </summary>
+        /// <value></value>
         public Ubicacion UbicacionData { get; private set; }
+
+        /// <summary>
+        /// Es el contacto de la empresa.
+        /// </summary>
+        /// <value></value>
         public int contacto { get; private set; }
+
+        /// <summary>
+        /// Esta clase procesa el mensaje /cambiardatos.
+        /// </summary>
+        /// <param name="next"></param>
+        /// <returns></returns>
         public CambiarDatosHandler(BaseHandler next) : base(next)
         {
             this.Keywords = new string[] { "/cambiardatos" };
@@ -31,6 +52,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+        /// <param name="id">Es el id del usuario.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
@@ -97,19 +119,23 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Indica los diferentes estados que puede tener el comando DistanceHandler.
-        /// - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
-        /// siguiente estado.
-        /// - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
-        /// destino y pasa al siguiente estado.
-        /// - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
-        /// y vuelve al estado Start.
+        /// Indica los diferentes estados que puede tener el comando CambiarDatosState.
         /// </summary>
         public enum CambiarDatosState
         {
+            ///-Start: Es el estado inicial del comando. En este estado el comando pide /cambiardatos
             Start,
+
+            ///-NombrePromp: En este estado el comando pide que coloques el nombre de la empresa a la cual
+            ///quieres cambiar.
             NombrePrompt,
+
+            ///-UbicacionPrompt: En este estado el comando pide que coloques la ubicación por la cual quieres
+            ///cambiar.
             UbicacionPrompt,
+
+            ///-ContactoPrompt: En este estado el comando pide que coloques el contacto por el cual quieres
+            ///cambiar.
             ContactoPrompt
         }
     }

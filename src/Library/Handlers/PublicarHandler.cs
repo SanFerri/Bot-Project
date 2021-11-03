@@ -17,6 +17,7 @@ namespace ClassLibrary
         /// Los datos que va obteniendo el comando en los diferentes estados.
         /// </summary>
         public Ubicacion UbicacionData { get; private set; }
+
         public ListaPalabrasClave clave { get; private set; }
         public string residuoTipo { get; private set; }
         public Residuo ResiduoElegido { get; private set; }

@@ -17,9 +17,26 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public int cantidad{get; set;}
+
+        /// <summary>
+        /// Es el encargado de conocer la unidad de la cual se esta haciendo referencia, por ejemplo 
+        /// (kg, toneladas, etc).
+        /// </summary>
+        /// <value></value>
         public string unidad { get; set; }
 
+        /// <summary>
+        /// Es el encargado de conocer el costo del residuo.
+        /// </summary>
+        /// <value></value>
+
         public int cost { get; set; }
+
+        /// <summary>
+        /// Es el encargado de conocer la moneda con la cual se va a hacer el medio de pago, por ejemplo
+        /// (pesos uruguayos, dolares, euros, etc.)
+        /// </summary>
+        /// <value></value>
         public string moneda { get; set; }
     
         /// <summary>

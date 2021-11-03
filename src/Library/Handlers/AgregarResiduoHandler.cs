@@ -17,11 +17,42 @@ namespace ClassLibrary
         /// Los datos que va obteniendo el comando en los diferentes estados.
         /// </summary>
         public Empresa empresaUsuario { get; private set; }
+
+        /// <summary>
+        /// Es el nombre del residuo publicado.
+        /// </summary>
+        /// <value></value>
         public string nombreResiduo { get; private set; }
+
+        /// <summary>
+        /// La cantidad del residuo que hay.
+        /// </summary>
+        /// <value></value>
         public int volumenResiduo { get; private set; }
+
+        /// <summary>
+        /// Es la unidad con la cual se mide el residuo, por ejemplo (kg, toneladas, etc.)
+        /// </summary>
+        /// <value></value>
         public string unidadResiduo { get; private set; }
+
+        /// <summary>
+        /// Es el costo monetario del residuo.
+        /// </summary>
+        /// <value></value>
         public int costoResiduo { get; private set; }
+
+        /// <summary>
+        /// Es la moneda con la cual se va a cobrar el residuo, por ejempo (pesos uruguayos, dolares, etc.)
+        /// </summary>
+        /// <value></value>
         public string monedaResiduo { get; private set; }
+
+        /// <summary>
+        /// Esta clase procesa el mensaje /agregarresiduo.
+        /// </summary>
+        /// <param name="next"></param>
+        /// <returns></returns>
         public AgregarResiduoHandler(BaseHandler next) : base(next)
         {
             this.Keywords = new string[] { "/agregarresiduo" };
@@ -33,6 +64,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+        /// <param name="id">Es el id del usuario.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
@@ -119,23 +151,29 @@ namespace ClassLibrary
             this.costoResiduo = 0;
             this.empresaUsuario = null;
         }
-
+        
         /// <summary>
-        /// Indica los diferentes estados que puede tener el comando DistanceHandler.
-        /// - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
-        /// siguiente estado.
-        /// - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
-        /// destino y pasa al siguiente estado.
-        /// - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
-        /// y vuelve al estado Start.
+        ///  Indica los diferentes estados que puede tener el comando AgregarResiduoState.
         /// </summary>
         public enum AgregarResiduoState
         {
+            ///-Start: Es el estado inicial del comando.
             Start,
+
+            ///-NombrePrompt: Es el estado donde se pide el nombre del tipo de residuo. 
             NombrePrompt,
+
+            ///-CantidadPrompt: Es el estado donde se pide la cantidad del tipo de residuo.
             CantidadPrompt,
+
+            ///-UnidadPrompt: Es el estado donde se pide la unidad la cual es medido el residuo, por 
+            ///ejempo: kg, toneladas, etc.
             UnidadPrompt,
+
+            ///-CostoPrompt: Es el estado en donde se pide el costo del residuo.
             CostoPrompt,
+
+            ///-MonedaPrompt: Es el estado en donde se pide con que moneda se va a cobrar el residuo.
             MonedaPrompt
         }
     }

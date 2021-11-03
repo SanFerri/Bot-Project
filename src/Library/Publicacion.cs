@@ -11,6 +11,11 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public Empresa empresa{get;set;}
+
+        /// <summary>
+        /// Property habilitación, es la habilitación que se le pide a la empresa.
+        /// </summary>
+        /// <value></value>
         public string habilitacion { get; set; }
 
         /// <summary>
