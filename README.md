@@ -1,43 +1,22 @@
-# Qué hay configurado en esta plantilla
+PRIMERA ENTREGA
+En esta primera entrega nos hemos centrado en definir el diagrama de clases y las tarjetas CRC necesarias 
+para el apropiado desarrollo de nuestro chat bot, al principio tuvimos una visión muy simplista del 
+proyecto, lo que nos llevó a imaginar muchas menos clases de las que en realidad serían necesarias para 
+que nuestro chat bot cumpliera las indicaciones del desafío presentado por los profesores. Esto culminó 
+con unas tarjetas CRC y un diagrama de clases que se sentían como que les faltaba algo para terminar de 
+cerrar del todo. El momento más complicado que atravesamos como equipo en esta entrega fue cuando nos 
+toco darnos cuenta de que lo que pensamos que era sencillo y ya estaba resuelto, en realidad era mucho 
+más complejo de lo que nos esperabamos. Este momento de quiebre, también nos ayudo a progresar como 
+desarrolladores, pues aprendimos que necesitabamos ampliar nuestra visión sobre como debe encararse un 
+proyecto, y no solo buscar las opciones que a simple vista parecen más sencillas pero a la larga tal vez 
+terminan causando más problemas que los que resuelven. Esto nos llevó a ampliar nuestro diagrama de 
+clases y tarjetas CRC de manera de hacerlos más completos y responder nosotros dudas sobre el 
+funcionamiento del bot que en las versiones anteriores de los mismo las dejabamos en el aire. Utilizamos 
+la pagina web "Flowchart Maker & Online Diagram Software" la cual de una manera muy intuitiva nos ayudó a 
+desarrollar nuestro nuevo diagrama de clases de una manera mucho más intuitiva, pudiendo desarrollar 
+todas las interacciones entre los distintos aspectos del chatbot de una manera mucho más fiel a nuestra 
+nueva visión y significativamente más clara, tanto para nosotros como esperamos que para el que estará 
+leyéndolo. Para las tarjetas CRC utilizamos la herramienta CRC maker, mostrada durante las clases del 
+curso.
 
-1. Un proyecto de biblioteca (creado con [`dotnet new classlib --name Library`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore22)) en la carpeta `src\Library`
-2. Un proyecto de aplicación de consola (creado con [`dotnet new console --name Program`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore22)) en la carpeta `src\Program`
-3. Un proyecto de prueba en [NUnit](https://nunit.org/) (creado con [`dotnet new nunit --name LibraryTests`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore22)) en la carpeta `test\LibraryTests`
-4. Un proyecto de [Doxygen](https://www.doxygen.nl/index.html) para generación de sitio web de documentación en la carpeta `docs`
-5. Análisis estático con [Roslyn analyzers](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview) en los proyectos de biblioteca y de aplicación
-6. Análisis de estilo con [StyleCop](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/README.md) en los proyectos de biblioteca y de aplicación
-7. Una solución `ProjectTemplate.sln` que referencia todos los proyectos de C# y facilita la compilación con [`dotnet build`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-build).
-8. Tareas preconfiguradas para compilar y ejecutar los proyectos, ejecutar las pruebas, y generar documentación desde VSCode en la carpeta `.vscode`
-9. Análisis de cobertura de los casos de prueba mediante []() que aparece en los márgenes con el complemento de VS Code [Coverage Gutters](https://marketplace.visualstudio.com/items?itemName=ryanluker.vscode-coverage-gutters).
-10. Ejecución automática de compilación y prueba mediante [GitHub Actions](https://docs.github.com/en/actions) configuradas en el repositorio al hacer [push](https://github.com/git-guides/git-push) o [pull request](https://docs.github.com/en/github/collaborating-with-pull-requests).
-
-Vean este 🎥 [video](https://web.microsoftstream.com/video/55c6a06c-07dc-4f95-a96d-768f198c9044) que explica el funcionamiento de la plantilla.
-
-## Convenciones
-
-[Convenciones de código en C#](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions)
-
-[Convenciones de nombres en C#](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/naming-guidelines)
-
-## Dónde encontrar información sobre los errores/avisos al compilar
-
-[C# Compiler Errors (CS*)](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/)
-
-[Roslyn Analyzer Warnings (CA*)](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/categories)
-
-[StyleCop Analyzer Warnings (SA*)](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/DOCUMENTATION.md)
-
-# Cómo deshabilitar temporalmente los avisos al compilar
-
-## Roslyn Analyzer
-
-Comentar las siguientes líneas en los archivos de proyecto (`*.csproj`)
-```
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-```
-
-## StyleCop Analyzer
-
-Comentar la línea `<PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>` en los archivos de proyecto (`*.csproj`)
+SEGUNDA ENTREGA
