@@ -236,7 +236,7 @@ namespace ClassLibrary
             ///palabras clave disponibles y pasa al siguiente estado.
             ClavePrompt,
 
-            ///-RspuestaClavePrompt: En este estado el comando le pide al usuario el número de la palabra clave 
+            ///-RespuestaClavePrompt: En este estado el comando le pide al usuario el número de la palabra clave 
             /// que desea utilizar y pasa al siguiente estado.
             RespuestaClavePrompt,
 

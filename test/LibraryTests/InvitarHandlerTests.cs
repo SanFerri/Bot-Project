@@ -44,7 +44,7 @@ namespace Tests
 
         /// <summary>
         /// Si el que trata de usar el comando /invitar es un administrador 
-        /// (En este caso deberia pasar almenos el primer Handle).
+        /// (En este caso deberia pasar al menos el primer Handle).
         /// </summary>
         [Test]
         public void InvitarAdministradorHandleTest()

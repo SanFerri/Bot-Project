@@ -2,7 +2,7 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Lista residuos es un structurer de residuo que posee dos metodos AddResiduo y removeresiduo
+    /// Lista residuos es una clase que contiene residuos que posee dos metodos AddResiduo y removeresiduo
     /// para añadir o remover elementos de una property de la clase llamada ListaResiduo, es el encargado
     /// de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
     /// </summary>

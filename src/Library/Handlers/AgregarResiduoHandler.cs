@@ -43,7 +43,7 @@ namespace ClassLibrary
         public int costoResiduo { get; private set; }
 
         /// <summary>
-        /// Es la moneda con la cual se va a cobrar el residuo, por ejempo (pesos uruguayos, dolares, etc.)
+        /// Es la moneda con la cual se va a cobrar el residuo, por ejemplo (pesos uruguayos, dolares, etc.)
         /// </summary>
         /// <value></value>
         public string monedaResiduo { get; private set; }
@@ -167,7 +167,7 @@ namespace ClassLibrary
             CantidadPrompt,
 
             ///-UnidadPrompt: Es el estado donde se pide la unidad la cual es medido el residuo, por 
-            ///ejempo: kg, toneladas, etc.
+            ///ejemplo: kg, toneladas, etc.
             UnidadPrompt,
 
             ///-CostoPrompt: Es el estado en donde se pide el costo del residuo.
