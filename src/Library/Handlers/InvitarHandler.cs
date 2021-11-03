@@ -18,10 +18,13 @@ namespace ClassLibrary
         /// </summary>
         public Ubicacion UbicacionData { get; private set; }
 
+        public int invitacion { get; private set; }
+
         /// <summary>
         /// Los datos de la empresa.
         /// </summary>
         /// <value></value>
+
         public Empresa empresaData { get; private set; }
 
         /// <summary>
@@ -117,9 +120,9 @@ namespace ClassLibrary
             }
             else if (State == InvitarState.EmpresarioPrompt)
             {
-                int invitacion = InvitationGenerator.Generate();
+                this.invitacion = InvitationGenerator.Generate();
                 Empresario empresario = new Empresario(invitacion, this.empresaData);
-                response = "Se ha creado el empresario y esta es la invitacion que debe usar para acceder a su status: {invitacion}";
+                response = $"Se ha creado el empresario y esta es la invitacion que debe usar para acceder a su status: {this.invitacion}";
 
                 return true;
             }
