@@ -50,6 +50,7 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public List<Publicacion> ofertasData { get; private set; }
+        public string PalabraClave { get; private set; }
 
         /// <summary>
         /// Esta clase procesa el mensaje /ofertas.
@@ -74,8 +75,38 @@ namespace ClassLibrary
             if(State ==  OfertasState.Start && message == "/ofertas")
             {
                 // En el estado Start le pide la dirección de origen y pasa al estado FromAddressPrompt
+                this.State = OfertasState.ClavePrompt;
+                response = "¿Quieres realizar tu busqueda usando una palabra clave? Responsa si o no";
+                return true;
+            }
+            else if (State == OfertasState.ClavePrompt)
+            {
+                if(message == "si")
+                {
+                    ListaPalabrasClave claves = new ListaPalabrasClave();
+                    int contador = 0;
+                    string unfinishedResponse = "Ingrese el numero de la palabra clave que buscar:\n";
+                    foreach(string palabra in ListaPalabrasClave.palabras)
+                    {
+                        unfinishedResponse += $"{contador}. {palabra}.\n";
+                        contador += 1;
+                    }
+                    response = unfinishedResponse;
+                    this.State = OfertasState.RespuestaClavePrompt;
+                    return true;
+                }
+                else
+                {
+                    this.State = OfertasState.UbicacionPrompt;
+                    response = "¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad";
+                    return true;
+                }
+            }
+            else if (State == OfertasState.RespuestaClavePrompt)
+            {
                 this.State = OfertasState.UbicacionPrompt;
-                response = "¿Cual es tu ubicación?";
+                this.PalabraClave = ListaPalabrasClave.palabras[(Convert.ToInt32(message))];
+                response = "¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad";
                 return true;
             }
             else if (State == OfertasState.UbicacionPrompt)
@@ -159,6 +190,8 @@ namespace ClassLibrary
             ///-Start: El estado inicial del comando. En este estado el comando pide la dirección de origen 
             ///y pasa al siguiente estado.
             Start,
+            ClavePrompt,
+            RespuestaClavePrompt,
 
             ///-UbicacionPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de 
             ///destino y pasa al siguiente estado.
