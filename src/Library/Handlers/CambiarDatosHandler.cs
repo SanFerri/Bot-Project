@@ -22,7 +22,7 @@ namespace ClassLibrary
         public int contacto { get; private set; }
         public CambiarDatosHandler(BaseHandler next) : base(next)
         {
-            this.Keywords = new string[] { "/registrarme" };
+            this.Keywords = new string[] { "/cambiardatos" };
         }
 
 

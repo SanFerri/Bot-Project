@@ -22,7 +22,7 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            residuo = new Residuo("metal", 100);
+            residuo = new Residuo("metal", 100, "kg", 250, "$");
             handler = new OfertasHandler(null);
             int invitacion = InvitationGenerator.Generate();
             ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
@@ -38,7 +38,8 @@ namespace Tests
             ListaEmpresarios.AddEmpresario(UsuarioEmpresario);
             ListaUsuarios.AddUsuario(UsuarioEmprendedor);
             contador = 0;
-            publicacion = new Publicacion(residuo, ubicacion2, empresa);
+            publicacion = new Publicacion(residuo, ubicacion2, empresa, "tener un camion");
+            Mercado.AddMercado(publicacion);
         }
 
         [Test]
@@ -64,7 +65,7 @@ namespace Tests
         }
 
         [Test]
-        public void WorkingOfertasHandler()
+        public void OfertasEnOfertasHandler()
         {
             message = handler.Keywords[0];
             string response;
@@ -76,8 +77,7 @@ namespace Tests
             message = residuo.tipo;
             handler.Handle(message, id, out response);
 
-
-            Assert.That(response, Is.EqualTo($"{contador}. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion}\n"));
+            Assert.That(response, Is.EqualTo($"Ingrese el número de la publicación para ver más información de la misma:\n0. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} {publicacion.residuo.unidad} de {publicacion.residuo.tipo} en {publicacion.ubicacion.direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.habilitacion}\n"));
         }
     
     
