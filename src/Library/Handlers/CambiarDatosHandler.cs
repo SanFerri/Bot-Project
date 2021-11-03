@@ -17,7 +17,9 @@ namespace ClassLibrary
         /// Los datos que va obteniendo el comando en los diferentes estados.
         /// </summary>
         public Empresa empresaUsuario { get; private set; }
-
+        public string nombreEmpresa { get; private set; }
+        public Ubicacion UbicacionData { get; private set; }
+        public int contacto { get; private set; }
         public CambiarDatosHandler(BaseHandler next) : base(next)
         {
             this.Keywords = new string[] { "/registrarme" };
@@ -52,16 +54,27 @@ namespace ClassLibrary
             {
                 // En el estado FromAddressPrompt el mensaje recibido es la respuesta con la dirección de origen
                 this.nombreEmpresa = message;
-                this.State = InvitarState.UbicacionPrompt;
+                this.State = CambiarDatosState.UbicacionPrompt;
                 response = "Ahora dime la ubicacion de dicha empresa";
                 return true;
             }
-            else if (State == InvitarState.UbicacionPrompt)
+            else if (State == CambiarDatosState.UbicacionPrompt)
             {
                 this.UbicacionData = new Ubicacion(message);
-                this.State = InvitarState.ContactoPrompt;
+                this.State = CambiarDatosState.ContactoPrompt;
                 response = "Por ultimo dime el contacto de la empresa";
 
+                return true;
+            }
+            else if (State == CambiarDatosState.ContactoPrompt)
+            {
+                this.empresaUsuario.contacto = Convert.ToInt32(message);
+                this.empresaUsuario.nombre = this.nombreEmpresa;
+                this.empresaUsuario.ubicacion = this.UbicacionData;
+
+                response = "Se han actualizado sus datos...";
+
+                this.State = CambiarDatosState.Start;
                 return true;
             }
             else
@@ -77,6 +90,10 @@ namespace ClassLibrary
         protected override void InternalCancel()
         {
             this.State = CambiarDatosState.Start;
+            this.nombreEmpresa = null;
+            this.UbicacionData = null;
+            this.contacto = 0;
+            this.empresaUsuario = null;
         }
 
         /// <summary>
@@ -91,7 +108,9 @@ namespace ClassLibrary
         public enum CambiarDatosState
         {
             Start,
-            NombrePrompt
+            NombrePrompt,
+            UbicacionPrompt,
+            ContactoPrompt
         }
     }
 }
