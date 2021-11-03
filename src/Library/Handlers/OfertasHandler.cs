@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Un "handler" del patrón Chain of Responsibility que implementa el comando "ofertas".
+    /// Un "handler" del patrón Chain of Responsibility que implementa el comando "Ofertas".
     /// </summary>
     
     public class OfertasHandler : BaseHandler
@@ -50,8 +50,10 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public List<Publicacion> ofertasData { get; private set; }
+
+
         /// <summary>
-        /// Es una string que almacena una palabra clave.
+        /// La palabra clave la cual quiere el emprendedor.
         /// </summary>
         /// <value></value>
         public string PalabraClave { get; private set; }
@@ -219,14 +221,9 @@ namespace ClassLibrary
             this.result = null;
             this.ofertasData = null;
         }
+
         /// <summary>
-        /// Indica los diferentes estados que puede tener el comando OfertasHandler.
-        /// - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
-        /// siguiente estado.
-        /// - UbicacionPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
-        /// destino y pasa al siguiente estado.
-        /// - ResiduoPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
-        /// y vuelve al estado Start.
+        /// Indica los diferentes estados que puede tener el comando OfertasState.
         /// </summary>
         public enum OfertasState
         {
@@ -234,7 +231,11 @@ namespace ClassLibrary
             ///-Start: El estado inicial del comando. En este estado el comando pide la dirección de origen 
             ///y pasa al siguiente estado.
             Start,
+
+            ///-ClavePrompt: En este estado va a mostrarle al usuario las palabras claves que hay.
             ClavePrompt,
+
+            ///-RespuetasClavePrompt: En este estado tiene que elegir la palabra clave.
             RespuestaClavePrompt,
 
             ///-UbicacionPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de 

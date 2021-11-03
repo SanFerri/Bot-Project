@@ -30,6 +30,11 @@ namespace ClassLibrary
         /// <value></value>
         public Ubicacion ubicacion{get; set;}
 
+        /// <summary>
+        /// Property constante, indica si un residuo es constante o no.
+        /// </summary>
+        /// <value></value>
+
         public bool constante { get; set; }
 
         public string palabraClave {get; set;}
