@@ -24,6 +24,7 @@ namespace ClassLibrary
         public Publicacion result { get; private set; }
         public Empresa empresaUsuario { get; private set; }
         public string habilitacionData { get; private set; }
+        public bool Constante { get; private set; }
 
         public PublicarHandler(BaseHandler next) : base(next)
         {
@@ -74,6 +75,20 @@ namespace ClassLibrary
             {
                 this.habilitacionData = message;
                 this.State = PublicarState.UbicacionPrompt;
+                response = "Porfavor responda si o no, ¿Estos residuos que se generaron se generan de forma constante? Si fue puntual responda no.";
+                return true;
+            }
+            else if (State == PublicarState.ConstantePrompt)
+            {
+                if(message == "si")
+                {
+                    this.Constante = true;
+                }
+                else if(message == "no")
+                {
+                    this.Constante = false;
+                }
+                this.State = PublicarState.UbicacionPrompt;
                 response = "Porfavor ingrese la direccion de los residuos.";
                 return true;
             }
@@ -95,7 +110,7 @@ namespace ClassLibrary
                         this.ResiduoElegido = residuo;
                     }
                 }
-                this.result = new Publicacion(this.ResiduoElegido, this.UbicacionData, this.empresaUsuario, this.habilitacionData);
+                this.result = new Publicacion(this.ResiduoElegido, this.UbicacionData, this.empresaUsuario, this.habilitacionData, this.Constante);
                 if(this.ResiduoElegido != null && this.result != null)
                 {
                     response = $"Se ha publicado la oferta de {this.result.residuo.tipo} de la empresa {this.result.empresa.nombre}. En la ubicacion {this.result.ubicacion.direccion}";
@@ -153,6 +168,7 @@ namespace ClassLibrary
             Start,
             PalabrasClavePrompt,
             HabilitacionPrompt,
+            ConstantePrompt,
             UbicacionPrompt,
             ResiduoPrompt
         }
