@@ -40,6 +40,26 @@
             Este test se encarga de comprobar la funcionalidad de buscar una publicación sin usar una palabra clave.
             </summary>
         </member>
+        <member name="M:Tests.PublicarHandlerTests.Setup">
+            <summary>
+            el set up de los test.
+            </summary>
+        </member>
+        <member name="M:Tests.PublicarHandlerTests.PublicarCanHandle">
+            <summary>
+            Este test se encarga de comprobar que funciona el comando /publicar.
+            </summary>
+        </member>
+        <member name="M:Tests.PublicarHandlerTests.PublicarCantHandle">
+            <summary>
+            Este test se encarga de comprobar que el comando /publicar no funciona con un usuario que no es un empresario.
+            </summary>
+        </member>
+        <member name="M:Tests.PublicarHandlerTests.WorkingPublicarHandler">
+            <summary>
+            Este test se encarga de comprobar la funcionalidad de crear una publicación.
+            </summary>
+        </member>
         <member name="T:Tests.ResiduosConstantesTests">
             <summary>
             Clase de test que se encarga de probar las distintas funciones del ResiduosConstantesHandler.
