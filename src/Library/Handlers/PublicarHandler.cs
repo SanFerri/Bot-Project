@@ -126,7 +126,7 @@ namespace ClassLibrary
                 response = "Porfavor responda si o no, ¿Estos residuos que se generaron se generan de forma constante? Si fue puntual responda no.";
                 return true;
             }
-            else if (State == PublicarState.ConstantePrompt)
+            else if (State == PublicarState.UbicacionPrompt)
             {
                 if(message == "si")
                 {
@@ -136,11 +136,11 @@ namespace ClassLibrary
                 {
                     this.Constante = false;
                 }
-                this.State = PublicarState.UbicacionPrompt;
+                this.State = PublicarState.ConstantePrompt;
                 response = "Porfavor ingrese la direccion de los residuos.";
                 return true;
             }
-            else if (State == PublicarState.UbicacionPrompt)
+            else if (State == PublicarState.ConstantePrompt)
             {
                 // En el estado FromAddressPrompt el mensaje recibido es la respuesta con la dirección de origen
                 this.UbicacionData = new Ubicacion(message);

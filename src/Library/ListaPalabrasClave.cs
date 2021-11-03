@@ -40,10 +40,34 @@ namespace ClassLibrary
 
         public ListaPalabrasClave()
         {
-            palabras.Add("Barato");
-            palabras.Add("Envio Gratis");
-            palabras.Add("Usado");
-            palabras.Add("Nuevo");
+            if(ListaPalabrasClave.palabras.Contains("Barato"))
+            { 
+            }
+            else
+            {
+                palabras.Add("Barato");
+            }
+            if(ListaPalabrasClave.palabras.Contains("Envio Gratis"))
+            { 
+            }
+            else
+            {
+                palabras.Add("Envio Gratis");
+            }
+            if(ListaPalabrasClave.palabras.Contains("Usado"))
+            { 
+            }
+            else
+            {
+                palabras.Add("Usado");
+            }
+            if(ListaPalabrasClave.palabras.Contains("Nuevo"))
+            { 
+            }
+            else
+            {
+                palabras.Add("Nuevo");
+            }
         }
     }
 }
