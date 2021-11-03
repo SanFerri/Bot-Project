@@ -170,12 +170,50 @@
             Los datos que va obteniendo el comando en los diferentes estados.
             </summary>
         </member>
+        <member name="P:ClassLibrary.AgregarResiduoHandler.nombreResiduo">
+            <summary>
+            Es el nombre del residuo publicado.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.AgregarResiduoHandler.volumenResiduo">
+            <summary>
+            La cantidad del residuo que hay.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.AgregarResiduoHandler.unidadResiduo">
+            <summary>
+            Es la unidad con la cual se mide el residuo, por ejemplo (kg, toneladas, etc.)
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.AgregarResiduoHandler.costoResiduo">
+            <summary>
+            Es el costo monetario del residuo.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.AgregarResiduoHandler.monedaResiduo">
+            <summary>
+            Es la moneda con la cual se va a cobrar el residuo, por ejempo (pesos uruguayos, dolares, etc.)
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.AgregarResiduoHandler.#ctor(ClassLibrary.BaseHandler)">
+            <summary>
+            Esta clase procesa el mensaje /agregarresiduo.
+            </summary>
+            <param name="next"></param>
+            <returns></returns>
+        </member>
         <member name="M:ClassLibrary.AgregarResiduoHandler.InternalHandle(System.String,System.Int32,System.String@)">
             <summary>
             Procesa todos los mensajes y retorna true siempre.
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <param name="id">Es el id del usuario.</param>
             <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="M:ClassLibrary.AgregarResiduoHandler.InternalCancel">
@@ -185,14 +223,27 @@
         </member>
         <member name="T:ClassLibrary.AgregarResiduoHandler.AgregarResiduoState">
             <summary>
-            Indica los diferentes estados que puede tener el comando DistanceHandler.
-            - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
-            siguiente estado.
-            - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
-            destino y pasa al siguiente estado.
-            - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
-            y vuelve al estado Start.
+             Indica los diferentes estados que puede tener el comando AgregarResiduoState.
             </summary>
+        </member>
+        <member name="F:ClassLibrary.AgregarResiduoHandler.AgregarResiduoState.Start">
+            -Start: Es el estado inicial del comando.
+        </member>
+        <member name="F:ClassLibrary.AgregarResiduoHandler.AgregarResiduoState.NombrePrompt">
+            -NombrePrompt: Es el estado donde se pide el nombre del tipo de residuo. 
+        </member>
+        <member name="F:ClassLibrary.AgregarResiduoHandler.AgregarResiduoState.CantidadPrompt">
+            -CantidadPrompt: Es el estado donde se pide la cantidad del tipo de residuo.
+        </member>
+        <member name="F:ClassLibrary.AgregarResiduoHandler.AgregarResiduoState.UnidadPrompt">
+            -UnidadPrompt: Es el estado donde se pide la unidad la cual es medido el residuo, por 
+            ejempo: kg, toneladas, etc.
+        </member>
+        <member name="F:ClassLibrary.AgregarResiduoHandler.AgregarResiduoState.CostoPrompt">
+            -CostoPrompt: Es el estado en donde se pide el costo del residuo.
+        </member>
+        <member name="F:ClassLibrary.AgregarResiduoHandler.AgregarResiduoState.MonedaPrompt">
+            -MonedaPrompt: Es el estado en donde se pide con que moneda se va a cobrar el residuo.
         </member>
         <member name="T:ClassLibrary.BaseHandler">
             <summary>
@@ -285,12 +336,38 @@
             Los datos que va obteniendo el comando en los diferentes estados.
             </summary>
         </member>
+        <member name="P:ClassLibrary.CambiarDatosHandler.nombreEmpresa">
+            <summary>
+            Es el nombre de la empresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.CambiarDatosHandler.UbicacionData">
+            <summary>
+            Es la ubicación de la empresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.CambiarDatosHandler.contacto">
+            <summary>
+            Es el contacto de la empresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.CambiarDatosHandler.#ctor(ClassLibrary.BaseHandler)">
+            <summary>
+            Esta clase procesa el mensaje /cambiardatos.
+            </summary>
+            <param name="next"></param>
+            <returns></returns>
+        </member>
         <member name="M:ClassLibrary.CambiarDatosHandler.InternalHandle(System.String,System.Int32,System.String@)">
             <summary>
             Procesa todos los mensajes y retorna true siempre.
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <param name="id">Es el id del usuario.</param>
             <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="M:ClassLibrary.CambiarDatosHandler.InternalCancel">
@@ -300,14 +377,23 @@
         </member>
         <member name="T:ClassLibrary.CambiarDatosHandler.CambiarDatosState">
             <summary>
-            Indica los diferentes estados que puede tener el comando DistanceHandler.
-            - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
-            siguiente estado.
-            - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
-            destino y pasa al siguiente estado.
-            - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
-            y vuelve al estado Start.
+            Indica los diferentes estados que puede tener el comando CambiarDatosState.
             </summary>
+        </member>
+        <member name="F:ClassLibrary.CambiarDatosHandler.CambiarDatosState.Start">
+            -Start: Es el estado inicial del comando. En este estado el comando pide /cambiardatos
+        </member>
+        <member name="F:ClassLibrary.CambiarDatosHandler.CambiarDatosState.NombrePrompt">
+            -NombrePromp: En este estado el comando pide que coloques el nombre de la empresa a la cual
+            quieres cambiar.
+        </member>
+        <member name="F:ClassLibrary.CambiarDatosHandler.CambiarDatosState.UbicacionPrompt">
+            -UbicacionPrompt: En este estado el comando pide que coloques la ubicación por la cual quieres
+            cambiar.
+        </member>
+        <member name="F:ClassLibrary.CambiarDatosHandler.CambiarDatosState.ContactoPrompt">
+            -ContactoPrompt: En este estado el comando pide que coloques el contacto por el cual quieres
+            cambiar.
         </member>
         <member name="T:ClassLibrary.IHandler">
             <summary>
@@ -356,6 +442,12 @@
             <summary>
             Los datos que va obteniendo el comando en los diferentes estados.
             </summary>
+        </member>
+        <member name="P:ClassLibrary.InvitarHandler.invitacion">
+            <summary>
+            Pide la invitación.
+            </summary>
+            <value></value>
         </member>
         <member name="P:ClassLibrary.InvitarHandler.empresaData">
             <summary>
@@ -597,6 +689,7 @@
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <param name="id">Es el id del usuario.</param>
             <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="M:ClassLibrary.RegistrarseHandler.InternalCancel">
@@ -606,14 +699,16 @@
         </member>
         <member name="T:ClassLibrary.RegistrarseHandler.RegistrarseState">
             <summary>
-            Indica los diferentes estados que puede tener el comando DistanceHandler.
-            - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
-            siguiente estado.
-            - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
-            destino y pasa al siguiente estado.
-            - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
-            y vuelve al estado Start.
+            Estados por los que pasara el handler para asi saber que mensaje esperar y que respuesta dar.
             </summary>
+        </member>
+        <member name="F:ClassLibrary.RegistrarseHandler.RegistrarseState.Start">
+            -Start: Es el estadio inicial del comando. En este comando pide el mensaje de invitación para
+            asi pasar al siguiente estado.
+        </member>
+        <member name="F:ClassLibrary.RegistrarseHandler.RegistrarseState.InvitacionPrompt">
+            -InvitacionPrompt: Luego de pedir el mensaje de invitación, se hace la logica sobre la invitación
+            y se vera si esta es correcta o no.
         </member>
         <member name="T:ClassLibrary.IUsuario">
             <summary>
@@ -708,8 +803,8 @@
         </member>
         <member name="T:ClassLibrary.ListaPalabrasClave">
             <summary>
-            Lista residuos es un structurer de residuo que posee dos metodos AddResiudo y removeresiduo
-            para añadir o remover elementos de una property de la clase llamada ListaResiudo, es el encargado
+            Lista residuos es un structurer de residuo que posee dos metodos AddResiduo y removeresiduo
+            para añadir o remover elementos de una property de la clase llamada ListaResiduo, es el encargado
             de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
             </summary>
         </member>
@@ -724,13 +819,20 @@
             <summary>
             AddResiduo es un metodo que se encarga de agregar residuos a la lista.
             </summary>
-            <param name="residuo"></param>
+            <param name="palabra"></param>
         </member>
         <member name="M:ClassLibrary.ListaPalabrasClave.RemovePalabra(System.String)">
             <summary>
             RemoveResiduo es un metodo que se encarga de eliminar residuos de la lista.
             </summary>
-            <param name="residuo"></param>
+            <param name="palabra"></param>
+        </member>
+        <member name="M:ClassLibrary.ListaPalabrasClave.#ctor">
+            <summary>
+            ListaPalabrasClaves es una lista que se encarga de almacenar ciertas palabras para asi
+            el empresario puede colocarlas en su publicación y el emprendedor de esta manera lograria
+            una elección mas facil.
+            </summary>
         </member>
         <member name="T:ClassLibrary.ListaPublicaciones">
             <summary>
@@ -760,8 +862,8 @@
         </member>
         <member name="T:ClassLibrary.ListaResiduos">
             <summary>
-            Lista residuos es un structurer de residuo que posee dos metodos AddResiudo y removeresiduo
-            para añadir o remover elementos de una property de la clase llamada ListaResiudo, es el encargado
+            Lista residuos es un structurer de residuo que posee dos metodos AddResiduo y removeresiduo
+            para añadir o remover elementos de una property de la clase llamada ListaResiduo, es el encargado
             de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
             </summary>
         </member>
@@ -850,6 +952,12 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.Publicacion.habilitacion">
+            <summary>
+            Property habilitación, es la habilitación que se le pide a la empresa.
+            </summary>
+            <value></value>
+        </member>
         <member name="P:ClassLibrary.Publicacion.residuo">
             <summary>
             Property residuo, es el residuo que se esta ofertando en la publicacion.
@@ -867,6 +975,19 @@
             Constructor de una instancia de Publicacion.
             </summary>
         </member>
+        <member name="T:ClassLibrary.Registrado">
+            <summary>
+            Usamos la clase registrado estatica ya que no necesitamos crear instancias de este objeto para 
+            usarla como una herramienta.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.Registrado.VerifyUser(System.Int32)">
+            <summary>
+            Esta clase se encarga de identificar si el usuario esta registrado o no.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.Residuo">
             <summary>
             Residuo es una clase que conoce la informacion de los residuos publicados, el tipo y la cantidad
@@ -882,6 +1003,26 @@
         <member name="P:ClassLibrary.Residuo.cantidad">
             <summary>
             Es el encargado de conocer la cantidad que hay de cada material.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Residuo.unidad">
+            <summary>
+            Es el encargado de conocer la unidad de la cual se esta haciendo referencia, por ejemplo 
+            (kg, toneladas, etc).
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Residuo.cost">
+            <summary>
+            Es el encargado de conocer el costo del residuo.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Residuo.moneda">
+            <summary>
+            Es el encargado de conocer la moneda con la cual se va a hacer el medio de pago, por ejemplo
+            (pesos uruguayos, dolares, euros, etc.)
             </summary>
             <value></value>
         </member>

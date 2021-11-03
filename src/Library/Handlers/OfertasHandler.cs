@@ -76,7 +76,7 @@ namespace ClassLibrary
             {
                 // En el estado Start le pide la dirección de origen y pasa al estado FromAddressPrompt
                 this.State = OfertasState.ClavePrompt;
-                response = "¿Quieres realizar tu busqueda usando una palabra clave? Responsa si o no";
+                response = "¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no";
                 return true;
             }
             else if (State == OfertasState.ClavePrompt)
@@ -98,7 +98,7 @@ namespace ClassLibrary
                 else
                 {
                     this.State = OfertasState.UbicacionPrompt;
-                    response = "¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad";
+                    response = "¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad)";
                     return true;
                 }
             }
@@ -106,7 +106,7 @@ namespace ClassLibrary
             {
                 this.State = OfertasState.UbicacionPrompt;
                 this.PalabraClave = ListaPalabrasClave.palabras[(Convert.ToInt32(message))];
-                response = "¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad";
+                response = "¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad)";
                 return true;
             }
             else if (State == OfertasState.UbicacionPrompt)
