@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Un "handler" del patrón Chain of Responsibility que implementa el comando "distancia".
+    /// Un "handler" del patrón Chain of Responsibility que implementa el comando "Publicar".
     /// </summary>
     public class PublicarHandler : BaseHandler
     {
@@ -18,14 +18,60 @@ namespace ClassLibrary
         /// </summary>
         public Ubicacion UbicacionData { get; private set; }
 
+        /// <summary>
+        /// Es una lista que alamacena las palabras claves que hay.
+        /// </summary>
+        /// <value></value>
+
         public ListaPalabrasClave clave { get; private set; }
+
+        /// <summary>
+        /// Son el tipo de residuo publicado.
+        /// </summary>
+        /// <value></value>
         public string residuoTipo { get; private set; }
+
+        /// <summary>
+        /// Es el residuo elegido. 
+        /// </summary>
+        /// <value></value>
         public Residuo ResiduoElegido { get; private set; }
+
+        /// <summary>
+        /// Las palabras claves que hay.
+        /// </summary>
+        /// <value></value>
         public string PalabraClave { get; private set; }
+
+        /// <summary>
+        /// Es el resultado de la publicación.
+        /// </summary>
+        /// <value></value>
         public Publicacion result { get; private set; }
+
+        /// <summary>
+        /// Es el usuario de la empresa.
+        /// </summary>
+        /// <value></value>
         public Empresa empresaUsuario { get; private set; }
+
+        /// <summary>
+        /// Son los datos de la habilitación.
+        /// </summary>
+        /// <value></value>
         public string habilitacionData { get; private set; }
+
+        /// <summary>
+        /// Indica si un residuo es generado constantemente.
+        /// </summary>
+        /// <value></value>
         public bool Constante { get; private set; }
+
+        /// <summary>
+        /// Esta clase procesa el mensaje /publicar.
+        /// </summary>
+        /// <param name="next"></param>
+        /// <returns></returns>
 
         public PublicarHandler(BaseHandler next) : base(next)
         {
@@ -38,6 +84,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+        /// <param name="id">Es el id del usuario.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
@@ -156,21 +203,26 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Indica los diferentes estados que puede tener el comando DistanceHandler.
-        /// - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
-        /// siguiente estado.
-        /// - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
-        /// destino y pasa al siguiente estado.
-        /// - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
-        /// y vuelve al estado Start.
+        /// Indica los diferentes estados que puede tener el comando PublicarState.
         /// </summary>
         public enum PublicarState
         {
+            ///-Start: El estado inicial del comando
             Start,
+
+            ///-PalabrasClavePrompt:En este comando pide la palabra clave para pasar al siguiente estado.
             PalabrasClavePrompt,
+
+            ///HabilitacionPrompt: En este comando pide la habilitación para pasar al siguiente estado.
             HabilitacionPrompt,
+
+            ///ConstantePrompt: En este comando se pide si el residuo es constante o no.
             ConstantePrompt,
+
+            ///UbicacionPrompt: En este comando se pide la ubicación donde esta el residuo.
             UbicacionPrompt,
+
+            ///ResiduoPrompt: En este comando se pide que tipo de residuo es.
             ResiduoPrompt
         }
     }
