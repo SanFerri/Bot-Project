@@ -37,6 +37,10 @@ namespace ClassLibrary
 
         public bool constante { get; set; }
 
+        /// <summary>
+        /// Property palabraClave, es una palabra clave que pudo haber sido agregada por un empresario al crear la publicacion.
+        /// </summary>
+        /// <value></value>
         public string palabraClave {get; set;}
 
         /// <summary>

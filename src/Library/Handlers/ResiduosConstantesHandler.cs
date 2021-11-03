@@ -29,7 +29,6 @@ namespace ClassLibrary
         /// <param name="message">El mensaje a procesar.</param>
         /// <param name="id">La id del usuario.</param>
         /// <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
-        /// <param name="id">Es el id del usuario.</param>
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
