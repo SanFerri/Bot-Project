@@ -19,7 +19,7 @@ namespace ClassLibrary
 
         public ResiduosPuntualesHandler(BaseHandler next) : base(next)
         {
-            this.Keywords = new string[] { "/residuosconstantes" };
+            this.Keywords = new string[] { "/residuospuntuales" };
         }
 
 
@@ -34,9 +34,9 @@ namespace ClassLibrary
         {
             if(State == ResiduosPuntualesState.Start && message == "/residuospuntuales")
             {
-                List<string> residuosConstantes = Buscador.ResiduosPuntuales();
+                List<string> residuosPuntuales = Buscador.ResiduosPuntuales();
                 string unfinishedResponse = "Estos son los residuos puntuales:\n";
-                foreach(string residuo in residuosConstantes)
+                foreach(string residuo in residuosPuntuales)
                 {
                     unfinishedResponse += $"{residuo}";
                 }

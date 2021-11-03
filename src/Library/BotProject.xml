@@ -34,10 +34,17 @@
             Buscador es el experto en conocer las busquedas.
             </summary>
         </member>
-        <member name="M:ClassLibrary.Buscador.Buscar(System.String,ClassLibrary.Ubicacion)">
+        <member name="F:ClassLibrary.Buscador.client">
             <summary>
             Variable estatica Buscar porque es una lista de instancia de publicación que lleva 
             el registro de todas las busquedas que hay.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Buscador.Buscar(System.String,ClassLibrary.Ubicacion)">
+            <summary>
+            Property publicacion, es una lista de instancia publicación.
+            Lleva el registro de las publicaciones.
             </summary>
             <param name="tipo"></param>
             <param name="ubicacion"></param>
@@ -69,6 +76,31 @@
             <summary>
             Clase ChatBot vacia 
             </summary>
+        </member>
+        <member name="T:ClassLibrary.DistanciaUbicacion">
+            <summary>
+            DistanciaUbicacion es una clase que conoce las distancias.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.DistanciaUbicacion.LocationsDistance">
+            <summary>
+            Property LocationDistance, es la distancia que se ingresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.DistanciaUbicacion.#ctor(LocationApi.LocationApiClient)">
+            <summary>
+            Constructor de una instancia de DistanciaUbicacion.
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="M:ClassLibrary.DistanciaUbicacion.Distancia(ClassLibrary.Ubicacion,ClassLibrary.Ubicacion)">
+            <summary>
+            Constructor de una instancia de distancia.
+            </summary>
+            <param name="ubicacion1"></param>
+            <param name="ubicacion2"></param>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.Emprendedor">
             <summary>
@@ -179,7 +211,7 @@
         </member>
         <member name="T:ClassLibrary.AgregarResiduoHandler">
             <summary>
-            Un "handler" del patrón Chain of Responsibility que implementa el comando "distancia".
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "AgregarResiduo".
             </summary>
         </member>
         <member name="P:ClassLibrary.AgregarResiduoHandler.State">
@@ -345,7 +377,7 @@
         </member>
         <member name="T:ClassLibrary.CambiarDatosHandler">
             <summary>
-            Un "handler" del patrón Chain of Responsibility que implementa el comando "distancia".
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "CambiarDatos".
             </summary>
         </member>
         <member name="P:ClassLibrary.CambiarDatosHandler.State">
@@ -452,7 +484,7 @@
         </member>
         <member name="T:ClassLibrary.InvitarHandler">
             <summary>
-            Un "handler" del patrón Chain of Responsibility que implementa el comando "distancia".
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "Invitar".
             </summary>
         </member>
         <member name="P:ClassLibrary.InvitarHandler.State">
@@ -561,7 +593,7 @@
         </member>
         <member name="T:ClassLibrary.OfertasHandler">
             <summary>
-            Un "handler" del patrón Chain of Responsibility que implementa el comando "ofertas".
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "Ofertas".
             </summary>
         </member>
         <member name="P:ClassLibrary.OfertasHandler.State">
@@ -606,7 +638,7 @@
         </member>
         <member name="P:ClassLibrary.OfertasHandler.PalabraClave">
             <summary>
-            Es una string que almacena una palabra clave.
+            La palabra clave la cual quiere el emprendedor.
             </summary>
             <value></value>
         </member>
@@ -639,18 +671,20 @@
         </member>
         <member name="T:ClassLibrary.OfertasHandler.OfertasState">
             <summary>
-            Indica los diferentes estados que puede tener el comando OfertasHandler.
-            - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
-            siguiente estado.
-            - UbicacionPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
-            destino y pasa al siguiente estado.
-            - ResiduoPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
-            y vuelve al estado Start.
+            Indica los diferentes estados que puede tener el comando OfertasState.
             </summary>
         </member>
         <member name="F:ClassLibrary.OfertasHandler.OfertasState.Start">
             -Start: El estado inicial del comando. En este estado el comando pide la dirección de origen 
             y pasa al siguiente estado.
+        </member>
+        <member name="F:ClassLibrary.OfertasHandler.OfertasState.ClavePrompt">
+            -ClavePrompt: En este estado el comando pregunta si el usuario quiere utilizar una palabra clave, mostrandole las 
+            palabras clave disponibles y pasa al siguiente estado.
+        </member>
+        <member name="F:ClassLibrary.OfertasHandler.OfertasState.RespuestaClavePrompt">
+            -RspuestaClavePrompt: En este estado el comando le pide al usuario el número de la palabra clave 
+             que desea utilizar y pasa al siguiente estado.
         </member>
         <member name="F:ClassLibrary.OfertasHandler.OfertasState.UbicacionPrompt">
             -UbicacionPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de 
@@ -665,7 +699,7 @@
         </member>
         <member name="T:ClassLibrary.PublicarHandler">
             <summary>
-            Un "handler" del patrón Chain of Responsibility que implementa el comando "distancia".
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "Publicar".
             </summary>
         </member>
         <member name="P:ClassLibrary.PublicarHandler.State">
@@ -678,12 +712,68 @@
             Los datos que va obteniendo el comando en los diferentes estados.
             </summary>
         </member>
+        <member name="P:ClassLibrary.PublicarHandler.clave">
+            <summary>
+            Es una lista que alamacena las palabras claves que hay.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublicarHandler.residuoTipo">
+            <summary>
+            Son el tipo de residuo publicado.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublicarHandler.ResiduoElegido">
+            <summary>
+            Es el residuo elegido. 
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublicarHandler.PalabraClave">
+            <summary>
+            Las palabras claves que hay.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublicarHandler.result">
+            <summary>
+            Es el resultado de la publicación.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublicarHandler.empresaUsuario">
+            <summary>
+            Es el usuario de la empresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublicarHandler.habilitacionData">
+            <summary>
+            Son los datos de la habilitación.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublicarHandler.Constante">
+            <summary>
+            Indica si un residuo es generado constantemente.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.PublicarHandler.#ctor(ClassLibrary.BaseHandler)">
+            <summary>
+            Esta clase procesa el mensaje /publicar.
+            </summary>
+            <param name="next"></param>
+            <returns></returns>
+        </member>
         <member name="M:ClassLibrary.PublicarHandler.InternalHandle(System.String,System.Int32,System.String@)">
             <summary>
             Procesa todos los mensajes y retorna true siempre.
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <param name="id">Es el id del usuario.</param>
             <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="M:ClassLibrary.PublicarHandler.InternalCancel">
@@ -693,18 +783,30 @@
         </member>
         <member name="T:ClassLibrary.PublicarHandler.PublicarState">
             <summary>
-            Indica los diferentes estados que puede tener el comando DistanceHandler.
-            - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
-            siguiente estado.
-            - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
-            destino y pasa al siguiente estado.
-            - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
-            y vuelve al estado Start.
+            Indica los diferentes estados que puede tener el comando PublicarState.
             </summary>
+        </member>
+        <member name="F:ClassLibrary.PublicarHandler.PublicarState.Start">
+            -Start: El estado inicial del comando
+        </member>
+        <member name="F:ClassLibrary.PublicarHandler.PublicarState.PalabrasClavePrompt">
+            -PalabrasClavePrompt:En este comando pide la palabra clave para pasar al siguiente estado.
+        </member>
+        <member name="F:ClassLibrary.PublicarHandler.PublicarState.HabilitacionPrompt">
+            HabilitacionPrompt: En este comando pide la habilitación para pasar al siguiente estado.
+        </member>
+        <member name="F:ClassLibrary.PublicarHandler.PublicarState.ConstantePrompt">
+            ConstantePrompt: En este comando se pide si el residuo es constante o no.
+        </member>
+        <member name="F:ClassLibrary.PublicarHandler.PublicarState.UbicacionPrompt">
+            UbicacionPrompt: En este comando se pide la ubicación donde esta el residuo.
+        </member>
+        <member name="F:ClassLibrary.PublicarHandler.PublicarState.ResiduoPrompt">
+            ResiduoPrompt: En este comando se pide que tipo de residuo es.
         </member>
         <member name="T:ClassLibrary.RegistrarseHandler">
             <summary>
-            Un "handler" del patrón Chain of Responsibility que implementa el comando "distancia".
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "Registrarse".
             </summary>
         </member>
         <member name="P:ClassLibrary.RegistrarseHandler.State">
@@ -746,7 +848,7 @@
         </member>
         <member name="T:ClassLibrary.ResiduosConstantesHandler">
             <summary>
-            Un "handler" del patrón Chain of Responsibility que implementa el comando "distancia".
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "ResiduosConstante".
             </summary>
         </member>
         <member name="P:ClassLibrary.ResiduosConstantesHandler.State">
@@ -766,6 +868,7 @@
             <param name="message">El mensaje a procesar.</param>
             <param name="id">La id del usuario.</param>
             <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <param name="id">Es el id del usuario.</param>
             <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="M:ClassLibrary.ResiduosConstantesHandler.InternalCancel">
@@ -775,13 +878,7 @@
         </member>
         <member name="T:ClassLibrary.ResiduosConstantesHandler.ResiduosConstantesState">
             <summary>
-            Indica los diferentes estados que puede tener el comando DistanceHandler.
-            - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
-            siguiente estado.
-            - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
-            destino y pasa al siguiente estado.
-            - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
-            y vuelve al estado Start.
+            Indica los diferentes estados que puede tener el comando ResiduoConstanteState.
             </summary>
         </member>
         <member name="F:ClassLibrary.ResiduosConstantesHandler.ResiduosConstantesState.Start">
@@ -789,7 +886,7 @@
         </member>
         <member name="T:ClassLibrary.ResiduosPuntualesHandler">
             <summary>
-            Un "handler" del patrón Chain of Responsibility que implementa el comando "distancia".
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "ResiduosPuntuales".
             </summary>
         </member>
         <member name="P:ClassLibrary.ResiduosPuntualesHandler.State">
@@ -808,6 +905,7 @@
             </summary>
             <param name="message">El mensaje a procesar.</param>
             <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <param name="id">Es el id del usuario.</param>
             <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="M:ClassLibrary.ResiduosPuntualesHandler.InternalCancel">
@@ -817,14 +915,11 @@
         </member>
         <member name="T:ClassLibrary.ResiduosPuntualesHandler.ResiduosPuntualesState">
             <summary>
-            Indica los diferentes estados que puede tener el comando DistanceHandler.
-            - Start: El estado inicial del comando. En este estado el comando pide la dirección de origen y pasa al
-            siguiente estado.
-            - FromAddressPrompt: Luego de pedir la dirección de origen. En este estado el comando pide la dirección de
-            destino y pasa al siguiente estado.
-            - ToAddressPrompt: Luego de pedir la dirección de destino. En este estado el comando calcula la distancia
-            y vuelve al estado Start.
+            Indica los diferentes estados que puede tener el comando ResiduosPuntualesState
             </summary>
+        </member>
+        <member name="F:ClassLibrary.ResiduosPuntualesHandler.ResiduosPuntualesState.Start">
+            -Start: Es el comando inicial.
         </member>
         <member name="T:ClassLibrary.IUsuario">
             <summary>
@@ -1086,6 +1181,12 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.Publicacion.constante">
+            <summary>
+            Property constante, indica si un residuo es constante o no.
+            </summary>
+            <value></value>
+        </member>
         <member name="M:ClassLibrary.Publicacion.#ctor(ClassLibrary.Residuo,ClassLibrary.Ubicacion,ClassLibrary.Empresa,System.String,System.Boolean)">
             <summary>
             Constructor de una instancia de Publicacion.
@@ -1184,6 +1285,41 @@
             <returns>
             <c>true</c> si las máquinas pueden ser detenidas, <c>false</c> en caso contrario.
             </returns>
+        </member>
+        <member name="T:ClassLibrary.Ubicacion">
+            <summary>
+            Clase Ubicacion, esta es experta en conocer la ubicacion.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.Ubicacion.location">
+            <summary>
+            Property location, es el locación donde se encuentra la empresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Ubicacion.direccion">
+            <summary>
+            Property dirección, es la diracción donde se encuentra la empresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Ubicacion.client">
+            <summary>
+            Property LocationApiClient, es la encargada de conocer la localizacion del cliente.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.Ubicacion.#ctor(System.String)">
+            <summary>
+            Constructor de instancia ubicación. 
+            </summary>
+            <param name="direccion"></param>
+        </member>
+        <member name="M:ClassLibrary.Ubicacion.CalculateLocation">
+            <summary>
+            Constructor de instancia CalculateLocation.
+            </summary>
+            <returns></returns>
         </member>
     </members>
 </doc>
