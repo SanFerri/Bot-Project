@@ -58,7 +58,8 @@ namespace Tests
         }
         
         /// <summary>
-        /// Este test se encarga de comprobar que el handler no responde nada si se utiliza un comando distinto de /residuosconstantes.
+        /// Este test se encarga de comprobar que el handler no responde nada si se utiliza 
+        /// un comando distinto de /residuosconstantes.
         /// </summary>
         [Test]
         public void ResiduosConstantesCantHandle()
