@@ -1,3 +1,25 @@
+SEGUNDA ENTREGA
+
+En esta segunda entrega debido al hecho de tener que llevar a la práctica las ideas establecidas en la
+primera entrega en nuestro diagrama de clases y tarjetas CRC atravesamos ciertas dificultades a la hora
+de empezar a aplicar la lógica necesaria en las clases para que nuestro programa empezara a tomar forma,
+si bien esta etapa de adaptación fue bastante complicada. Intentamos implementar el patrón Creator, 
+sin embargo este generó muchos problemas en los test dando el error "NullReferenceObject", por lo que nos 
+vimos obligados a desisitir a la idea de implementar dicho patrón a efectos de esta entrega. 
+Dejando eso de lado una vez empezamos a aplicar los patrones correctos uno de los más notables entre ellos 
+fue Chain of Responsibility, el cual nos ayudó a ahorrar mucho código innecesario y a darnos cuenta que 
+muchas clases que habíamos creido necesarias previo a utilizar este patrón quedaban obsoletas ante la 
+implementación del mismo(algunas de las clases que quedaron obsoletas fueron Conversacion, Comandos y 
+IComandos por ejemplo) esto facilitó en gran medida el desarrollo de esta segunda entrega e hizo que 
+otro obstáculo que tuvimos más tarde el cual fue la LocationApi fuera mucho más manejable de lo que hubiera 
+sido con muchas más clases interactuando innecesariamente con la misma. Los test presentaron ciertas dificultades
+a la hora de interactuar con la LocationApi, pero más allá de eso no presentaron un problema mayor.
+Esta entrega nos permitió seguir mejorando como desarrolladores a la hora de ser más eficientes buscando soluciones
+y a identificar clases o partes del código que quedan obsoletas, a su vez también mejoramos a la hora de hacer tests 
+y a la hora de interactuar con Apis. Una gran ayuda en nuestro desarrollo a lo largo de esta entrega fueron las clases
+de consulta dadas por el profesor, la demo del bot de Telegram también presentada por los profesores y el sitio también 
+recomendado por los mismos "Refactoring Guru". 
+
 PRIMERA ENTREGA
 
 En esta primera entrega nos hemos centrado en definir el diagrama de clases y las tarjetas CRC necesarias 
@@ -19,22 +41,3 @@ todas las interacciones entre los distintos aspectos del chatbot de una manera m
 nueva visión y significativamente más clara, tanto para nosotros como esperamos que para el que estará 
 leyéndolo. Para las tarjetas CRC utilizamos la herramienta CRC maker, mostrada durante las clases del 
 curso.
-
-SEGUNDA ENTREGA
-
-En esta segunda entrega debido al hecho de tener que llevar a la práctica las ideas establecidas en la
-primera entrega en nuestro diagrama de clases y tarjetas CRC atravesamos ciertas dificultades a la hora
-de empezar a aplicar la lógica necesaria en las clases para que nuestro programa empezara a tomar forma,
-si bien esta etapa de adaptación fue bastante complicada, una vez empezamos a aplicar los patrones correctos
-uno de los más notables entre ellos fue Chain of Responsibility, el cual nos ayudó a ahorrar mucho código 
-innecesario y a darnos cuenta que muchas clases que habíamos creido necesarias previo a utilizar este patrón 
-quedaban obsoletas ante la implementación del mismo(algunas de las clases que quedaron obsoletas fueron 
-Conversacion, Comandos y IComandos por ejemplo) esto facilitó en gran medida el desarrollo de esta segunda
-entrega e hizo que otro obstáculo que tuvimos más tarde el cual fue la LocationApi fuera mucho más manejable
-de lo que hubiera sido con muchas más clases interactuando innecesariamente con ella. Los test presentaron ciertas
-dificultades a la hora de interactuar con la LocationApi, pero más allá de eso no presentaron un problema mayor.
-Esta entrega nos permitió seguir mejorando como desarrolladores a la hora de ser más eficientes buscando soluciones
-y a identificar clases o partes del código que quedan obsoletas, a su vez también mejoramos a la hora de hacer tests 
-y a la hora de interactuar con Apis. Una gran ayuda en nuestro desarrollo a lo largo de esta entrega fueron las clases
-de consulta dadas por el profesor, la demo del bot de Telegram también presentada por los profesores y el sitio también 
-recomendado por los mismos "Refactoring Guru".
