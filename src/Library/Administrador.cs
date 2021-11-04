@@ -22,9 +22,10 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="invitacion"></param>
 
-        public Administrador(int invitacion)
+        public Administrador(int invitacion, int id)
         {
             this.invitacion = invitacion;
+            this.id = id;
         }
     }
 }

@@ -29,23 +29,22 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            residuo = new Residuo("metal", 100, "kg", 250, "$");
             handler = new OfertasHandler(null);
             int invitacion = InvitationGenerator.Generate();
             ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             ubicacion2 = new Ubicacion("Av. Italia 3479");
             empresa = new Empresa("MercadoPrivado", ubicacion, 099679938);
-            empresa.residuos.AddResiduo(residuo);
-            UsuarioEmpresario = new Empresario(invitacion, empresa);
-            UsuarioEmprendedor = new Emprendedor(id);
-            id = 12345678;
+            Residuo residuo = empresa.residuos.AddResiduo("metal", 100, "kg", 250, "$");
             id2 = 87654321;
+            Empresario UsuarioEmpresario = ListaEmpresarios.AddEmpresario(invitacion, empresa, id);
+            id = 12345678;
+            Emprendedor UsuarioEmprendedor = ListaUsuarios.AddUsuario(id);
             UsuarioEmprendedor.id = id;
             UsuarioEmpresario.id = id2;
-            ListaEmpresarios.AddEmpresario(UsuarioEmpresario);
-            ListaUsuarios.AddUsuario(UsuarioEmprendedor);
+            ListaUsuarios.AddUsuario(id);
             contador = 0;
-            publicacion = new Publicacion(residuo, ubicacion2, empresa, "tener un camion", true);
+            ListaPublicaciones publicaciones = new ListaPublicaciones();
+            Publicacion publicacion = publicaciones.AddPublicacion(residuo, ubicacion2, empresa, "tener un camion", true);
             publicacion.AgregarPalabraClave("Envio Gratis");
             Mercado.AddMercado(publicacion);
         }

@@ -30,10 +30,11 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="invitacion"></param>
         /// <param name="empresa"></param>
-        public Empresario(int invitacion, Empresa empresa)
+        public Empresario(int invitacion, Empresa empresa, int id)
         {
             this.empresa = empresa;
             this.invitacion = invitacion;
+            this.id = id;
         }
     }
 }

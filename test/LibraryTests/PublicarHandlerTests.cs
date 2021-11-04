@@ -25,23 +25,20 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            residuo = new Residuo("metal", 100, "kg", 250, "$");
             handler = new PublicarHandler(null);
             
             int invitacion = InvitationGenerator.Generate();
             ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             empresa = new Empresa("MercadoPrivado", ubicacion, 099679938);
-            empresa.residuos.AddResiduo(residuo);
-            Usuario = new Empresario(invitacion, empresa);
+            Residuo residuo = empresa.residuos.AddResiduo("metal", 100, "kg", 250, "$");
             id = 12345678;
+            Empresario Usuario = ListaEmpresarios.AddEmpresario(invitacion, empresa, id);
             Usuario.id = id;
-            ListaEmpresarios.AddEmpresario(Usuario);
+
 
             handler2 = new InvitarHandler(null);
             int invitacion2 = InvitationGenerator.Generate();
-            Usuario2 = new Administrador(invitacion2);
-            Usuario2.id = id;
-            ListaAdministradores.AddAdministrador(Usuario2);
+            Usuario2 = ListaAdministradores.AddAdministrador(invitacion2, id);
         }
 
         /// <summary>

@@ -126,7 +126,7 @@ namespace ClassLibrary
             else if (State == InvitarState.EmpresarioPrompt)
             {
                 this.invitacion = InvitationGenerator.Generate();
-                Empresario empresario = new Empresario(invitacion, this.empresaData);
+                Empresario empresario = new Empresario(invitacion, this.empresaData, id);
                 response = $"Se ha creado el empresario y esta es la invitacion que debe usar para acceder a su status: {this.invitacion}";
 
                 return true;

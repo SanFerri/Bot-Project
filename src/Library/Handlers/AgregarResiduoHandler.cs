@@ -119,8 +119,7 @@ namespace ClassLibrary
             else if (State == AgregarResiduoState.MonedaPrompt)
             {
                 this.monedaResiduo = message;
-                Residuo residuo = new Residuo(this.nombreResiduo, this.volumenResiduo, this.unidadResiduo, this.costoResiduo, this.monedaResiduo);
-                this.empresaUsuario.residuos.AddResiduo(residuo);
+                this.empresaUsuario.residuos.AddResiduo(this.nombreResiduo, this.volumenResiduo, this.unidadResiduo, this.costoResiduo, this.monedaResiduo);
                 this.State = AgregarResiduoState.Start;
                 response = $"Se ha agregado el residuo {this.nombreResiduo}";
 

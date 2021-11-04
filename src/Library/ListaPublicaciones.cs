@@ -16,12 +16,16 @@ namespace ClassLibrary
         public List<Publicacion> listaPublicaciones = new List<Publicacion>();
 
         /// <summary>
-        /// AddPublicacion es un metodo que se encarga de agregar publicaciones a la lista
+        /// AddPublicacion es un metodo que se encarga de agregar publicaciones a la lista.
+        /// Aplicando Creator hemos decidido que la clase que contiene publicaciones deberia ser quien las cree
+        /// no otra clase como program que no esta tan relacionada con ella.
         /// </summary>
         /// <param name="publicacion"></param>
-        public void AddPublicacion(Publicacion publicacion)
+        public Publicacion AddPublicacion(Residuo residuo, Ubicacion ubicacion, Empresa empresa, string habilitacion, bool constante)
         {
+            Publicacion publicacion = new Publicacion(residuo, ubicacion, empresa, habilitacion, constante);
             listaPublicaciones.Add(publicacion);
+            return publicacion;
         }
 
         /// <summary>

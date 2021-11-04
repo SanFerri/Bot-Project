@@ -19,9 +19,11 @@ namespace ClassLibrary
         /// AddResiduo es un metodo que se encarga de agregar residuos a la lista.
         /// </summary>
         /// <param name="residuo"></param>
-        public void AddResiduo(Residuo residuo)
+        public Residuo AddResiduo(string tipo, int cantidad, string unidad, int costo, string moneda)
         {
+            Residuo residuo = new Residuo(tipo, cantidad, unidad, costo, moneda);
             listaResiduos.Add(residuo);
+            return residuo;
         }
 
         /// <summary>

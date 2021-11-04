@@ -20,9 +20,11 @@ namespace ClassLibrary
         /// desginado  a esta clase por Expert.
         /// </summary>
         /// <param name="empresa"></param>
-        public static void AddEmpresa(Empresa empresa)
+        public static Empresa AddEmpresa(string nombreEmpresa, Ubicacion ubicacion, int contacto)
         {
+            Empresa empresa = new Empresa(nombreEmpresa, ubicacion, contacto);
             empresas.Add(empresa);
+            return empresa;
         }
 
         /// <summary>

@@ -19,9 +19,11 @@ namespace ClassLibrary
         /// Metodo que agrega un empresario a la lista de empresarios, desginado a esta clase por Expert.
         /// </summary>
         /// <param name="administrador"></param>
-        public static void AddAdministrador(Administrador administrador)
+        public static Administrador AddAdministrador(int invitacion, int id)
         {
+            Administrador administrador = new Administrador(invitacion, id);
             administradores.Add(administrador);
+            return administrador;
         }
 
         /// <summary>

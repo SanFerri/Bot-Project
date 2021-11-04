@@ -23,7 +23,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Administrador.#ctor(System.Int32)">
+        <member name="M:ClassLibrary.Administrador.#ctor(System.Int32,System.Int32)">
             <summary>
             Constructor de una instancia de administrador. 
             </summary>
@@ -202,7 +202,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Empresario.#ctor(System.Int32,ClassLibrary.Empresa)">
+        <member name="M:ClassLibrary.Empresario.#ctor(System.Int32,ClassLibrary.Empresa,System.Int32)">
             <summary>
             Constructor de una instancia de Empresario.
             </summary>
@@ -250,7 +250,7 @@
         </member>
         <member name="P:ClassLibrary.AgregarResiduoHandler.monedaResiduo">
             <summary>
-            Es la moneda con la cual se va a cobrar el residuo, por ejempo (pesos uruguayos, dolares, etc.)
+            Es la moneda con la cual se va a cobrar el residuo, por ejemplo (pesos uruguayos, dolares, etc.)
             </summary>
             <value></value>
         </member>
@@ -291,7 +291,7 @@
         </member>
         <member name="F:ClassLibrary.AgregarResiduoHandler.AgregarResiduoState.UnidadPrompt">
             -UnidadPrompt: Es el estado donde se pide la unidad la cual es medido el residuo, por 
-            ejempo: kg, toneladas, etc.
+            ejemplo: kg, toneladas, etc.
         </member>
         <member name="F:ClassLibrary.AgregarResiduoHandler.AgregarResiduoState.CostoPrompt">
             -CostoPrompt: Es el estado en donde se pide el costo del residuo.
@@ -438,7 +438,7 @@
             -Start: Es el estado inicial del comando. En este estado el comando pide /cambiardatos
         </member>
         <member name="F:ClassLibrary.CambiarDatosHandler.CambiarDatosState.NombrePrompt">
-            -NombrePromp: En este estado el comando pide que coloques el nombre de la empresa a la cual
+            -NombrePrompt: En este estado el comando pide que coloques el nombre de la empresa a la cual
             quieres cambiar.
         </member>
         <member name="F:ClassLibrary.CambiarDatosHandler.CambiarDatosState.UbicacionPrompt">
@@ -683,7 +683,7 @@
             palabras clave disponibles y pasa al siguiente estado.
         </member>
         <member name="F:ClassLibrary.OfertasHandler.OfertasState.RespuestaClavePrompt">
-            -RspuestaClavePrompt: En este estado el comando le pide al usuario el número de la palabra clave 
+            -RespuestaClavePrompt: En este estado el comando le pide al usuario el número de la palabra clave 
              que desea utilizar y pasa al siguiente estado.
         </member>
         <member name="F:ClassLibrary.OfertasHandler.OfertasState.UbicacionPrompt">
@@ -868,7 +868,6 @@
             <param name="message">El mensaje a procesar.</param>
             <param name="id">La id del usuario.</param>
             <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
-            <param name="id">Es el id del usuario.</param>
             <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         </member>
         <member name="M:ClassLibrary.ResiduosConstantesHandler.InternalCancel">
@@ -947,7 +946,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.ListaAdministradores.AddAdministrador(ClassLibrary.Administrador)">
+        <member name="M:ClassLibrary.ListaAdministradores.AddAdministrador(System.Int32,System.Int32)">
             <summary>
             Metodo que agrega un empresario a la lista de empresarios, desginado a esta clase por Expert.
             </summary>
@@ -973,7 +972,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.ListaEmpresarios.AddEmpresario(ClassLibrary.Empresario)">
+        <member name="M:ClassLibrary.ListaEmpresarios.AddEmpresario(System.Int32,ClassLibrary.Empresa,System.Int32)">
             <summary>
             Metodo que agrega un empresario a la lista de empresarios, desginado a esta clase por Expert.
             </summary>
@@ -999,7 +998,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.ListaEmpresas.AddEmpresa(ClassLibrary.Empresa)">
+        <member name="M:ClassLibrary.ListaEmpresas.AddEmpresa(System.String,ClassLibrary.Ubicacion,System.Int32)">
             <summary>
             AddEmpresa es un metodo que se encarga de agregar una empresa a la lista, 
             desginado  a esta clase por Expert.
@@ -1014,7 +1013,7 @@
         </member>
         <member name="T:ClassLibrary.ListaPalabrasClave">
             <summary>
-            Lista residuos es un structurer de residuo que posee dos metodos AddResiduo y removeresiduo
+            Lista residuos es una clase que contiene residuos que posee dos metodos AddResiduo y removeresiduo
             para añadir o remover elementos de una property de la clase llamada ListaResiduo, es el encargado
             de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
             </summary>
@@ -1059,9 +1058,11 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.ListaPublicaciones.AddPublicacion(ClassLibrary.Publicacion)">
+        <member name="M:ClassLibrary.ListaPublicaciones.AddPublicacion(ClassLibrary.Residuo,ClassLibrary.Ubicacion,ClassLibrary.Empresa,System.String,System.Boolean)">
             <summary>
-            AddPublicacion es un metodo que se encarga de agregar publicaciones a la lista
+            AddPublicacion es un metodo que se encarga de agregar publicaciones a la lista.
+            Aplicando Creator hemos decidido que la clase que contiene publicaciones deberia ser quien las cree
+            no otra clase como program que no esta tan relacionada con ella.
             </summary>
             <param name="publicacion"></param>
         </member>
@@ -1085,7 +1086,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.ListaResiduos.AddResiduo(ClassLibrary.Residuo)">
+        <member name="M:ClassLibrary.ListaResiduos.AddResiduo(System.String,System.Int32,System.String,System.Int32,System.String)">
             <summary>
             AddResiduo es un metodo que se encarga de agregar residuos a la lista.
             </summary>
@@ -1113,7 +1114,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.ListaUsuarios.AddUsuario(ClassLibrary.IUsuario)">
+        <member name="M:ClassLibrary.ListaUsuarios.AddUsuario(System.Int32)">
             <summary>
             AddUsuarios es el encargado de agregar usuarios a la lista.
             </summary>
@@ -1184,6 +1185,12 @@
         <member name="P:ClassLibrary.Publicacion.constante">
             <summary>
             Property constante, indica si un residuo es constante o no.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Publicacion.palabraClave">
+            <summary>
+            Property palabraClave, es una palabra clave que pudo haber sido agregada por un empresario al crear la publicacion.
             </summary>
             <value></value>
         </member>

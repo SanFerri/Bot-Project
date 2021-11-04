@@ -20,9 +20,11 @@ namespace ClassLibrary
         /// AddUsuarios es el encargado de agregar usuarios a la lista.
         /// </summary>
         /// <param name="usuario"></param>
-        public static void AddUsuario(IUsuario usuario)
+        public static Emprendedor AddUsuario(int id)
         {
+            Emprendedor usuario = new Emprendedor(id);
             usuarios.Add(usuario);
+            return usuario;
         }
 
         /// <summary>
