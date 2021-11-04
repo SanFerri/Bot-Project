@@ -4,6 +4,35 @@
         <name>LibraryTests</name>
     </assembly>
     <members>
+        <member name="T:Tests.AgregarResiduoHandlerTests">
+            <summary>
+            Test
+            </summary>
+        </member>
+        <member name="M:Tests.AgregarResiduoHandlerTests.Setup">
+            <summary>
+            SetUp de las instancias de clases y distintos elementos necesarios
+            para llevar asi acabo los tests.
+            </summary>
+        </member>
+        <member name="M:Tests.AgregarResiduoHandlerTests.AgregarResiduoHandleTest">
+            <summary>
+            Si el que trata de usar el comando /invitar es un administrador 
+            (En este caso deberia pasar al menos el primer Handle).
+            </summary>
+        </member>
+        <member name="M:Tests.AgregarResiduoHandlerTests.AgregarResiduoCantHandleTest">
+            <summary>
+            Si el que trata de usar el comando /invitar no es un administrador
+            (En este caso no deberia pasar los handles y por eso devuelva)
+            </summary>
+        </member>
+        <member name="M:Tests.AgregarResiduoHandlerTests.WorkingAgregarResiduoHandlerTest">
+            <summary>
+            Aqui comprobamos que funcione el handler si se pasa por todo el
+            proceso de la forma prevista.
+            </summary>
+        </member>
         <member name="T:Tests.InvitarHandlerTests">
             <summary>
             Test

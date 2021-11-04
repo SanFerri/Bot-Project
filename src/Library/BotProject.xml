@@ -256,7 +256,7 @@
         </member>
         <member name="M:ClassLibrary.AgregarResiduoHandler.#ctor(ClassLibrary.BaseHandler)">
             <summary>
-            Esta clase procesa el mensaje /agregarresiduo.
+            Esta clase procesa el mensaje /agregarresiduo. 
             </summary>
             <param name="next"></param>
             <returns></returns>

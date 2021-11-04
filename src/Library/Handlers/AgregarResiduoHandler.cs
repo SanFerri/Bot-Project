@@ -49,7 +49,7 @@ namespace ClassLibrary
         public string monedaResiduo { get; private set; }
 
         /// <summary>
-        /// Esta clase procesa el mensaje /agregarresiduo.
+        /// Esta clase procesa el mensaje /agregarresiduo. 
         /// </summary>
         /// <param name="next"></param>
         /// <returns></returns>
