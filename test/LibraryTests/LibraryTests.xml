@@ -9,6 +9,30 @@
             Test
             </summary>
         </member>
+        <member name="M:Tests.InvitarHandlerTests.Setup">
+            <summary>
+            SetUp de las instancias de clases y distintos elementos necesarios
+            para llevar asi acabo los tests.
+            </summary>
+        </member>
+        <member name="M:Tests.InvitarHandlerTests.InvitarAdministradorHandleTest">
+            <summary>
+            Si el que trata de usar el comando /invitar es un administrador 
+            (En este caso deberia pasar al menos el primer Handle).
+            </summary>
+        </member>
+        <member name="M:Tests.InvitarHandlerTests.InvitarUsuarioHandleTest">
+            <summary>
+            Si el que trata de usar el comando /invitar no es un administrador
+            (En este caso no deberia pasar los handles y por eso devuelva)
+            </summary>
+        </member>
+        <member name="M:Tests.InvitarHandlerTests.WorkingInvitarHandlerTest">
+            <summary>
+            Aqui comprobamos que funcione el handler si se pasa por todo el
+            proceso de la forma prevista.
+            </summary>
+        </member>
         <member name="T:Tests.OfertasHandlerTests">
             <summary>
             Clase de test que se encarga de probar las distintas funciones del OfertasHandler.
@@ -40,22 +64,28 @@
             Este test se encarga de comprobar la funcionalidad de buscar una publicación sin usar una palabra clave.
             </summary>
         </member>
+        <member name="T:Tests.PublicarHandlerTests">
+            <summary>
+            Clase de test que se encarga de probar las distintas funciones del PublicarHandler.
+            Los test individualmente utilizando "run test" funcionan correctamente, pero al intentar usar "run all tests" no detecta ninguno.
+            </summary>
+        </member>
         <member name="M:Tests.PublicarHandlerTests.Setup">
             <summary>
             el set up de los test.
             </summary>
         </member>
-        <member name="M:Tests.PublicarHandlerTests.PublicarCanHandle">
+        <member name="M:Tests.PublicarHandlerTests.PublicarCanHandleTest">
             <summary>
             Este test se encarga de comprobar que funciona el comando /publicar.
             </summary>
         </member>
-        <member name="M:Tests.PublicarHandlerTests.PublicarCantHandle">
+        <member name="M:Tests.PublicarHandlerTests.PublicarCantHandleTest">
             <summary>
             Este test se encarga de comprobar que el comando /publicar no funciona con un usuario que no es un empresario.
             </summary>
         </member>
-        <member name="M:Tests.PublicarHandlerTests.WorkingPublicarHandler">
+        <member name="M:Tests.PublicarHandlerTests.WorkingPublicarHandlerTest">
             <summary>
             Este test se encarga de comprobar la funcionalidad de crear una publicación.
             </summary>
@@ -78,7 +108,30 @@
         </member>
         <member name="M:Tests.ResiduosConstantesTests.ResiduosConstantesCantHandle">
             <summary>
-            Este test se encarga de comprobar que el handler no responde nada si se utiliza un comando distinto de /residuosconstantes.
+            Este test se encarga de comprobar que el handler no responde nada si se utiliza 
+            un comando distinto de /residuosconstantes.
+            </summary>
+        </member>
+        <member name="T:Tests.ResiduosPuntualesTests">
+            <summary>
+            Clase de test que se encarga de probar las distintas funciones del ResiduosPuntualesHandler.
+            Los test individualmente utilizando "run test" funcionan correctamente, pero al intentar usar "run all tests" no detecta ninguno.
+            </summary>
+        </member>
+        <member name="M:Tests.ResiduosPuntualesTests.Setup">
+            <summary>
+            El Setup de los test
+            </summary>
+        </member>
+        <member name="M:Tests.ResiduosPuntualesTests.PuntualesCanHandleTest">
+            <summary>
+            Este test se encarga de comprobar que funciona el comando /residuospuntuales.
+            </summary>
+        </member>
+        <member name="M:Tests.ResiduosPuntualesTests.PuntualesCantHandleTest">
+            <summary>
+            Este test se encarga de comprobar que el handler no responde nada si se utiliza 
+            un comando distinto de /residuospuntuales.
             </summary>
         </member>
     </members>
