@@ -15,7 +15,7 @@ namespace ClassLibrary
         /// que lleva un registro de todos las usuarios que hay.
         /// </summary>
         /// <returns></returns>
-        public static List<IUsuario> usuarios{get;set;} = new List<IUsuario>();
+        public static List<IUsuario> Usuarios{ get; set; } = new List<IUsuario>();
         /// <summary>
         /// AddUsuarios es el encargado de agregar usuarios a la lista.
         /// </summary>

@@ -1,3 +1,5 @@
+using System;
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -10,7 +12,7 @@ namespace ClassLibrary
         /// Property empresa, es la empresa que crea la publicacion.
         /// </summary>
         /// <value></value>
-        public Empresa empresa{get;set;}
+        public Empresa empresa{ get; set; }
 
         /// <summary>
         /// Property habilitación, es la habilitación que se le pide a la empresa.
@@ -22,13 +24,13 @@ namespace ClassLibrary
         /// Property residuo, es el residuo que se esta ofertando en la publicacion.
         /// </summary>
         /// <value></value>
-        public Residuo residuo{get; set;}
+        public Residuo residuo{ get; set; }
 
         /// <summary>
         /// Property ubicacion, es la ubicacion de donde se encuentran los residuos de la oferta.
         /// </summary>
         /// <value></value>
-        public Ubicacion ubicacion{get; set;}
+        public Ubicacion ubicacion{ get; set; }
 
         /// <summary>
         /// Property constante, indica si un residuo es constante o no.
@@ -41,7 +43,10 @@ namespace ClassLibrary
         /// Property palabraClave, es una palabra clave que pudo haber sido agregada por un empresario al crear la publicacion.
         /// </summary>
         /// <value></value>
-        public string palabraClave {get; set;}
+        public string palabraClave { get; set; }
+
+        public DateTime fecha { get; set; }
+        public bool entregado { get; set; } = false;
 
         /// <summary>
         /// Constructor de una instancia de Publicacion.
@@ -52,6 +57,7 @@ namespace ClassLibrary
             this.residuo = residuo;
             this.ubicacion = ubicacion;
             this.empresa = empresa;
+            this.fecha = DateTime.Now;
         }
 
         /// <summary>
