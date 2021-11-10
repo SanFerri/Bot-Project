@@ -112,5 +112,19 @@ namespace ClassLibrary
             return entregadas;  
         }
 
+        public static List<Residuo> BuscarResiduosConsumidos(int tiempo)
+        {
+            List<Residuo> consumidos = new List<Residuo>();
+            foreach(Publicacion publicacion in ListaPublicacionesEntregados.listaPublicaciones)
+            {
+                if(publicacion.entregado == true)
+                {   
+                    consumidos.Add(publicacion.residuo);
+                }
+            }
+            
+            return consumidos;  
+        }
+
     }
 }

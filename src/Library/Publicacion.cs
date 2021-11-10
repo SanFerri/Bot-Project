@@ -39,6 +39,8 @@ namespace ClassLibrary
 
         public bool constante { get; set; }
 
+        public int usuarioEntregado { get; set; }
+
         /// <summary>
         /// Property palabraClave, es una palabra clave que pudo haber sido agregada por un empresario al crear la publicacion.
         /// </summary>
@@ -78,6 +80,9 @@ namespace ClassLibrary
             this.palabraClave = PalabraClave;
         }
     
-    
+        public void AgregarUsuarioEntregado(int id)
+        {
+
+        }
     }
 }
