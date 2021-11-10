@@ -29,7 +29,7 @@ namespace Tests
             
             int invitacion = InvitationGenerator.Generate();
             ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
-            empresa = new Empresa("MercadoPrivado", ubicacion, 099679938);
+            empresa = new Empresa("MercadoPrivado", ubicacion, "099679938");
             empresa.residuos.AddResiduo(residuo);
             Usuario = new Empresario(invitacion, empresa);
             id = 12345678;

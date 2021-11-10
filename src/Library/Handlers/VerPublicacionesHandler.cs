@@ -12,7 +12,17 @@ namespace ClassLibrary
         /// El estado del comando.
         /// </summary>
         public VerPublicacionesState State { get; private set; }
+
+        /// <summary>
+        /// La empresa del usuario
+        /// </summary>
+        /// <value></value>
         public Empresa empresaUsuario { get; private set; }
+
+        /// <summary>
+        /// Las publicaciones de la empresa
+        /// </summary>
+        /// <value></value>
         public ListaPublicaciones publicacionesUsuario { get; private set; }
 
         /// <summary>
@@ -51,19 +61,30 @@ namespace ClassLibrary
                 this.publicacionesUsuario = empresaUsuario.publicaciones;
                 foreach(Publicacion publicacion in publicacionesUsuario.listaPublicaciones)
                 {
-                    unfinishedResponse += $"{contador}. Ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion.direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.habilitacion} Fecha: {publicacion.fecha}\n";
-                    contador += 1;
+                    if(publicacion.entregado == false)
+                    {
+                        unfinishedResponse += $"{contador}. Ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion.direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.habilitacion} Fecha: {publicacion.fecha}\n";
+                        contador += 1;
+                    }
                 }
-                unfinishedResponse += "¿Quieres cambiar o eliminar alguna publicacion? Responda si para ver mas cambios, no para finalizar la interaccion.";
+                unfinishedResponse += "¿Quieres eliminar alguna publicacion? o indicar que esta entregada? Responda elIminar, entregado, o no";
                 response = unfinishedResponse;
                 this.State = VerPublicacionesState.CambiarPrompt;
                 return true;
             } 
             else if (State == VerPublicacionesState.CambiarPrompt)
             {
-                if (message == "si")
+                if (message == "entregado")
                 {
-                    response = "Ingrese el numero de la publicacion cuya habilitacion quiere cambiar.";
+                    this.State = VerPublicacionesState.Entregado;
+                    response = "Ingrese el numero de la publicacion que quiera indicar como entregada.";
+                    return true;
+                }
+                else if (message == "eliminar")
+                {
+                    this.State = VerPublicacionesState.Eliminar;
+                    response = "Ingrese el numero de la publicacion que quiera eliminar.";
+                    return true;
                 }
                 else if (message == "no")
                 {
@@ -76,68 +97,6 @@ namespace ClassLibrary
                     return false;
                 }
             }
-            else if (State == VerPublicacionesState.CambiarPrompt)
-            {
-                if(message == "si")
-                {
-                    response = "¿Que quieres hacer? \n 1. Cambiar habilitacion \n 2. Indicar como entregado \n 3. Cambiar la ubicacion \n 4. Cambiar costo";
-                    this.State = VerPublicacionesState.EleccionCambio;
-                    return true;
-                }
-                else if(message == "no")
-                {
-                    response = string.Empty;
-                    return false;
-                }
-                else
-                {
-                    response = "No ingreso una respuesta correcta.";
-                    this.State = VerPublicacionesState.Start;
-                    return true;
-                }
-            }
-            else if (State == VerPublicacionesState.EleccionCambio)
-            {
-                if (message == "1")
-                {
-                    response = "¿Cual es la nueva habilitacion?";
-                    this.State = VerPublicacionesState.Habilitacion;
-                    return true;
-                }
-                else if (message == "2")
-                {
-                    response = "Se ha marcado como entregado";
-                    this.State = VerPublicacionesState.Entregado;
-                    return false;
-                }
-                else if (message == "3")
-                {
-                    response = "¿Cual es la nueva direccion?";
-                    this.State = VerPublicacionesState.Ubicacion;
-                    return false;
-                }
-                else if (message == "4")
-                {
-                    response = "¿Cual es el nuevo costo?";
-                    this.State = VerPublicacionesState.Costo;
-                    return false;
-                }
-                else
-                {
-                    response = "No ha elegido un numero entre las opciones";
-                    return false;
-                }
-            }
-            else if (State == VerPublicacionesState.Habilitacion)
-            {
-                Publicacion publicacionElegida = this.publicacionesUsuario.listaPublicaciones[Convert.ToInt32(message)];
-                publicacionElegida.habilitacion = message;
-                this.
-                response = "¿Cual es la nueva habilitacion?";
-        
-                return true;
-            }
-
             else if (State == VerPublicacionesState.Entregado)
             {
                 Publicacion publicacionElegida = this.publicacionesUsuario.listaPublicaciones[Convert.ToInt32(message)];
@@ -146,25 +105,21 @@ namespace ClassLibrary
         
                 return true;
             }
-
-            else if (State == VerPublicacionesState.Ubicacion)
+            else if (State == VerPublicacionesState.Eliminar)
             {
                 Publicacion publicacionElegida = this.publicacionesUsuario.listaPublicaciones[Convert.ToInt32(message)];
-                publicacionElegida.habilitacion = message;
-                response = "Se ha agregado la nueva ubicacion";
-        
+                Mercado.RemoveMercado(publicacionElegida);
+                empresaUsuario.publicaciones.RemovePublicacion(publicacionElegida);
+                response = "Se ha eliminado a publicacion";
+
                 return true;
             }
-
-            else if (State == VerPublicacionesState.Costo)
+            
+            else if (realEmpresario == false)
             {
-                Publicacion publicacionElegida = this.publicacionesUsuario.listaPublicaciones[Convert.ToInt32(message)];
-                publicacionElegida.habilitacion = message;
-                response = "Se ha agregado el nuevo costo";
-        
+                response = "Usted no es un empresario, no puede hacer uso de este comando";
                 return true;
             }
-
             else
             {
                 response = string.Empty;
@@ -187,12 +142,12 @@ namespace ClassLibrary
         {
             ///-Start: Es el comando inicial.
             Start,
+            ///-CambiarPrompt: Es el estado en el que te pregunta si quieres o no cambiar o borrar una publicacion.
             CambiarPrompt,
-            EleccionCambio,
-            Habilitacion,
-            Ubicacion,
+            ///-Entregado: Es el estado en el que se indica a la publicacion como entregada.
             Entregado,
-            Costo
+            ///-Eliminar: Es el estado en el que se borra una publicacion.
+            Eliminar
         }
     }
 }

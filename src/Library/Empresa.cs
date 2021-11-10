@@ -22,7 +22,7 @@ namespace ClassLibrary
         /// Property contacto, es el contacto de la empresa.
         /// </summary>
         /// <value></value>
-        public int contacto{get;set;}
+        public string contacto{get;set;}
         
         /// <summary>
         /// Es la lista de residuos que lleva el registro de todos los residuos que tiene la empresa 
@@ -50,7 +50,7 @@ namespace ClassLibrary
         /// <param name="nombre"></param>
         /// <param name="ubicacion"></param>
         /// <param name="contacto"></param>
-        public Empresa(string nombre, Ubicacion ubicacion, int contacto)
+        public Empresa(string nombre, Ubicacion ubicacion, string contacto)
         {
             this.nombre = nombre;
             this.contacto = contacto;

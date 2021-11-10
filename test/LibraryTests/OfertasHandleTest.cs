@@ -34,7 +34,7 @@ namespace Tests
             int invitacion = InvitationGenerator.Generate();
             ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             ubicacion2 = new Ubicacion("Av. Italia 3479");
-            empresa = new Empresa("MercadoPrivado", ubicacion, 099679938);
+            empresa = new Empresa("MercadoPrivado", ubicacion, "099679938");
             empresa.residuos.AddResiduo(residuo);
             UsuarioEmpresario = new Empresario(invitacion, empresa);
             UsuarioEmprendedor = new Emprendedor(id);

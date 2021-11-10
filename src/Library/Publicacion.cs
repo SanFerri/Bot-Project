@@ -45,7 +45,16 @@ namespace ClassLibrary
         /// <value></value>
         public string palabraClave { get; set; }
 
+        /// <summary>
+        /// Fecha en la que fue creada la publicacion.
+        /// </summary>
+        /// <value></value>
         public DateTime fecha { get; set; }
+
+        /// <summary>
+        /// Property que indica si los residuos de una publicacion ya fueron o no entregados.
+        /// </summary>
+        /// <value></value>
         public bool entregado { get; set; } = false;
 
         /// <summary>
