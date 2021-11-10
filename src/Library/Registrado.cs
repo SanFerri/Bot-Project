@@ -28,7 +28,7 @@ namespace ClassLibrary
             }
             if(registrado == false)
             {
-                foreach(IUsuario usuario1 in ListaUsuarios.usuarios)
+                foreach(IUsuario usuario1 in ListaUsuarios.Usuarios)
                 {
                     if(id == usuario1.id)
                     {

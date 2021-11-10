@@ -1,4 +1,4 @@
-using LocationApi;
+using Ucu.Poo.Locations.Client;
 using System;
 using System.Threading.Tasks;
 
@@ -34,7 +34,7 @@ namespace ClassLibrary
         /// <returns></returns>
         public async void Distancia(Ubicacion ubicacion1, Ubicacion ubicacion2)
         {
-            Distance distance = await client.GetDistance(ubicacion1.location, ubicacion2.location);
+            Distance distance = await client.GetDistanceAsync(ubicacion1.location, ubicacion2.location);
 
             double result = distance.TravelDistance;
 

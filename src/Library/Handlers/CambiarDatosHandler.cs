@@ -90,7 +90,7 @@ namespace ClassLibrary
             }
             else if (State == CambiarDatosState.ContactoPrompt)
             {
-                this.empresaUsuario.contacto = Convert.ToInt32(message);
+                this.empresaUsuario.contacto = message;
                 this.empresaUsuario.nombre = this.nombreEmpresa;
                 this.empresaUsuario.ubicacion = this.UbicacionData;
 

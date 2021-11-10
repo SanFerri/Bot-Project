@@ -22,7 +22,7 @@ namespace ClassLibrary
         /// <param name="usuario"></param>
         public static void AddUsuario(IUsuario usuario)
         {
-            usuarios.Add(usuario);
+            Usuarios.Add(usuario);
         }
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace ClassLibrary
         /// <param name="usuario"></param>
         public static void RemoveUsuario(IUsuario usuario)
         {
-            usuarios.Remove(usuario);
+            Usuarios.Remove(usuario);
         }
     }
 }

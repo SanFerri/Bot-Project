@@ -43,7 +43,7 @@ namespace ClassLibrary
         /// Es el contacto de la empresa.
         /// </summary>
         /// <value></value>
-        public int contactoData { get; private set; }
+        public string contactoData { get; private set; }
 
         /// <summary>
         /// Es el resultado de la publicación.
@@ -106,7 +106,7 @@ namespace ClassLibrary
             }
             else if (State == InvitarState.ContactoPrompt)
             {
-                this.contactoData = Convert.ToInt32(message);
+                this.contactoData = message;
                 this.empresaData = new Empresa(this.nombreEmpresa, this.UbicacionData, this.contactoData);
                 if (this.empresaData != null)
                 {
@@ -153,7 +153,7 @@ namespace ClassLibrary
         {
             this.State = InvitarState.Start;
             this.UbicacionData = null;
-            this.contactoData = 0;
+            this.contactoData = null;
             this.empresaData = null;
             this.nombreEmpresa = null;
         }

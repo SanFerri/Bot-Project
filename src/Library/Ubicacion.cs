@@ -1,4 +1,4 @@
-using LocationApi;
+using Ucu.Poo.Locations.Client;
 using System;
 using System.Threading.Tasks;
 

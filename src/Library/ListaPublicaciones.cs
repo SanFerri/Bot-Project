@@ -2,7 +2,7 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Lista publicaciones es un structurer de publicación que posee dos metodos AddPublicacione y removePublicaciones
+    /// Lista publicaciones es un structurer de publicación que posee dos metodos AddPublicacion y removePublicacion
     /// para añadir o remover elementos de una property de la clase llamada ListaPublicaciones, es el encargado
     /// de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
     /// </summary>

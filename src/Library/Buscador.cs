@@ -1,5 +1,5 @@
 using System;
-using LocationApi;
+using Ucu.Poo.Locations.Client;
 using System.Collections.Generic;
 namespace ClassLibrary
 {
@@ -31,7 +31,7 @@ namespace ClassLibrary
             List<Publicacion> ofertas = new List<Publicacion>();
             foreach(Publicacion publicacion in Mercado.mercado)
             {
-                if(publicacion.residuo.tipo == tipo)
+                if(publicacion.residuo.tipo == tipo & publicacion.entregado == false)
                 {
                     distanciaUbicacion.Distancia(publicacion.ubicacion, ubicacion);
                     if(distanciaUbicacion.LocationsDistance < 100)
@@ -72,7 +72,7 @@ namespace ClassLibrary
             List<string> residuosPuntuales = new List<string>();
             foreach(Publicacion publicacion in Mercado.mercado)
             {
-                if(publicacion.constante == false)
+                if(publicacion.constante == false && publicacion.entregado == false)
                 {
                     residuosPuntuales.Add(publicacion.residuo.tipo);
                 }
@@ -90,7 +90,7 @@ namespace ClassLibrary
             List<Publicacion> ofertas = new List<Publicacion>();
             foreach(Publicacion publicacion in Mercado.mercado)
             {
-                if(publicacion.palabraClave == palabraclave)
+                if(publicacion.palabraClave == palabraclave && publicacion.entregado == false)
                 {
                     ofertas.Add(publicacion);
                 }
@@ -98,6 +98,19 @@ namespace ClassLibrary
             return ofertas;
         }
 
+        public static List<Publicacion> BuscarEntregados(Empresario usuario, int tiempo)
+        {
+            List<Publicacion> entregadas = new List<Publicacion>();
+            foreach(Publicacion publicacion in usuario.empresa.publicaciones.listaPublicaciones)
+            {
+                if(publicacion.entregado == true)
+                {   
+                    entregadas.Add(publicacion);
+                }
+            }
+
+            return entregadas;  
+        }
 
     }
 }
