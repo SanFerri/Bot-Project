@@ -13,6 +13,7 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public int invitacion{get;set;}
+
         /// <summary>
         /// Property id, es el id que se le asigna al emprededor para poder reconocerlo como tal.
         /// </summary>
