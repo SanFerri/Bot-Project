@@ -6,14 +6,34 @@ namespace ClassLibrary
     /// por el patron Expert este tambien es quien
     /// posee la responsabilidad de agregar Empresas y/o remover Empresas.
     /// </summary>
-    public static class ListaEmpresas
+    public class ListaEmpresas
     {
         /// <summary>
         /// Variable estatica empresas, porque es una lista de instancias de Empresa
         /// que lleva un registro de todos las empresas que hay.
         /// </summary>
         /// <returns></returns>
-        public static List<Empresa> empresas = new List<Empresa>();
+        private static List<Empresa> empresas
+        {            
+            get
+            {
+                if (empresas == null)
+                {
+                    empresas = new List<Empresa>();
+                }
+
+                return empresas;
+            }
+            set
+            {
+                empresas = value;
+            }
+        }
+        /// <summary>
+        /// Variable estatica empresas, porque es una lista de instancias de Empresa
+        /// que lleva un registro de todos las empresas que hay.
+        /// </summary>
+        /// <returns></returns>
 
         /// <summary>
         /// AddEmpresa es un metodo que se encarga de agregar una empresa a la lista, 
@@ -32,6 +52,12 @@ namespace ClassLibrary
         public static void RemoveEmpresa(Empresa empresa)
         {
             empresas.Remove(empresa);
+        }
+        /// <summary>
+        /// Constructor vacio para sumarle instancia a la clasica.
+        /// </summary>
+        public ListaEmpresas()
+        {
         }
     }
 }

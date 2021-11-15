@@ -8,14 +8,29 @@ namespace ClassLibrary
     /// A su vez depende de IUsuario para agregar cualquier tipo de usuario (emprendedor,
     /// administrador o usuarios).
     /// </summary>
-    public static class ListaUsuarios
+    public class ListaUsuarios
     {
         /// <summary>
         /// Variable estatica Usuarios, porque es una lista de instancias de Usuarios
         /// que lleva un registro de todos las usuarios que hay.
         /// </summary>
         /// <returns></returns>
-        public static List<IUsuario> Usuarios{ get; set; } = new List<IUsuario>();
+        private static List<IUsuario> Usuarios
+        {            
+            get
+            {
+                if (Usuarios == null)
+                {
+                    Usuarios = new List<IUsuario>();
+                }
+
+                return Usuarios;
+            }
+            set
+            {
+                Usuarios = value;
+            }
+        }
         /// <summary>
         /// AddUsuarios es el encargado de agregar usuarios a la lista.
         /// </summary>
@@ -32,6 +47,12 @@ namespace ClassLibrary
         public static void RemoveUsuario(IUsuario usuario)
         {
             Usuarios.Remove(usuario);
+        }
+        /// <summary>
+        /// Constructor vacio para agregarle instancias a la clase.
+        /// </summary>
+        public ListaUsuarios()
+        {
         }
     }
 }
