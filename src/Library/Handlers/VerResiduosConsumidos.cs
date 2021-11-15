@@ -44,16 +44,7 @@ namespace ClassLibrary
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
-            bool realEmpresario = false;
-            foreach(Empresario empresario in ListaEmpresarios.empresarios)
-            {
-                if(empresario.id == id)
-                {
-                    this.empresaUsuario = empresario.empresa;
-                    realEmpresario = true;
-                }
-            }
-            if (State == VerResiduosConsumidosState.Start && message == "/verresiduosconsumidos" && realEmpresario == true)
+            if (State == VerResiduosConsumidosState.Start && message == "/verresiduosconsumidos")
             {
                 this.State = VerResiduosConsumidosState.Consumidos;
                 response = "¿Residuos entregados desde hace cuantos dias quieres ver?";
@@ -63,19 +54,14 @@ namespace ClassLibrary
             {
                 int contador = 0;
                 string unfinishedResponse = "Estas son tus residuos consumidos:\n";
-                List<Publicacion> entregados = Buscador.BuscarEntregados(empresaUsuario.empresario, Convert.ToInt32(message));
-                foreach(Publicacion publicacion in entregados)
+                List<Residuo> consumidos = Buscador.BuscarResiduosConsumidos(id, Convert.ToInt32(message));
+                foreach(Residuo residuo in consumidos)
                 {
-                    unfinishedResponse += $"{contador}. Ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion.direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.habilitacion} Fecha: {publicacion.fecha}\n";
+                    unfinishedResponse += $"Consumio: {residuo.cantidad} de {residuo.tipo}, el costo de este es {residuo.cost}{residuo.moneda}\n";
                     contador += 1;
                 }
                 response = unfinishedResponse;
                 return true;
-            } 
-            else if (realEmpresario == false)
-            {
-                response = "Usted no es un empresario, no puede hacer uso de este comando";
-                return false;
             }
             else
             {

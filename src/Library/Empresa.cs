@@ -56,6 +56,5 @@ namespace ClassLibrary
             this.contacto = contacto;
             this.ubicacion = ubicacion;
         }
-
     }
 }
