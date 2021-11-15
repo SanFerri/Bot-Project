@@ -82,7 +82,7 @@ namespace ClassLibrary
     
         public void AgregarUsuarioEntregado(int id)
         {
-
+            
         }
     }
 }

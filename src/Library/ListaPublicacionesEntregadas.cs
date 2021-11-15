@@ -6,15 +6,29 @@ namespace ClassLibrary
     /// para añadir o remover elementos de una property de la clase llamada ListaPublicaciones, es el encargado
     /// de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
     /// </summary>
-    public static class ListaPublicacionesEntregados
+    public class ListaEntregados
     {
         /// <summary>
         /// Property publicación, es una lista de instancias de Publicacion
         /// que lleva el registro de las publicaciones de una empresa.
         /// </summary>
         /// <returns></returns>
-        public static List<Publicacion> listaPublicaciones = new List<Publicacion>();
+        private static List<Publicacion> listaPublicaciones
+        {            
+            get
+            {
+                if (listaPublicaciones == null)
+                {
+                    listaPublicaciones = new List<Publicacion>();
+                }
 
+                return listaPublicaciones;
+            }
+            set
+            {
+                listaPublicaciones = value;
+            }
+        }
         /// <summary>
         /// AddPublicacion es un metodo que se encarga de agregar publicaciones a la lista
         /// </summary>
@@ -31,6 +45,11 @@ namespace ClassLibrary
         public static void RemovePublicacion(Publicacion publicacion)
         {
             listaPublicaciones.Remove(publicacion);
+        }
+
+        public List<Publicacion> GetInstance()
+        {
+            return listaPublicaciones;
         }
     }
 }
