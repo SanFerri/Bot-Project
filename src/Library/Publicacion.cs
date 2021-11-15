@@ -59,6 +59,8 @@ namespace ClassLibrary
         /// <value></value>
         public bool entregado { get; set; } = false;
 
+        public int idEntregado { get; set; }
+
         /// <summary>
         /// Constructor de una instancia de Publicacion.
         /// </summary>

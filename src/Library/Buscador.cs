@@ -112,12 +112,16 @@ namespace ClassLibrary
             return entregadas;  
         }
 
-        public static List<Residuo> BuscarResiduosConsumidos(int tiempo)
+        public static List<Residuo> BuscarResiduosConsumidos(int id, int tiempo)
         {
+            ListaEntregadas entregados = new ListaEntregadas();
+            DateTime ahora = DateTime.Now;
             List<Residuo> consumidos = new List<Residuo>();
-            foreach(Publicacion publicacion in ListaPublicacionesEntregados.listaPublicaciones)
+            foreach(Publicacion publicacion in entregados.GetInstance())
             {
-                if(publicacion.entregado == true)
+                DateTime a = publicacion.fecha;
+
+                if(ahora.Subtract(a).TotalDays <=  tiempo)
                 {   
                     consumidos.Add(publicacion.residuo);
                 }

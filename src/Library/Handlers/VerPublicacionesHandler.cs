@@ -19,6 +19,8 @@ namespace ClassLibrary
         /// <value></value>
         public Empresa empresaUsuario { get; private set; }
 
+        public int elegido {get; private set;}
+
         /// <summary>
         /// Las publicaciones de la empresa
         /// </summary>
@@ -97,20 +99,48 @@ namespace ClassLibrary
                     return false;
                 }
             }
+            else if (State == VerPublicacionesState.EntregadoUsuario)
+            {
+                if(elegido == null)
+                {
+                    elegido = Convert.ToInt32(message);
+                }
+                this.State = VerPublicacionesState.Entregado;
+                response = "¿Cual es el id del usuario al que le ha entregado esta publicacion?";
+
+                return true;
+            }
             else if (State == VerPublicacionesState.Entregado)
             {
-                Publicacion publicacionElegida = this.publicacionesUsuario.listaPublicaciones[Convert.ToInt32(message)];
-                publicacionElegida.entregado = true;
-                response = "Se ha puesto la publicacion como entregada";
-        
-                return true;
+                bool correcto = false;
+                foreach(IUsuario usuario in ListaUsuarios.Usuarios)
+                {
+                    if(usuario.id == id)
+                    {
+                        correcto = true;
+                    }
+                }
+                if(correcto == true)
+                {
+                    Publicacion publicacionElegida = this.publicacionesUsuario.listaPublicaciones[elegido];
+                    publicacionElegida.entregado = true;
+                    publicacionElegida.idEntregado = id;
+                    response = "Se ha puesto la publicacion como entregada";
+                    return true;
+                }
+                else
+                {
+                    response = "El id indicado no existe.";
+                    this.State = VerPublicacionesState.EntregadoUsuario;
+                    return true;
+                }
             }
             else if (State == VerPublicacionesState.Eliminar)
             {
                 Publicacion publicacionElegida = this.publicacionesUsuario.listaPublicaciones[Convert.ToInt32(message)];
                 Mercado.RemoveMercado(publicacionElegida);
                 empresaUsuario.publicaciones.RemovePublicacion(publicacionElegida);
-                response = "Se ha eliminado a publicacion";
+                response = "Se ha eliminado la publicacion";
 
                 return true;
             }
@@ -145,6 +175,7 @@ namespace ClassLibrary
             ///-CambiarPrompt: Es el estado en el que te pregunta si quieres o no cambiar o borrar una publicacion.
             CambiarPrompt,
             ///-Entregado: Es el estado en el que se indica a la publicacion como entregada.
+            EntregadoUsuario,
             Entregado,
             ///-Eliminar: Es el estado en el que se borra una publicacion.
             Eliminar
