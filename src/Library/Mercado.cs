@@ -3,9 +3,9 @@ namespace ClassLibrary
 {
     /// <summary>
     /// La clase mercado es estatica porque el esta conoce todas las publicaciones
-    /// existentes, indepedientemente de a que empresa pertenezcan. Como esta es
+    /// existentes, independientemente de a que empresa pertenezcan. Como esta es
     /// la experta en la informacion de todas las publicaciones tambien es la
-    /// encargada atraves de sus 2 metodo Add y Remove Mercado de agregar o remover publicaciones.
+    /// encargada a través de sus 2 metodo Add y Remove Mercado de agregar o remover publicaciones.
     /// </summary>
     public class Mercado
     {

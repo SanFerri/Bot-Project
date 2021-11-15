@@ -13,7 +13,7 @@ namespace ClassLibrary
         public int id{get; set;}
         /// <summary>
         /// Property invitacion, es el encargado de conocer el numero entero de la invitacion del 
-        /// adminitrador.
+        /// administrador.
         /// </summary>
         /// <value></value>
         public int invitacion{get; set;}

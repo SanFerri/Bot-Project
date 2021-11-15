@@ -2,20 +2,20 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Lista residuos es una clase que contiene residuos que posee dos metodos AddResiduo y removeresiduo
-    /// para añadir o remover elementos de una property de la clase llamada ListaResiduo, es el encargado
-    /// de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
+    /// Lista palabras clave es una clase que contiene palabras clave que posee dos metodos AddPalabra y 
+    /// RemovePalabra para añadir o remover elementos de una property de la clase llamada ListaPalabrasClave, es el encargado
+    /// de llevar a cabo dichas tareas porque es el experto en conocer las palabras claves.
     /// </summary>
     public class ListaPalabrasClave
     {
         /// <summary>
-        /// Property int residuo, es una lista de instancias de Residuo
-        /// que lleva el registro de los residuos de una empresa.
+        /// Property string palabras, es una lista de instancias de palabras clave
+        /// que lleva el registro de las palabras clave.
         /// </summary>
         /// <returns></returns>
         public static List<string> palabras = new List<string>();
         /// <summary>
-        /// AddResiduo es un metodo que se encarga de agregar residuos a la lista.
+        /// AddPalabra es un metodo que se encarga de agregar palabras a la lista.
         /// </summary>
         /// <param name="palabra"></param>
         public static void AddPalabra(string palabra)
@@ -24,7 +24,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// RemoveResiduo es un metodo que se encarga de eliminar residuos de la lista.
+        /// RemovePalabra es un metodo que se encarga de eliminar palabras de la lista.
         /// </summary>
         /// <param name="palabra"></param>
         public static void RemovePalabra(string palabra)

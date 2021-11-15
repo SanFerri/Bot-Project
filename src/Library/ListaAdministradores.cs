@@ -2,9 +2,9 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// ListaEmpresarios es el experto en conocer a los empresarios, y 
+    /// ListaAdministradores es el experto en conocer a los administradores, y 
     /// por el patron Expert este tambien es quien
-    /// posee la responsabilidad de agregar Empresarios y/o remover Empresarios.
+    /// posee la responsabilidad de agregar administradores y/o removerlos.
     /// </summary>
     public class ListaAdministradores
     {
@@ -32,7 +32,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Metodo que agrega un empresario a la lista de empresarios, desginado a esta clase por Expert.
+        /// Metodo que agrega un administrador a la lista de administradores, desginado a esta clase por Expert.
         /// </summary>
         /// <param name="administrador"></param>
         public static void AddAdministrador(Administrador administrador)
@@ -41,7 +41,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Metodo que remove un empresario a la lista de empresarios, desginado a esta clase por Expert.
+        /// Metodo que remove un administrador a la lista de administradores, desginado a esta clase por Expert.
         /// </summary>
         /// <param name="administrador"></param>
         public static void RemoveAdministrador(Administrador administrador)
