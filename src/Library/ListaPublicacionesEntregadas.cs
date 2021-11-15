@@ -46,7 +46,9 @@ namespace ClassLibrary
         {
             listaPublicaciones.Remove(publicacion);
         }
-
+        /// <summary>
+        /// Constructor vacio para agregarle instancias a la clase.
+        /// </summary>
         public List<Publicacion> GetInstance()
         {
             return listaPublicaciones;
