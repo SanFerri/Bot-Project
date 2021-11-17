@@ -54,7 +54,6 @@ namespace ClassLibrary
         {
             return JsonSerializer.Serialize(this);
         }
-
         /// <summary>
         /// Sirve para aplicar el singleton, verifica si _intance es nula y si no es nula te devuelve el 
         /// valor de la property.
@@ -68,8 +67,6 @@ namespace ClassLibrary
             }
             return _instance;
         }
-
-
         /// <summary>
         /// Sirve para deserializar un string de json para asi 
         /// asignarle una nueva clase ListaAdministradores los valores 

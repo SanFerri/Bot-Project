@@ -24,12 +24,12 @@ namespace ClassLibrary
         /// <param name="empresario"></param>
         public void AddEmpresario(Empresario empresario)
         {
-            empresarios.Add(empresario);
+            this.Empresarios.Add(empresario);
         }
 
         private ListaEmpresarios()
         {
-            this.empresarios = new List<Empresario>();
+            this.Empresarios = new List<Empresario>();
         }
 
         [JsonInclude]
@@ -41,7 +41,7 @@ namespace ClassLibrary
         /// <param name="empresario"></param>
         public void RemoveEmpresario(Empresario empresario)
         {
-            empresarios.Remove(empresario);
+            this.Empresarios.Remove(empresario);
         }
 
 

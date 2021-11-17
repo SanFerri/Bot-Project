@@ -23,15 +23,7 @@ namespace ClassLibrary
         /// <param name="empresa"></param>
         public void AddEmpresa(Empresa empresa)
         {
-            if(empresas != null)
-            {
-                empresas.Add(empresa);
-            }
-            else
-            {
-                this.GetInstance();
-                empresas.Add(empresa);
-            }
+            this.Empresas.Add(empresa);
         }
         [JsonInclude]
         public IList<Empresa> Steps { get; private set; } = new List<Empresa>();
