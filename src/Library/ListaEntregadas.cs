@@ -39,7 +39,8 @@ namespace ClassLibrary
             ListaPublicaciones.Remove(publicacion);
         }
         /// <summary>
-        /// Constructor vacio para agregarle instancias a la clase.
+        /// Sirve para aplicar el singleton, verifica si listaPublicaciones es nula y si no es nula te 
+        /// devuelve el valor de la property.
         /// </summary>
         public static ListaEntregadas GetInstance()
         {
@@ -49,7 +50,10 @@ namespace ClassLibrary
             }
             return _instance;
         }
-
+      
+        /// <summary>
+        /// Constructor vacio para agregarle instancias a la clase.
+        /// </summary>
         private ListaEntregadas()
         {
             this.ListaPublicaciones = new List<Publicacion>();

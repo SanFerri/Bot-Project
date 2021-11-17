@@ -51,6 +51,11 @@ namespace ClassLibrary
             this.Empresas = new List<Empresa>();
         }
 
+        /// <summary>
+        /// Sirve para aplicar el singleton, verifica si empresas es nula y si no es nula te devuelve el 
+        /// valor de la property.
+        /// </summary>
+        /// <returns></returns>
         public static ListaEmpresas GetInstance()
         {
             if (_instance == null)

@@ -98,6 +98,12 @@ namespace ClassLibrary
             }
             return ofertas;
         }
+        /// <summary>
+        /// Es un metodo que te devuelve la lista de elementos entregados.
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <param name="tiempo"></param>
+        /// <returns></returns>
 
         public static List<Publicacion> BuscarEntregados(Empresario usuario, int tiempo)
         {
@@ -113,6 +119,12 @@ namespace ClassLibrary
             return entregadas;  
         }
 
+        /// <summary>
+        /// Metodo que te devuelve una lista de los residuos consumidos.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="tiempo"></param>
+        /// <returns></returns>
         public static List<Residuo> BuscarResiduosConsumidos(int id, int tiempo)
         {
             DateTime ahora = DateTime.Now;

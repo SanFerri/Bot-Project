@@ -9,6 +9,9 @@ namespace ClassLibrary
     /// </summary>
     public class Empresa : IJsonConvertible
     {
+        /// <summary>
+        /// Constructor de Empresa.
+        /// </summary>
 
         [JsonConstructor]
         public Empresa()
@@ -19,40 +22,40 @@ namespace ClassLibrary
         /// Property nombre, es el nombre que tiene la empresa.
         /// </summary>
         /// <value></value>
-        public string nombre{get;set;}
+        public string Nombre{get;set;}
         
         /// <summary>
         /// Property ubicacion, es la ubicación donde se encuentra la empresa. 
         /// </summary>
         /// <value></value>
-        public Ubicacion ubicacion{get;set;}
+        public Ubicacion Ubicacion{get;set;}
         
         /// <summary>
         /// Property contacto, es el contacto de la empresa.
         /// </summary>
         /// <value></value>
-        public string contacto{get;set;}
+        public string Contacto{get;set;}
         
         /// <summary>
         /// Es la lista de residuos que lleva el registro de todos los residuos que tiene la empresa 
         /// publicados.
         /// </summary>
         /// <returns></returns>
-        public ListaResiduos residuos{get;set;} = new ListaResiduos();
+        public ListaResiduos Residuos{get;set;} = new ListaResiduos();
         
         /// <summary>
         /// Es la lista que lleva el registro de todas las publicaciones que tiene la empresa
         /// realizadas. 
         /// </summary>
         /// <returns></returns>
-        public ListaPublicaciones publicaciones{get;set;} = new ListaPublicaciones();
+        public ListaPublicaciones Publicaciones{get;set;} = new ListaPublicaciones();
         
         /// <summary>
         /// Property empresario, es el encargado de la empresa. 
         /// </summary>
         /// <value></value>
 
-        public Empresario empresario{get;set;}
+        public Empresario Empresario{get;set;}
         /// <summary>
         /// Constructor de una instancia de Empresa.
         /// </summary>
@@ -61,10 +64,15 @@ namespace ClassLibrary
         /// <param name="contacto"></param>
         public Empresa(string nombre, Ubicacion ubicacion, string contacto)
         {
-            this.nombre = nombre;
-            this.contacto = contacto;
-            this.ubicacion = ubicacion;
+            this.Nombre = nombre;
+            this.Contacto = contacto;
+            this.Ubicacion = ubicacion;
         }
+
+        /// <summary>
+        /// Metodo que convierte una clase en string Json (serializa).
+        /// </summary>
+        /// <returns></returns>
 
         public string ConvertToJson()
         {

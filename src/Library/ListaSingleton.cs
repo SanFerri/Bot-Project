@@ -28,6 +28,9 @@ using System;
 
 namespace Library
 {
+    /// <summary>
+    /// Constructor de Listas
+    /// </summary>
     public class Listas
     {
         private Listas()
@@ -37,6 +40,11 @@ namespace Library
 
         private static Listas instance;
 
+        /// <summary>
+        /// Sirve para aplicar el singleton, verifica si instance es nula y si no es nula te 
+        /// devuelve el valor de la property.
+        /// </summary>
+        /// <value></value>
         public static Listas Instance
         {
             get

@@ -40,6 +40,11 @@ namespace ClassLibrary
             this.ofertas = new List<Publicacion>();
         }
 
+        /// <summary>
+        /// Sirve para aplicar el singleton, verifica si mercado es nula y si no es nula te devuelve el 
+        /// valor de la property.
+        /// </summary>
+        /// <returns></returns>
         public static Mercado GetInstance()
         {
             if (_instance == null)

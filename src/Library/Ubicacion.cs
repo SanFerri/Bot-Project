@@ -9,6 +9,9 @@ namespace ClassLibrary
     /// </summary>
     public class Ubicacion : IJsonConvertible
     {
+        /// <summary>
+        /// Constructor de Ubicacion.
+        /// </summary>
         [JsonConstructor]
         public Ubicacion()
         {
@@ -52,6 +55,10 @@ namespace ClassLibrary
             this.location = await client.GetLocationAsync(this.direccion);
         }
 
+        /// <summary>
+        /// Metodo que convierte una clase en string Json (serializa).
+        /// </summary>
+        /// <returns></returns>
         public string ConvertToJson()
         {
             JsonSerializerOptions options = new()

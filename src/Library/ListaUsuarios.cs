@@ -46,6 +46,11 @@ namespace ClassLibrary
             this.Usuarios = new List<IUsuario>();
         }
 
+        /// <summary>
+        /// Sirve para aplicar el singleton, verifica si usuarios es nula y si no es nula te devuelve el 
+        /// valor de la property.
+        /// </summary>
+        /// <returns></returns>
         public static ListaUsuarios GetInstance()
         {
             if (_instance == null)

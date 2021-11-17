@@ -15,6 +15,12 @@ namespace ClassLibrary
     public class MyReferenceHandler : ReferenceHandler
     {
         private static MyReferenceHandler instance;
+
+        /// <summary>
+        /// Sirve para aplicar el singleton, verifica si instance es nula y si no es nula te 
+        /// devuelve el valor de la property.
+        /// </summary>
+        /// <value></value>
         public static MyReferenceHandler Instance
         {
             get

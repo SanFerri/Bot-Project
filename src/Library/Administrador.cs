@@ -8,7 +8,10 @@ namespace ClassLibrary
     /// usuario, una property empresa que indica la empresa de la que participa el Empresario.
     /// </summary>
     public class Administrador : IUsuario
-    {
+    {   
+        /// <summary>
+        /// Constructor de Administrador
+        /// </summary>
 
         [JsonConstructor]
         public Administrador()
@@ -19,13 +22,13 @@ namespace ClassLibrary
         /// Property id, es el encargado de conocer el numero entero del id del administrador.
         /// </summary>
         /// <value></value>
-        public int id{get; set;}
+        public int Id{get; set;}
         /// <summary>
         /// Property invitacion, es el encargado de conocer el numero entero de la invitacion del 
         /// administrador.
         /// </summary>
         /// <value></value>
-        public int invitacion{get; set;}
+        public int Invitacion{get; set;}
         /// <summary>
         /// Constructor de una instancia de administrador. 
         /// </summary>
@@ -33,7 +36,7 @@ namespace ClassLibrary
 
         public Administrador(int invitacion)
         {
-            this.invitacion = invitacion;
+            this.Invitacion = invitacion;
         }
     }
 }

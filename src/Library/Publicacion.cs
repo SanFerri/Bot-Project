@@ -10,6 +10,9 @@ namespace ClassLibrary
     /// </summary>
     public class Publicacion : IJsonConvertible
     {
+        /// <summary>
+        /// Constructor de Publicacion.
+        /// </summary>
     
         [JsonConstructor]
         public Publicacion()
@@ -48,6 +51,11 @@ namespace ClassLibrary
 
         public bool constante { get; set; }
 
+        /// <summary>
+        /// Property usuarioEntregado, indicar a que usuario se le entrego.
+        /// </summary>
+        /// <value></value>
+
         public int usuarioEntregado { get; set; }
 
         /// <summary>
@@ -67,6 +75,11 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public bool entregado { get; set; } = false;
+
+        /// <summary>
+        /// Property idEntregado es el id de la persona que se le entrego el residuo de una publicación.
+        /// </summary>
+        /// <value></value>
 
         public int idEntregado { get; set; }
 
@@ -90,12 +103,20 @@ namespace ClassLibrary
         {
             this.palabraClave = PalabraClave;
         }
-    
+
+        /// <summary>
+        /// Metodo para agregar el id del usuario al que se le entrego el residuo.
+        /// </summary>
+        /// <param name="id"></param>
         public void AgregarUsuarioEntregado(int id)
         {
-            
+            this.idEntregado = id;
         }
 
+        /// <summary>
+        /// Metodo que convierte una clase en string Json (serializa).
+        /// </summary>
+        /// <returns></returns>
         public string ConvertToJson()
         {
             JsonSerializerOptions options = new()
