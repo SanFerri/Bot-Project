@@ -23,6 +23,9 @@ namespace ClassLibrary
             palabras.Add(palabra);
         }
 
+        [JsonInclude]
+        public IList<string> Steps { get; private set; } = new List<string>();
+
         /// <summary>
         /// RemovePalabra es un metodo que se encarga de eliminar palabras de la lista.
         /// </summary>

@@ -73,8 +73,8 @@ namespace ClassLibrary
         protected override bool InternalHandle(string message, int id, out string response)
         {
             bool realAdministrador = false;
-            ListaAdministradores administradores = new ListaAdministradores();
-            foreach(Administrador administrador in administradores.GetInstance())
+            ListaAdministradores administradores;
+            foreach(Administrador administrador in ListaAdministradores.GetInstance().administradores)
             {
                 if(administrador.id == id)
                 {

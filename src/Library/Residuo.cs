@@ -1,3 +1,6 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace ClassLibrary
 
 {
@@ -5,8 +8,15 @@ namespace ClassLibrary
     /// Residuo es una clase que conoce la informacion de los residuos publicados, el tipo y la cantidad
     /// de una publicacion hecha por una X empresa.
     /// </summary>
-    public class Residuo
+    public class Residuo : IJsonConvertible
     {
+
+        [JsonConstructor]
+        public Residuo()
+        {
+            // Intencionalmente en blanco
+        }
+
         /// <summary>
         /// Es el encargado de conocer el tipo de material que se esta ofreciendo.
         /// </summary>
@@ -55,5 +65,17 @@ namespace ClassLibrary
             this.cost = cost;
             this.moneda = moneda;
         }
+
+        public string ConvertToJson()
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Serialize(this, options);
+        }
+        
     }
 }

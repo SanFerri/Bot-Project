@@ -1,3 +1,6 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -7,6 +10,11 @@ namespace ClassLibrary
     public class Empresario : IUsuario
     {
        
+        [JsonConstructor]
+        public Empresario()
+        {
+            // Intencionalmente en blanco
+        }
         /// <summary>
         /// Es el encargado de conocer la empresa de la que es parte.
         /// </summary>

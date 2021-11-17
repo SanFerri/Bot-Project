@@ -33,6 +33,9 @@ namespace ClassLibrary
             }
         }
 
+        [JsonInclude]
+        public IList<IUsuario> Steps { get; private set; } = new List<IUsuario>();
+
         /// <summary>
         /// RemoveUsuario es el encargado de remover usuarios de la lista.
         /// </summary>

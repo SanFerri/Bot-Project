@@ -27,6 +27,9 @@ namespace ClassLibrary
             }
         }
 
+        [JsonInclude]
+        public IList<Publicacion> Steps { get; private set; } = new List<Publicacion>();
+
         /// <summary>
         /// RemoveMercado, metodo para remover publicaciones al mercado, designado por Expert.
         /// </summary>

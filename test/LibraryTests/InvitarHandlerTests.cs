@@ -17,7 +17,7 @@ namespace Tests
         Ubicacion ubicacion;
         int id;
         ListaEmpresarios empresarios = new ListaEmpresarios();
-        ListaAdministradores administradores = new ListaAdministradores();
+        ListaAdministradores administradores = ListaAdministradores.GetInstance();
 
         /// <summary>
         /// SetUp de las instancias de clases y distintos elementos necesarios

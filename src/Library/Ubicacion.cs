@@ -1,14 +1,18 @@
 using Ucu.Poo.Locations.Client;
-using System;
-using System.Threading.Tasks;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ClassLibrary
 {
     /// <summary>
     /// Clase Ubicacion, esta es experta en conocer la ubicacion.
     /// </summary>
-    public class Ubicacion
+    public class Ubicacion : IJsonConvertible
     {
+        [JsonConstructor]
+        public Ubicacion()
+        {
+        }
         /// <summary>
         /// Property location, es el locación donde se encuentra la empresa.
         /// </summary>
@@ -46,6 +50,17 @@ namespace ClassLibrary
         public async void CalculateLocation()
         {
             this.location = await client.GetLocationAsync(this.direccion);
+        }
+
+        public string ConvertToJson()
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Serialize(this, options);
         }
     }
 }
