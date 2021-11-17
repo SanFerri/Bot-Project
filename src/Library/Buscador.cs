@@ -8,6 +8,7 @@ namespace ClassLibrary
     /// </summary>
     public static class Buscador
     {
+        private static Mercado mercado = new Mercado();
         
         /// <summary>
         /// Variable estatica Buscar porque es una lista de instancia de publicación que lleva 
@@ -29,7 +30,7 @@ namespace ClassLibrary
         {
             DistanciaUbicacion distanciaUbicacion = new DistanciaUbicacion(client);
             List<Publicacion> ofertas = new List<Publicacion>();
-            foreach(Publicacion publicacion in Mercado.mercado)
+            foreach(Publicacion publicacion in mercado.GetInstance())
             {
                 if(publicacion.residuo.tipo == tipo & publicacion.entregado == false)
                 {
@@ -52,7 +53,7 @@ namespace ClassLibrary
         public static List<string> ResiduosConstantes()
         {
             List<string> residuosConstantes = new List<string>();
-            foreach(Publicacion publicacion in Mercado.mercado)
+            foreach(Publicacion publicacion in mercado.GetInstance())
             {
                 if(publicacion.constante == true)
                 {
@@ -70,7 +71,7 @@ namespace ClassLibrary
         public static List<string> ResiduosPuntuales()
         {
             List<string> residuosPuntuales = new List<string>();
-            foreach(Publicacion publicacion in Mercado.mercado)
+            foreach(Publicacion publicacion in mercado.GetInstance())
             {
                 if(publicacion.constante == false && publicacion.entregado == false)
                 {
@@ -88,7 +89,7 @@ namespace ClassLibrary
         public static List<Publicacion> BuscarConPalabraClave(string palabraclave)
         {
             List<Publicacion> ofertas = new List<Publicacion>();
-            foreach(Publicacion publicacion in Mercado.mercado)
+            foreach(Publicacion publicacion in mercado.GetInstance())
             {
                 if(publicacion.palabraClave == palabraclave && publicacion.entregado == false)
                 {

@@ -19,7 +19,7 @@ namespace ClassLibrary
         /// <value></value>
         public Empresa empresaUsuario { get; private set; }
 
-        public int elegido {get; private set;}
+        public int elegido {get; private set;} = -1;
 
         /// <summary>
         /// Las publicaciones de la empresa
@@ -46,8 +46,9 @@ namespace ClassLibrary
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
+            ListaEmpresarios empresarios = new ListaEmpresarios();
             bool realEmpresario = false;
-            foreach(Empresario empresario in ListaEmpresarios.empresarios)
+            foreach(Empresario empresario in empresarios.GetInstance())
             {
                 if(empresario.id == id)
                 {
@@ -101,7 +102,7 @@ namespace ClassLibrary
             }
             else if (State == VerPublicacionesState.EntregadoUsuario)
             {
-                if(elegido == null)
+                if(elegido == -1)
                 {
                     elegido = Convert.ToInt32(message);
                 }
@@ -112,8 +113,9 @@ namespace ClassLibrary
             }
             else if (State == VerPublicacionesState.Entregado)
             {
+                ListaUsuarios usuarios = new ListaUsuarios();
                 bool correcto = false;
-                foreach(IUsuario usuario in ListaUsuarios.Usuarios)
+                foreach(IUsuario usuario in usuarios.GetInstance())
                 {
                     if(usuario.id == id)
                     {
@@ -137,8 +139,9 @@ namespace ClassLibrary
             }
             else if (State == VerPublicacionesState.Eliminar)
             {
+                Mercado mercado = new Mercado();
                 Publicacion publicacionElegida = this.publicacionesUsuario.listaPublicaciones[Convert.ToInt32(message)];
-                Mercado.RemoveMercado(publicacionElegida);
+                mercado.RemoveMercado(publicacionElegida);
                 empresaUsuario.publicaciones.RemovePublicacion(publicacionElegida);
                 response = "Se ha eliminado la publicacion";
 

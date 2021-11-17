@@ -13,22 +13,7 @@ namespace ClassLibrary
         /// que lleva un registro de todos las empresas que hay.
         /// </summary>
         /// <returns></returns>
-        private static List<Empresa> empresas
-        {            
-            get
-            {
-                if (empresas == null)
-                {
-                    empresas = new List<Empresa>();
-                }
-
-                return empresas;
-            }
-            set
-            {
-                empresas = value;
-            }
-        }
+        private static List<Empresa> empresas {get; set;}
         /// <summary>
         /// Variable estatica empresas, porque es una lista de instancias de Empresa
         /// que lleva un registro de todos las empresas que hay.
@@ -40,16 +25,24 @@ namespace ClassLibrary
         /// desginado  a esta clase por Expert.
         /// </summary>
         /// <param name="empresa"></param>
-        public static void AddEmpresa(Empresa empresa)
+        public void AddEmpresa(Empresa empresa)
         {
-            empresas.Add(empresa);
+            if(empresas != null)
+            {
+                empresas.Add(empresa);
+            }
+            else
+            {
+                this.GetInstance();
+                empresas.Add(empresa);
+            }
         }
 
         /// <summary>
         /// RemoveEmpresa es un metodo que se encarga de eliminar una empresa de la lista.
         /// </summary>
         /// <param name="empresa"></param>
-        public static void RemoveEmpresa(Empresa empresa)
+        public void RemoveEmpresa(Empresa empresa)
         {
             empresas.Remove(empresa);
         }
@@ -58,6 +51,15 @@ namespace ClassLibrary
         /// </summary>
         public ListaEmpresas()
         {
+        }
+
+        public List<Empresa> GetInstance()
+        {
+            if (empresas == null)
+            {
+                empresas = new List<Empresa>();
+            }
+            return empresas;
         }
     }
 }

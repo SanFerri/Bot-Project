@@ -19,7 +19,7 @@
         <member name="P:ClassLibrary.Administrador.invitacion">
             <summary>
             Property invitacion, es el encargado de conocer el numero entero de la invitacion del 
-            adminitrador.
+            administrador.
             </summary>
             <value></value>
         </member>
@@ -88,7 +88,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.DistanciaUbicacion.#ctor(LocationApi.LocationApiClient)">
+        <member name="M:ClassLibrary.DistanciaUbicacion.#ctor(Ucu.Poo.Locations.Client.LocationApiClient)">
             <summary>
             Constructor de una instancia de DistanciaUbicacion.
             </summary>
@@ -170,7 +170,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Empresa.#ctor(System.String,ClassLibrary.Ubicacion,System.Int32)">
+        <member name="M:ClassLibrary.Empresa.#ctor(System.String,ClassLibrary.Ubicacion,System.String)">
             <summary>
             Constructor de una instancia de Empresa.
             </summary>
@@ -920,6 +920,168 @@
         <member name="F:ClassLibrary.ResiduosPuntualesHandler.ResiduosPuntualesState.Start">
             -Start: Es el comando inicial.
         </member>
+        <member name="T:ClassLibrary.VerEntregadosHandler">
+            <summary>
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "ResiduosPuntuales".
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.VerEntregadosHandler.State">
+            <summary>
+            El estado del comando.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.VerEntregadosHandler.empresaUsuario">
+            <summary>
+            La empresa del usuario
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.VerEntregadosHandler.publicacionesUsuario">
+            <summary>
+            Las publicaciones de la empresa
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.VerEntregadosHandler.#ctor(ClassLibrary.BaseHandler)">
+            <summary>
+            Los datos que va obteniendo el comando en los diferentes estados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.VerEntregadosHandler.InternalHandle(System.String,System.Int32,System.String@)">
+            <summary>
+            Procesa todos los mensajes y retorna true siempre.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <param name="id">Es el id del usuario.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:ClassLibrary.VerEntregadosHandler.InternalCancel">
+            <summary>
+            Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.VerEntregadosHandler.VerPublicacionesState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando ResiduosPuntualesState
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.VerEntregadosHandler.VerPublicacionesState.Start">
+            -Start: Es el comando inicial.
+        </member>
+        <member name="F:ClassLibrary.VerEntregadosHandler.VerPublicacionesState.Entregados">
+            -CambiarPrompt: Es el estado en el que te pregunta si quieres o no cambiar o borrar una publicacion.
+        </member>
+        <member name="T:ClassLibrary.VerPublicacionesHandler">
+            <summary>
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "ResiduosPuntuales".
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.VerPublicacionesHandler.State">
+            <summary>
+            El estado del comando.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.VerPublicacionesHandler.empresaUsuario">
+            <summary>
+            La empresa del usuario
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.VerPublicacionesHandler.publicacionesUsuario">
+            <summary>
+            Las publicaciones de la empresa
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.VerPublicacionesHandler.#ctor(ClassLibrary.BaseHandler)">
+            <summary>
+            Los datos que va obteniendo el comando en los diferentes estados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.VerPublicacionesHandler.InternalHandle(System.String,System.Int32,System.String@)">
+            <summary>
+            Procesa todos los mensajes y retorna true siempre.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <param name="id">Es el id del usuario.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:ClassLibrary.VerPublicacionesHandler.InternalCancel">
+            <summary>
+            Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.VerPublicacionesHandler.VerPublicacionesState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando ResiduosPuntualesState
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.VerPublicacionesHandler.VerPublicacionesState.Start">
+            -Start: Es el comando inicial.
+        </member>
+        <member name="F:ClassLibrary.VerPublicacionesHandler.VerPublicacionesState.CambiarPrompt">
+            -CambiarPrompt: Es el estado en el que te pregunta si quieres o no cambiar o borrar una publicacion.
+        </member>
+        <member name="F:ClassLibrary.VerPublicacionesHandler.VerPublicacionesState.EntregadoUsuario">
+            -Entregado: Es el estado en el que se indica a la publicacion como entregada.
+        </member>
+        <member name="F:ClassLibrary.VerPublicacionesHandler.VerPublicacionesState.Eliminar">
+            -Eliminar: Es el estado en el que se borra una publicacion.
+        </member>
+        <member name="T:ClassLibrary.VerResiduosConsumidosHandler">
+            <summary>
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "ResiduosPuntuales".
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.VerResiduosConsumidosHandler.State">
+            <summary>
+            El estado del comando.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.VerResiduosConsumidosHandler.empresaUsuario">
+            <summary>
+            La empresa del usuario
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.VerResiduosConsumidosHandler.publicacionesUsuario">
+            <summary>
+            Las publicaciones de la empresa
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.VerResiduosConsumidosHandler.#ctor(ClassLibrary.BaseHandler)">
+            <summary>
+            Los datos que va obteniendo el comando en los diferentes estados.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.VerResiduosConsumidosHandler.InternalHandle(System.String,System.Int32,System.String@)">
+            <summary>
+            Procesa todos los mensajes y retorna true siempre.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <param name="id">Es el id del usuario.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:ClassLibrary.VerResiduosConsumidosHandler.InternalCancel">
+            <summary>
+            Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.VerResiduosConsumidosHandler.VerResiduosConsumidosState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando ResiduosPuntualesState
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.VerResiduosConsumidosHandler.VerResiduosConsumidosState.Start">
+            -Start: Es el comando inicial.
+        </member>
+        <member name="F:ClassLibrary.VerResiduosConsumidosHandler.VerResiduosConsumidosState.Consumidos">
+            -CambiarPrompt: Es el estado en el que te pregunta si quieres o no cambiar o borrar una publicacion.
+        </member>
         <member name="T:ClassLibrary.IUsuario">
             <summary>
             IUsuario es una interfaz, todos los usuarios (ya sean emprendedores, empresarios o administradores)
@@ -934,29 +1096,34 @@
         </member>
         <member name="T:ClassLibrary.ListaAdministradores">
             <summary>
-            ListaEmpresarios es el experto en conocer a los empresarios, y 
+            ListaAdministradores es el experto en conocer a los administradores, y 
             por el patron Expert este tambien es quien
-            posee la responsabilidad de agregar Empresarios y/o remover Empresarios.
+            posee la responsabilidad de agregar administradores y/o removerlos.
             </summary>
         </member>
         <member name="P:ClassLibrary.ListaAdministradores.administradores">
             <summary>
-            Variable estatica empresarios, porque es una lista de instancias de Empresario
-            que lleva un registro de todos los empresarios que hay.
+            Variable estatica administrador, porque es una lista de instancias de administrador
+            que lleva un registro de todos los administradores que hay.
             </summary>
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.ListaAdministradores.AddAdministrador(ClassLibrary.Administrador)">
             <summary>
-            Metodo que agrega un empresario a la lista de empresarios, desginado a esta clase por Expert.
+            Metodo que agrega un administrador a la lista de administradores, desginado a esta clase por Expert.
             </summary>
             <param name="administrador"></param>
         </member>
         <member name="M:ClassLibrary.ListaAdministradores.RemoveAdministrador(ClassLibrary.Administrador)">
             <summary>
-            Metodo que remove un empresario a la lista de empresarios, desginado a esta clase por Expert.
+            Metodo que remove un administrador a la lista de administradores, desginado a esta clase por Expert.
             </summary>
             <param name="administrador"></param>
+        </member>
+        <member name="M:ClassLibrary.ListaAdministradores.#ctor">
+            <summary>
+            Constructor vacio para sumarle instancias a la clase.
+            </summary>
         </member>
         <member name="T:ClassLibrary.ListaEmpresarios">
             <summary>
@@ -974,6 +1141,11 @@
         </member>
         <member name="M:ClassLibrary.ListaEmpresarios.AddEmpresario(ClassLibrary.Empresario)">
             <summary>
+            Variable estatica empresarios, porque es una lista de instancias de Empresario
+            que lleva un registro de todos los empresarios que hay.
+            </summary>
+            <returns></returns>
+            <summary>
             Metodo que agrega un empresario a la lista de empresarios, desginado a esta clase por Expert.
             </summary>
             <param name="empresario"></param>
@@ -984,6 +1156,11 @@
             </summary>
             <param name="empresario"></param>
         </member>
+        <member name="M:ClassLibrary.ListaEmpresarios.#ctor">
+            <summary>
+            Constructor vacio para sumarle instancias en la clase.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.ListaEmpresas">
             <summary>
             ListaEmpresas es el experto en conocer a las empresas, y 
@@ -991,7 +1168,7 @@
             posee la responsabilidad de agregar Empresas y/o remover Empresas.
             </summary>
         </member>
-        <member name="F:ClassLibrary.ListaEmpresas.empresas">
+        <member name="P:ClassLibrary.ListaEmpresas.empresas">
             <summary>
             Variable estatica empresas, porque es una lista de instancias de Empresa
             que lleva un registro de todos las empresas que hay.
@@ -999,6 +1176,11 @@
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.ListaEmpresas.AddEmpresa(ClassLibrary.Empresa)">
+            <summary>
+            Variable estatica empresas, porque es una lista de instancias de Empresa
+            que lleva un registro de todos las empresas que hay.
+            </summary>
+            <returns></returns>
             <summary>
             AddEmpresa es un metodo que se encarga de agregar una empresa a la lista, 
             desginado  a esta clase por Expert.
@@ -1011,29 +1193,65 @@
             </summary>
             <param name="empresa"></param>
         </member>
+        <member name="M:ClassLibrary.ListaEmpresas.#ctor">
+            <summary>
+            Constructor vacio para sumarle instancia a la clasica.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.ListaEntregadas">
+            <summary>
+            Lista publicaciones es un structurer de publicación que posee dos metodos AddPublicacion y removePublicacion
+            para añadir o remover elementos de una property de la clase llamada ListaPublicaciones, es el encargado
+            de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.ListaEntregadas.listaPublicaciones">
+            <summary>
+            Property publicación, es una lista de instancias de Publicacion
+            que lleva el registro de las publicaciones de una empresa.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ListaEntregadas.AddPublicacion(ClassLibrary.Publicacion)">
+            <summary>
+            AddPublicacion es un metodo que se encarga de agregar publicaciones a la lista
+            </summary>
+            <param name="publicacion"></param>
+        </member>
+        <member name="M:ClassLibrary.ListaEntregadas.RemovePublicacion(ClassLibrary.Publicacion)">
+            <summary>
+            RemovePublicacion es un metodo que se encarga de eliminar publicaciones de la lista.
+            </summary>
+            <param name="publicacion"></param>
+        </member>
+        <member name="M:ClassLibrary.ListaEntregadas.GetInstance">
+            <summary>
+            Constructor vacio para agregarle instancias a la clase.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.ListaPalabrasClave">
             <summary>
-            Lista residuos es una clase que contiene residuos que posee dos metodos AddResiduo y removeresiduo
-            para añadir o remover elementos de una property de la clase llamada ListaResiduo, es el encargado
-            de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
+            Lista palabras clave es una clase que contiene palabras clave que posee dos metodos AddPalabra y 
+            RemovePalabra para añadir o remover elementos de una property de la clase llamada ListaPalabrasClave, es el encargado
+            de llevar a cabo dichas tareas porque es el experto en conocer las palabras claves.
             </summary>
         </member>
         <member name="F:ClassLibrary.ListaPalabrasClave.palabras">
             <summary>
-            Property int residuo, es una lista de instancias de Residuo
-            que lleva el registro de los residuos de una empresa.
+            Property string palabras, es una lista de instancias de palabras clave
+            que lleva el registro de las palabras clave.
             </summary>
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.ListaPalabrasClave.AddPalabra(System.String)">
             <summary>
-            AddResiduo es un metodo que se encarga de agregar residuos a la lista.
+            AddPalabra es un metodo que se encarga de agregar palabras a la lista.
             </summary>
             <param name="palabra"></param>
         </member>
         <member name="M:ClassLibrary.ListaPalabrasClave.RemovePalabra(System.String)">
             <summary>
-            RemoveResiduo es un metodo que se encarga de eliminar residuos de la lista.
+            RemovePalabra es un metodo que se encarga de eliminar palabras de la lista.
             </summary>
             <param name="palabra"></param>
         </member>
@@ -1046,7 +1264,7 @@
         </member>
         <member name="T:ClassLibrary.ListaPublicaciones">
             <summary>
-            Lista publicaciones es un structurer de publicación que posee dos metodos AddPublicacione y removePublicaciones
+            Lista publicaciones es un structurer de publicación que posee dos metodos AddPublicacion y removePublicacion
             para añadir o remover elementos de una property de la clase llamada ListaPublicaciones, es el encargado
             de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
             </summary>
@@ -1124,19 +1342,18 @@
             </summary>
             <param name="usuario"></param>
         </member>
+        <member name="M:ClassLibrary.ListaUsuarios.#ctor">
+            <summary>
+            Constructor vacio para agregarle instancias a la clase.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.Mercado">
             <summary>
             La clase mercado es estatica porque el esta conoce todas las publicaciones
-            existentes, indepedientemente de a que empresa pertenezcan. Como esta es
+            existentes, independientemente de a que empresa pertenezcan. Como esta es
             la experta en la informacion de todas las publicaciones tambien es la
-            encargada atraves de sus 2 metodo Add y Remove Mercado de agregar o remover publicaciones.
+            encargada a través de sus 2 metodo Add y Remove Mercado de agregar o remover publicaciones.
             </summary>
-        </member>
-        <member name="F:ClassLibrary.Mercado.mercado">
-            <summary>
-            Property 
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:ClassLibrary.Mercado.AddMercado(ClassLibrary.Publicacion)">
             <summary>
@@ -1150,15 +1367,20 @@
             </summary>
             <param name="publicacion"></param>
         </member>
+        <member name="M:ClassLibrary.Mercado.#ctor">
+            <summary>
+            Constructor vacio para agregarle instancias a la clase.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.Publicacion">
             <summary>
-            Publicacion es una clase que conoce la informacion de empresa, residuo, la fecha
-            y ubicacion de una publicacion hecha por una X empresa.
+            Publicación es una clase que conoce la información de empresa, residuo, la fecha
+            y ubicación de una publicación hecha por una X empresa.
             </summary>
         </member>
         <member name="P:ClassLibrary.Publicacion.empresa">
             <summary>
-            Property empresa, es la empresa que crea la publicacion.
+            Property empresa, es la empresa que crea la publicación.
             </summary>
             <value></value>
         </member>
@@ -1170,13 +1392,13 @@
         </member>
         <member name="P:ClassLibrary.Publicacion.residuo">
             <summary>
-            Property residuo, es el residuo que se esta ofertando en la publicacion.
+            Property residuo, es el residuo que se esta ofertando en la publicación.
             </summary>
             <value></value>
         </member>
         <member name="P:ClassLibrary.Publicacion.ubicacion">
             <summary>
-            Property ubicacion, es la ubicacion de donde se encuentran los residuos de la oferta.
+            Property ubicación, es la ubicación de donde se encuentran los residuos de la oferta.
             </summary>
             <value></value>
         </member>
@@ -1189,6 +1411,18 @@
         <member name="P:ClassLibrary.Publicacion.palabraClave">
             <summary>
             Property palabraClave, es una palabra clave que pudo haber sido agregada por un empresario al crear la publicacion.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Publicacion.fecha">
+            <summary>
+            Fecha en la que fue creada la publicacion.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Publicacion.entregado">
+            <summary>
+            Property que indica si los residuos de una publicacion ya fueron o no entregados.
             </summary>
             <value></value>
         </member>
@@ -1263,33 +1497,6 @@
             <param name="unidad"></param>
             <param name="cost"></param>
             <param name="moneda"></param>
-        </member>
-        <member name="T:ClassLibrary.Train">
-            <summary>
-            Esta clase representa un tren muy básico.
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.Train.IsEngineStarted">
-            <summary>
-            Obtiene un valor que indica si las maquinas del tren han sido encendidas o no.
-            </summary>
-            <value><c>true</c> si las máquinas fueron encendidas, <c>false</c> en caso contrario.</value>
-        </member>
-        <member name="M:ClassLibrary.Train.StartEngines">
-            <summary>
-            Enciende las máquinas del tren.
-            </summary>
-            <returns>
-            <c>true</c> si las máquinas pueden ser encendidas, <c>false</c> en caso contrario.
-            </returns>
-        </member>
-        <member name="M:ClassLibrary.Train.StopEngines">
-            <summary>
-            Detiene las máquinas del tren.
-            </summary>
-            <returns>
-            <c>true</c> si las máquinas pueden ser detenidas, <c>false</c> en caso contrario.
-            </returns>
         </member>
         <member name="T:ClassLibrary.Ubicacion">
             <summary>

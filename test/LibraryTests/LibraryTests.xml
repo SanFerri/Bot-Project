@@ -17,13 +17,13 @@
         </member>
         <member name="M:Tests.AgregarResiduoHandlerTests.AgregarResiduoHandleTest">
             <summary>
-            Si el que trata de usar el comando /invitar es un administrador 
+            Si el que trata de usar el comando /agregarresiduo es un empresario 
             (En este caso deberia pasar al menos el primer Handle).
             </summary>
         </member>
         <member name="M:Tests.AgregarResiduoHandlerTests.AgregarResiduoCantHandleTest">
             <summary>
-            Si el que trata de usar el comando /invitar no es un administrador
+            Si el que trata de usar el comando /agregarresiduos no es un empresario
             (En este caso no deberia pasar los handles y por eso devuelva)
             </summary>
         </member>

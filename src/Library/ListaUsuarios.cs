@@ -15,44 +15,46 @@ namespace ClassLibrary
         /// que lleva un registro de todos las usuarios que hay.
         /// </summary>
         /// <returns></returns>
-        private static List<IUsuario> Usuarios
-        {            
-            get
-            {
-                if (Usuarios == null)
-                {
-                    Usuarios = new List<IUsuario>();
-                }
-
-                return Usuarios;
-            }
-            set
-            {
-                Usuarios = value;
-            }
-        }
+        private List<IUsuario> usuarios {get; set;}
         /// <summary>
         /// AddUsuarios es el encargado de agregar usuarios a la lista.
         /// </summary>
         /// <param name="usuario"></param>
-        public static void AddUsuario(IUsuario usuario)
+        public void AddUsuario(IUsuario usuario)
         {
-            Usuarios.Add(usuario);
+            if(usuarios != null)
+            {
+                usuarios.Add(usuario);
+            }
+            else
+            {
+                this.GetInstance();
+                usuarios.Add(usuario);
+            }
         }
 
         /// <summary>
         /// RemoveUsuario es el encargado de remover usuarios de la lista.
         /// </summary>
         /// <param name="usuario"></param>
-        public static void RemoveUsuario(IUsuario usuario)
+        public void RemoveUsuario(IUsuario usuario)
         {
-            Usuarios.Remove(usuario);
+            usuarios.Remove(usuario);
         }
         /// <summary>
         /// Constructor vacio para agregarle instancias a la clase.
         /// </summary>
         public ListaUsuarios()
         {
+        }
+
+        public List<IUsuario> GetInstance()
+        {
+            if (usuarios == null)
+            {
+                usuarios = new List<IUsuario>();
+            }
+            return usuarios;
         }
     }
 }

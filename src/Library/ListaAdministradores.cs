@@ -14,37 +14,30 @@ namespace ClassLibrary
         /// </summary>
         /// <returns></returns>
 
-        private static List<Administrador> administradores
-        {            
-            get
-            {
-                if (administradores == null)
-                {
-                    administradores = new List<Administrador>();
-                }
-
-                return administradores;
-            }
-            set
-            {
-                administradores = value;
-            }
-        }
+        private static List<Administrador> administradores {get; set;}
 
         /// <summary>
         /// Metodo que agrega un administrador a la lista de administradores, desginado a esta clase por Expert.
         /// </summary>
         /// <param name="administrador"></param>
-        public static void AddAdministrador(Administrador administrador)
+        public void AddAdministrador(Administrador administrador)
         {
-            administradores.Add(administrador);
+            if(administradores != null)
+            {
+                administradores.Add(administrador);
+            }
+            else
+            {
+                this.GetInstance();
+                administradores.Add(administrador);
+            }
         }
 
         /// <summary>
         /// Metodo que remove un administrador a la lista de administradores, desginado a esta clase por Expert.
         /// </summary>
         /// <param name="administrador"></param>
-        public static void RemoveAdministrador(Administrador administrador)
+        public void RemoveAdministrador(Administrador administrador)
         {
             administradores.Remove(administrador);
         }
@@ -53,6 +46,15 @@ namespace ClassLibrary
         /// </summary>
         public ListaAdministradores()
         {
+        }
+
+        public List<Administrador> GetInstance()
+        {
+            if (administradores == null)
+            {
+                administradores = new List<Administrador>();
+            }
+            return administradores;
         }
     }
 }
