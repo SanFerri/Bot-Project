@@ -45,6 +45,12 @@ namespace ClassLibrary
         {
         }
 
+        /// <summary>
+        /// Sirve para aplicar el singleton, verifica si mercado es nula y si no es nula te devuelve el 
+        /// valor de la property.
+        /// </summary>
+        /// <returns></returns>
+
         public List<Publicacion> GetInstance()
         {
             if (mercado == null)

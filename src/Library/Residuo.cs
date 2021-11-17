@@ -10,6 +10,9 @@ namespace ClassLibrary
     /// </summary>
     public class Residuo : IJsonConvertible
     {
+        /// <summary>
+        /// Constructor de Residuo.
+        /// </summary>
 
         [JsonConstructor]
         public Residuo()
@@ -65,6 +68,11 @@ namespace ClassLibrary
             this.cost = cost;
             this.moneda = moneda;
         }
+
+        /// <summary>
+        /// Sirve para serializar la clase y todas sus property.
+        /// </summary>
+        /// <returns></returns>
 
         public string ConvertToJson()
         {

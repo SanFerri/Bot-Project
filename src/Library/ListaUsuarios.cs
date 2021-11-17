@@ -51,6 +51,12 @@ namespace ClassLibrary
         {
         }
 
+        /// <summary>
+        /// Sirve para aplicar el singleton, verifica si usuarios es nula y si no es nula te devuelve el 
+        /// valor de la property.
+        /// </summary>
+        /// <returns></returns>
+
         public List<IUsuario> GetInstance()
         {
             if (usuarios == null)

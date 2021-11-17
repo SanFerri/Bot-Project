@@ -9,6 +9,9 @@ namespace ClassLibrary
     /// </summary>
     public class Empresario : IUsuario
     {
+        /// <summary>
+        /// Constructor de Empresario.
+        /// </summary>
        
         [JsonConstructor]
         public Empresario()
@@ -19,19 +22,19 @@ namespace ClassLibrary
         /// Es el encargado de conocer la empresa de la que es parte.
         /// </summary>
         /// <value></value>
-        public Empresa empresa{get; set;}
+        public Empresa Empresa{get; set;}
         
         /// <summary>
         /// Es el encargado de conocer el id del empresario.
         /// </summary>
         /// <value></value>
-        public int id{get; set;}
+        public int Id{get; set;}
         
         /// <summary>
         /// Es el encargado de conocer el valor de una invitación de acceso.
         /// </summary>
         /// <value></value>
-        public int invitacion{get; set;}
+        public int Invitacion{get; set;}
        
         /// <summary>
         /// Constructor de una instancia de Empresario.
@@ -40,8 +43,8 @@ namespace ClassLibrary
         /// <param name="empresa"></param>
         public Empresario(int invitacion, Empresa empresa)
         {
-            this.empresa = empresa;
-            this.invitacion = invitacion;
+            this.Empresa = empresa;
+            this.Invitacion = invitacion;
         }
     }
 }

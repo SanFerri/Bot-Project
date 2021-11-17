@@ -50,6 +50,12 @@ namespace ClassLibrary
             empresarios.Remove(empresario);
         }
 
+        /// <summary>
+        /// Sirve para aplicar el singleton, verifica si empresarios es nula y si no es nula te devuelve el 
+        /// valor de la property.
+        /// </summary>
+        /// <returns></returns>
+
         public List<Empresario> GetInstance()
         {
             if (empresarios == null)

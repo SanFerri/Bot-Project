@@ -46,10 +46,20 @@ namespace ClassLibrary
             this.administradores = new List<Administrador>();
         }
 
+        /// <summary>
+        /// Sirve para serializar la clase y todas sus property.
+        /// </summary>
+        /// <returns></returns>
         public string ConvertToJson()
         {
             return JsonSerializer.Serialize(this);
         }
+
+        /// <summary>
+        /// Sirve para aplicar el singleton, verifica si _intance es nula y si no es nula te devuelve el 
+        /// valor de la property.
+        /// </summary>
+        /// <returns></returns>
         public static ListaAdministradores GetInstance()
         {
             if (_instance == null)
@@ -59,7 +69,12 @@ namespace ClassLibrary
             return _instance;
         }
 
-
+        /// <summary>
+        /// Sirve para deserializar un string de json para asi 
+        /// asignarle una nueva clase ListaAdministradores los valores 
+        /// previos a ponerle un stop al program para asi mantener la información.
+        /// </summary>
+        /// <param name="json"></param>
         public void LoadFromJson(string json)
         {
             ListaAdministradores deserialized = JsonSerializer.Deserialize<ListaAdministradores>(json);
