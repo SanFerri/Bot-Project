@@ -38,6 +38,9 @@ namespace ClassLibrary
             }
         }
 
+        [JsonInclude]
+        public IList<Empresario> Steps { get; private set; } = new List<Empresario>();
+
         /// <summary>
         /// Metodo que remove un empresario a la lista de empresarios, desginado a esta clase por Expert.
         /// </summary>

@@ -37,7 +37,8 @@ namespace ClassLibrary
                 empresas.Add(empresa);
             }
         }
-
+        [JsonInclude]
+        public IList<Empresa> Steps { get; private set; } = new List<Empresa>();
         /// <summary>
         /// RemoveEmpresa es un metodo que se encarga de eliminar una empresa de la lista.
         /// </summary>
