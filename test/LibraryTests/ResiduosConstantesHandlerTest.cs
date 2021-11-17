@@ -17,10 +17,10 @@ namespace Tests
         Administrador Usuario2;
         Ubicacion ubicacion;
         int id;
-        ListaEmpresarios empresarios = new ListaEmpresarios();
-        ListaAdministradores administradores = new ListaAdministradores();
-        ListaUsuarios usuarios = new ListaUsuarios();
-        Mercado mercado = new Mercado();
+        ListaEmpresarios empresarios = ListaEmpresarios.GetInstance();
+        ListaAdministradores administradores = ListaAdministradores.GetInstance();
+        ListaUsuarios usuarios = ListaUsuarios.GetInstance();
+        Mercado mercado = Mercado.GetInstance();
 
         /// <summary>
         /// El Setup de los test

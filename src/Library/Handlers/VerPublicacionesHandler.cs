@@ -46,9 +46,9 @@ namespace ClassLibrary
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
-            ListaEmpresarios empresarios = new ListaEmpresarios();
+            ListaEmpresarios TodoEmpresario = ListaEmpresarios.GetInstance();
             bool realEmpresario = false;
-            foreach(Empresario empresario in empresarios.GetInstance())
+            foreach(Empresario empresario in TodoEmpresario.Empresarios)
             {
                 if(empresario.id == id)
                 {
@@ -113,9 +113,9 @@ namespace ClassLibrary
             }
             else if (State == VerPublicacionesState.Entregado)
             {
-                ListaUsuarios usuarios = new ListaUsuarios();
+                ListaUsuarios usuarios = ListaUsuarios.GetInstance();
                 bool correcto = false;
-                foreach(IUsuario usuario in usuarios.GetInstance())
+                foreach(IUsuario usuario in usuarios.Usuarios)
                 {
                     if(usuario.id == id)
                     {
@@ -139,7 +139,7 @@ namespace ClassLibrary
             }
             else if (State == VerPublicacionesState.Eliminar)
             {
-                Mercado mercado = new Mercado();
+                Mercado mercado = Mercado.GetInstance();
                 Publicacion publicacionElegida = this.publicacionesUsuario.listaPublicaciones[Convert.ToInt32(message)];
                 mercado.RemoveMercado(publicacionElegida);
                 empresaUsuario.publicaciones.RemovePublicacion(publicacionElegida);

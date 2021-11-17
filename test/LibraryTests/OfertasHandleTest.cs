@@ -22,10 +22,10 @@ namespace Tests
         Ubicacion ubicacion2;
 
         int id2;
-        ListaEmpresarios empresarios = new ListaEmpresarios();
+        ListaEmpresarios empresarios = ListaEmpresarios.GetInstance();
         ListaAdministradores administradores = ListaAdministradores.GetInstance();
-        ListaUsuarios usuarios = new ListaUsuarios();
-        Mercado mercado = new Mercado();
+        ListaUsuarios usuarios = ListaUsuarios.GetInstance();
+        Mercado mercado = Mercado.GetInstance();
         
         /// <summary>
         /// El Setup de los test

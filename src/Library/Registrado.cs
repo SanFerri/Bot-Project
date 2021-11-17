@@ -18,10 +18,10 @@ namespace ClassLibrary
         public static bool VerifyUser(int id)
         {
             bool registrado = false;
-            ListaEmpresarios empresarios = new ListaEmpresarios();
-            ListaUsuarios usuarios = new ListaUsuarios();
+            ListaEmpresarios empresarios = ListaEmpresarios.GetInstance();
+            ListaUsuarios usuarios = ListaUsuarios.GetInstance();
 
-            foreach(Empresario empresario in empresarios.GetInstance())
+            foreach(Empresario empresario in empresarios.Empresarios)
             {
                 if(id == empresario.id)
                 {
@@ -30,7 +30,7 @@ namespace ClassLibrary
             }
             if(registrado == false)
             {
-                foreach(IUsuario usuario1 in usuarios.GetInstance())
+                foreach(IUsuario usuario1 in usuarios.Usuarios)
                 {
                     if(id == usuario1.id)
                     {
