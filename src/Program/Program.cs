@@ -42,19 +42,17 @@ using Telegram.Bot.Types.InputFiles;
 namespace Ucu.Poo.TelegramBot
 {
     /// <summary>
-    /// Un programa que implementa un bot de Telegram.
+    /// En este program se encuentra nuestro bot de Telegram.
     /// </summary>
     public static class Program
     {
         /// <summary>
         /// La instancia del bot.
         /// </summary>
-        private static TelegramBotClient Bot;
+        private static TelegramBotClient TelegramBot;
 
         /// <summary>
-        /// El token provisto por Telegram al crear el bot.
-        /// *Importante*:
-        /// Para probar este ejemplo, crea un bot nuevo y reemplaza este token por el de tu bot.
+        /// El token que nos otorgó el BotFather via Telegram al crear el bot.
         /// </summary>
         private static string Token = "2120252827:AAEWDFQM7j3IuClAUSiQaTIW3IaeGXX3J7o";
 
@@ -63,13 +61,13 @@ namespace Ucu.Poo.TelegramBot
         /// </summary>
         public static void Main()
         {
-            Bot = new TelegramBotClient(Token);
+            TelegramBot = new TelegramBotClient(Token);
             var cts = new CancellationTokenSource();
 
             // Comenzamos a escuchar mensajes. Esto se hace en otro hilo (en background). El primer método
             // HandleUpdateAsync es invocado por el bot cuando se recibe un mensaje. El segundo método HandleErrorAsync
             // es invocado cuando ocurre un error.
-            Bot.StartReceiving(
+            TelegramBot.StartReceiving(
                 new DefaultUpdateHandler(HandleUpdateAsync, HandleErrorAsync),
                 cts.Token
             );
@@ -139,7 +137,7 @@ namespace Ucu.Poo.TelegramBot
             }
 
             // Enviamos el texto de respuesta
-            await Bot.SendTextMessageAsync(message.Chat.Id, response);
+            await TelegramBot.SendTextMessageAsync(message.Chat.Id, response);
         }
 
         /// <summary>
@@ -152,7 +150,7 @@ namespace Ucu.Poo.TelegramBot
             const string filePath = @"profile.jpeg";
             using var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             var fileName = filePath.Split(Path.DirectorySeparatorChar).Last();
-            await Bot.SendPhotoAsync(
+            await TelegramBot.SendPhotoAsync(
                 chatId: message.Chat.Id,
                 photo: new InputOnlineFile(fileStream, fileName),
                 caption: "Te ves bien!"
