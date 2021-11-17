@@ -51,6 +51,7 @@ namespace ClassLibrary
         /// <value></value>
         public Publicacion result { get; private set; }
 
+        public ListaAdministradores LosAdministradores = ListaAdministradores.GetInstance();
         /// <summary>
         /// Esta clase procesa el mensaje /invitar.
         /// </summary>
@@ -73,8 +74,7 @@ namespace ClassLibrary
         protected override bool InternalHandle(string message, int id, out string response)
         {
             bool realAdministrador = false;
-            ListaAdministradores administradores;
-            foreach(Administrador administrador in ListaAdministradores.GetInstance().administradores)
+            foreach(Administrador administrador in this.LosAdministradores.Administradores)
             {
                 if(administrador.id == id)
                 {

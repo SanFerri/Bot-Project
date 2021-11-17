@@ -13,14 +13,17 @@ namespace ClassLibrary
         /// que lleva el registro de las palabras clave.
         /// </summary>
         /// <returns></returns>
-        public static List<string> palabras = new List<string>();
+        public List<string> Palabras = new List<string>();
+
+        private static ListaPalabrasClave _instance;
+
         /// <summary>
         /// AddPalabra es un metodo que se encarga de agregar palabras a la lista.
         /// </summary>
         /// <param name="palabra"></param>
-        public static void AddPalabra(string palabra)
+        public void AddPalabra(string palabra)
         {
-            palabras.Add(palabra);
+            this.Palabras.Add(palabra);
         }
 
         [JsonInclude]
@@ -30,9 +33,9 @@ namespace ClassLibrary
         /// RemovePalabra es un metodo que se encarga de eliminar palabras de la lista.
         /// </summary>
         /// <param name="palabra"></param>
-        public static void RemovePalabra(string palabra)
+        public void RemovePalabra(string palabra)
         {
-            palabras.Add(palabra);
+            this.Palabras.Add(palabra);
         }
 
         /// <summary>
@@ -41,35 +44,44 @@ namespace ClassLibrary
         /// una elección mas facil.
         /// </summary>
 
-        public ListaPalabrasClave()
+        public static ListaPalabrasClave GetInstance()
         {
-            if(ListaPalabrasClave.palabras.Contains("Barato"))
+            if (_instance == null)
+            {
+                _instance = new ListaPalabrasClave();
+            }
+            return _instance;
+        }
+
+        private ListaPalabrasClave()
+        {
+            if(this.Palabras.Contains("Barato"))
             { 
             }
             else
             {
-                palabras.Add("Barato");
+                Palabras.Add("Barato");
             }
-            if(ListaPalabrasClave.palabras.Contains("Envio Gratis"))
+            if(this.Palabras.Contains("Envio Gratis"))
             { 
             }
             else
             {
-                palabras.Add("Envio Gratis");
+                this.Palabras.Contains("Envio Gratis");
             }
-            if(ListaPalabrasClave.palabras.Contains("Usado"))
+            if(this.Palabras.Contains("Usado"))
             { 
             }
             else
             {
-                palabras.Add("Usado");
+                this.Palabras.Add("Usado");
             }
-            if(ListaPalabrasClave.palabras.Contains("Nuevo"))
+            if(this.Palabras.Contains("Nuevo"))
             { 
             }
             else
             {
-                palabras.Add("Nuevo");
+                this.Palabras.Add("Nuevo");
             }
         }
     }

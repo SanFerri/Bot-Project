@@ -42,10 +42,10 @@ namespace ClassLibrary
             }
             else if(State == RegistrarseState.InvitacionPrompt)
             {
-                ListaEmpresarios empresarios = new ListaEmpresarios();
+                ListaEmpresarios TodoEmpresario = ListaEmpresarios.GetInstance();
                 bool confirmRegistrado = false;
                 int invitacion = Convert.ToInt32(message);
-                foreach(Empresario empresario in empresarios.GetInstance())
+                foreach(Empresario empresario in TodoEmpresario.Empresarios)
                 {
                     if(empresario.invitacion == invitacion)
                     {

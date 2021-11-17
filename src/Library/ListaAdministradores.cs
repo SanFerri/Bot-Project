@@ -17,7 +17,7 @@ namespace ClassLibrary
         /// que lleva un registro de todos los administradores que hay.
         /// </summary>
         /// <returns></returns>
-        public static List<Administrador> administradores {get; set;}
+        public List<Administrador> Administradores {get; set;}
         private static ListaAdministradores _instance;
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace ClassLibrary
         /// <param name="administrador"></param>
         public void AddAdministrador(Administrador administrador)
         {
-            administradores.Add(administrador);
+            this.Administradores.Add(administrador);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace ClassLibrary
         /// <param name="administrador"></param>
         public void RemoveAdministrador(Administrador administrador)
         {
-            administradores.Remove(administrador);
+            this.Administradores.Remove(administrador);
         }
         /// <summary>
         /// Constructor vacio para sumarle instancias a la clase.
@@ -43,7 +43,7 @@ namespace ClassLibrary
         [JsonConstructor]
         private ListaAdministradores()
         {
-            this.administradores = new List<Administrador>();
+            this.Administradores = new List<Administrador>();
         }
 
         /// <summary>
@@ -69,16 +69,18 @@ namespace ClassLibrary
             return _instance;
         }
 
+
         /// <summary>
         /// Sirve para deserializar un string de json para asi 
         /// asignarle una nueva clase ListaAdministradores los valores 
         /// previos a ponerle un stop al program para asi mantener la información.
         /// </summary>
         /// <param name="json"></param>
+
         public void LoadFromJson(string json)
         {
             ListaAdministradores deserialized = JsonSerializer.Deserialize<ListaAdministradores>(json);
-            this.administradores = deserialized.administradores;
+            this.Administradores = deserialized.Administradores;
         }
     }
 }

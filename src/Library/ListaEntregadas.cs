@@ -13,24 +13,19 @@ namespace ClassLibrary
         /// que lleva el registro de las publicaciones de una empresa.
         /// </summary>
         /// <returns></returns>
-        private static List<Publicacion> listaPublicaciones { get; set; }
+        public List<Publicacion> ListaPublicaciones { get; set; }
+
+        private static ListaEntregadas _instance;
+
         /// <summary>
         /// AddPublicacion es un metodo que se encarga de agregar publicaciones a la lista
         /// </summary>
         /// <param name="publicacion"></param>
         public void AddPublicacion(Publicacion publicacion)
         {
-            if(publicacion.entregado == true && listaPublicaciones != null)
-            {
-                listaPublicaciones.Add(publicacion);
-            }
-            else
-            {
-                this.GetInstance();
-                listaPublicaciones.Add(publicacion);
-            }
-        
+            ListaPublicaciones.Add(publicacion);
         }
+    
 
         [JsonInclude]
         public IList<Publicacion> Steps { get; private set; } = new List<Publicacion>();
@@ -41,25 +36,27 @@ namespace ClassLibrary
         /// <param name="publicacion"></param>
         public void RemovePublicacion(Publicacion publicacion)
         {
-            listaPublicaciones.Remove(publicacion);
+            ListaPublicaciones.Remove(publicacion);
         }
         /// <summary>
         /// Sirve para aplicar el singleton, verifica si listaPublicaciones es nula y si no es nula te 
         /// devuelve el valor de la property.
         /// </summary>
-        public List<Publicacion> GetInstance()
+        public static ListaEntregadas GetInstance()
         {
-            if (listaPublicaciones == null)
+            if (_instance == null)
             {
-                listaPublicaciones = new List<Publicacion>();
+                _instance = new ListaEntregadas();
             }
-            return listaPublicaciones;
+            return _instance;
         }
+      
         /// <summary>
         /// Constructor vacio para agregarle instancias a la clase.
         /// </summary>
-        public ListaEntregadas()
+        private ListaEntregadas()
         {
+            this.ListaPublicaciones = new List<Publicacion>();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Tests
         Administrador Usuario2;
         Ubicacion ubicacion;
         int id;
-        ListaEmpresarios empresarios = new ListaEmpresarios();
+        ListaEmpresarios empresarios = ListaEmpresarios.GetInstance();
         ListaAdministradores administradores = ListaAdministradores.GetInstance();
 
         /// <summary>

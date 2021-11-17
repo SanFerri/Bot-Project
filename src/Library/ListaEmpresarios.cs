@@ -13,12 +13,9 @@ namespace ClassLibrary
         /// que lleva un registro de todos los empresarios que hay.
         /// </summary>
         /// <returns></returns>
-        private static List<Empresario> empresarios { get; set; }
-        /// <summary>
-        /// Variable estatica empresarios, porque es una lista de instancias de Empresario
-        /// que lleva un registro de todos los empresarios que hay.
-        /// </summary>
-        /// <returns></returns>
+        public List<Empresario> Empresarios { get; set; }
+        
+        private static ListaEmpresarios _instance;
 
 
         /// <summary>
@@ -27,15 +24,12 @@ namespace ClassLibrary
         /// <param name="empresario"></param>
         public void AddEmpresario(Empresario empresario)
         {
-            if(empresarios != null)
-            {
-                empresarios.Add(empresario);
-            }
-            else
-            {
-                this.GetInstance();
-                empresarios.Add(empresario);
-            }
+            empresarios.Add(empresario);
+        }
+
+        private ListaEmpresarios()
+        {
+            this.empresarios = new List<Empresario>();
         }
 
         [JsonInclude]
@@ -50,26 +44,23 @@ namespace ClassLibrary
             empresarios.Remove(empresario);
         }
 
+
         /// <summary>
         /// Sirve para aplicar el singleton, verifica si empresarios es nula y si no es nula te devuelve el 
         /// valor de la property.
         /// </summary>
         /// <returns></returns>
-
-        public List<Empresario> GetInstance()
+        public static ListaEmpresarios GetInstance()
         {
-            if (empresarios == null)
+            if (_instance == null)
             {
-                empresarios = new List<Empresario>();
+                _instance = new ListaEmpresarios();
             }
-            return empresarios;
+            return _instance;
         }
 
         /// <summary>
         /// Constructor vacio para sumarle instancias en la clase.
         /// </summary>
-        public ListaEmpresarios()
-        {
-        }
     }
 }
