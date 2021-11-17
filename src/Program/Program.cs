@@ -145,7 +145,7 @@ namespace Ucu.Poo.TelegramBot
         /// </summary>
         static async Task SendProfileImage(Message message)
         {
-            await Bot.SendChatActionAsync(message.Chat.Id, ChatAction.UploadPhoto);
+            await TelegramBot.SendChatActionAsync(message.Chat.Id, ChatAction.UploadPhoto);
 
             const string filePath = @"profile.jpeg";
             using var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
