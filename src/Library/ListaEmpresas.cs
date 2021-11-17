@@ -13,12 +13,8 @@ namespace ClassLibrary
         /// que lleva un registro de todos las empresas que hay.
         /// </summary>
         /// <returns></returns>
-        private static List<Empresa> empresas {get; set;}
-        /// <summary>
-        /// Variable estatica empresas, porque es una lista de instancias de Empresa
-        /// que lleva un registro de todos las empresas que hay.
-        /// </summary>
-        /// <returns></returns>
+        public List<Empresa> Empresas {get; set;}
+        private static ListaEmpresas _instance;
 
         /// <summary>
         /// AddEmpresa es un metodo que se encarga de agregar una empresa a la lista, 
@@ -45,22 +41,23 @@ namespace ClassLibrary
         /// <param name="empresa"></param>
         public void RemoveEmpresa(Empresa empresa)
         {
-            empresas.Remove(empresa);
+            Empresas.Remove(empresa);
         }
         /// <summary>
         /// Constructor vacio para sumarle instancia a la clasica.
         /// </summary>
-        public ListaEmpresas()
+        private ListaEmpresas()
         {
+            this.Empresas = new List<Empresa>();
         }
 
-        public List<Empresa> GetInstance()
+        public static ListaEmpresas GetInstance()
         {
-            if (empresas == null)
+            if (_instance == null)
             {
-                empresas = new List<Empresa>();
+                _instance = new ListaEmpresas();
             }
-            return empresas;
+            return _instance;
         }
     }
 }

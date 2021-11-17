@@ -61,6 +61,8 @@ namespace ClassLibrary
         /// Es una variable booleana que se 
         /// </summary>
         /// <value></value>
+        
+        public ListaPalabrasClave LasClaves = ListaPalabrasClave.GetInstance();
         public bool BuscarConPalabraClave {get; private set;}
 
         /// <summary>
@@ -94,11 +96,10 @@ namespace ClassLibrary
             {
                 if(message == "si")
                 {
-                    ListaPalabrasClave claves = new ListaPalabrasClave();
                     int contador = 0;
                     this.BuscarConPalabraClave = true;
                     string unfinishedResponse = "Ingrese el numero de la palabra clave que buscar:\n";
-                    foreach(string palabra in ListaPalabrasClave.palabras)
+                    foreach(string palabra in this.LasClaves.Palabras)
                     {
                         unfinishedResponse += $"{contador}. {palabra}.\n";
                         contador += 1;
@@ -118,7 +119,7 @@ namespace ClassLibrary
             else if (State == OfertasState.RespuestaClavePrompt)
             {
                 this.State = OfertasState.UbicacionPrompt;
-                this.PalabraClave = ListaPalabrasClave.palabras[(Convert.ToInt32(message))];
+                this.PalabraClave = this.LasClaves.Palabras[(Convert.ToInt32(message))];
                 response = "¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad)";
                 return true;
             }

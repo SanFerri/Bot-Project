@@ -73,6 +73,7 @@ namespace ClassLibrary
         /// <param name="next"></param>
         /// <returns></returns>
 
+        public ListaPalabrasClave LasClaves= ListaPalabrasClave.GetInstance();
         public PublicarHandler(BaseHandler next) : base(next)
         {
             this.Keywords = new string[] { "/publicar" };
@@ -89,8 +90,8 @@ namespace ClassLibrary
         protected override bool InternalHandle(string message, int id, out string response)
         {
             bool realEmpresario = false;
-            ListaEmpresarios empresarios =  new ListaEmpresarios();
-            foreach(Empresario empresario in empresarios.GetInstance())
+            ListaEmpresarios TodoEmpresario = ListaEmpresarios.GetInstance();
+            foreach(Empresario empresario in TodoEmpresario.Empresarios)
             {
                 if(empresario.id == id)
                 {
@@ -101,11 +102,10 @@ namespace ClassLibrary
             if(realEmpresario == true && State ==  PublicarState.Start && message == "/publicar")
             {
                 // En el estado Start le pide la dirección de origen y pasa al estado FromAddressPrompt
-                ListaPalabrasClave claves = new ListaPalabrasClave();
                 int contador = 0;
                 this.State = PublicarState.PalabrasClavePrompt;
                 string unfinishedResponse = "Ingrese el numero de la palabra clave que quiera agregar:\n";
-                foreach(string palabra in ListaPalabrasClave.palabras)
+                foreach(string palabra in LasClaves.Palabras)
                 {
                     unfinishedResponse += $"{contador}. {palabra}.\n";
                     contador += 1;
@@ -115,7 +115,7 @@ namespace ClassLibrary
             }
             else if (State == PublicarState.PalabrasClavePrompt)
             {
-                this.PalabraClave = ListaPalabrasClave.palabras[(Convert.ToInt32(message))];
+                this.PalabraClave = this.LasClaves.Palabras[(Convert.ToInt32(message))];
                 this.State = PublicarState.HabilitacionPrompt;
                 response = "Porfavor ingrese la habilitacion para los residuos.";
                 return true;

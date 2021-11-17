@@ -2,62 +2,57 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// ListaUsuario es el experto en conocer a todos los usuarios, y 
+    /// ListaUsuarios es el experto en conocer a todos los Usuario, y 
     /// por el patron Expert este tambien es quien
-    /// posee la responsabilidad de agregar y/o remover Usuarios.
+    /// posee la responsabilidad de agregar y/o remover Usuario.
     /// A su vez depende de IUsuario para agregar cualquier tipo de usuario (emprendedor,
-    /// administrador o usuarios).
+    /// administrador o Usuario).
     /// </summary>
     public class ListaUsuarios
     {
         /// <summary>
-        /// Variable estatica Usuarios, porque es una lista de instancias de Usuarios
-        /// que lleva un registro de todos las usuarios que hay.
+        /// Variable estatica Usuario, porque es una lista de instancias de Usuario
+        /// que lleva un registro de todos las Usuario que hay.
         /// </summary>
         /// <returns></returns>
-        private List<IUsuario> usuarios {get; set;}
+        public List<IUsuario> Usuarios {get; set;}
+        private static ListaUsuarios _instance;
+
         /// <summary>
-        /// AddUsuarios es el encargado de agregar usuarios a la lista.
+        /// AddUsuario es el encargado de agregar Usuario a la lista.
         /// </summary>
         /// <param name="usuario"></param>
         public void AddUsuario(IUsuario usuario)
         {
-            if(usuarios != null)
-            {
-                usuarios.Add(usuario);
-            }
-            else
-            {
-                this.GetInstance();
-                usuarios.Add(usuario);
-            }
+            Usuarios.Add(usuario);
         }
 
         [JsonInclude]
         public IList<IUsuario> Steps { get; private set; } = new List<IUsuario>();
 
         /// <summary>
-        /// RemoveUsuario es el encargado de remover usuarios de la lista.
+        /// RemoveUsuario es el encargado de remover Usuario de la lista.
         /// </summary>
         /// <param name="usuario"></param>
         public void RemoveUsuario(IUsuario usuario)
         {
-            usuarios.Remove(usuario);
+            Usuarios.Remove(usuario);
         }
         /// <summary>
         /// Constructor vacio para agregarle instancias a la clase.
         /// </summary>
-        public ListaUsuarios()
+        private ListaUsuarios()
         {
+            this.Usuarios = new List<IUsuario>();
         }
 
-        public List<IUsuario> GetInstance()
+        public static ListaUsuarios GetInstance()
         {
-            if (usuarios == null)
+            if (_instance == null)
             {
-                usuarios = new List<IUsuario>();
+                _instance = new ListaUsuarios();
             }
-            return usuarios;
+            return _instance;
         }
     }
 }

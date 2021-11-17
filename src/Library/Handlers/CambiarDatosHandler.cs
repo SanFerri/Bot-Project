@@ -36,6 +36,8 @@ namespace ClassLibrary
         /// <value></value>
         public int contacto { get; private set; }
 
+        public ListaEmpresarios LosEmpresarios = ListaEmpresarios.GetInstance();
+
         /// <summary>
         /// Esta clase procesa el mensaje /cambiardatos.
         /// </summary>
@@ -57,8 +59,7 @@ namespace ClassLibrary
         protected override bool InternalHandle(string message, int id, out string response)
         {
             bool realEmpresario = false;
-            ListaEmpresarios empresarios = new ListaEmpresarios();
-            foreach(Empresario empresario in empresarios.GetInstance())
+            foreach(Empresario empresario in LosEmpresarios.Empresarios)
             {
                 if(empresario.id == id)
                 {

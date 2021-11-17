@@ -8,7 +8,7 @@ namespace ClassLibrary
     /// </summary>
     public static class Buscador
     {
-        private static Mercado mercado = new Mercado();
+        private static Mercado mercado = Mercado.GetInstance();
         
         /// <summary>
         /// Variable estatica Buscar porque es una lista de instancia de publicación que lleva 
@@ -30,7 +30,7 @@ namespace ClassLibrary
         {
             DistanciaUbicacion distanciaUbicacion = new DistanciaUbicacion(client);
             List<Publicacion> ofertas = new List<Publicacion>();
-            foreach(Publicacion publicacion in mercado.GetInstance())
+            foreach(Publicacion publicacion in mercado.ofertas)
             {
                 if(publicacion.residuo.tipo == tipo & publicacion.entregado == false)
                 {
@@ -53,7 +53,7 @@ namespace ClassLibrary
         public static List<string> ResiduosConstantes()
         {
             List<string> residuosConstantes = new List<string>();
-            foreach(Publicacion publicacion in mercado.GetInstance())
+            foreach(Publicacion publicacion in mercado.ofertas)
             {
                 if(publicacion.constante == true)
                 {
@@ -71,7 +71,7 @@ namespace ClassLibrary
         public static List<string> ResiduosPuntuales()
         {
             List<string> residuosPuntuales = new List<string>();
-            foreach(Publicacion publicacion in mercado.GetInstance())
+            foreach(Publicacion publicacion in mercado.ofertas)
             {
                 if(publicacion.constante == false && publicacion.entregado == false)
                 {
@@ -89,7 +89,7 @@ namespace ClassLibrary
         public static List<Publicacion> BuscarConPalabraClave(string palabraclave)
         {
             List<Publicacion> ofertas = new List<Publicacion>();
-            foreach(Publicacion publicacion in mercado.GetInstance())
+            foreach(Publicacion publicacion in mercado.ofertas)
             {
                 if(publicacion.palabraClave == palabraclave && publicacion.entregado == false)
                 {
@@ -115,10 +115,9 @@ namespace ClassLibrary
 
         public static List<Residuo> BuscarResiduosConsumidos(int id, int tiempo)
         {
-            ListaEntregadas entregados = new ListaEntregadas();
             DateTime ahora = DateTime.Now;
             List<Residuo> consumidos = new List<Residuo>();
-            foreach(Publicacion publicacion in entregados.GetInstance())
+            foreach(Publicacion publicacion in ListaEntregadas.GetInstance().ListaPublicaciones)
             {
                 DateTime a = publicacion.fecha;
 
