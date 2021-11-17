@@ -9,36 +9,29 @@ namespace ClassLibrary
     /// </summary>
     public class Mercado
     {
-        private static List<Publicacion> mercado
-        {            
-            get
-            {
-                if (mercado == null)
-                {
-                    mercado = new List<Publicacion>();
-                }
-
-                return mercado;
-            }
-            set
-            {
-                mercado = value;
-            }
-        }
+        private static List<Publicacion> mercado {get; set;}
         /// <summary>
         /// AddMercado, metodo para agregar publicaciones al mercado, designado por Expert.
         /// </summary>
         /// <param name="publicacion"></param>
-        public static void AddMercado(Publicacion publicacion)
+        public void AddMercado(Publicacion publicacion)
         {
-            mercado.Add(publicacion);
+            if (mercado != null)
+            {
+                mercado.Add(publicacion);
+            }
+            else
+            {
+                this.GetInstance();
+                mercado.Add(publicacion);
+            }
         }
 
         /// <summary>
         /// RemoveMercado, metodo para remover publicaciones al mercado, designado por Expert.
         /// </summary>
         /// <param name="publicacion"></param>
-        public static void RemoveMercado(Publicacion publicacion)
+        public void RemoveMercado(Publicacion publicacion)
         {
             mercado.Remove(publicacion);
         }
@@ -47,6 +40,15 @@ namespace ClassLibrary
         /// </summary>
         public Mercado()
         {
+        }
+
+        public List<Publicacion> GetInstance()
+        {
+            if (mercado == null)
+            {
+                mercado = new List<Publicacion>();
+            }
+            return mercado;
         }
     }
 }

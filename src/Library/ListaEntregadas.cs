@@ -13,39 +13,30 @@ namespace ClassLibrary
         /// que lleva el registro de las publicaciones de una empresa.
         /// </summary>
         /// <returns></returns>
-        private static List<Publicacion> listaPublicaciones
-        {            
-            get
-            {
-                if (listaPublicaciones == null)
-                {
-                    listaPublicaciones = new List<Publicacion>();
-                }
-
-                return listaPublicaciones;
-            }
-            set
-            {
-                listaPublicaciones = value;
-            }
-        }
+        private static List<Publicacion> listaPublicaciones { get; set; }
         /// <summary>
         /// AddPublicacion es un metodo que se encarga de agregar publicaciones a la lista
         /// </summary>
         /// <param name="publicacion"></param>
-        public static void AddPublicacion(Publicacion publicacion)
+        public void AddPublicacion(Publicacion publicacion)
         {
-            if(publicacion.entregado == true)
+            if(publicacion.entregado == true && listaPublicaciones != null)
             {
                 listaPublicaciones.Add(publicacion);
             }
+            else
+            {
+                this.GetInstance();
+                listaPublicaciones.Add(publicacion);
+            }
+        
         }
 
         /// <summary>
         /// RemovePublicacion es un metodo que se encarga de eliminar publicaciones de la lista.
         /// </summary>
         /// <param name="publicacion"></param>
-        public static void RemovePublicacion(Publicacion publicacion)
+        public void RemovePublicacion(Publicacion publicacion)
         {
             listaPublicaciones.Remove(publicacion);
         }
@@ -54,6 +45,10 @@ namespace ClassLibrary
         /// </summary>
         public List<Publicacion> GetInstance()
         {
+            if (listaPublicaciones == null)
+            {
+                listaPublicaciones = new List<Publicacion>();
+            }
             return listaPublicaciones;
         }
 

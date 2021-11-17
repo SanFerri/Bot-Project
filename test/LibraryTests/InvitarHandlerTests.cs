@@ -16,6 +16,8 @@ namespace Tests
         Administrador Usuario2;
         Ubicacion ubicacion;
         int id;
+        ListaEmpresarios empresarios = new ListaEmpresarios();
+        ListaAdministradores administradores = new ListaAdministradores();
 
         /// <summary>
         /// SetUp de las instancias de clases y distintos elementos necesarios
@@ -33,13 +35,13 @@ namespace Tests
             Usuario = new Empresario(invitacion, empresa);
             id = 12345678;
             Usuario.id = id;
-            ListaEmpresarios.AddEmpresario(Usuario);
+            empresarios.AddEmpresario(Usuario);
 
             handler = new InvitarHandler(null);
             int invitacion2 = InvitationGenerator.Generate();
             Usuario2 = new Administrador(invitacion2);
             Usuario2.id = id;
-            ListaAdministradores.AddAdministrador(Usuario2);
+            administradores.AddAdministrador(Usuario2);
         }
 
         /// <summary>

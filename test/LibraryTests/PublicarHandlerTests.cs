@@ -18,6 +18,10 @@ namespace Tests
         Administrador Usuario2;
         Ubicacion ubicacion;
         int id;
+        ListaEmpresarios empresarios = new ListaEmpresarios();
+        ListaAdministradores administradores = new ListaAdministradores();
+        ListaUsuarios usuarios = new ListaUsuarios();
+        Mercado mercado = new Mercado();
 
         /// <summary>
         /// el set up de los test.
@@ -35,13 +39,13 @@ namespace Tests
             Usuario = new Empresario(invitacion, empresa);
             id = 12345678;
             Usuario.id = id;
-            ListaEmpresarios.AddEmpresario(Usuario);
+            empresarios.AddEmpresario(Usuario);
 
             handler2 = new InvitarHandler(null);
             int invitacion2 = InvitationGenerator.Generate();
             Usuario2 = new Administrador(invitacion2);
             Usuario2.id = id;
-            ListaAdministradores.AddAdministrador(Usuario2);
+            administradores.AddAdministrador(Usuario2);
         }
 
         /// <summary>

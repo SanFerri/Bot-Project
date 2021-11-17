@@ -22,6 +22,10 @@ namespace Tests
         Ubicacion ubicacion2;
 
         int id2;
+        ListaEmpresarios empresarios = new ListaEmpresarios();
+        ListaAdministradores administradores = new ListaAdministradores();
+        ListaUsuarios usuarios = new ListaUsuarios();
+        Mercado mercado = new Mercado();
         
         /// <summary>
         /// El Setup de los test
@@ -42,12 +46,12 @@ namespace Tests
             id2 = 87654321;
             UsuarioEmprendedor.id = id;
             UsuarioEmpresario.id = id2;
-            ListaEmpresarios.AddEmpresario(UsuarioEmpresario);
-            ListaUsuarios.AddUsuario(UsuarioEmprendedor);
+            empresarios.AddEmpresario(UsuarioEmpresario);
+            usuarios.AddUsuario(UsuarioEmprendedor);
             contador = 0;
             publicacion = new Publicacion(residuo, ubicacion2, empresa, "tener un camion", true);
             publicacion.AgregarPalabraClave("Envio Gratis");
-            Mercado.AddMercado(publicacion);
+            mercado.AddMercado(publicacion);
         }
 
         /// <summary>

@@ -69,7 +69,8 @@ namespace ClassLibrary
         protected override bool InternalHandle(string message, int id, out string response)
         {
             bool realEmpresario = false;
-            foreach(Empresario empresario in ListaEmpresarios.empresarios)
+            ListaEmpresarios empresarios = new ListaEmpresarios();
+            foreach(Empresario empresario in empresarios.GetInstance())
             {
                 if(empresario.id == id)
                 {

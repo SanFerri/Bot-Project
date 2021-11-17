@@ -13,22 +13,7 @@ namespace ClassLibrary
         /// que lleva un registro de todos los empresarios que hay.
         /// </summary>
         /// <returns></returns>
-        private static List<Empresario> empresarios
-        {            
-            get
-            {
-                if (empresarios == null)
-                {
-                    empresarios = new List<Empresario>();
-                }
-
-                return empresarios;
-            }
-            set
-            {
-                empresarios = value;
-            }
-        }
+        private static List<Empresario> empresarios { get; set; }
         /// <summary>
         /// Variable estatica empresarios, porque es una lista de instancias de Empresario
         /// que lleva un registro de todos los empresarios que hay.
@@ -40,19 +25,37 @@ namespace ClassLibrary
         /// Metodo que agrega un empresario a la lista de empresarios, desginado a esta clase por Expert.
         /// </summary>
         /// <param name="empresario"></param>
-        public static void AddEmpresario(Empresario empresario)
+        public void AddEmpresario(Empresario empresario)
         {
-            empresarios.Add(empresario);
+            if(empresarios != null)
+            {
+                empresarios.Add(empresario);
+            }
+            else
+            {
+                this.GetInstance();
+                empresarios.Add(empresario);
+            }
         }
 
         /// <summary>
         /// Metodo que remove un empresario a la lista de empresarios, desginado a esta clase por Expert.
         /// </summary>
         /// <param name="empresario"></param>
-        public static void RemoveEmpresario(Empresario empresario)
+        public void RemoveEmpresario(Empresario empresario)
         {
             empresarios.Remove(empresario);
         }
+
+        public List<Empresario> GetInstance()
+        {
+            if (empresarios == null)
+            {
+                empresarios = new List<Empresario>();
+            }
+            return empresarios;
+        }
+
         /// <summary>
         /// Constructor vacio para sumarle instancias en la clase.
         /// </summary>
