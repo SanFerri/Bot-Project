@@ -23,7 +23,7 @@ namespace ClassLibrary
 
             foreach(Empresario empresario in empresarios.Empresarios)
             {
-                if(id == empresario.id)
+                if(id == empresario.Id)
                 {
                     registrado = true;
                 }

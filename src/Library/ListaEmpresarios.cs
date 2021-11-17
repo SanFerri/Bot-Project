@@ -24,7 +24,7 @@ namespace ClassLibrary
         /// <param name="empresario"></param>
         public void AddEmpresario(Empresario empresario)
         {
-            Empresarios.Add(empresario);
+            this.Empresarios.Add(empresario);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace ClassLibrary
         /// <param name="empresario"></param>
         public void RemoveEmpresario(Empresario empresario)
         {
-            Empresarios.Remove(empresario);
+            this.Empresarios.Remove(empresario);
         }
 
 

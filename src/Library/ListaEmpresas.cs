@@ -32,6 +32,7 @@ namespace ClassLibrary
                 this.GetInstance();
                 Empresas.Add(empresa);
             }
+            this.Empresas.Add(empresa);
         }
         [JsonInclude]
         public IList<Empresa> Steps { get; private set; } = new List<Empresa>();
