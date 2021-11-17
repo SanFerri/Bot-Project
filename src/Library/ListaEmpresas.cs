@@ -23,14 +23,14 @@ namespace ClassLibrary
         /// <param name="empresa"></param>
         public void AddEmpresa(Empresa empresa)
         {
-            if(empresas != null)
+            if(Empresas != null)
             {
-                empresas.Add(empresa);
+                Empresas.Add(empresa);
             }
             else
             {
                 this.GetInstance();
-                empresas.Add(empresa);
+                Empresas.Add(empresa);
             }
         }
         [JsonInclude]

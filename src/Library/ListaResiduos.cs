@@ -13,7 +13,7 @@ namespace ClassLibrary
         /// que lleva el registro de los residuos de una empresa.
         /// </summary>
         /// <returns></returns>
-        public List<Residuo> listaResiduos = new List<Residuo>();
+        public List<Residuo> Residuos = new List<Residuo>();
 
         /// <summary>
         /// AddResiduo es un metodo que se encarga de agregar residuos a la lista.
@@ -21,7 +21,7 @@ namespace ClassLibrary
         /// <param name="residuo"></param>
         public void AddResiduo(Residuo residuo)
         {
-            listaResiduos.Add(residuo);
+            Residuos.Add(residuo);
         }
 
         [JsonInclude]
@@ -33,7 +33,7 @@ namespace ClassLibrary
         /// <param name="residuo"></param>
         public void RemoveResiduo(Residuo residuo)
         {
-            listaResiduos.Remove(residuo);
+            Residuos.Remove(residuo);
         }
     }
 }

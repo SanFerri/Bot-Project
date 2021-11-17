@@ -13,7 +13,7 @@ namespace ClassLibrary
         /// que lleva el registro de las publicaciones de una empresa.
         /// </summary>
         /// <returns></returns>
-        public List<Publicacion> listaPublicaciones = new List<Publicacion>();
+        public List<Publicacion> Publicaciones = new List<Publicacion>();
 
         /// <summary>
         /// AddPublicacion es un metodo que se encarga de agregar publicaciones a la lista
@@ -21,7 +21,7 @@ namespace ClassLibrary
         /// <param name="publicacion"></param>
         public void AddPublicacion(Publicacion publicacion)
         {
-            listaPublicaciones.Add(publicacion);
+            Publicaciones.Add(publicacion);
         }
 
         [JsonInclude]
@@ -33,7 +33,7 @@ namespace ClassLibrary
         /// <param name="publicacion"></param>
         public void RemovePublicacion(Publicacion publicacion)
         {
-            listaPublicaciones.Remove(publicacion);
+            Publicaciones.Remove(publicacion);
         }
     }
 }

@@ -20,13 +20,13 @@ namespace ClassLibrary
         /// Property location, es el locación donde se encuentra la empresa.
         /// </summary>
         /// <value></value>
-        public Location location{ get; set; }
+        public Location Location{ get; set; }
 
         /// <summary>
         /// Property dirección, es la diracción donde se encuentra la empresa.
         /// </summary>
         /// <value></value>
-        public string direccion{get; set;}
+        public string Direccion{get; set;}
 
         /// <summary>
         /// Property LocationApiClient, es la encargada de conocer la localizacion del cliente.
@@ -41,7 +41,7 @@ namespace ClassLibrary
 
         public Ubicacion(string direccion)
         {
-            this.direccion = direccion;
+            this.Direccion = direccion;
             this.CalculateLocation();
         }
 
@@ -52,7 +52,7 @@ namespace ClassLibrary
 
         public async void CalculateLocation()
         {
-            this.location = await client.GetLocationAsync(this.direccion);
+            this.Location = await client.GetLocationAsync(this.Direccion);
         }
 
         /// <summary>

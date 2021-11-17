@@ -24,12 +24,16 @@ namespace ClassLibrary
         /// <param name="empresario"></param>
         public void AddEmpresario(Empresario empresario)
         {
-            empresarios.Add(empresario);
+            Empresarios.Add(empresario);
         }
+
+        /// <summary>
+        /// Constructor vacio para sumarle instancias en la clase.
+        /// </summary>
 
         private ListaEmpresarios()
         {
-            this.empresarios = new List<Empresario>();
+            this.Empresarios = new List<Empresario>();
         }
 
         [JsonInclude]
@@ -41,7 +45,7 @@ namespace ClassLibrary
         /// <param name="empresario"></param>
         public void RemoveEmpresario(Empresario empresario)
         {
-            empresarios.Remove(empresario);
+            Empresarios.Remove(empresario);
         }
 
 
@@ -58,9 +62,5 @@ namespace ClassLibrary
             }
             return _instance;
         }
-
-        /// <summary>
-        /// Constructor vacio para sumarle instancias en la clase.
-        /// </summary>
     }
 }

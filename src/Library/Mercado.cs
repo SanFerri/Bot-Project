@@ -9,7 +9,11 @@ namespace ClassLibrary
     /// </summary>
     public class Mercado
     {
-        public List<Publicacion> ofertas {get; set;}
+        /// <summary>
+        /// Property oferta, es una lista que contiene publicaciones.
+        /// </summary>
+        /// <value></value>
+        public List<Publicacion> Ofertas {get; set;}
 
         private static Mercado _instance;
         /// <summary>
@@ -18,7 +22,7 @@ namespace ClassLibrary
         /// <param name="publicacion"></param>
         public void AddMercado(Publicacion publicacion)
         {
-            this.ofertas.Add(publicacion);
+            this.Ofertas.Add(publicacion);
         }
 
         [JsonInclude]
@@ -30,14 +34,14 @@ namespace ClassLibrary
         /// <param name="publicacion"></param>
         public void RemoveMercado(Publicacion publicacion)
         {
-            this.ofertas.Remove(publicacion);
+            this.Ofertas.Remove(publicacion);
         }
         /// <summary>
         /// Constructor vacio para agregarle instancias a la clase.
         /// </summary>
         private Mercado()
         {
-            this.ofertas = new List<Publicacion>();
+            this.Ofertas = new List<Publicacion>();
         }
 
         /// <summary>
