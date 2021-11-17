@@ -1,4 +1,6 @@
 using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ClassLibrary
 {
@@ -6,8 +8,15 @@ namespace ClassLibrary
     /// Publicación es una clase que conoce la información de empresa, residuo, la fecha
     /// y ubicación de una publicación hecha por una X empresa.
     /// </summary>
-    public class Publicacion
+    public class Publicacion : IJsonConvertible
     {
+    
+        [JsonConstructor]
+        public Publicacion()
+        {
+            // Intencionalmente en blanco
+        }
+
         /// <summary>
         /// Property empresa, es la empresa que crea la publicación.
         /// </summary>
@@ -85,6 +94,17 @@ namespace ClassLibrary
         public void AgregarUsuarioEntregado(int id)
         {
             
+        }
+
+        public string ConvertToJson()
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Serialize(this, options);
         }
     }
 }

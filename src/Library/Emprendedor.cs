@@ -1,4 +1,6 @@
-using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace ClassLibrary
 
 {
@@ -7,6 +9,12 @@ namespace ClassLibrary
     /// </summary>
     public class Emprendedor : IUsuario
     {
+
+        [JsonConstructor]
+        public Emprendedor()
+        {
+            // Intencionalmente en blanco
+        }
         /// <summary>
         /// Property invitación, es la invitación que se le hace al emprendedor para ingresar y poder 
         /// acceder a los residuos publicados por las empresas.

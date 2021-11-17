@@ -23,7 +23,7 @@ namespace Tests
 
         int id2;
         ListaEmpresarios empresarios = new ListaEmpresarios();
-        ListaAdministradores administradores = new ListaAdministradores();
+        ListaAdministradores administradores = ListaAdministradores.GetInstance();
         ListaUsuarios usuarios = new ListaUsuarios();
         Mercado mercado = new Mercado();
         

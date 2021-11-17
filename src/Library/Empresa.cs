@@ -1,11 +1,20 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace ClassLibrary
 {
     /// <summary>
     /// Empresa es una clase que conoce la información de las empresas, el nombre, la ubicación, el
     /// contacto, los residuos, sus publicaciones y a el empresario.
     /// </summary>
-    public class Empresa
+    public class Empresa : IJsonConvertible
     {
+
+        [JsonConstructor]
+        public Empresa()
+        {
+            // Intencionalmente en blanco
+        }
         /// <summary>
         /// Property nombre, es el nombre que tiene la empresa.
         /// </summary>
@@ -55,6 +64,17 @@ namespace ClassLibrary
             this.nombre = nombre;
             this.contacto = contacto;
             this.ubicacion = ubicacion;
+        }
+
+        public string ConvertToJson()
+        {
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Serialize(this, options);
         }
     }
 }

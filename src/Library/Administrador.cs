@@ -1,3 +1,6 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -6,6 +9,12 @@ namespace ClassLibrary
     /// </summary>
     public class Administrador : IUsuario
     {
+
+        [JsonConstructor]
+        public Administrador()
+        {
+            // Intencionalmente en blanco
+        }
         /// <summary>
         /// Property id, es el encargado de conocer el numero entero del id del administrador.
         /// </summary>
