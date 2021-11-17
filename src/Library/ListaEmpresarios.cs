@@ -27,6 +27,10 @@ namespace ClassLibrary
             this.Empresarios.Add(empresario);
         }
 
+        /// <summary>
+        /// Constructor vacio para sumarle instancias en la clase.
+        /// </summary>
+
         private ListaEmpresarios()
         {
             this.Empresarios = new List<Empresario>();
@@ -58,9 +62,5 @@ namespace ClassLibrary
             }
             return _instance;
         }
-
-        /// <summary>
-        /// Constructor vacio para sumarle instancias en la clase.
-        /// </summary>
     }
 }

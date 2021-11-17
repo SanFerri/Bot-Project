@@ -24,33 +24,33 @@ namespace ClassLibrary
         /// Es el encargado de conocer el tipo de material que se esta ofreciendo.
         /// </summary>
         /// <value></value>
-        public string tipo{get; set;}
+        public string Tipo{get; set;}
         /// <summary>
         /// Es el encargado de conocer la cantidad que hay de cada material.
         /// </summary>
         /// <value></value>
-        public int cantidad{get; set;}
+        public int Cantidad{get; set;}
 
         /// <summary>
         /// Es el encargado de conocer la unidad de la cual se esta haciendo referencia, por ejemplo 
         /// (kg, toneladas, etc).
         /// </summary>
         /// <value></value>
-        public string unidad { get; set; }
+        public string Unidad { get; set; }
 
         /// <summary>
         /// Es el encargado de conocer el costo del residuo.
         /// </summary>
         /// <value></value>
 
-        public int cost { get; set; }
+        public int Cost { get; set; }
 
         /// <summary>
         /// Es el encargado de conocer la moneda con la cual se va a hacer el medio de pago, por ejemplo
         /// (pesos uruguayos, dolares, euros, etc.)
         /// </summary>
         /// <value></value>
-        public string moneda { get; set; }
+        public string Moneda { get; set; }
     
         /// <summary>
         /// Constructor de una instancia de Residuo.
@@ -62,11 +62,11 @@ namespace ClassLibrary
         /// <param name="moneda"></param>
         public Residuo(string tipo, int cantidad, string unidad, int cost, string moneda)
         {
-            this.tipo = tipo;
-            this.cantidad = cantidad;
-            this.unidad = unidad;
-            this.cost = cost;
-            this.moneda = moneda;
+            this.Tipo = tipo;
+            this.Cantidad = cantidad;
+            this.Unidad = unidad;
+            this.Cost = cost;
+            this.Moneda = moneda;
         }
 
         /// <summary>

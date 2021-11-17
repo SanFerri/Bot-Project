@@ -24,75 +24,75 @@ namespace ClassLibrary
         /// Property empresa, es la empresa que crea la publicación.
         /// </summary>
         /// <value></value>
-        public Empresa empresa{ get; set; }
+        public Empresa Empresa{ get; set; }
 
         /// <summary>
         /// Property habilitación, es la habilitación que se le pide a la empresa.
         /// </summary>
         /// <value></value>
-        public string habilitacion { get; set; }
+        public string Habilitacion { get; set; }
 
         /// <summary>
         /// Property residuo, es el residuo que se esta ofertando en la publicación.
         /// </summary>
         /// <value></value>
-        public Residuo residuo{ get; set; }
+        public Residuo Residuo{ get; set; }
 
         /// <summary>
         /// Property ubicación, es la ubicación de donde se encuentran los residuos de la oferta.
         /// </summary>
         /// <value></value>
-        public Ubicacion ubicacion{ get; set; }
+        public Ubicacion Ubicacion{ get; set; }
 
         /// <summary>
         /// Property constante, indica si un residuo es constante o no.
         /// </summary>
         /// <value></value>
 
-        public bool constante { get; set; }
+        public bool Constante { get; set; }
 
         /// <summary>
         /// Property usuarioEntregado, indicar a que usuario se le entrego.
         /// </summary>
         /// <value></value>
 
-        public int usuarioEntregado { get; set; }
+        public int UsuarioEntregado { get; set; }
 
         /// <summary>
         /// Property palabraClave, es una palabra clave que pudo haber sido agregada por un empresario al crear la publicacion.
         /// </summary>
         /// <value></value>
-        public string palabraClave { get; set; }
+        public string PalabraClave { get; set; }
 
         /// <summary>
         /// Fecha en la que fue creada la publicacion.
         /// </summary>
         /// <value></value>
-        public DateTime fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
         /// <summary>
         /// Property que indica si los residuos de una publicacion ya fueron o no entregados.
         /// </summary>
         /// <value></value>
-        public bool entregado { get; set; } = false;
+        public bool Entregado { get; set; } = false;
 
         /// <summary>
         /// Property idEntregado es el id de la persona que se le entrego el residuo de una publicación.
         /// </summary>
         /// <value></value>
 
-        public int idEntregado { get; set; }
+        public int IdEntregado { get; set; }
 
         /// <summary>
         /// Constructor de una instancia de Publicacion.
         /// </summary>
         public Publicacion(Residuo residuo, Ubicacion ubicacion, Empresa empresa, string habilitacion, bool constante)
         {
-            this.constante = constante;
-            this.residuo = residuo;
-            this.ubicacion = ubicacion;
-            this.empresa = empresa;
-            this.fecha = DateTime.Now;
+            this.Constante = constante;
+            this.Residuo = residuo;
+            this.Ubicacion = ubicacion;
+            this.Empresa = empresa;
+            this.Fecha = DateTime.Now;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace ClassLibrary
         /// <param name="PalabraClave"></param>
         public void AgregarPalabraClave(string PalabraClave)
         {
-            this.palabraClave = PalabraClave;
+            this.PalabraClave = PalabraClave;
         }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace ClassLibrary
         /// <param name="id"></param>
         public void AgregarUsuarioEntregado(int id)
         {
-            this.idEntregado = id;
+            this.IdEntregado = id;
         }
 
         /// <summary>
