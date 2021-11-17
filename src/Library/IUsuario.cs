@@ -11,6 +11,6 @@ namespace ClassLibrary
         /// El unico valor que comparte todo usuario es un valor id que es un int.
         /// </summary>
         /// <value></value>
-        int id{get; set;}
+        int Id{get; set;}
     }
 }

@@ -73,9 +73,9 @@ namespace ClassLibrary
             bool realEmpresario = false;
             foreach(Empresario empresario in this.LosEmpresarios.Empresarios)
             {
-                if(empresario.id == id)
+                if(empresario.Id == id)
                 {
-                    this.empresaUsuario = empresario.empresa;
+                    this.empresaUsuario = empresario.Empresa;
                     realEmpresario = true;
                 }
             }
@@ -122,7 +122,7 @@ namespace ClassLibrary
             {
                 this.monedaResiduo = message;
                 Residuo residuo = new Residuo(this.nombreResiduo, this.volumenResiduo, this.unidadResiduo, this.costoResiduo, this.monedaResiduo);
-                this.empresaUsuario.residuos.AddResiduo(residuo);
+                this.empresaUsuario.Residuos.AddResiduo(residuo);
                 this.State = AgregarResiduoState.Start;
                 response = $"Se ha agregado el residuo {this.nombreResiduo}";
 
