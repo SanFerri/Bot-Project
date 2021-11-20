@@ -168,3 +168,111 @@ namespace Ucu.Poo.TelegramBot
     }
 }
 */
+using System;
+using Telegram.Bot;
+using Telegram.Bot.Args;
+using Telegram.Bot.Types;
+using ClassLibrary;
+using Telegram.Bot.Types.Enums;
+using System.IO;
+using System.Text;
+
+namespace Program
+{
+    class Program
+    {
+        BaseHandler handler1;
+        BaseHandler handler2;
+        BaseHandler handler3;
+        BaseHandler handler4;
+        BaseHandler handler5;
+        BaseHandler handler6;
+        BaseHandler handler7;
+        BaseHandler handler8;
+        BaseHandler handler9;
+        BaseHandler handler10;
+        BaseHandler handler11;
+        public static void Main()
+        {
+
+            //Obtengo una instancia de TelegramBot
+            TelegramBot telegramBot = TelegramBot.Instance;
+            Console.WriteLine($"Hola soy el Bot de P2, mi nombre es {telegramBot.BotName} y tengo el Identificador {telegramBot.BotId}");
+
+            //Obtengo el cliente de Telegram
+            ITelegramBotClient bot = telegramBot.Client;
+
+            //Asigno un gestor de mensajes
+            bot.OnMessage += OnMessage;
+
+            //Inicio la escucha de mensajes
+            bot.StartReceiving();
+
+
+            Console.WriteLine("Presiona una tecla para terminar");
+            Console.ReadKey();
+
+            //Detengo la escucha de mensajes 
+            bot.StopReceiving();
+        }
+
+        private static async void OnMessage(object sender, MessageEventArgs messageEventArgs)
+        {
+            BaseHandler handler1 = new OfertasHandler(null);
+            BaseHandler handler2 = new AgregarResiduoHandler(handler1);
+            BaseHandler handler3 = new CambiarDatosHandler(handler2);
+            BaseHandler handler4 = new InvitarHandler(handler3);
+            BaseHandler handler5 = new PublicarHandler(handler4);
+            BaseHandler handler6 = new RegistrarseHandler(handler5);
+            BaseHandler handler7 = new ResiduosConstantesHandler(handler6);
+            BaseHandler handler8 = new ResiduosPuntualesHandler(handler7);
+            BaseHandler handler9 = new VerEntregadosHandler(handler8);
+            BaseHandler handler10 = new VerPublicacionesHandler(handler9);
+            BaseHandler handler11 = new VerResiduosConsumidosHandler(handler10);
+
+            Message message = messageEventArgs.Message;
+            Chat chatInfo = message.Chat;
+            string messageText = message.Text.ToLower();
+            if (messageText != null)
+            {
+                ITelegramBotClient client = TelegramBot.Instance.Client;
+                Console.WriteLine($"{chatInfo.FirstName}: envío {message.Text}");
+
+                if (messageText == "/commands" || messageText == "/comandos")
+                {
+                        StringBuilder commandsStringBuilder = new StringBuilder("Lista de Comandos:\n")
+                                                                            .Append("/agregarresiduos\n")
+                                                                            .Append("/cambiardatos\n")
+                                                                            .Append("/invitar\n")
+                                                                            .Append("/ofertas\n")
+                                                                            .Append("/publicar\n")
+                                                                            .Append("/registrarse\n")
+                                                                            .Append("/residuosconstantes\n")
+                                                                            .Append("/residuospuntuales\n")
+                                                                            .Append("/verentregados\n")
+                                                                            .Append("/verpublicaciones\n")
+                                                                            .Append("/verresiduosconsumidos\n");
+
+
+                        await client.SendTextMessageAsync(
+                                                  chatId: chatInfo.Id,
+                                                   text: commandsStringBuilder.ToString());
+                }
+                else if (messageText[0] == '/')
+                {
+                    string response;
+                    handler1.Handle(messageText, Convert.ToInt32(chatInfo.Id), out response);
+                        await client.SendTextMessageAsync(
+                                              chatId: chatInfo.Id,
+                                              text: response
+                                            );
+                }
+                else
+                        await client.SendTextMessageAsync(
+                                              chatId: chatInfo.Id,
+                                              text: $"{chatInfo.FirstName}, no comprendo lo que dices 😕"
+                                            );
+                }
+        }
+    }
+}

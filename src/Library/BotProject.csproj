@@ -20,6 +20,7 @@
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.3" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118" />
     <AdditionalFiles Include="..\..\.analyzers\stylecop.json" />
+    <PackageReference Include="Telegram.Bot" Version="15.7.1" />
     <ProjectReference Include="..\..\..\PII_LocationApiClient\src\Library\Library.csproj" />
   </ItemGroup>
 </Project>
