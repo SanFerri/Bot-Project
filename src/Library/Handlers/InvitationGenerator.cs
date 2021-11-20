@@ -13,7 +13,7 @@ namespace ClassLibrary
         /// Generamos un randomizer
         /// </summary>
         /// <returns></returns>
-        public static Random random = new Random();
+        public static Random Random = new Random();
 
         /// <summary>
         /// Este es un metodo que genera una contraseña que se usa como codigo de invitacion, esta posee menos de
@@ -22,7 +22,7 @@ namespace ClassLibrary
         /// <returns></returns>
         public static int Generate()
         {
-            int invitation = random.Next(1000000);
+            int invitation = Random.Next(1000000);
             return invitation;
         }
     }

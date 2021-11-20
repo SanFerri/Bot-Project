@@ -16,31 +16,36 @@ namespace ClassLibrary
         /// <summary>
         /// Los datos que va obteniendo el comando en los diferentes estados.
         /// </summary>
-        public Empresa empresaUsuario { get; private set; }
+        public Empresa EmpresaUsuario { get; private set; }
 
         /// <summary>
         /// Es el nombre del residuo publicado.
         /// </summary>
         /// <value></value>
-        public string nombreResiduo { get; private set; }
+        public string NombreResiduo { get; private set; }
 
         /// <summary>
         /// La cantidad del residuo que hay.
         /// </summary>
         /// <value></value>
-        public int volumenResiduo { get; private set; }
+        public int VolumenResiduo { get; private set; }
 
         /// <summary>
         /// Es la unidad con la cual se mide el residuo, por ejemplo (kg, toneladas, etc.)
         /// </summary>
         /// <value></value>
-        public string unidadResiduo { get; private set; }
+        public string UnidadResiduo { get; private set; }
 
         /// <summary>
         /// Es el costo monetario del residuo.
         /// </summary>
         /// <value></value>
-        public int costoResiduo { get; private set; }
+        public int CostoResiduo { get; private set; }
+
+        /// <summary>
+        /// Lista de todos los empresarios que hay.
+        /// </summary>
+        /// <returns></returns>
 
         public ListaEmpresarios LosEmpresarios = ListaEmpresarios.GetInstance();
 
@@ -48,7 +53,7 @@ namespace ClassLibrary
         /// Es la moneda con la cual se va a cobrar el residuo, por ejemplo (pesos uruguayos, dolares, etc.)
         /// </summary>
         /// <value></value>
-        public string monedaResiduo { get; private set; }
+        public string MonedaResiduo { get; private set; }
 
         /// <summary>
         /// Esta clase procesa el mensaje /agregarresiduo. 
@@ -75,7 +80,7 @@ namespace ClassLibrary
             {
                 if(empresario.Id == id)
                 {
-                    this.empresaUsuario = empresario.Empresa;
+                    this.EmpresaUsuario = empresario.Empresa;
                     realEmpresario = true;
                 }
             }
@@ -89,14 +94,14 @@ namespace ClassLibrary
             else if (State == AgregarResiduoState.NombrePrompt)
             {
                 // En el estado FromAddressPrompt el mensaje recibido es la respuesta con la dirección de origen
-                this.nombreResiduo = message;
+                this.NombreResiduo = message;
                 this.State = AgregarResiduoState.CantidadPrompt;
                 response = "Ahora ingrese la cantidad que posees de dicho residuo";
                 return true;
             }
             else if (State == AgregarResiduoState.CantidadPrompt)
             {
-                this.volumenResiduo = Convert.ToInt32(message);;
+                this.VolumenResiduo = Convert.ToInt32(message);;
                 this.State = AgregarResiduoState.UnidadPrompt;
                 response = "Ingrese la unidad del volumen dado previamente";
 
@@ -104,7 +109,7 @@ namespace ClassLibrary
             }
             else if (State == AgregarResiduoState.UnidadPrompt && (message == "kg" || message == "g" || message == "l"))
             {
-                this.unidadResiduo = message;
+                this.UnidadResiduo = message;
                 this.State = AgregarResiduoState.CostoPrompt;
                 response = "Ingrese el costo y/o valor del residuo";
 
@@ -112,7 +117,7 @@ namespace ClassLibrary
             }
             else if (State == AgregarResiduoState.CostoPrompt)
             {
-                this.costoResiduo = Convert.ToInt32(message);
+                this.CostoResiduo = Convert.ToInt32(message);
                 this.State = AgregarResiduoState.MonedaPrompt;
                 response = "Ingrese la moneda $ o U$S";
 
@@ -120,11 +125,11 @@ namespace ClassLibrary
             }
             else if (State == AgregarResiduoState.MonedaPrompt)
             {
-                this.monedaResiduo = message;
-                Residuo residuo = new Residuo(this.nombreResiduo, this.volumenResiduo, this.unidadResiduo, this.costoResiduo, this.monedaResiduo);
-                this.empresaUsuario.Residuos.AddResiduo(residuo);
+                this.MonedaResiduo = message;
+                Residuo residuo = new Residuo(this.NombreResiduo, this.VolumenResiduo, this.UnidadResiduo, this.CostoResiduo, this.MonedaResiduo);
+                this.EmpresaUsuario.Residuos.AddResiduo(residuo);
                 this.State = AgregarResiduoState.Start;
-                response = $"Se ha agregado el residuo {this.nombreResiduo}";
+                response = $"Se ha agregado el residuo {this.NombreResiduo}";
 
                 return true;
             }
@@ -146,12 +151,12 @@ namespace ClassLibrary
         protected override void InternalCancel()
         {
             this.State = AgregarResiduoState.Start;
-            this.monedaResiduo = null;
-            this.nombreResiduo = null;
-            this.unidadResiduo = null;
-            this.volumenResiduo = 0;
-            this.costoResiduo = 0;
-            this.empresaUsuario = null;
+            this.MonedaResiduo = null;
+            this.NombreResiduo = null;
+            this.UnidadResiduo = null;
+            this.VolumenResiduo = 0;
+            this.CostoResiduo = 0;
+            this.EmpresaUsuario = null;
         }
         
         /// <summary>

@@ -14,18 +14,23 @@ namespace ClassLibrary
         public VerPublicacionesState State { get; private set; }
 
         /// <summary>
-        /// La empresa del usuario
+        /// La empresa del usuario.
         /// </summary>
         /// <value></value>
-        public Empresa empresaUsuario { get; private set; }
-
-        public int elegido {get; private set;} = -1;
+        public Empresa EmpresaUsuario { get; private set; }
 
         /// <summary>
-        /// Las publicaciones de la empresa
+        /// Elegido es el número de la publicación que se eligio como entregada.
         /// </summary>
         /// <value></value>
-        public ListaPublicaciones publicacionesUsuario { get; private set; }
+
+        public int Elegido {get; private set;} = -1;
+
+        /// <summary>
+        /// Las publicaciones de la empresa.
+        /// </summary>
+        /// <value></value>
+        public ListaPublicaciones PublicacionesUsuario { get; private set; }
 
         /// <summary>
         /// Los datos que va obteniendo el comando en los diferentes estados.
@@ -52,7 +57,7 @@ namespace ClassLibrary
             {
                 if(empresario.Id == id)
                 {
-                    this.empresaUsuario = empresario.Empresa;
+                    this.EmpresaUsuario = empresario.Empresa;
                     realEmpresario = true;
                 }
             }
@@ -61,8 +66,8 @@ namespace ClassLibrary
             {
                 int contador = 0;
                 string unfinishedResponse = "Estas son tus publicaciones:\n";
-                this.publicacionesUsuario = empresaUsuario.Publicaciones;
-                foreach(Publicacion publicacion in publicacionesUsuario.Publicaciones)
+                this.PublicacionesUsuario = EmpresaUsuario.Publicaciones;
+                foreach(Publicacion publicacion in PublicacionesUsuario.Publicaciones)
                 {
                     if(publicacion.Entregado == false)
                     {
@@ -102,9 +107,9 @@ namespace ClassLibrary
             }
             else if (State == VerPublicacionesState.EntregadoUsuario)
             {
-                if(elegido == -1)
+                if(Elegido == -1)
                 {
-                    elegido = Convert.ToInt32(message);
+                    Elegido = Convert.ToInt32(message);
                 }
                 this.State = VerPublicacionesState.Entregado;
                 response = "¿Cual es el id del usuario al que le ha entregado esta publicacion?";
@@ -124,7 +129,7 @@ namespace ClassLibrary
                 }
                 if(correcto == true)
                 {
-                    Publicacion publicacionElegida = this.publicacionesUsuario.Publicaciones[elegido];
+                    Publicacion publicacionElegida = this.PublicacionesUsuario.Publicaciones[Elegido];
                     publicacionElegida.Entregado = true;
                     publicacionElegida.IdEntregado = id;
                     response = "Se ha puesto la publicacion como entregada";
@@ -140,9 +145,9 @@ namespace ClassLibrary
             else if (State == VerPublicacionesState.Eliminar)
             {
                 Mercado mercado = Mercado.GetInstance();
-                Publicacion publicacionElegida = this.publicacionesUsuario.Publicaciones[Convert.ToInt32(message)];
+                Publicacion publicacionElegida = this.PublicacionesUsuario.Publicaciones[Convert.ToInt32(message)];
                 mercado.RemoveMercado(publicacionElegida);
-                empresaUsuario.Publicaciones.RemovePublicacion(publicacionElegida);
+                EmpresaUsuario.Publicaciones.RemovePublicacion(publicacionElegida);
                 response = "Se ha eliminado la publicacion";
 
                 return true;
@@ -179,6 +184,8 @@ namespace ClassLibrary
             CambiarPrompt,
             ///-Entregado: Es el estado en el que se indica a la publicacion como entregada.
             EntregadoUsuario,
+            ///-Entregado: Es el ultimo state en el cual se cambia el estado de la publicación entregada y 
+            ///se le asocia un usuario destinatario.
             Entregado,
             ///-Eliminar: Es el estado en el que se borra una publicacion.
             Eliminar

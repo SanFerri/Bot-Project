@@ -16,13 +16,13 @@ namespace ClassLibrary
         /// <summary>
         /// Los datos que va obteniendo el comando en los diferentes estados.
         /// </summary>
-        public Empresa empresaUsuario { get; private set; }
+        public Empresa EmpresaUsuario { get; private set; }
 
         /// <summary>
         /// Es el nombre de la empresa.
         /// </summary>
         /// <value></value>
-        public string nombreEmpresa { get; private set; }
+        public string NombreEmpresa { get; private set; }
 
         /// <summary>
         /// Es la ubicación de la empresa.
@@ -34,7 +34,12 @@ namespace ClassLibrary
         /// Es el contacto de la empresa.
         /// </summary>
         /// <value></value>
-        public int contacto { get; private set; }
+        public int Contacto { get; private set; }
+
+        /// <summary>
+        /// Lista de todos los empresarios que hay.
+        /// </summary>
+        /// <returns></returns>
 
         public ListaEmpresarios LosEmpresarios = ListaEmpresarios.GetInstance();
 
@@ -63,7 +68,7 @@ namespace ClassLibrary
             {
                 if(empresario.Id == id)
                 {
-                    this.empresaUsuario = empresario.Empresa;
+                    this.EmpresaUsuario = empresario.Empresa;
                     realEmpresario = true;
                 }
             }
@@ -77,7 +82,7 @@ namespace ClassLibrary
             else if (State == CambiarDatosState.NombrePrompt)
             {
                 // En el estado FromAddressPrompt el mensaje recibido es la respuesta con la dirección de origen
-                this.nombreEmpresa = message;
+                this.NombreEmpresa = message;
                 this.State = CambiarDatosState.UbicacionPrompt;
                 response = "Ahora dime la ubicacion de dicha empresa";
                 return true;
@@ -92,9 +97,9 @@ namespace ClassLibrary
             }
             else if (State == CambiarDatosState.ContactoPrompt)
             {
-                this.empresaUsuario.Contacto = message;
-                this.empresaUsuario.Nombre = this.nombreEmpresa;
-                this.empresaUsuario.Ubicacion = this.UbicacionData;
+                this.EmpresaUsuario.Contacto = message;
+                this.EmpresaUsuario.Nombre = this.NombreEmpresa;
+                this.EmpresaUsuario.Ubicacion = this.UbicacionData;
 
                 response = "Se han actualizado sus datos...";
 
@@ -114,10 +119,10 @@ namespace ClassLibrary
         protected override void InternalCancel()
         {
             this.State = CambiarDatosState.Start;
-            this.nombreEmpresa = null;
+            this.NombreEmpresa = null;
             this.UbicacionData = null;
-            this.contacto = 0;
-            this.empresaUsuario = null;
+            this.Contacto = 0;
+            this.EmpresaUsuario = null;
         }
 
         /// <summary>
