@@ -17,13 +17,13 @@ namespace ClassLibrary
         /// La empresa del usuario
         /// </summary>
         /// <value></value>
-        public Empresa empresaUsuario { get; private set; }
+        public Empresa EmpresaUsuario { get; private set; }
 
         /// <summary>
         /// Las publicaciones de la empresa
         /// </summary>
         /// <value></value>
-        public ListaPublicaciones publicacionesUsuario { get; private set; }
+        public ListaPublicaciones PublicacionesUsuario { get; private set; }
 
         /// <summary>
         /// Los datos que va obteniendo el comando en los diferentes estados.

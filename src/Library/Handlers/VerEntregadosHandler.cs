@@ -17,13 +17,13 @@ namespace ClassLibrary
         /// La empresa del usuario
         /// </summary>
         /// <value></value>
-        public Empresa empresaUsuario { get; private set; }
+        public Empresa EmpresaUsuario { get; private set; }
 
         /// <summary>
         /// Las publicaciones de la empresa
         /// </summary>
         /// <value></value>
-        public ListaPublicaciones publicacionesUsuario { get; private set; }
+        public ListaPublicaciones PublicacionesUsuario { get; private set; }
 
         /// <summary>
         /// Los datos que va obteniendo el comando en los diferentes estados.
@@ -50,7 +50,7 @@ namespace ClassLibrary
             {
                 if(empresario.Id == id)
                 {
-                    this.empresaUsuario = empresario.Empresa;
+                    this.EmpresaUsuario = empresario.Empresa;
                     realEmpresario = true;
                 }
             }
@@ -64,7 +64,7 @@ namespace ClassLibrary
             {
                 int contador = 0;
                 string unfinishedResponse = "Estas son tus publicaciones ya entregadas:\n";
-                List<Publicacion> entregados = Buscador.BuscarEntregados(empresaUsuario.Empresario, Convert.ToInt32(message));
+                List<Publicacion> entregados = Buscador.BuscarEntregados(EmpresaUsuario.Empresario, Convert.ToInt32(message));
                 foreach(Publicacion publicacion in entregados)
                 {
                     unfinishedResponse += $"{contador}. Ofrece: {publicacion.Residuo.Cantidad} kg de {publicacion.Residuo.Tipo} en {publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.Habilitacion} Fecha: {publicacion.Fecha}\n";

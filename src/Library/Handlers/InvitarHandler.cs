@@ -23,33 +23,38 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
 
-        public int invitacion { get; private set; }
+        public int Invitacion { get; private set; }
 
         /// <summary>
         /// Los datos de la empresa.
         /// </summary>
         /// <value></value>
 
-        public Empresa empresaData { get; private set; }
+        public Empresa EmpresaData { get; private set; }
 
         /// <summary>
         /// El nombre de la empresa.
         /// </summary>
         /// <value></value>
 
-        public string nombreEmpresa { get; private set; }
+        public string NombreEmpresa { get; private set; }
 
         /// <summary>
         /// Es el contacto de la empresa.
         /// </summary>
         /// <value></value>
-        public string contactoData { get; private set; }
+        public string ContactoData { get; private set; }
 
         /// <summary>
         /// Es el resultado de la publicación.
         /// </summary>
         /// <value></value>
-        public Publicacion result { get; private set; }
+        public Publicacion Result { get; private set; }
+
+        /// <summary>
+        /// Lista de todos los empresarios que hay.
+        /// </summary>
+        /// <returns></returns>
 
         public ListaAdministradores LosAdministradores = ListaAdministradores.GetInstance();
         /// <summary>
@@ -92,7 +97,7 @@ namespace ClassLibrary
             else if (State == InvitarState.NombrePrompt)
             {
                 // En el estado FromAddressPrompt el mensaje recibido es la respuesta con la dirección de origen
-                this.nombreEmpresa = message;
+                this.NombreEmpresa = message;
                 this.State = InvitarState.UbicacionPrompt;
                 response = "Ahora dime la ubicacion de dicha empresa";
                 return true;
@@ -107,9 +112,9 @@ namespace ClassLibrary
             }
             else if (State == InvitarState.ContactoPrompt)
             {
-                this.contactoData = message;
-                this.empresaData = new Empresa(this.nombreEmpresa, this.UbicacionData, this.contactoData);
-                if (this.empresaData != null)
+                this.ContactoData = message;
+                this.EmpresaData = new Empresa(this.NombreEmpresa, this.UbicacionData, this.ContactoData);
+                if (this.EmpresaData != null)
                 {
                     response = "Se ha creado la empresa ahora crearemos el usuario.";
                     this.State = InvitarState.EmpresarioPrompt;
@@ -126,9 +131,9 @@ namespace ClassLibrary
             }
             else if (State == InvitarState.EmpresarioPrompt)
             {
-                this.invitacion = InvitationGenerator.Generate();
-                Empresario empresario = new Empresario(invitacion, this.empresaData);
-                response = $"Se ha creado el empresario y esta es la invitacion que debe usar para acceder a su status: {this.invitacion}";
+                this.Invitacion = InvitationGenerator.Generate();
+                Empresario empresario = new Empresario(Invitacion, this.EmpresaData);
+                response = $"Se ha creado el empresario y esta es la invitacion que debe usar para acceder a su status: {this.Invitacion}";
 
                 return true;
             }
@@ -154,9 +159,9 @@ namespace ClassLibrary
         {
             this.State = InvitarState.Start;
             this.UbicacionData = null;
-            this.contactoData = null;
-            this.empresaData = null;
-            this.nombreEmpresa = null;
+            this.ContactoData = null;
+            this.EmpresaData = null;
+            this.NombreEmpresa = null;
         }
         /// <summary>
         /// Indica los diferentes estados que puede tener el comando InvitarState.

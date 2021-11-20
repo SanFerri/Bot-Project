@@ -24,20 +24,20 @@ namespace ClassLibrary
         /// Los tipos de residuos.
         /// </summary>
         /// <value></value>
-        public string residuoTipo { get; private set; }
+        public string ResiduoTipo { get; private set; }
 
         /// <summary>
         /// Es el resultado de la busqueda del emprendedor.
         /// </summary>
         /// <value></value>
 
-        public Publicacion result { get; private set; }
+        public Publicacion Result { get; private set; }
 
         /// <summary>
         /// Es el usuario registrado de la empresa.
         /// </summary>
         /// <value></value>
-        public Empresa empresaUsuario { get; private set; }
+        public Empresa EmpresaUsuario { get; private set; }
 
         /// <summary>
         /// La eleccion número de la oferta de la cual quiere obtener el usuario.
@@ -49,7 +49,7 @@ namespace ClassLibrary
         /// Es una lista que almacena las publicaciones que hay.
         /// </summary>
         /// <value></value>
-        public List<Publicacion> ofertasData { get; private set; }
+        public List<Publicacion> OfertasData { get; private set; }
 
 
         /// <summary>
@@ -58,11 +58,16 @@ namespace ClassLibrary
         /// <value></value>
         public string PalabraClave { get; private set; }
         /// <summary>
-        /// Es una variable booleana que se 
+        /// Es una lista que contiene las palabras claves que se pueden usar.
         /// </summary>
         /// <value></value>
         
         public ListaPalabrasClave LasClaves = ListaPalabrasClave.GetInstance();
+
+        /// <summary>
+        /// Property booleana que indica si se quiere o no realizar una busqueda con palabra clave.
+        /// </summary>
+        /// <value></value>
         public bool BuscarConPalabraClave {get; private set;}
 
         /// <summary>
@@ -137,15 +142,15 @@ namespace ClassLibrary
                 {
                     int contador = 0;
                     string builderResponse = "";
-                    this.residuoTipo = message;
-                    this.ofertasData = Buscador.Buscar(this.residuoTipo, this.UbicacionData);
+                    this.ResiduoTipo = message;
+                    this.OfertasData = Buscador.Buscar(this.ResiduoTipo, this.UbicacionData);
                     builderResponse += "Ingrese el número de la publicación para ver más información de la misma:\n"; 
-                    foreach(Publicacion publicacion in this.ofertasData)
+                    foreach(Publicacion publicacion in this.OfertasData)
                     {
                         builderResponse += ($"{contador}. {publicacion.Empresa.Nombre} ofrece: {publicacion.Residuo.Cantidad} kg de {publicacion.Residuo.Tipo} en {publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.Habilitacion}\n");
                         contador += 1;
                     }   
-                    if(this.ofertasData == new List<Publicacion>())
+                    if(this.OfertasData == new List<Publicacion>())
                     {
                         // Si no encuentra alguna publicacion se las pide de nuevo y vuelve al estado ResiduosPrompt.
                         // Una versión más sofisticada podría determinar cuál de las dos direcciones no existe y volver al
@@ -165,17 +170,17 @@ namespace ClassLibrary
                 }
                 else
                 {
-                    this.ofertasData = Buscador.BuscarConPalabraClave(PalabraClave);
+                    this.OfertasData = Buscador.BuscarConPalabraClave(PalabraClave);
                     int contador = 0;
                     string builderResponse = "";
-                    this.residuoTipo = message;
+                    this.ResiduoTipo = message;
                     builderResponse += "Ingrese el número de la publicación para ver más información de la misma:\n"; 
-                    foreach(Publicacion publicacion in this.ofertasData)
+                    foreach(Publicacion publicacion in this.OfertasData)
                     {
                         builderResponse += ($"{contador}. {publicacion.Empresa.Nombre} ofrece: {publicacion.Residuo.Cantidad} kg de {publicacion.Residuo.Tipo} en {publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.Habilitacion}\n");
                         contador += 1;
                     }   
-                    if(this.ofertasData == new List<Publicacion>())
+                    if(this.OfertasData == new List<Publicacion>())
                     {
                         // Si no encuentra alguna publicacion se las pide de nuevo y vuelve al estado ResiduosPrompt.
                         // Una versión más sofisticada podría determinar cuál de las dos direcciones no existe y volver al
@@ -198,7 +203,7 @@ namespace ClassLibrary
             else if (State == OfertasState.NumeroPrompt)
             {
                 this.Eleccion = Convert.ToInt32(message);
-                Publicacion publicacion = this.ofertasData[this.Eleccion];
+                Publicacion publicacion = this.OfertasData[this.Eleccion];
                 response = $"El número de contacto de esta publicación es {publicacion.Empresa.Contacto}";
                 this.InternalCancel();
                 return false;
@@ -218,10 +223,10 @@ namespace ClassLibrary
         {
             this.State = OfertasState.Start;
             this.UbicacionData = null;
-            this.residuoTipo = null;
-            this.empresaUsuario = null;
-            this.result = null;
-            this.ofertasData = null;
+            this.ResiduoTipo = null;
+            this.EmpresaUsuario = null;
+            this.Result = null;
+            this.OfertasData = null;
             this.LasClaves = null;
         }
 

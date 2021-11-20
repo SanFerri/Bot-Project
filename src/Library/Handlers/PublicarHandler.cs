@@ -29,7 +29,7 @@ namespace ClassLibrary
         /// Son el tipo de residuo publicado.
         /// </summary>
         /// <value></value>
-        public string residuoTipo { get; private set; }
+        public string ResiduoTipo { get; private set; }
 
         /// <summary>
         /// Es el residuo elegido. 
@@ -47,19 +47,19 @@ namespace ClassLibrary
         /// Es el resultado de la publicación.
         /// </summary>
         /// <value></value>
-        public Publicacion result { get; private set; }
+        public Publicacion Result { get; private set; }
 
         /// <summary>
         /// Es el usuario de la empresa.
         /// </summary>
         /// <value></value>
-        public Empresa empresaUsuario { get; private set; }
+        public Empresa EmpresaUsuario { get; private set; }
 
         /// <summary>
         /// Son los datos de la habilitación.
         /// </summary>
         /// <value></value>
-        public string habilitacionData { get; private set; }
+        public string HabilitacionData { get; private set; }
 
         /// <summary>
         /// Indica si un residuo es generado constantemente.
@@ -68,12 +68,17 @@ namespace ClassLibrary
         public bool Constante { get; private set; }
 
         /// <summary>
-        /// Esta clase procesa el mensaje /publicar.
+        /// Es una lista de las palabras clave que se pueden añadir a una publicación.
         /// </summary>
-        /// <param name="next"></param>
         /// <returns></returns>
 
         public ListaPalabrasClave LasClaves= ListaPalabrasClave.GetInstance();
+
+        /// <summary>
+        /// Es la palabra que se debe usar para poder ejecutar las funciones de este handler.
+        /// </summary>
+        /// <param name="next"></param>
+        /// <returns></returns>
         public PublicarHandler(BaseHandler next) : base(next)
         {
             this.Keywords = new string[] { "/publicar" };
@@ -95,7 +100,7 @@ namespace ClassLibrary
             {
                 if(empresario.Id == id)
                 {
-                    this.empresaUsuario = empresario.Empresa;
+                    this.EmpresaUsuario = empresario.Empresa;
                     realEmpresario = true;
                 }
             }
@@ -122,7 +127,7 @@ namespace ClassLibrary
             }
             else if (State == PublicarState.HabilitacionPrompt)
             {
-                this.habilitacionData = message;
+                this.HabilitacionData = message;
                 this.State = PublicarState.UbicacionPrompt;
                 response = "Porfavor responda si o no, ¿Estos residuos que se generaron se generan de forma constante? Si fue puntual responda no.";
                 return true;
@@ -151,19 +156,19 @@ namespace ClassLibrary
             }
             else if (State == PublicarState.ResiduoPrompt)
             {
-                this.residuoTipo = message;
-                foreach(Residuo residuo in this.empresaUsuario.Residuos.Residuos)
+                this.ResiduoTipo = message;
+                foreach(Residuo residuo in this.EmpresaUsuario.Residuos.Residuos)
                 {
-                    if(residuo.Tipo == residuoTipo)
+                    if(residuo.Tipo == ResiduoTipo)
                     {
                         this.ResiduoElegido = residuo;
                     }
                 }
-                this.result = new Publicacion(this.ResiduoElegido, this.UbicacionData, this.empresaUsuario, this.habilitacionData, this.Constante);
-                this.result.AgregarPalabraClave(this.PalabraClave);
-                if(this.ResiduoElegido != null && this.result != null)
+                this.Result = new Publicacion(this.ResiduoElegido, this.UbicacionData, this.EmpresaUsuario, this.HabilitacionData, this.Constante);
+                this.Result.AgregarPalabraClave(this.PalabraClave);
+                if(this.ResiduoElegido != null && this.Result != null)
                 {
-                    response = $"Se ha publicado la oferta de {this.result.Residuo.Tipo} de la empresa {this.result.Empresa.Nombre}. En la ubicacion {this.result.Ubicacion.Direccion}";
+                    response = $"Se ha publicado la oferta de {this.Result.Residuo.Tipo} de la empresa {this.Result.Empresa.Nombre}. En la ubicacion {this.Result.Ubicacion.Direccion}";
                     this.State = PublicarState.Start;
                 }
                 else
@@ -199,9 +204,9 @@ namespace ClassLibrary
         {
             this.State = PublicarState.Start;
             this.UbicacionData = null;
-            this.residuoTipo = null;
+            this.ResiduoTipo = null;
             this.ResiduoElegido = null;
-            this.empresaUsuario = null;
+            this.EmpresaUsuario = null;
         }
 
         /// <summary>
