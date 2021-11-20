@@ -34,14 +34,14 @@ namespace Tests
             int invitacion = InvitationGenerator.Generate();
             ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             empresa = new Empresa("MercadoPrivado", ubicacion, "099679938");
-            empresa.residuos.AddResiduo(residuo);
+            empresa.Residuos.AddResiduo(residuo);
             Usuario = new Empresario(invitacion, empresa);
             id = 12345678;
-            Usuario.id = id;
+            Usuario.Id = id;
             empresarios.AddEmpresario(Usuario);
             int invitacion2 = InvitationGenerator.Generate();
             Usuario2 = new Administrador(invitacion2);
-            Usuario2.id = id;
+            Usuario2.Id = id;
             administradores.AddAdministrador(Usuario2);
             Publicacion publicacion = new Publicacion(residuo, ubicacion, empresa, "Tener un camion", true);
             mercado.AddMercado(publicacion);
@@ -72,7 +72,7 @@ namespace Tests
             message = "/residuospuntuales";
             string response;
 
-            IHandler result = handler.Handle(message, emprendedor.id, out response);
+            IHandler result = handler.Handle(message, emprendedor.Id, out response);
 
             Assert.That(response, Is.EqualTo(""));
         }

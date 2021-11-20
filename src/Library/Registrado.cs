@@ -32,7 +32,7 @@ namespace ClassLibrary
             {
                 foreach(IUsuario usuario1 in usuarios.Usuarios)
                 {
-                    if(id == usuario1.id)
+                    if(id == usuario1.Id)
                     {
                         registrado = true;
                     }

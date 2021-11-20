@@ -57,7 +57,7 @@ namespace ClassLibrary
                 List<Residuo> consumidos = Buscador.BuscarResiduosConsumidos(id, Convert.ToInt32(message));
                 foreach(Residuo residuo in consumidos)
                 {
-                    unfinishedResponse += $"Consumio: {residuo.cantidad} de {residuo.tipo}, el costo de este es {residuo.cost}{residuo.moneda}\n";
+                    unfinishedResponse += $"Consumio: {residuo.Cantidad} de {residuo.Tipo}, el costo de este es {residuo.Cost}{residuo.Moneda}\n";
                     contador += 1;
                 }
                 response = unfinishedResponse;

@@ -24,8 +24,8 @@ namespace ClassLibrary
             Residuos.Add(residuo);
         }
 
-        [JsonInclude]
-        public IList<Residuo> Steps { get; private set; } = new List<Residuo>();
+        //[JsonInclude]
+        //public IList<Residuo> Steps { get; private set; } = new List<Residuo>();
 
         /// <summary>
         /// RemoveResiduo es un metodo que se encarga de eliminar residuos de la lista.

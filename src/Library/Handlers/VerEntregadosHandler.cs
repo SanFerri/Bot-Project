@@ -48,9 +48,9 @@ namespace ClassLibrary
             ListaEmpresarios TodoEmpresario = ListaEmpresarios.GetInstance();
             foreach(Empresario empresario in TodoEmpresario.Empresarios)
             {
-                if(empresario.id == id)
+                if(empresario.Id == id)
                 {
-                    this.empresaUsuario = empresario.empresa;
+                    this.empresaUsuario = empresario.Empresa;
                     realEmpresario = true;
                 }
             }
@@ -64,10 +64,10 @@ namespace ClassLibrary
             {
                 int contador = 0;
                 string unfinishedResponse = "Estas son tus publicaciones ya entregadas:\n";
-                List<Publicacion> entregados = Buscador.BuscarEntregados(empresaUsuario.empresario, Convert.ToInt32(message));
+                List<Publicacion> entregados = Buscador.BuscarEntregados(empresaUsuario.Empresario, Convert.ToInt32(message));
                 foreach(Publicacion publicacion in entregados)
                 {
-                    unfinishedResponse += $"{contador}. Ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion.direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.habilitacion} Fecha: {publicacion.fecha}\n";
+                    unfinishedResponse += $"{contador}. Ofrece: {publicacion.Residuo.Cantidad} kg de {publicacion.Residuo.Tipo} en {publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.Habilitacion} Fecha: {publicacion.Fecha}\n";
                     contador += 1;
                 }
                 response = unfinishedResponse;

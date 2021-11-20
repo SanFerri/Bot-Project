@@ -25,8 +25,8 @@ namespace ClassLibrary
             this.Ofertas.Add(publicacion);
         }
 
-        [JsonInclude]
-        public IList<Publicacion> Steps { get; private set; } = new List<Publicacion>();
+        //[JsonInclude]
+        //public IList<Publicacion> Steps { get; private set; } = new List<Publicacion>();
 
         /// <summary>
         /// RemoveMercado, metodo para remover publicaciones al mercado, designado por Expert.

@@ -31,16 +31,16 @@ namespace Tests
             int invitacion = InvitationGenerator.Generate();
             ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             empresa = new Empresa("MercadoPrivado", ubicacion, "099679938");
-            empresa.residuos.AddResiduo(residuo);
+            empresa.Residuos.AddResiduo(residuo);
             Usuario = new Empresario(invitacion, empresa);
             id = 12345678;
-            Usuario.id = id;
+            Usuario.Id = id;
             empresarios.AddEmpresario(Usuario);
 
             handler = new InvitarHandler(null);
             int invitacion2 = InvitationGenerator.Generate();
             Usuario2 = new Administrador(invitacion2);
-            Usuario2.id = id;
+            Usuario2.Id = id;
             administradores.AddAdministrador(Usuario2);
         }
 
@@ -82,16 +82,16 @@ namespace Tests
             message = handler.Keywords[0];
             string response;
 
-            IHandler result = handler.Handle(message, Usuario2.id, out response);
+            IHandler result = handler.Handle(message, Usuario2.Id, out response);
             
             message = "WCDONALDS";
-            handler.Handle(message, Usuario2.id, out response);
-            message = ubicacion.direccion;
-            handler.Handle(message, Usuario2.id, out response);
+            handler.Handle(message, Usuario2.Id, out response);
+            message = ubicacion.Direccion;
+            handler.Handle(message, Usuario2.Id, out response);
             message = "099328938";
-            handler.Handle(message, Usuario2.id, out response);
+            handler.Handle(message, Usuario2.Id, out response);
             message = "ok";
-            handler.Handle(message, Usuario2.id, out response);
+            handler.Handle(message, Usuario2.Id, out response);
 
 
             Assert.That(response, Is.EqualTo($"Se ha creado el empresario y esta es la invitacion que debe usar para acceder a su status: {handler.invitacion}"));
