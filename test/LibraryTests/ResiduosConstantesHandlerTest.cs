@@ -9,18 +9,18 @@ namespace Tests
     /// </summary>
     public class ResiduosConstantesTests
     {
-        Residuo residuo;
-        ResiduosConstantesHandler handler;
-        string message;
-        Empresa empresa;
+        Residuo Residuo;
+        ResiduosConstantesHandler Handler;
+        string Message;
+        Empresa Empresa;
         Empresario Usuario;
         Administrador Usuario2;
-        Ubicacion ubicacion;
-        int id;
-        ListaEmpresarios empresarios = ListaEmpresarios.GetInstance();
-        ListaAdministradores administradores = ListaAdministradores.GetInstance();
-        ListaUsuarios usuarios = ListaUsuarios.GetInstance();
-        Mercado mercado = Mercado.GetInstance();
+        Ubicacion Ubicacion;
+        int Id;
+        ListaEmpresarios Empresarios = ListaEmpresarios.GetInstance();
+        ListaAdministradores Administradores = ListaAdministradores.GetInstance();
+        ListaUsuarios Usuarios = ListaUsuarios.GetInstance();
+        Mercado Mercado = Mercado.GetInstance();
 
         /// <summary>
         /// El Setup de los test
@@ -28,23 +28,23 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            residuo = new Residuo("metal", 100, "kg", 250, "$");
-            handler = new ResiduosConstantesHandler(null);
+            Residuo = new Residuo("metal", 100, "kg", 250, "$");
+            Handler = new ResiduosConstantesHandler(null);
             
             int invitacion = InvitationGenerator.Generate();
-            ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
-            empresa = new Empresa("MercadoPrivado", ubicacion, "099679938");
-            empresa.Residuos.AddResiduo(residuo);
-            Usuario = new Empresario(invitacion, empresa);
-            id = 12345678;
-            Usuario.Id = id;
-            empresarios.AddEmpresario(Usuario);
+            Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
+            Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
+            Empresa.Residuos.AddResiduo(Residuo);
+            Usuario = new Empresario(invitacion, Empresa);
+            Id = 12345678;
+            Usuario.Id = Id;
+            Empresarios.AddEmpresario(Usuario);
             int invitacion2 = InvitationGenerator.Generate();
             Usuario2 = new Administrador(invitacion2);
-            Usuario2.Id = id;
-            administradores.AddAdministrador(Usuario2);
-            Publicacion publicacion = new Publicacion(residuo, ubicacion, empresa, "Tener un camion", true);
-            mercado.AddMercado(publicacion);
+            Usuario2.Id = Id;
+            Administradores.AddAdministrador(Usuario2);
+            Publicacion publicacion = new Publicacion(Residuo, Ubicacion, Empresa, "Tener un camion", true);
+            Mercado.AddMercado(publicacion);
         }
 
         /// <summary>
@@ -53,10 +53,10 @@ namespace Tests
         [Test]
         public void ResiduosConstantesCanHandle()
         {
-            message = handler.Keywords[0];
+            Message = Handler.Keywords[0];
             string response;
 
-            IHandler result = handler.Handle(message, id, out response);
+            IHandler result = Handler.Handle(Message, Id, out response);
 
             Assert.That(response, Is.EqualTo("Estos son los residuos constantes:\nmetal"));
         }
@@ -69,10 +69,10 @@ namespace Tests
         public void ResiduosConstantesCantHandle()
         {
             Emprendedor emprendedor = new Emprendedor(34314458);
-            message = "/residuospuntuales";
+            Message = "/residuospuntuales";
             string response;
 
-            IHandler result = handler.Handle(message, emprendedor.Id, out response);
+            IHandler result = Handler.Handle(Message, emprendedor.Id, out response);
 
             Assert.That(response, Is.EqualTo(""));
         }

@@ -9,23 +9,23 @@ namespace Tests
     /// </summary>
     public class OfertasHandlerTests
     {
-        Residuo residuo;
-        OfertasHandler handler;
-        string message;
-        Empresa empresa;
+        Residuo Residuo;
+        OfertasHandler Handler;
+        string Message;
+        Empresa Empresa;
         Empresario UsuarioEmpresario;
         Emprendedor UsuarioEmprendedor;
-        Ubicacion ubicacion;
-        int id;
-        int contador;
-        Publicacion publicacion;
-        Ubicacion ubicacion2;
+        Ubicacion Ubicacion;
+        int Id;
+        int Contador;
+        Publicacion Publicacion;
+        Ubicacion Ubicacion2;
 
-        int id2;
-        ListaEmpresarios empresarios = ListaEmpresarios.GetInstance();
-        ListaAdministradores administradores = ListaAdministradores.GetInstance();
-        ListaUsuarios usuarios = ListaUsuarios.GetInstance();
-        Mercado mercado = Mercado.GetInstance();
+        int Id2;
+        ListaEmpresarios Empresarios = ListaEmpresarios.GetInstance();
+        ListaAdministradores Administradores = ListaAdministradores.GetInstance();
+        ListaUsuarios Usuarios = ListaUsuarios.GetInstance();
+        Mercado Mercado = Mercado.GetInstance();
         
         /// <summary>
         /// El Setup de los test
@@ -33,25 +33,25 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            residuo = new Residuo("metal", 100, "kg", 250, "$");
-            handler = new OfertasHandler(null);
-            int invitacion = InvitationGenerator.Generate();
-            ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
-            ubicacion2 = new Ubicacion("Av. Italia 3479");
-            empresa = new Empresa("MercadoPrivado", ubicacion, "099679938");
-            empresa.Residuos.AddResiduo(residuo);
-            UsuarioEmpresario = new Empresario(invitacion, empresa);
-            UsuarioEmprendedor = new Emprendedor(id);
-            id = 12345678;
-            id2 = 87654321;
-            UsuarioEmprendedor.Id = id;
-            UsuarioEmpresario.Id = id2;
-            empresarios.AddEmpresario(UsuarioEmpresario);
-            usuarios.AddUsuario(UsuarioEmprendedor);
-            contador = 0;
-            publicacion = new Publicacion(residuo, ubicacion2, empresa, "tener un camion", true);
-            publicacion.AgregarPalabraClave("Envio Gratis");
-            mercado.AddMercado(publicacion);
+            Residuo = new Residuo("metal", 100, "kg", 250, "$");
+            Handler = new OfertasHandler(null);
+            int Invitacion = InvitationGenerator.Generate();
+            Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
+            Ubicacion2 = new Ubicacion("Av. Italia 3479");
+            Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
+            Empresa.Residuos.AddResiduo(Residuo);
+            UsuarioEmpresario = new Empresario(Invitacion, Empresa);
+            UsuarioEmprendedor = new Emprendedor(Id);
+            Id = 12345678;
+            Id2 = 87654321;
+            UsuarioEmprendedor.Id = Id;
+            UsuarioEmpresario.Id = Id2;
+            Empresarios.AddEmpresario(UsuarioEmpresario);
+            Usuarios.AddUsuario(UsuarioEmprendedor);
+            Contador = 0;
+            Publicacion = new Publicacion(Residuo, Ubicacion2, Empresa, "tener un camion", true);
+            Publicacion.AgregarPalabraClave("Envio Gratis");
+            Mercado.AddMercado(Publicacion);
         }
 
         /// <summary>
@@ -60,10 +60,10 @@ namespace Tests
         [Test]
         public void OfertasCanHandleTest()
         {
-            message = handler.Keywords[0];
+            Message = Handler.Keywords[0];
             string response;
 
-            IHandler result = handler.Handle(message, id, out response);
+            IHandler result = Handler.Handle(Message, Id, out response);
 
             Assert.That(response, Is.EqualTo("¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no"));
         }
@@ -74,10 +74,10 @@ namespace Tests
         [Test]
         public void OfertasEmpresarioCanHandleTest()
         {
-            message = handler.Keywords[0];
+            Message = Handler.Keywords[0];
             string response;
 
-            IHandler result = handler.Handle(message, UsuarioEmpresario.Id, out response);
+            IHandler result = Handler.Handle(Message, UsuarioEmpresario.Id, out response);
 
             Assert.That(response, Is.EqualTo("¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no"));
         }
@@ -87,24 +87,24 @@ namespace Tests
         [Test]
         public void WithKeywordOfertasHandlerTest()
         {
-            message = handler.Keywords[0];
+            Message = Handler.Keywords[0];
             string response;
 
-            IHandler result = handler.Handle(message, id, out response);
+            IHandler result = Handler.Handle(Message, Id, out response);
             
             Assert.That(response, Is.EqualTo("¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no"));
-            message = "si";
-            handler.Handle(message, UsuarioEmprendedor.Id, out response);
+            Message = "si";
+            Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
             Assert.That(response, Is.EqualTo("Ingrese el numero de la palabra clave que buscar:\n0. Barato.\n1. Envio Gratis.\n2. Usado.\n3. Nuevo.\n"));
-            message = "1";
-            handler.Handle(message, UsuarioEmprendedor.Id, out response);
+            Message = "1";
+            Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
             Assert.That(response, Is.EqualTo("¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad)"));
-            message = ubicacion2.Direccion;
-            handler.Handle(message, UsuarioEmprendedor.Id, out response);
+            Message = Ubicacion2.Direccion;
+            Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
             Assert.That(response, Is.EqualTo("Ahora dime que tipo de residuos estas buscando?"));
-            message = residuo.Tipo;
-            handler.Handle(message, UsuarioEmprendedor.Id, out response);
-            Assert.That(response, Is.EqualTo($"Ingrese el número de la publicación para ver más información de la misma:\n0. {publicacion.Empresa.Nombre} ofrece: {publicacion.Residuo.Cantidad} {publicacion.Residuo.Unidad} de {publicacion.Residuo.Tipo} en {publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.Habilitacion}\n"));
+            Message = Residuo.Tipo;
+            Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
+            Assert.That(response, Is.EqualTo($"Ingrese el número de la publicación para ver más información de la misma:\n0. {Publicacion.Empresa.Nombre} ofrece: {Publicacion.Residuo.Cantidad} {Publicacion.Residuo.Unidad} de {Publicacion.Residuo.Tipo} en {Publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {Publicacion.Habilitacion}\n"));
         }
         /// <summary>
         /// Este test se encarga de comprobar la funcionalidad de buscar una publicación sin usar una palabra clave.
@@ -112,21 +112,21 @@ namespace Tests
         [Test]
         public void WithoutKeywordOfertasHandlerTest()
         {
-            message = handler.Keywords[0];
+            Message = Handler.Keywords[0];
             string response;
 
-            IHandler result = handler.Handle(message, id, out response);
+            IHandler result = Handler.Handle(Message, Id, out response);
             
             Assert.That(response, Is.EqualTo("¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no"));
-            message = "no";
-            handler.Handle(message, UsuarioEmprendedor.Id, out response);
+            Message = "no";
+            Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
             Assert.That(response, Is.EqualTo("¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad)"));
-            message = ubicacion2.Direccion;
-            handler.Handle(message, UsuarioEmprendedor.Id, out response);  
+            Message = Ubicacion2.Direccion;
+            Handler.Handle(Message, UsuarioEmprendedor.Id, out response);  
             Assert.That(response, Is.EqualTo("Ahora dime que tipo de residuos estas buscando?"));
-            message = residuo.Tipo;
-            handler.Handle(message, UsuarioEmprendedor.Id, out response);
-            Assert.That(response, Is.EqualTo($"Ingrese el número de la publicación para ver más información de la misma:\n0. {publicacion.Empresa.Nombre} ofrece: {publicacion.Residuo.Cantidad} {publicacion.Residuo.Unidad} de {publicacion.Residuo.Tipo} en {publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.Habilitacion}\n"));
+            Message = Residuo.Tipo;
+            Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
+            Assert.That(response, Is.EqualTo($"Ingrese el número de la publicación para ver más información de la misma:\n0. {Publicacion.Empresa.Nombre} ofrece: {Publicacion.Residuo.Cantidad} {Publicacion.Residuo.Unidad} de {Publicacion.Residuo.Tipo} en {Publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {Publicacion.Habilitacion}\n"));
         }
     
     }

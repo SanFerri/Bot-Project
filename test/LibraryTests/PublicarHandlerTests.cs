@@ -9,19 +9,19 @@ namespace Tests
     /// </summary>
     public class PublicarHandlerTests
     {
-        Residuo residuo;
-        PublicarHandler handler;
-        InvitarHandler handler2;
-        string message;
-        Empresa empresa;
+        Residuo Residuo;
+        PublicarHandler Handler;
+        InvitarHandler Handler2;
+        string Message;
+        Empresa Empresa;
         Empresario Usuario;
         Administrador Usuario2;
-        Ubicacion ubicacion;
-        int id;
-        ListaEmpresarios empresarios = ListaEmpresarios.GetInstance();
-        ListaAdministradores administradores = ListaAdministradores.GetInstance();
-        ListaUsuarios usuarios = ListaUsuarios.GetInstance();
-        Mercado mercado = Mercado.GetInstance();
+        Ubicacion Ubicacion;
+        int Id;
+        ListaEmpresarios Empresarios = ListaEmpresarios.GetInstance();
+        ListaAdministradores Administradores = ListaAdministradores.GetInstance();
+        ListaUsuarios Usuarios = ListaUsuarios.GetInstance();
+        Mercado Mercado = Mercado.GetInstance();
 
         /// <summary>
         /// el set up de los test.
@@ -29,23 +29,23 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            residuo = new Residuo("metal", 100, "kg", 250, "$");
-            handler = new PublicarHandler(null);
+            Residuo = new Residuo("metal", 100, "kg", 250, "$");
+            Handler = new PublicarHandler(null);
             
             int invitacion = InvitationGenerator.Generate();
-            ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
-            empresa = new Empresa("MercadoPrivado", ubicacion, "099679938");
-            empresa.Residuos.AddResiduo(residuo);
-            Usuario = new Empresario(invitacion, empresa);
-            id = 12345678;
-            Usuario.Id = id;
-            empresarios.AddEmpresario(Usuario);
+            Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
+            Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
+            Empresa.Residuos.AddResiduo(Residuo);
+            Usuario = new Empresario(invitacion, Empresa);
+            Id = 12345678;
+            Usuario.Id = Id;
+            Empresarios.AddEmpresario(Usuario);
 
-            handler2 = new InvitarHandler(null);
+            Handler2 = new InvitarHandler(null);
             int invitacion2 = InvitationGenerator.Generate();
             Usuario2 = new Administrador(invitacion2);
-            Usuario2.Id = id;
-            administradores.AddAdministrador(Usuario2);
+            Usuario2.Id = Id;
+            Administradores.AddAdministrador(Usuario2);
         }
 
         /// <summary>
@@ -54,10 +54,10 @@ namespace Tests
         [Test]
         public void PublicarCanHandleTest()
         {
-            message = handler.Keywords[0];
+            Message = Handler.Keywords[0];
             string response;
 
-            IHandler result = handler.Handle(message, id, out response);
+            IHandler result = Handler.Handle(Message, Id, out response);
 
             Assert.That(response, Is.EqualTo("Ingrese el numero de la palabra clave que quiera agregar:\n0. Barato.\n1. Envio Gratis.\n2. Usado.\n3. Nuevo.\n"));
         }
@@ -69,10 +69,10 @@ namespace Tests
         public void PublicarCantHandleTest()
         {
             Emprendedor emprendedor = new Emprendedor(34314458);
-            message = handler.Keywords[0];
+            Message = Handler.Keywords[0];
             string response;
 
-            IHandler result = handler.Handle(message, emprendedor.Id, out response);
+            IHandler result = Handler.Handle(Message, emprendedor.Id, out response);
 
             Assert.That(response, Is.EqualTo("Usted no es un empresario, no puede usar el codigo..."));
         }
@@ -84,31 +84,31 @@ namespace Tests
         public void WorkingPublicarHandlerTest()
         {
             Emprendedor emprendedor = new Emprendedor(34314458);
-            message = handler.Keywords[0];
+            Message = Handler.Keywords[0];
             string response;
 
-            IHandler result = handler.Handle(message, id, out response);
+            IHandler result = Handler.Handle(Message, Id, out response);
             Assert.That(response, Is.EqualTo("Ingrese el numero de la palabra clave que quiera agregar:\n0. Barato.\n1. Envio Gratis.\n2. Usado.\n3. Nuevo.\n"));
 
-            message = "1";
-            handler.Handle(message, emprendedor.Id, out response);
+            Message = "1";
+            Handler.Handle(Message, emprendedor.Id, out response);
             Assert.That(response, Is.EqualTo("Porfavor ingrese la habilitacion para los residuos."));
 
-            message = "Necesitara un camion o vehiculo";
-            handler.Handle(message, emprendedor.Id, out response);
+            Message = "Necesitara un camion o vehiculo";
+            Handler.Handle(Message, emprendedor.Id, out response);
             Assert.That(response, Is.EqualTo("Porfavor responda si o no, ¿Estos residuos que se generaron se generan de forma constante? Si fue puntual responda no."));
 
-            message = "si";
-            handler.Handle(message, emprendedor.Id, out response);
+            Message = "si";
+            Handler.Handle(Message, emprendedor.Id, out response);
             Assert.That(response, Is.EqualTo("Porfavor ingrese la direccion de los residuos."));
 
-            message = ubicacion.Direccion;
-            handler.Handle(message, emprendedor.Id, out response);
+            Message = Ubicacion.Direccion;
+            Handler.Handle(Message, emprendedor.Id, out response);
             Assert.That(response, Is.EqualTo("Ahora dime sobre cual de tus residuos quieres publicar"));
 
-            message = residuo.Tipo;
-            handler.Handle(message, id, out response);
-            Assert.That(response, Is.EqualTo($"Se ha publicado la oferta de {residuo.Tipo} de la empresa {empresa.Nombre}. En la ubicacion {ubicacion.Direccion}"));
+            Message = Residuo.Tipo;
+            Handler.Handle(Message, Id, out response);
+            Assert.That(response, Is.EqualTo($"Se ha publicado la oferta de {Residuo.Tipo} de la empresa {Empresa.Nombre}. En la ubicacion {Ubicacion.Direccion}"));
         }
     }
 }
