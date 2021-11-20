@@ -76,7 +76,7 @@ namespace ClassLibrary
             bool realAdministrador = false;
             foreach(Administrador administrador in this.LosAdministradores.Administradores)
             {
-                if(administrador.id == id)
+                if(administrador.Id == id)
                 {
                     realAdministrador = true;
                 }

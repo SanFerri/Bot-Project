@@ -27,8 +27,8 @@ namespace ClassLibrary
         }
     
 
-        [JsonInclude]
-        public IList<Publicacion> Steps { get; private set; } = new List<Publicacion>();
+        //[JsonInclude]
+        //public IList<Publicacion> Steps { get; private set; } = new List<Publicacion>();
 
         /// <summary>
         /// RemovePublicacion es un metodo que se encarga de eliminar publicaciones de la lista.

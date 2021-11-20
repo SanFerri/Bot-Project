@@ -142,7 +142,7 @@ namespace ClassLibrary
                     builderResponse += "Ingrese el número de la publicación para ver más información de la misma:\n"; 
                     foreach(Publicacion publicacion in this.ofertasData)
                     {
-                        builderResponse += ($"{contador}. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion.direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.habilitacion}\n");
+                        builderResponse += ($"{contador}. {publicacion.Empresa.Nombre} ofrece: {publicacion.Residuo.Cantidad} kg de {publicacion.Residuo.Tipo} en {publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.Habilitacion}\n");
                         contador += 1;
                     }   
                     if(this.ofertasData == new List<Publicacion>())
@@ -152,7 +152,7 @@ namespace ClassLibrary
                         // estado en el que se pide la dirección que falta.
                         response = "No se ha podido encontrar una publicacion en esa categoría, vuelva a intentarlo en otro momento.";
                         this.State = OfertasState.Start;
-
+                        this.InternalCancel();
                         return false;
                     }
                     else
@@ -172,7 +172,7 @@ namespace ClassLibrary
                     builderResponse += "Ingrese el número de la publicación para ver más información de la misma:\n"; 
                     foreach(Publicacion publicacion in this.ofertasData)
                     {
-                        builderResponse += ($"{contador}. {publicacion.empresa.nombre} ofrece: {publicacion.residuo.cantidad} kg de {publicacion.residuo.tipo} en {publicacion.ubicacion.direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.habilitacion}\n");
+                        builderResponse += ($"{contador}. {publicacion.Empresa.Nombre} ofrece: {publicacion.Residuo.Cantidad} kg de {publicacion.Residuo.Tipo} en {publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.Habilitacion}\n");
                         contador += 1;
                     }   
                     if(this.ofertasData == new List<Publicacion>())
@@ -199,13 +199,14 @@ namespace ClassLibrary
             {
                 this.Eleccion = Convert.ToInt32(message);
                 Publicacion publicacion = this.ofertasData[this.Eleccion];
-                response = $"El número de contacto de esta publicación es {publicacion.empresa.contacto}";
-
-                return true;
+                response = $"El número de contacto de esta publicación es {publicacion.Empresa.Contacto}";
+                this.InternalCancel();
+                return false;
             }            
             else
             {
                 response = string.Empty;
+                this.InternalCancel();
                 return false;
             }
         }
@@ -221,6 +222,7 @@ namespace ClassLibrary
             this.empresaUsuario = null;
             this.result = null;
             this.ofertasData = null;
+            this.LasClaves = null;
         }
 
         /// <summary>

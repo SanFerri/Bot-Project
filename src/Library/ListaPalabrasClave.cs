@@ -26,8 +26,8 @@ namespace ClassLibrary
             this.Palabras.Add(palabra);
         }
 
-        [JsonInclude]
-        public IList<string> Steps { get; private set; } = new List<string>();
+        //[JsonInclude]
+        //public IList<string> Steps { get; private set; } = new List<string>();
 
         /// <summary>
         /// RemovePalabra es un metodo que se encarga de eliminar palabras de la lista.
@@ -67,7 +67,7 @@ namespace ClassLibrary
             }
             else
             {
-                this.Palabras.Contains("Envio Gratis");
+                Palabras.Add("Envio Gratis");
             }
             if(this.Palabras.Contains("Usado"))
             { 

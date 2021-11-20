@@ -27,8 +27,8 @@ namespace ClassLibrary
             Usuarios.Add(usuario);
         }
 
-        [JsonInclude]
-        public IList<IUsuario> Steps { get; private set; } = new List<IUsuario>();
+        //[JsonInclude]
+        //public IList<IUsuario> Steps { get; private set; } = new List<IUsuario>();
 
         /// <summary>
         /// RemoveUsuario es el encargado de remover Usuario de la lista.

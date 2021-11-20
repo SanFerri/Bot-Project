@@ -47,9 +47,9 @@ namespace ClassLibrary
                 int invitacion = Convert.ToInt32(message);
                 foreach(Empresario empresario in TodoEmpresario.Empresarios)
                 {
-                    if(empresario.invitacion == invitacion)
+                    if(empresario.Invitacion == invitacion)
                     {
-                        empresario.id = id;
+                        empresario.Id = id;
                         
                         confirmRegistrado = true;
                         this.State = RegistrarseState.Start;

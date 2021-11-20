@@ -35,16 +35,16 @@ namespace Tests
             int invitacion = InvitationGenerator.Generate();
             ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             empresa = new Empresa("MercadoPrivado", ubicacion, "099679938");
-            empresa.residuos.AddResiduo(residuo);
+            empresa.Residuos.AddResiduo(residuo);
             Usuario = new Empresario(invitacion, empresa);
             id = 12345678;
-            Usuario.id = id;
+            Usuario.Id = id;
             empresarios.AddEmpresario(Usuario);
 
             handler2 = new InvitarHandler(null);
             int invitacion2 = InvitationGenerator.Generate();
             Usuario2 = new Administrador(invitacion2);
-            Usuario2.id = id;
+            Usuario2.Id = id;
             administradores.AddAdministrador(Usuario2);
         }
 
@@ -72,7 +72,7 @@ namespace Tests
             message = handler.Keywords[0];
             string response;
 
-            IHandler result = handler.Handle(message, emprendedor.id, out response);
+            IHandler result = handler.Handle(message, emprendedor.Id, out response);
 
             Assert.That(response, Is.EqualTo("Usted no es un empresario, no puede usar el codigo..."));
         }
@@ -91,24 +91,24 @@ namespace Tests
             Assert.That(response, Is.EqualTo("Ingrese el numero de la palabra clave que quiera agregar:\n0. Barato.\n1. Envio Gratis.\n2. Usado.\n3. Nuevo.\n"));
 
             message = "1";
-            handler.Handle(message, emprendedor.id, out response);
+            handler.Handle(message, emprendedor.Id, out response);
             Assert.That(response, Is.EqualTo("Porfavor ingrese la habilitacion para los residuos."));
 
             message = "Necesitara un camion o vehiculo";
-            handler.Handle(message, emprendedor.id, out response);
+            handler.Handle(message, emprendedor.Id, out response);
             Assert.That(response, Is.EqualTo("Porfavor responda si o no, ¿Estos residuos que se generaron se generan de forma constante? Si fue puntual responda no."));
 
             message = "si";
-            handler.Handle(message, emprendedor.id, out response);
+            handler.Handle(message, emprendedor.Id, out response);
             Assert.That(response, Is.EqualTo("Porfavor ingrese la direccion de los residuos."));
 
-            message = ubicacion.direccion;
-            handler.Handle(message, emprendedor.id, out response);
+            message = ubicacion.Direccion;
+            handler.Handle(message, emprendedor.Id, out response);
             Assert.That(response, Is.EqualTo("Ahora dime sobre cual de tus residuos quieres publicar"));
 
-            message = residuo.tipo;
+            message = residuo.Tipo;
             handler.Handle(message, id, out response);
-            Assert.That(response, Is.EqualTo($"Se ha publicado la oferta de {residuo.tipo} de la empresa {empresa.nombre}. En la ubicacion {ubicacion.direccion}"));
+            Assert.That(response, Is.EqualTo($"Se ha publicado la oferta de {residuo.Tipo} de la empresa {empresa.Nombre}. En la ubicacion {ubicacion.Direccion}"));
         }
     }
 }

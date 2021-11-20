@@ -61,9 +61,9 @@ namespace ClassLibrary
             bool realEmpresario = false;
             foreach(Empresario empresario in LosEmpresarios.Empresarios)
             {
-                if(empresario.id == id)
+                if(empresario.Id == id)
                 {
-                    this.empresaUsuario = empresario.empresa;
+                    this.empresaUsuario = empresario.Empresa;
                     realEmpresario = true;
                 }
             }
@@ -92,9 +92,9 @@ namespace ClassLibrary
             }
             else if (State == CambiarDatosState.ContactoPrompt)
             {
-                this.empresaUsuario.contacto = message;
-                this.empresaUsuario.nombre = this.nombreEmpresa;
-                this.empresaUsuario.ubicacion = this.UbicacionData;
+                this.empresaUsuario.Contacto = message;
+                this.empresaUsuario.Nombre = this.nombreEmpresa;
+                this.empresaUsuario.Ubicacion = this.UbicacionData;
 
                 response = "Se han actualizado sus datos...";
 

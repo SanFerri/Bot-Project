@@ -93,9 +93,9 @@ namespace ClassLibrary
             ListaEmpresarios TodoEmpresario = ListaEmpresarios.GetInstance();
             foreach(Empresario empresario in TodoEmpresario.Empresarios)
             {
-                if(empresario.id == id)
+                if(empresario.Id == id)
                 {
-                    this.empresaUsuario = empresario.empresa;
+                    this.empresaUsuario = empresario.Empresa;
                     realEmpresario = true;
                 }
             }
@@ -152,9 +152,9 @@ namespace ClassLibrary
             else if (State == PublicarState.ResiduoPrompt)
             {
                 this.residuoTipo = message;
-                foreach(Residuo residuo in this.empresaUsuario.residuos.listaResiduos)
+                foreach(Residuo residuo in this.empresaUsuario.Residuos.Residuos)
                 {
-                    if(residuo.tipo == residuoTipo)
+                    if(residuo.Tipo == residuoTipo)
                     {
                         this.ResiduoElegido = residuo;
                     }
@@ -163,7 +163,7 @@ namespace ClassLibrary
                 this.result.AgregarPalabraClave(this.PalabraClave);
                 if(this.ResiduoElegido != null && this.result != null)
                 {
-                    response = $"Se ha publicado la oferta de {this.result.residuo.tipo} de la empresa {this.result.empresa.nombre}. En la ubicacion {this.result.ubicacion.direccion}";
+                    response = $"Se ha publicado la oferta de {this.result.Residuo.Tipo} de la empresa {this.result.Empresa.Nombre}. En la ubicacion {this.result.Ubicacion.Direccion}";
                     this.State = PublicarState.Start;
                 }
                 else

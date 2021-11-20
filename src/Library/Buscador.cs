@@ -30,11 +30,11 @@ namespace ClassLibrary
         {
             DistanciaUbicacion distanciaUbicacion = new DistanciaUbicacion(client);
             List<Publicacion> ofertas = new List<Publicacion>();
-            foreach(Publicacion publicacion in mercado.ofertas)
+            foreach(Publicacion publicacion in mercado.Ofertas)
             {
-                if(publicacion.residuo.tipo == tipo & publicacion.entregado == false)
+                if(publicacion.Residuo.Tipo == tipo & publicacion.Entregado == false)
                 {
-                    distanciaUbicacion.Distancia(publicacion.ubicacion, ubicacion);
+                    distanciaUbicacion.Distancia(publicacion.Ubicacion, ubicacion);
                     if(distanciaUbicacion.LocationsDistance < 100)
                     {
                         ofertas.Add(publicacion);
@@ -53,11 +53,11 @@ namespace ClassLibrary
         public static List<string> ResiduosConstantes()
         {
             List<string> residuosConstantes = new List<string>();
-            foreach(Publicacion publicacion in mercado.ofertas)
+            foreach(Publicacion publicacion in mercado.Ofertas)
             {
-                if(publicacion.constante == true)
+                if(publicacion.Constante == true)
                 {
-                    residuosConstantes.Add(publicacion.residuo.tipo);
+                    residuosConstantes.Add(publicacion.Residuo.Tipo);
                 }
             }
             return residuosConstantes;
@@ -71,11 +71,11 @@ namespace ClassLibrary
         public static List<string> ResiduosPuntuales()
         {
             List<string> residuosPuntuales = new List<string>();
-            foreach(Publicacion publicacion in mercado.ofertas)
+            foreach(Publicacion publicacion in mercado.Ofertas)
             {
-                if(publicacion.constante == false && publicacion.entregado == false)
+                if(publicacion.Constante == false && publicacion.Entregado == false)
                 {
-                    residuosPuntuales.Add(publicacion.residuo.tipo);
+                    residuosPuntuales.Add(publicacion.Residuo.Tipo);
                 }
             }
             return residuosPuntuales;
@@ -89,9 +89,9 @@ namespace ClassLibrary
         public static List<Publicacion> BuscarConPalabraClave(string palabraclave)
         {
             List<Publicacion> ofertas = new List<Publicacion>();
-            foreach(Publicacion publicacion in mercado.ofertas)
+            foreach(Publicacion publicacion in mercado.Ofertas)
             {
-                if(publicacion.palabraClave == palabraclave && publicacion.entregado == false)
+                if(publicacion.PalabraClave == palabraclave && publicacion.Entregado == false)
                 {
                     ofertas.Add(publicacion);
                 }
@@ -108,9 +108,9 @@ namespace ClassLibrary
         public static List<Publicacion> BuscarEntregados(Empresario usuario, int tiempo)
         {
             List<Publicacion> entregadas = new List<Publicacion>();
-            foreach(Publicacion publicacion in usuario.empresa.publicaciones.listaPublicaciones)
+            foreach(Publicacion publicacion in usuario.Empresa.Publicaciones.Publicaciones)
             {
-                if(publicacion.entregado == true)
+                if(publicacion.Entregado == true)
                 {   
                     entregadas.Add(publicacion);
                 }
@@ -131,11 +131,11 @@ namespace ClassLibrary
             List<Residuo> consumidos = new List<Residuo>();
             foreach(Publicacion publicacion in ListaEntregadas.GetInstance().ListaPublicaciones)
             {
-                DateTime a = publicacion.fecha;
+                DateTime a = publicacion.Fecha;
 
                 if(ahora.Subtract(a).TotalDays <=  tiempo)
                 {   
-                    consumidos.Add(publicacion.residuo);
+                    consumidos.Add(publicacion.Residuo);
                 }
             }
             
