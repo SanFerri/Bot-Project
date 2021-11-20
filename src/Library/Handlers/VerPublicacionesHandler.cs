@@ -79,7 +79,7 @@ namespace ClassLibrary
             {
                 if (message == "entregado")
                 {
-                    this.State = VerPublicacionesState.Entregado;
+                    this.State = VerPublicacionesState.EntregadoUsuario;
                     response = "Ingrese el numero de la publicacion que quiera indicar como entregada.";
                     return true;
                 }
