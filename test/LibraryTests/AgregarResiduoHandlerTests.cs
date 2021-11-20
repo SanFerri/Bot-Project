@@ -8,16 +8,16 @@ namespace Tests
     /// </summary>
     public class AgregarResiduoHandlerTests
     {
-        Residuo residuo;
-        AgregarResiduoHandler handler;
-        string message;
-        Empresa empresa;
+        Residuo Residuo;
+        AgregarResiduoHandler Handler;
+        string Message;
+        Empresa Empresa;
         Empresario Usuario;
         Administrador Usuario2;
-        Ubicacion ubicacion;
-        int id;
-        ListaEmpresarios empresarios = ListaEmpresarios.GetInstance();
-        ListaAdministradores administradores = ListaAdministradores.GetInstance();
+        Ubicacion Ubicacion;
+        int Id;
+        ListaEmpresarios Empresarios = ListaEmpresarios.GetInstance();
+        ListaAdministradores Administradores = ListaAdministradores.GetInstance();
 
         /// <summary>
         /// SetUp de las instancias de clases y distintos elementos necesarios
@@ -26,22 +26,22 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            residuo = new Residuo("metal", 100, "kg", 250, "$");
+            Residuo = new Residuo("metal", 100, "kg", 250, "$");
             
             int invitacion = InvitationGenerator.Generate();
-            ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
-            empresa = new Empresa("MercadoPrivado", ubicacion, "099679938");
-            empresa.Residuos.AddResiduo(residuo);
-            Usuario = new Empresario(invitacion, empresa);
-            id = 12345678;
-            Usuario.Id = id;
-            empresarios.AddEmpresario(Usuario);
+            Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
+            Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
+            Empresa.Residuos.AddResiduo(Residuo);
+            Usuario = new Empresario(invitacion, Empresa);
+            Id = 12345678;
+            Usuario.Id = Id;
+            Empresarios.AddEmpresario(Usuario);
 
-            handler = new AgregarResiduoHandler(null);
+            Handler = new AgregarResiduoHandler(null);
             int invitacion2 = InvitationGenerator.Generate();
             Usuario2 = new Administrador(invitacion2);
-            Usuario2.Id = id;
-            administradores.AddAdministrador(Usuario2);
+            Usuario2.Id = Id;
+            Administradores.AddAdministrador(Usuario2);
         }
 
         /// <summary>
@@ -51,10 +51,10 @@ namespace Tests
         [Test]
         public void AgregarResiduoHandleTest()
         {
-            message = handler.Keywords[0];
+            Message = Handler.Keywords[0];
             string response;
 
-            IHandler result = handler.Handle(message, id, out response);
+            IHandler result = Handler.Handle(Message, Id, out response);
 
             Assert.That(response, Is.EqualTo("Ingrese el tipo del residuo que quiere agregar."));
         }
@@ -65,10 +65,10 @@ namespace Tests
         [Test]
         public void AgregarResiduoCantHandleTest()
         {
-            message = handler.Keywords[0];
+            Message = Handler.Keywords[0];
             string response;
 
-            IHandler result = handler.Handle(message, 38291203, out response);
+            IHandler result = Handler.Handle(Message, 38291203, out response);
 
             Assert.That(response, Is.EqualTo("Usted no es un empresario, no puede acceder a este comando"));
         }
@@ -79,24 +79,24 @@ namespace Tests
         [Test]
         public void WorkingAgregarResiduoHandlerTest()
         {
-            message = handler.Keywords[0];
+            Message = Handler.Keywords[0];
             string response;
 
-            IHandler result = handler.Handle(message, Usuario2.Id, out response);
+            IHandler result = Handler.Handle(Message, Usuario2.Id, out response);
             
-            message = residuo.Tipo;
-            handler.Handle(message, Usuario2.Id, out response);
-            message = $"{residuo.Cantidad}";
-            handler.Handle(message, Usuario2.Id, out response);
-            message = residuo.Unidad;
-            handler.Handle(message, Usuario2.Id, out response);
-            message = $"{residuo.Cost}";
-            handler.Handle(message, Usuario2.Id, out response);
-            message = residuo.Moneda;
-            handler.Handle(message, Usuario2.Id, out response);
+            Message = Residuo.Tipo;
+            Handler.Handle(Message, Usuario2.Id, out response);
+            Message = $"{Residuo.Cantidad}";
+            Handler.Handle(Message, Usuario2.Id, out response);
+            Message = Residuo.Unidad;
+            Handler.Handle(Message, Usuario2.Id, out response);
+            Message = $"{Residuo.Cost}";
+            Handler.Handle(Message, Usuario2.Id, out response);
+            Message = Residuo.Moneda;
+            Handler.Handle(Message, Usuario2.Id, out response);
 
 
-            Assert.That(response, Is.EqualTo($"Se ha agregado el residuo {residuo.Tipo}"));
+            Assert.That(response, Is.EqualTo($"Se ha agregado el residuo {Residuo.Tipo}"));
         }
     }
 }
