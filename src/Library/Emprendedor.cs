@@ -38,6 +38,8 @@ namespace ClassLibrary
         public Emprendedor(int id)
         {
             this.Id = id;
+            ListaUsuarios LosUsuarios = ListaUsuarios.GetInstance();
+            LosUsuarios.AddUsuario(this);
         }
     }
 

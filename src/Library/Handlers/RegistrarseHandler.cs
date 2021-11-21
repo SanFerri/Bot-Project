@@ -19,7 +19,7 @@ namespace ClassLibrary
 
         public RegistrarseHandler(BaseHandler next) : base(next)
         {
-            this.Keywords = new string[] { "/registrarme" };
+            this.Keywords = new string[] { "/registrarse" };
         }
 
 
@@ -32,15 +32,37 @@ namespace ClassLibrary
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
-            bool registrado = Registrado.VerifyUser(id);
-
-            if(registrado == false)
+            if(message == "/registrarse" && State == RegistrarseState.Start)
             {
-                response = "No está registrado, ingrese una invitación si es parte de una empresa, en caso de no serlo responda con un no";
-                this.State = RegistrarseState.InvitacionPrompt;
-                return true;
+                bool registrado = Registrado.VerifyEmpresario(id);
+
+                if(registrado == false)
+                {
+                    registrado = Registrado.VerifyUser(id);
+                    if(registrado == false)
+                    {
+                        response = "No está registrado, ingrese una invitación si es parte de una empresa, en caso de no serlo responda con un no";
+                        this.State = RegistrarseState.InvitacionPrompt;
+                        return true;   
+                    }
+                    else
+                    {
+                        response = "Esta registrado como un emprendedor, ingrese una invitación si es parte de una empresa, en caso de no serlo responda con un no";
+                        this.State = RegistrarseState.InvitacionPrompt;
+                        return true;
+                    }
+                }    
+                else
+                {
+                    // En los estados FromAddressPrompt o ToAddressPrompt si no hay un buscador de direcciones hay que
+                    // responder que hubo un error y volver al estado inicial.
+                    response = "Usted ya esta registrado como un empresario";
+
+                    return false;
+                }
             }
-            else if(State == RegistrarseState.InvitacionPrompt)
+
+            else if(State == RegistrarseState.InvitacionPrompt && message != "no")
             {
                 ListaEmpresarios TodoEmpresario = ListaEmpresarios.GetInstance();
                 bool confirmRegistrado = false;
@@ -65,13 +87,11 @@ namespace ClassLibrary
                 }
                 return confirmRegistrado;
             } 
-            else if (registrado == true)
+            else if (message == "no")
             {
-                // En los estados FromAddressPrompt o ToAddressPrompt si no hay un buscador de direcciones hay que
-                // responder que hubo un error y volver al estado inicial.
-                response = "Usted ya esta registrado como un empresario";
-
-                return false;
+                Emprendedor emprendedor = new Emprendedor(id);
+                response = "Se te ha registrado como un emprendedor.";
+                return true;
             }
             else
             {

@@ -64,7 +64,7 @@ namespace ClassLibrary
             {
                 int contador = 0;
                 string unfinishedResponse = "Estas son tus publicaciones ya entregadas:\n";
-                List<Publicacion> entregados = Buscador.BuscarEntregados(EmpresaUsuario.Empresario, Convert.ToInt32(message));
+                List<Publicacion> entregados = Buscador.Buscar(EmpresaUsuario.Empresario, Convert.ToInt32(message));
                 foreach(Publicacion publicacion in entregados)
                 {
                     unfinishedResponse += $"{contador}. Ofrece: {publicacion.Residuo.Cantidad} kg de {publicacion.Residuo.Tipo} en {publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.Habilitacion} Fecha: {publicacion.Fecha}\n";
@@ -73,7 +73,7 @@ namespace ClassLibrary
                 response = unfinishedResponse;
                 return true;
             } 
-            else if (realEmpresario == false)
+            else if (realEmpresario == false && message == this.Keywords[0])
             {
                 response = "Usted no es un empresario, no puede hacer uso de este comando";
                 return false;

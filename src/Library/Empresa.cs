@@ -22,7 +22,7 @@ namespace ClassLibrary
         /// Property nombre, es el nombre que tiene la empresa.
         /// </summary>
         /// <value></value>
-        public string Nombre{get;set;}
+        public string Nombre{ get;set; }
         
         /// <summary>
         /// Property ubicacion, es la ubicación donde se encuentra la empresa. 
@@ -54,7 +54,6 @@ namespace ClassLibrary
         /// Property empresario, es el encargado de la empresa. 
         /// </summary>
         /// <value></value>
-
         public Empresario Empresario{get;set;}
         /// <summary>
         /// Constructor de una instancia de Empresa.
@@ -67,9 +66,11 @@ namespace ClassLibrary
             this.Nombre = nombre;
             this.Contacto = contacto;
             this.Ubicacion = ubicacion;
+            ListaEmpresas LasEmpresas = ListaEmpresas.GetInstance();
+            LasEmpresas.AddEmpresa(this);
         }
 
-        /// <summary>
+        /// <summary>s
         /// Metodo que convierte una clase en string Json (serializa).
         /// </summary>
         /// <returns></returns>

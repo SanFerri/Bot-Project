@@ -86,7 +86,7 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="palabraclave"></param>
         /// <returns></returns>
-        public static List<Publicacion> BuscarConPalabraClave(string palabraclave)
+        public static List<Publicacion> Buscar(string palabraclave)
         {
             List<Publicacion> ofertas = new List<Publicacion>();
             foreach(Publicacion publicacion in mercado.Ofertas)
@@ -105,10 +105,10 @@ namespace ClassLibrary
         /// <param name="tiempo"></param>
         /// <returns></returns>
 
-        public static List<Publicacion> BuscarEntregados(Empresario usuario, int tiempo)
+        public static List<Publicacion> Buscar(IEmpresarioPublicaciones publicaciones, int tiempo)
         {
             List<Publicacion> entregadas = new List<Publicacion>();
-            foreach(Publicacion publicacion in usuario.Empresa.Publicaciones.Publicaciones)
+            foreach(Publicacion publicacion in publicaciones.LasPublicaciones.Publicaciones)
             {
                 if(publicacion.Entregado == true)
                 {   
@@ -125,7 +125,7 @@ namespace ClassLibrary
         /// <param name="id"></param>
         /// <param name="tiempo"></param>
         /// <returns></returns>
-        public static List<Residuo> BuscarResiduosConsumidos(int id, int tiempo)
+        public static List<Residuo> Buscar(int id, int tiempo)
         {
             DateTime ahora = DateTime.Now;
             List<Residuo> consumidos = new List<Residuo>();

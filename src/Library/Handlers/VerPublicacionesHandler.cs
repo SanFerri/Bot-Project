@@ -153,7 +153,7 @@ namespace ClassLibrary
                 return true;
             }
             
-            else if (realEmpresario == false)
+            else if (realEmpresario == false && message == this.Keywords[0])
             {
                 response = "Usted no es un empresario, no puede hacer uso de este comando";
                 return true;

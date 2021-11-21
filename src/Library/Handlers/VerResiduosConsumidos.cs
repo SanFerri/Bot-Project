@@ -54,7 +54,7 @@ namespace ClassLibrary
             {
                 int contador = 0;
                 string unfinishedResponse = "Estas son tus residuos consumidos:\n";
-                List<Residuo> consumidos = Buscador.BuscarResiduosConsumidos(id, Convert.ToInt32(message));
+                List<Residuo> consumidos = Buscador.Buscar(id, Convert.ToInt32(message));
                 foreach(Residuo residuo in consumidos)
                 {
                     unfinishedResponse += $"Consumio: {residuo.Cantidad} de {residuo.Tipo}, el costo de este es {residuo.Cost}{residuo.Moneda}\n";

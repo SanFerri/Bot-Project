@@ -15,11 +15,10 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static bool VerifyUser(int id)
+        public static bool VerifyEmpresario(int id)
         {
             bool registrado = false;
             ListaEmpresarios empresarios = ListaEmpresarios.GetInstance();
-            ListaUsuarios usuarios = ListaUsuarios.GetInstance();
 
             foreach(Empresario empresario in empresarios.Empresarios)
             {
@@ -28,17 +27,22 @@ namespace ClassLibrary
                     registrado = true;
                 }
             }
-            if(registrado == false)
+            return registrado;
+        }
+        public static bool VerifyUser(int id)
+        {
+            bool registrado = false;
+            ListaUsuarios usuarios = ListaUsuarios.GetInstance();
+
+            foreach(IUsuario usuario1 in usuarios.Usuarios)
             {
-                foreach(IUsuario usuario1 in usuarios.Usuarios)
+                if(id == usuario1.Id)
                 {
-                    if(id == usuario1.Id)
-                    {
-                        registrado = true;
-                    }
+                    registrado = true;
                 }
             }
             return registrado;
         }
     }
 }
+

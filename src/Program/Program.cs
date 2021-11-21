@@ -170,6 +170,7 @@ namespace Ucu.Poo.TelegramBot
 */
 using System;
 using Telegram.Bot;
+using System.Collections.Generic;
 using Telegram.Bot.Args;
 using Telegram.Bot.Types;
 using ClassLibrary;
@@ -229,6 +230,8 @@ namespace Program
             BaseHandler handler9 = new VerEntregadosHandler(handler8);
             BaseHandler handler10 = new VerPublicacionesHandler(handler9);
             BaseHandler handler11 = new VerResiduosConsumidosHandler(handler10);
+            List<BaseHandler> AllHandlers = new List<BaseHandler>{handler11, handler10, handler9, handler8, handler7, handler6, handler5, handler4, handler3, handler2, handler1};
+        
 
             Message message = messageEventArgs.Message;
             Chat chatInfo = message.Chat;
@@ -241,12 +244,12 @@ namespace Program
                 if (messageText == "/commands" || messageText == "/comandos")
                 {
                         StringBuilder commandsStringBuilder = new StringBuilder("Lista de Comandos:\n")
-                                                                            .Append("/agregarresiduos\n")
+                                                                            .Append("/registrarse\n")
                                                                             .Append("/cambiardatos\n")
                                                                             .Append("/invitar\n")
                                                                             .Append("/ofertas\n")
                                                                             .Append("/publicar\n")
-                                                                            .Append("/registrarse\n")
+                                                                            .Append("/agregarresiduos\n")
                                                                             .Append("/residuosconstantes\n")
                                                                             .Append("/residuospuntuales\n")
                                                                             .Append("/verentregados\n")
@@ -261,18 +264,21 @@ namespace Program
                 else if (messageText[0] == '/')
                 {
                     string response;
-                    handler1.Handle(messageText, Convert.ToInt32(chatInfo.Id), out response);
+                    handler11.Handle(messageText, Convert.ToInt32(chatInfo.Id), out response);
                         await client.SendTextMessageAsync(
                                               chatId: chatInfo.Id,
                                               text: response
                                             );
                 }
                 else
+                {
+                    string response;
                         await client.SendTextMessageAsync(
                                               chatId: chatInfo.Id,
                                               text: $"{chatInfo.FirstName}, no comprendo lo que dices 😕"
                                             );
                 }
+            }
         }
     }
 }
