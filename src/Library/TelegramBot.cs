@@ -8,8 +8,8 @@ namespace ClassLibrary
     public class TelegramBot
     {
 
-        private const string TELEBRAM_BOT_TOKEN = "2141252947:AAFKYCHuPZNve1v7bJUDzzL5Dps6qhFzxTA";
-        private static TelegramBot instance;
+        private const string TELEBRAM_BOT_TOKEN = "2103937324:AAEXUORSVN7MntMqmcl56yXwsHcEKa-korM";
+        private static TelegramBot instance { get; set; }
         private ITelegramBotClient bot;
 
         private TelegramBot()
@@ -33,7 +33,7 @@ namespace ClassLibrary
             }
         }
 
-        public int BotId
+        public long BotId
         {
             get
             {

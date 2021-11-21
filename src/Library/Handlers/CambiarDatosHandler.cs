@@ -106,6 +106,14 @@ namespace ClassLibrary
                 this.State = CambiarDatosState.Start;
                 return true;
             }
+            else if (realEmpresario == false)
+            {
+                // En los estados FromAddressPrompt o ToAddressPrompt si no hay un buscador de direcciones hay que
+                // responder que hubo un error y volver al estado inicial.
+                response = "Usted no es un empresario, no puede usar el codigo...";
+
+                return false;
+            }
             else
             {
                 response = string.Empty;

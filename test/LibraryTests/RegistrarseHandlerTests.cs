@@ -7,10 +7,10 @@ namespace Tests
     /// Clase de test que se encarga de probar las distintas funciones del OfertasHandler.
     /// Los test individualmente utilizando "run test" funcionan correctamente, pero al intentar usar "run all tests" no detecta ninguno.
     /// </summary>
-    public class OfertasHandlerTests
+    public class RegistrarseHandlerTests
     {
         Residuo Residuo;
-        OfertasHandler Handler;
+        RegistrarseHandler Handler;
         string Message;
         Empresa Empresa;
         Empresario UsuarioEmpresario;
@@ -34,7 +34,7 @@ namespace Tests
         public void Setup()
         {
             Residuo = new Residuo("metal", 100, "kg", 250, "$");
-            Handler = new OfertasHandler(null);
+            Handler = new RegistrarseHandler(null);
             int Invitacion = InvitationGenerator.Generate();
             Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             Ubicacion2 = new Ubicacion("Av. Italia 3479");
@@ -58,28 +58,28 @@ namespace Tests
         /// Este test se encarga de comprobar que funciona el comando /ofertas.
         /// </summary>
         [Test]
-        public void OfertasCanHandleTest()
-        {
-            Message = Handler.Keywords[0];
-            string response;
-
-            IHandler result = Handler.Handle(Message, Id, out response);
-
-            Assert.That(response, Is.EqualTo("¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no"));
-        }
-
-        /// <summary>
-        /// Este test se encarga de comprobar que funciona el comando /ofertas con un usuario que no es un emprendedor.
-        /// </summary>
-        [Test]
-        public void OfertasEmpresarioCanHandleTest()
+        public void RegitrarseCanHandleTest()
         {
             Message = Handler.Keywords[0];
             string response;
 
             IHandler result = Handler.Handle(Message, UsuarioEmpresario.Id, out response);
 
-            Assert.That(response, Is.EqualTo("¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no"));
+            Assert.That(response, Is.EqualTo("Usted ya esta registrado como un empresario"));
+        }
+
+        /// <summary>
+        /// Este test se encarga de comprobar que funciona el comando /ofertas con un usuario que no es un emprendedor.
+        /// </summary>
+        [Test]
+        public void RegistrarseCantHandleTest()
+        {
+            Message = "/registroo";
+            string response;
+
+            IHandler result = Handler.Handle(Message, UsuarioEmpresario.Id, out response);
+
+            Assert.That(response, Is.EqualTo(string.Empty));
         }
         /// <summary>
         /// Este test se encarga de comprobar la funcionalidad de buscar una publicación con palabra clave.
@@ -90,9 +90,9 @@ namespace Tests
             Message = Handler.Keywords[0];
             string response;
 
-            IHandler result = Handler.Handle(Message, Id, out response);
+            IHandler result = Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
             
-            Assert.That(response, Is.EqualTo("¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no"));
+            Assert.That(response, Is.EqualTo("Esta registrado como un emprendedor, ingrese una invitación si es parte de una empresa, en caso de no serlo responda con un no"));
             Message = "si";
             Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
             Assert.That(response, Is.EqualTo("Ingrese el numero de la palabra clave que buscar:\n0. Barato.\n1. Envio Gratis.\n2. Usado.\n3. Nuevo.\n"));

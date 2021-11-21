@@ -133,7 +133,7 @@ namespace ClassLibrary
 
                 return true;
             }
-            else if (realEmpresario == false)
+            else if (realEmpresario == false && message == "/agregarresiduo")
             {
                 response = "Usted no es un empresario, no puede acceder a este comando";
                 return false;

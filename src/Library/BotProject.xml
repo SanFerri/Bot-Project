@@ -69,7 +69,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.Buscador.BuscarConPalabraClave(System.String)">
+        <member name="M:ClassLibrary.Buscador.Buscar(System.String)">
             <summary>
             Variable estatica BuscarConPalabraClave porque es una lista de instancia de publicación que lleva 
             el registro de todas las busquedas que hay con la palabra clave otorgada como parametro.
@@ -77,7 +77,7 @@
             <param name="palabraclave"></param>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.Buscador.BuscarEntregados(ClassLibrary.Empresario,System.Int32)">
+        <member name="M:ClassLibrary.Buscador.Buscar(ClassLibrary.IEmpresarioPublicaciones,System.Int32)">
             <summary>
             Es un metodo que te devuelve la lista de elementos entregados.
             </summary>
@@ -85,7 +85,7 @@
             <param name="tiempo"></param>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.Buscador.BuscarResiduosConsumidos(System.Int32,System.Int32)">
+        <member name="M:ClassLibrary.Buscador.Buscar(System.Int32,System.Int32)">
             <summary>
             Metodo que te devuelve una lista de los residuos consumidos.
             </summary>
@@ -210,7 +210,7 @@
             <param name="contacto"></param>
         </member>
         <member name="M:ClassLibrary.Empresa.ConvertToJson">
-            <summary>
+            <summary>s
             Metodo que convierte una clase en string Json (serializa).
             </summary>
             <returns></returns>
@@ -261,36 +261,42 @@
             El estado del comando.
             </summary>
         </member>
-        <member name="P:ClassLibrary.AgregarResiduoHandler.empresaUsuario">
+        <member name="P:ClassLibrary.AgregarResiduoHandler.EmpresaUsuario">
             <summary>
             Los datos que va obteniendo el comando en los diferentes estados.
             </summary>
         </member>
-        <member name="P:ClassLibrary.AgregarResiduoHandler.nombreResiduo">
+        <member name="P:ClassLibrary.AgregarResiduoHandler.NombreResiduo">
             <summary>
             Es el nombre del residuo publicado.
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.AgregarResiduoHandler.volumenResiduo">
+        <member name="P:ClassLibrary.AgregarResiduoHandler.VolumenResiduo">
             <summary>
             La cantidad del residuo que hay.
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.AgregarResiduoHandler.unidadResiduo">
+        <member name="P:ClassLibrary.AgregarResiduoHandler.UnidadResiduo">
             <summary>
             Es la unidad con la cual se mide el residuo, por ejemplo (kg, toneladas, etc.)
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.AgregarResiduoHandler.costoResiduo">
+        <member name="P:ClassLibrary.AgregarResiduoHandler.CostoResiduo">
             <summary>
             Es el costo monetario del residuo.
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.AgregarResiduoHandler.monedaResiduo">
+        <member name="F:ClassLibrary.AgregarResiduoHandler.LosEmpresarios">
+            <summary>
+            Lista de todos los empresarios que hay.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:ClassLibrary.AgregarResiduoHandler.MonedaResiduo">
             <summary>
             Es la moneda con la cual se va a cobrar el residuo, por ejemplo (pesos uruguayos, dolares, etc.)
             </summary>
@@ -427,12 +433,12 @@
             El estado del comando.
             </summary>
         </member>
-        <member name="P:ClassLibrary.CambiarDatosHandler.empresaUsuario">
+        <member name="P:ClassLibrary.CambiarDatosHandler.EmpresaUsuario">
             <summary>
             Los datos que va obteniendo el comando en los diferentes estados.
             </summary>
         </member>
-        <member name="P:ClassLibrary.CambiarDatosHandler.nombreEmpresa">
+        <member name="P:ClassLibrary.CambiarDatosHandler.NombreEmpresa">
             <summary>
             Es el nombre de la empresa.
             </summary>
@@ -444,11 +450,17 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.CambiarDatosHandler.contacto">
+        <member name="P:ClassLibrary.CambiarDatosHandler.Contacto">
             <summary>
             Es el contacto de la empresa.
             </summary>
             <value></value>
+        </member>
+        <member name="F:ClassLibrary.CambiarDatosHandler.LosEmpresarios">
+            <summary>
+            Lista de todos los empresarios que hay.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:ClassLibrary.CambiarDatosHandler.#ctor(ClassLibrary.BaseHandler)">
             <summary>
@@ -539,35 +551,41 @@
             Los datos que va obteniendo el comando en los diferentes estados.
             </summary>
         </member>
-        <member name="P:ClassLibrary.InvitarHandler.invitacion">
+        <member name="P:ClassLibrary.InvitarHandler.Invitacion">
             <summary>
             Pide la invitación.
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.InvitarHandler.empresaData">
+        <member name="P:ClassLibrary.InvitarHandler.EmpresaData">
             <summary>
             Los datos de la empresa.
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.InvitarHandler.nombreEmpresa">
+        <member name="P:ClassLibrary.InvitarHandler.NombreEmpresa">
             <summary>
             El nombre de la empresa.
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.InvitarHandler.contactoData">
+        <member name="P:ClassLibrary.InvitarHandler.ContactoData">
             <summary>
             Es el contacto de la empresa.
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.InvitarHandler.result">
+        <member name="P:ClassLibrary.InvitarHandler.Result">
             <summary>
             Es el resultado de la publicación.
             </summary>
             <value></value>
+        </member>
+        <member name="F:ClassLibrary.InvitarHandler.LosAdministradores">
+            <summary>
+            Lista de todos los empresarios que hay.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:ClassLibrary.InvitarHandler.#ctor(ClassLibrary.BaseHandler)">
             <summary>
@@ -620,7 +638,7 @@
             entonces solo tendremos que cambiar esta clase y no todas las otras.
             </summary>
         </member>
-        <member name="F:ClassLibrary.InvitationGenerator.random">
+        <member name="F:ClassLibrary.InvitationGenerator.Random">
             <summary>
             Generamos un randomizer
             </summary>
@@ -648,19 +666,19 @@
             Los datos que va obteniendo el comando en los diferentes estados.
             </summary>
         </member>
-        <member name="P:ClassLibrary.OfertasHandler.residuoTipo">
+        <member name="P:ClassLibrary.OfertasHandler.ResiduoTipo">
             <summary>
             Los tipos de residuos.
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.OfertasHandler.result">
+        <member name="P:ClassLibrary.OfertasHandler.Result">
             <summary>
             Es el resultado de la busqueda del emprendedor.
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.OfertasHandler.empresaUsuario">
+        <member name="P:ClassLibrary.OfertasHandler.EmpresaUsuario">
             <summary>
             Es el usuario registrado de la empresa.
             </summary>
@@ -672,7 +690,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.OfertasHandler.ofertasData">
+        <member name="P:ClassLibrary.OfertasHandler.OfertasData">
             <summary>
             Es una lista que almacena las publicaciones que hay.
             </summary>
@@ -686,7 +704,13 @@
         </member>
         <member name="F:ClassLibrary.OfertasHandler.LasClaves">
             <summary>
-            Es una variable booleana que se 
+            Es una lista que contiene las palabras claves que se pueden usar.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.OfertasHandler.BuscarConPalabraClave">
+            <summary>
+            Property booleana que indica si se quiere o no realizar una busqueda con palabra clave.
             </summary>
             <value></value>
         </member>
@@ -760,7 +784,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.PublicarHandler.residuoTipo">
+        <member name="P:ClassLibrary.PublicarHandler.ResiduoTipo">
             <summary>
             Son el tipo de residuo publicado.
             </summary>
@@ -778,19 +802,19 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.PublicarHandler.result">
+        <member name="P:ClassLibrary.PublicarHandler.Result">
             <summary>
             Es el resultado de la publicación.
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.PublicarHandler.empresaUsuario">
+        <member name="P:ClassLibrary.PublicarHandler.EmpresaUsuario">
             <summary>
             Es el usuario de la empresa.
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.PublicarHandler.habilitacionData">
+        <member name="P:ClassLibrary.PublicarHandler.HabilitacionData">
             <summary>
             Son los datos de la habilitación.
             </summary>
@@ -804,7 +828,13 @@
         </member>
         <member name="F:ClassLibrary.PublicarHandler.LasClaves">
             <summary>
-            Esta clase procesa el mensaje /publicar.
+            Es una lista de las palabras clave que se pueden añadir a una publicación.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.PublicarHandler.#ctor(ClassLibrary.BaseHandler)">
+            <summary>
+            Es la palabra que se debe usar para poder ejecutar las funciones de este handler.
             </summary>
             <param name="next"></param>
             <returns></returns>
@@ -972,13 +1002,13 @@
             El estado del comando.
             </summary>
         </member>
-        <member name="P:ClassLibrary.VerEntregadosHandler.empresaUsuario">
+        <member name="P:ClassLibrary.VerEntregadosHandler.EmpresaUsuario">
             <summary>
             La empresa del usuario
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.VerEntregadosHandler.publicacionesUsuario">
+        <member name="P:ClassLibrary.VerEntregadosHandler.PublicacionesUsuario">
             <summary>
             Las publicaciones de la empresa
             </summary>
@@ -1024,15 +1054,21 @@
             El estado del comando.
             </summary>
         </member>
-        <member name="P:ClassLibrary.VerPublicacionesHandler.empresaUsuario">
+        <member name="P:ClassLibrary.VerPublicacionesHandler.EmpresaUsuario">
             <summary>
-            La empresa del usuario
+            La empresa del usuario.
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.VerPublicacionesHandler.publicacionesUsuario">
+        <member name="P:ClassLibrary.VerPublicacionesHandler.Elegido">
             <summary>
-            Las publicaciones de la empresa
+            Elegido es el número de la publicación que se eligio como entregada.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.VerPublicacionesHandler.PublicacionesUsuario">
+            <summary>
+            Las publicaciones de la empresa.
             </summary>
             <value></value>
         </member>
@@ -1069,6 +1105,10 @@
         <member name="F:ClassLibrary.VerPublicacionesHandler.VerPublicacionesState.EntregadoUsuario">
             -Entregado: Es el estado en el que se indica a la publicacion como entregada.
         </member>
+        <member name="F:ClassLibrary.VerPublicacionesHandler.VerPublicacionesState.Entregado">
+            -Entregado: Es el ultimo state en el cual se cambia el estado de la publicación entregada y 
+            se le asocia un usuario destinatario.
+        </member>
         <member name="F:ClassLibrary.VerPublicacionesHandler.VerPublicacionesState.Eliminar">
             -Eliminar: Es el estado en el que se borra una publicacion.
         </member>
@@ -1082,13 +1122,13 @@
             El estado del comando.
             </summary>
         </member>
-        <member name="P:ClassLibrary.VerResiduosConsumidosHandler.empresaUsuario">
+        <member name="P:ClassLibrary.VerResiduosConsumidosHandler.EmpresaUsuario">
             <summary>
             La empresa del usuario
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.VerResiduosConsumidosHandler.publicacionesUsuario">
+        <member name="P:ClassLibrary.VerResiduosConsumidosHandler.PublicacionesUsuario">
             <summary>
             Las publicaciones de la empresa
             </summary>
@@ -1123,6 +1163,14 @@
         </member>
         <member name="F:ClassLibrary.VerResiduosConsumidosHandler.VerResiduosConsumidosState.Consumidos">
             -CambiarPrompt: Es el estado en el que te pregunta si quieres o no cambiar o borrar una publicacion.
+        </member>
+        <member name="T:ClassLibrary.IEmpresarioPublicaciones">
+            <summary>
+            IEmpresarioPublicaciones es una interfaz para aplicar DIP, en buscador hay un metodo que precisa
+            saber esta informacion, pero es mas correcto pasarle esta interfaz en vez de un Empresario ya que
+            de esta forma no solo la clase Empresario esta mas encapsulada, sino que ademas podemos agregar
+            nuevas responsabilidades a Empresario sin que deba cambiar el programa.
+            </summary>
         </member>
         <member name="T:ClassLibrary.IJsonConvertible">
             <summary>
@@ -1585,7 +1633,7 @@
             usarla como una herramienta.
             </summary>
         </member>
-        <member name="M:ClassLibrary.Registrado.VerifyUser(System.Int32)">
+        <member name="M:ClassLibrary.Registrado.VerifyEmpresario(System.Int32)">
             <summary>
             Esta clase se encarga de identificar si el usuario esta registrado o no.
             </summary>

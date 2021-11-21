@@ -182,7 +182,7 @@ namespace ClassLibrary
 
                 return true;
             }
-            else if (realEmpresario == false)
+            else if (realEmpresario == false && message == this.Keywords[0])
             {
                 // En los estados FromAddressPrompt o ToAddressPrompt si no hay un buscador de direcciones hay que
                 // responder que hubo un error y volver al estado inicial.

@@ -94,7 +94,7 @@ namespace Tests
             Handler.Handle(Message, Usuario2.Id, out response);
 
 
-            Assert.That(response, Is.EqualTo($"Se ha creado el empresario y esta es la invitacion que debe usar para acceder a su status: {Handler.invitacion}"));
+            Assert.That(response, Is.EqualTo($"Se ha creado el empresario y esta es la invitacion que debe usar para acceder a su status: {Handler.Invitacion}"));
         }
     }
 }

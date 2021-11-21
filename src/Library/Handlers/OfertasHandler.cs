@@ -170,7 +170,7 @@ namespace ClassLibrary
                 }
                 else
                 {
-                    this.OfertasData = Buscador.BuscarConPalabraClave(PalabraClave);
+                    this.OfertasData = Buscador.Buscar(PalabraClave);
                     int contador = 0;
                     string builderResponse = "";
                     this.ResiduoTipo = message;
@@ -210,6 +210,7 @@ namespace ClassLibrary
             }            
             else
             {
+                Console.WriteLine("Entro a Ofertas handler :(");
                 response = string.Empty;
                 this.InternalCancel();
                 return false;

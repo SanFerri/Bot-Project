@@ -7,7 +7,7 @@ namespace ClassLibrary
     /// Clase Empresario del tipo IUsuario, posee, ademas de las property id e invitacion de toda clase 
     /// usuario, una property empresa que indica la empresa de la que participa el Empresario.
     /// </summary>
-    public class Empresario : IUsuario
+    public class Empresario : IUsuario, IEmpresarioPublicaciones
     {
         /// <summary>
         /// Constructor de Empresario.
@@ -29,6 +29,8 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public int Id{get; set;}
+
+        public ListaPublicaciones LasPublicaciones { get; set; }
         
         /// <summary>
         /// Es el encargado de conocer el valor de una invitación de acceso.
@@ -45,6 +47,12 @@ namespace ClassLibrary
         {
             this.Empresa = empresa;
             this.Invitacion = invitacion;
+            if (this.Empresa != null && this.Invitacion != null)
+            {
+                ListaEmpresarios LosEmpresarios = ListaEmpresarios.GetInstance();
+                LosEmpresarios.AddEmpresario(this);
+            }
+            this.LasPublicaciones = this.Empresa.Publicaciones;
         }
     }
 }

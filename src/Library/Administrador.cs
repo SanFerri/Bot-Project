@@ -37,6 +37,8 @@ namespace ClassLibrary
         public Administrador(int invitacion)
         {
             this.Invitacion = invitacion;
+            ListaAdministradores LosAdministradores = ListaAdministradores.GetInstance();
+            LosAdministradores.AddAdministrador(this);
         }
     }
 }
