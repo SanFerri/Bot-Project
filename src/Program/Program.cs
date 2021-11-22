@@ -244,17 +244,17 @@ namespace Program
                 if (messageText == "/commands" || messageText == "/comandos")
                 {
                         StringBuilder commandsStringBuilder = new StringBuilder("Lista de Comandos:\n")
-                                                                            .Append("/registrarse\n")
-                                                                            .Append("/cambiardatos\n")
-                                                                            .Append("/invitar\n")
-                                                                            .Append("/ofertas\n")
-                                                                            .Append("/publicar\n")
-                                                                            .Append("/agregarresiduos\n")
-                                                                            .Append("/residuosconstantes\n")
-                                                                            .Append("/residuospuntuales\n")
-                                                                            .Append("/verentregados\n")
-                                                                            .Append("/verpublicaciones\n")
-                                                                            .Append("/verresiduosconsumidos\n");
+                                                                            .Append("/registrarse: Registrate como empresario o emprendedor\n")
+                                                                            .Append("/cambiardatos: Cambie los datos de su empresa\n")
+                                                                            .Append("/invitar: Invite a nuevas empresas\n")
+                                                                            .Append("/ofertas: Vea las ofertas en el mercado\n")
+                                                                            .Append("/publicar: Publique nuevas ofertas de residuos\n")
+                                                                            .Append("/agregarresiduos: Agregue nuevos residuos a su empresa\n")
+                                                                            .Append("/residuosconstantes: Aqui se mostraran los residuos que aparecen constantemente\n")
+                                                                            .Append("/residuospuntuales: Aqui se mostraran los residuos que aparecen puntualmente\n")
+                                                                            .Append("/verentregados: Vea sus publicaciones ya entregadas.\n")
+                                                                            .Append("/verpublicaciones: Vea todas sus publicaciones y si quiere indique alguna como entregada\n")
+                                                                            .Append("/verresiduosconsumidos: Vea todos los residuos que consumio\n");
 
 
                         await client.SendTextMessageAsync(

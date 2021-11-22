@@ -83,31 +83,30 @@ namespace Tests
         [Test]
         public void WorkingPublicarHandlerTest()
         {
-            Emprendedor emprendedor = new Emprendedor(34314458);
             Message = Handler.Keywords[0];
             string response;
 
-            IHandler result = Handler.Handle(Message, Id, out response);
+            IHandler result = Handler.Handle(Message, Usuario.Id, out response);
             Assert.That(response, Is.EqualTo("Ingrese el numero de la palabra clave que quiera agregar:\n0. Barato.\n1. Envio Gratis.\n2. Usado.\n3. Nuevo.\n"));
 
             Message = "1";
-            Handler.Handle(Message, emprendedor.Id, out response);
+            Handler.Handle(Message, Usuario.Id, out response);
             Assert.That(response, Is.EqualTo("Porfavor ingrese la habilitacion para los residuos."));
 
             Message = "Necesitara un camion o vehiculo";
-            Handler.Handle(Message, emprendedor.Id, out response);
+            Handler.Handle(Message, Usuario.Id, out response);
             Assert.That(response, Is.EqualTo("Porfavor responda si o no, ¿Estos residuos que se generaron se generan de forma constante? Si fue puntual responda no."));
 
             Message = "si";
-            Handler.Handle(Message, emprendedor.Id, out response);
+            Handler.Handle(Message, Usuario.Id, out response);
             Assert.That(response, Is.EqualTo("Porfavor ingrese la direccion de los residuos."));
 
             Message = Ubicacion.Direccion;
-            Handler.Handle(Message, emprendedor.Id, out response);
+            Handler.Handle(Message, Usuario.Id, out response);
             Assert.That(response, Is.EqualTo("Ahora dime sobre cual de tus residuos quieres publicar"));
 
             Message = Residuo.Tipo;
-            Handler.Handle(Message, Id, out response);
+            Handler.Handle(Message, Usuario.Id, out response);
             Assert.That(response, Is.EqualTo($"Se ha publicado la oferta de {Residuo.Tipo} de la empresa {Empresa.Nombre}. En la ubicacion {Ubicacion.Direccion}"));
         }
     }
