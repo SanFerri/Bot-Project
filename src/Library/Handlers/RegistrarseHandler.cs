@@ -8,6 +8,7 @@ namespace ClassLibrary
     /// </summary>
     public class RegistrarseHandler : BaseHandler
     {
+        public Emprendedor Emprendedor { get; private set; }
         /// <summary>
         /// El estado del comando.
         /// </summary>
@@ -32,6 +33,22 @@ namespace ClassLibrary
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
+            bool realEmprendedor = false;
+            foreach(Emprendedor emprendedor in ListaUsuarios.GetInstance().Usuarios)
+            {
+                if (emprendedor.Id == id)
+                {
+                    this.Emprendedor = emprendedor;
+                    realEmprendedor = true;
+                }
+            }
+            if (realEmprendedor == true)
+            {
+                if (this.Emprendedor.State == "RH-IP")
+                {
+                    this.State = RegistrarseState.InvitacionPrompt;
+                }
+            }
             if(message == "/registrarse" && State == RegistrarseState.Start)
             {
                 bool registrado = Registrado.VerifyEmpresario(id);
@@ -41,14 +58,19 @@ namespace ClassLibrary
                     registrado = Registrado.VerifyUser(id);
                     if(registrado == false)
                     {
+                        Emprendedor emprendedor = new Emprendedor(id);
+                        this.Emprendedor = emprendedor;
+                        this.Emprendedor.State = "RH-IP";
                         response = "No está registrado, ingrese una invitación si es parte de una empresa, en caso de no serlo responda con un no";
-                        this.State = RegistrarseState.InvitacionPrompt;
+                        this.State = RegistrarseState.Start;
+
                         return true;   
                     }
                     else
                     {
                         response = "Esta registrado como un emprendedor, ingrese una invitación si es parte de una empresa, en caso de no serlo responda con un no";
-                        this.State = RegistrarseState.InvitacionPrompt;
+                        this.Emprendedor.State = "RH-IP";
+                        this.State = RegistrarseState.Start;
                         return true;
                     }
                 }    
@@ -56,6 +78,7 @@ namespace ClassLibrary
                 {
                     // Responde cuando el usario ya esta registrado como un empresario.
                     response = "Usted ya esta registrado como un empresario";
+                    this.State = RegistrarseState.Start;
 
                     return false;
                 }
@@ -65,7 +88,7 @@ namespace ClassLibrary
             {
                 ListaEmpresarios TodoEmpresario = ListaEmpresarios.GetInstance();
                 bool confirmRegistrado = false;
-                int invitacion = Convert.ToInt32(message);
+                string invitacion = message;
                 foreach(Empresario empresario in TodoEmpresario.Empresarios)
                 {
                     if(empresario.Invitacion == invitacion)
@@ -88,7 +111,6 @@ namespace ClassLibrary
             } 
             else if (message == "no")
             {
-                Emprendedor emprendedor = new Emprendedor(id);
                 response = "Se te ha registrado como un emprendedor.";
                 return true;
             }

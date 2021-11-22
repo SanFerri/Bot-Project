@@ -28,7 +28,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Administrador.#ctor(System.Int32)">
+        <member name="M:ClassLibrary.Administrador.#ctor(System.String)">
             <summary>
             Constructor de una instancia de administrador. 
             </summary>
@@ -244,7 +244,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.Empresario.#ctor(System.Int32,ClassLibrary.Empresa)">
+        <member name="M:ClassLibrary.Empresario.#ctor(System.String,ClassLibrary.Empresa)">
             <summary>
             Constructor de una instancia de Empresario.
             </summary>
@@ -583,7 +583,7 @@
         </member>
         <member name="F:ClassLibrary.InvitarHandler.LosAdministradores">
             <summary>
-            Lista de todos los empresarios que hay.
+            Lista de todos los Administradors que hay.
             </summary>
             <returns></returns>
         </member>
@@ -628,8 +628,8 @@
             -ContactoPrompt: En este estado el comando pide el contacto de la empresa y pasa al siguiente
             estado 
         </member>
-        <member name="F:ClassLibrary.InvitarHandler.InvitarState.EmpresarioPrompt">
-            EmpresarioPrompt: En este estado el comando envia el contacto del empresario para asi ponerse
+        <member name="F:ClassLibrary.InvitarHandler.InvitarState.AdministradorPrompt">
+            AdministradorPrompt: En este estado el comando envia el contacto del Administrador para asi ponerse
             en contacto. 
         </member>
         <member name="T:ClassLibrary.InvitationGenerator">
@@ -1464,13 +1464,13 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.ListaUsuarios.AddUsuario(ClassLibrary.IUsuario)">
+        <member name="M:ClassLibrary.ListaUsuarios.AddUsuario(ClassLibrary.Emprendedor)">
             <summary>
             AddUsuario es el encargado de agregar Usuario a la lista.
             </summary>
             <param name="usuario"></param>
         </member>
-        <member name="M:ClassLibrary.ListaUsuarios.RemoveUsuario(ClassLibrary.IUsuario)">
+        <member name="M:ClassLibrary.ListaUsuarios.RemoveUsuario(ClassLibrary.Emprendedor)">
             <summary>
             RemoveUsuario es el encargado de remover Usuario de la lista.
             </summary>

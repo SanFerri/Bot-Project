@@ -52,7 +52,7 @@ namespace ClassLibrary
 
         public async void CalculateLocation()
         {
-            this.Location = await client.GetLocationAsync(this.Direccion);
+            //this.Location = await client.GetLocationAsync(this.Direccion);
         }
 
         /// <summary>

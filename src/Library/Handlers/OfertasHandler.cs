@@ -69,7 +69,9 @@ namespace ClassLibrary
         /// Property booleana que indica si se quiere o no realizar una busqueda con palabra clave.
         /// </summary>
         /// <value></value>
-        public bool BuscarConPalabraClave {get; private set;}
+        public bool BuscarConPalabraClave { get; private set; }
+
+        public Emprendedor Emprendedor { get; private set; }
 
         /// <summary>
         /// Esta clase procesa el mensaje /ofertas.
@@ -91,11 +93,45 @@ namespace ClassLibrary
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
-            if(State ==  OfertasState.Start && message == "/ofertas")
+            bool realEmprendedor = false;
+            foreach(Emprendedor emprendedor in ListaUsuarios.GetInstance().Usuarios)
+            {
+                if (emprendedor.Id == id)
+                {
+                    this.Emprendedor = emprendedor;
+                    realEmprendedor = true;
+                }
+            }
+            if (realEmprendedor == true)
+            {
+                if (Emprendedor.State == "OH-CP")
+                {
+                    State = OfertasState.ClavePrompt;
+                }
+                else if (Emprendedor.State == "OH-RCP")
+                {
+                    this.State = OfertasState.RespuestaClavePrompt;
+                }
+                else if (Emprendedor.State == "OH-UP")
+                {
+                    this.State = OfertasState.UbicacionPrompt;
+                }
+                else if (Emprendedor.State == "OH-RP")
+                {
+                    this.State = OfertasState.ResiduoPrompt;
+                }
+                else if (Emprendedor.State == "OH-NP")
+                {
+                    this.State = OfertasState.NumeroPrompt;
+                }
+            }
+
+            if(State ==  OfertasState.Start && message == "/ofertas" && realEmprendedor == true)
             {
                 // En el estado Start le pide la dirección de origen y pasa al estado ClavePrompt
-                this.State = OfertasState.ClavePrompt;
+                this.Emprendedor.State = "OH-CP";
                 response = "¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no";
+                this.State = OfertasState.Start;
                 return true;
             }
             else if (State == OfertasState.ClavePrompt)
@@ -111,30 +147,37 @@ namespace ClassLibrary
                         contador += 1;
                     }
                     response = unfinishedResponse;
-                    this.State = OfertasState.RespuestaClavePrompt;
+                    this.Emprendedor.State = "OH-RCP";
+                    this.State = OfertasState.Start;
                     return true;
                 }
                 else
                 {
                     this.BuscarConPalabraClave = false;
-                    this.State = OfertasState.UbicacionPrompt;
+                    this.Emprendedor.State = "OH-UP";
+                    this.State = OfertasState.Start;
                     response = "¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad)";
+
                     return true;
                 }
             }
             else if (State == OfertasState.RespuestaClavePrompt)
             {
-                this.State = OfertasState.UbicacionPrompt;
+                this.Emprendedor.State = "OH-UP";
+                this.State = OfertasState.Start;
                 this.PalabraClave = this.LasClaves.Palabras[(Convert.ToInt32(message))];
                 response = "¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad)";
+
                 return true;
             }
             else if (State == OfertasState.UbicacionPrompt)
             {
                 // En el estado OfertasState.ResiduoPrompt el mensaje recibido es el residuo que se esta buscando.
                 this.UbicacionData = new Ubicacion(message);
-                this.State = OfertasState.ResiduoPrompt;
+                this.Emprendedor.State = "OH-RP";
+                this.State = OfertasState.Start;
                 response = "Ahora dime que tipo de residuos estas buscando?";
+
                 return true;
             }
             else if (State == OfertasState.ResiduoPrompt)
@@ -157,16 +200,17 @@ namespace ClassLibrary
                         // Una versión más sofisticada podría determinar cuál de las dos direcciones no existe y volver al
                         // estado en el que se pide la dirección que falta.
                         response = "No se ha podido encontrar una publicacion en esa categoría, vuelva a intentarlo en otro momento.";
+                        this.Emprendedor.State = "start";
                         this.State = OfertasState.Start;
-                        this.InternalCancel();
+
                         return false;
                     }
                     else
                     {
                         response = builderResponse;
-                        this.State = OfertasState.NumeroPrompt;
+                        this.State = OfertasState.Start;
 
-                        return true;
+                        return false;
                     }
                 }
                 else
@@ -187,14 +231,14 @@ namespace ClassLibrary
                         // Una versión más sofisticada podría determinar cuál de las dos direcciones no existe y volver al
                         // estado en el que se pide la dirección que falta.
                         response = "No se ha podido encontrar una publicacion en esa categoría, vuelva a intentarlo en otro momento.";
-                        this.State = OfertasState.Start;
+                        this.Emprendedor.State = "start";
 
                         return false;
                     }
                     else
                     {
                         response = builderResponse;
-                        this.State = OfertasState.NumeroPrompt;
+                        this.Emprendedor.State = "OH-NP";
 
                         return true;
                     }
@@ -206,7 +250,8 @@ namespace ClassLibrary
                 this.Eleccion = Convert.ToInt32(message);
                 Publicacion publicacion = this.OfertasData[this.Eleccion];
                 response = $"El número de contacto de esta publicación es {publicacion.Empresa.Contacto}";
-                this.InternalCancel();
+                this.Emprendedor.State = "start";
+
                 return false;
             }            
             else

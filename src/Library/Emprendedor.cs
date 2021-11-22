@@ -9,6 +9,7 @@ namespace ClassLibrary
     /// </summary>
     public class Emprendedor : IUsuario
     {
+        public string State { get; set; } = "start";
         /// <summary>
         /// Constructor de Emprendedor.
         /// </summary>

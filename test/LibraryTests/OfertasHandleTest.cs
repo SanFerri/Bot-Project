@@ -35,7 +35,7 @@ namespace Tests
         {
             Residuo = new Residuo("metal", 100, "kg", 250, "$");
             Handler = new OfertasHandler(null);
-            int Invitacion = InvitationGenerator.Generate();
+            string Invitacion = InvitationGenerator.Generate();
             Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             Ubicacion2 = new Ubicacion("Av. Italia 3479");
             Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");

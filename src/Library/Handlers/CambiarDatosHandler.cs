@@ -36,6 +36,8 @@ namespace ClassLibrary
         /// <value></value>
         public int Contacto { get; private set; }
 
+        public Empresario Empresario { get; private set; }
+
         /// <summary>
         /// Lista de todos los empresarios que hay.
         /// </summary>
@@ -70,12 +72,30 @@ namespace ClassLibrary
                 {
                     this.EmpresaUsuario = empresario.Empresa;
                     realEmpresario = true;
+                    this.Empresario = empresario;
                 }
             }
+            if (realEmpresario == true)
+            {
+                if (Empresario.State == "CDH-NP")
+                {
+                    State = CambiarDatosState.NombrePrompt;
+                }
+                else if (Empresario.State == "CDH-UP")
+                {
+                    this.State = CambiarDatosState.UbicacionPrompt;
+                }
+                else if (Empresario.State == "CDH-CP")
+                {
+                    this.State = CambiarDatosState.ContactoPrompt;
+                }
+            }
+
             if (State == CambiarDatosState.Start && message == "/cambiardatos" && realEmpresario == true)
             {
-                this.State = CambiarDatosState.NombrePrompt;
+                this.Empresario.State = "CDH-NP";
                 response = "Ingrese el nombre de su empresa.";
+                this.State = CambiarDatosState.Start;
 
                 return true;
             }
@@ -83,15 +103,18 @@ namespace ClassLibrary
             {
                 // En el estado CambiarDatosState el mensaje recibido con la ubicación de la empresa.
                 this.NombreEmpresa = message;
-                this.State = CambiarDatosState.UbicacionPrompt;
+                this.Empresario.State = "CDH-UP";
                 response = "Ahora dime la ubicacion de dicha empresa";
+                this.State = CambiarDatosState.Start;
+
                 return true;
             }
             else if (State == CambiarDatosState.UbicacionPrompt)
             {
                 this.UbicacionData = new Ubicacion(message);
-                this.State = CambiarDatosState.ContactoPrompt;
+                this.Empresario.State = "CDH-CP";
                 response = "Por ultimo dime el contacto de la empresa";
+                this.State = CambiarDatosState.Start;
 
                 return true;
             }
@@ -100,10 +123,10 @@ namespace ClassLibrary
                 this.EmpresaUsuario.Contacto = message;
                 this.EmpresaUsuario.Nombre = this.NombreEmpresa;
                 this.EmpresaUsuario.Ubicacion = this.UbicacionData;
-
                 response = "Se han actualizado sus datos...";
-
+                this.Empresario.State = "start";
                 this.State = CambiarDatosState.Start;
+
                 return true;
             }
             else if (realEmpresario == false)
@@ -111,6 +134,7 @@ namespace ClassLibrary
                 // En caso de que realEmpresario sea False, el bot interpreta que el usario en cuestion no es un empresario
                 //y por ende le responde que no puede utilizar los comandos de empresario.
                 response = "Usted no es un empresario, no puede usar el codigo...";
+                this.State = CambiarDatosState.Start;
 
                 return false;
             }

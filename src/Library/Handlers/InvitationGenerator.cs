@@ -21,10 +21,11 @@ namespace ClassLibrary
         /// 7 digitos.
         /// </summary>
         /// <returns></returns>
-        public static int Generate()
+        public static string Generate()
         {
             int invitation = Random.Next(1000000);
-            return invitation;
+            string invitacion = Convert.ToString(invitation);
+            return invitacion;
         }
     }
 }

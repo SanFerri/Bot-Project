@@ -49,6 +49,8 @@ namespace ClassLibrary
 
         public ListaEmpresarios LosEmpresarios = ListaEmpresarios.GetInstance();
 
+        public Empresario Empresario { get; private set; }
+
         /// <summary>
         /// Es la moneda con la cual se va a cobrar el residuo, por ejemplo (pesos uruguayos, dolares, etc.)
         /// </summary>
@@ -82,12 +84,38 @@ namespace ClassLibrary
                 {
                     this.EmpresaUsuario = empresario.Empresa;
                     realEmpresario = true;
+                    this.Empresario = empresario;
                 }
             }
+            if(realEmpresario == true)
+            {
+                if (Empresario.State == "ARH-NP")
+                {
+                    State = AgregarResiduoState.NombrePrompt;
+                }
+                else if (Empresario.State == "ARH-CP")
+                {
+                    this.State = AgregarResiduoState.CantidadPrompt;
+                }
+                else if (Empresario.State == "ARH-UP")
+                {
+                    this.State = AgregarResiduoState.UnidadPrompt;
+                }
+                else if (Empresario.State == "ARH-CP2")
+                {
+                    this.State = AgregarResiduoState.CostoPrompt;
+                }
+                else if (Empresario.State == "ARH-MP")
+                {
+                    this.State = AgregarResiduoState.MonedaPrompt;
+                }
+            }
+
             if (State == AgregarResiduoState.Start && message == "/agregarresiduo" && realEmpresario == true)
             {
-                this.State = AgregarResiduoState.NombrePrompt;
+                Empresario.State = "ARH-NP";
                 response = "Ingrese el tipo del residuo que quiere agregar.";
+                this.State = AgregarResiduoState.Start;
 
                 return true;
             }
@@ -95,31 +123,36 @@ namespace ClassLibrary
             {
                 // En el estado AgregarResiduosState el mensaje recibido es la respuesta con la cantidad que posee del residuo en cuestion.
                 this.NombreResiduo = message;
-                this.State = AgregarResiduoState.CantidadPrompt;
+                Empresario.State = "ARH-CP";
                 response = "Ahora ingrese la cantidad que posees de dicho residuo";
+                this.State = AgregarResiduoState.Start;
+
                 return true;
             }
             else if (State == AgregarResiduoState.CantidadPrompt)
             {
                 this.VolumenResiduo = Convert.ToInt32(message);;
-                this.State = AgregarResiduoState.UnidadPrompt;
+                Empresario.State = "ARH-UP";
                 response = "Ingrese la unidad del volumen dado previamente";
+                this.State = AgregarResiduoState.Start;
 
                 return true;
             }
             else if (State == AgregarResiduoState.UnidadPrompt && (message == "kg" || message == "g" || message == "l"))
             {
                 this.UnidadResiduo = message;
-                this.State = AgregarResiduoState.CostoPrompt;
+                Empresario.State = "ARH-CP2";
                 response = "Ingrese el costo y/o valor del residuo";
+                this.State = AgregarResiduoState.Start;
 
                 return true;
             }
             else if (State == AgregarResiduoState.CostoPrompt)
             {
                 this.CostoResiduo = Convert.ToInt32(message);
-                this.State = AgregarResiduoState.MonedaPrompt;
+                Empresario.State = "ARH-MP";
                 response = "Ingrese la moneda $ o U$S";
+                this.State = AgregarResiduoState.Start;
 
                 return true;
             }
@@ -128,14 +161,17 @@ namespace ClassLibrary
                 this.MonedaResiduo = message;
                 Residuo residuo = new Residuo(this.NombreResiduo, this.VolumenResiduo, this.UnidadResiduo, this.CostoResiduo, this.MonedaResiduo);
                 this.EmpresaUsuario.Residuos.AddResiduo(residuo);
-                this.State = AgregarResiduoState.Start;
+                Empresario.State = "start";
                 response = $"Se ha agregado el residuo {this.NombreResiduo}";
+                this.State = AgregarResiduoState.Start;
 
                 return true;
             }
             else if (realEmpresario == false && message == "/agregarresiduo")
             {
                 response = "Usted no es un empresario, no puede acceder a este comando";
+                this.State = AgregarResiduoState.Start;
+
                 return false;
             }
             else

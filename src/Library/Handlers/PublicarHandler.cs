@@ -66,6 +66,8 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public bool Constante { get; private set; }
+        public Empresario Empresario { get; private set; }
+        public ListaEmpresarios LosEmpresarios { get; private set; }
 
         /// <summary>
         /// Es una lista de las palabras clave que se pueden añadir a una publicación.
@@ -95,21 +97,45 @@ namespace ClassLibrary
         protected override bool InternalHandle(string message, int id, out string response)
         {
             bool realEmpresario = false;
-            ListaEmpresarios TodoEmpresario = ListaEmpresarios.GetInstance();
-            foreach(Empresario empresario in TodoEmpresario.Empresarios)
+            foreach(Empresario empresario in this.LosEmpresarios.Empresarios)
             {
                 if(empresario.Id == id)
                 {
                     this.EmpresaUsuario = empresario.Empresa;
                     realEmpresario = true;
+                    this.Empresario = empresario;
                 }
             }
+            if(realEmpresario == true)
+            {
+                if (Empresario.State == "PH-PCP")
+                {
+                    State = PublicarState.PalabrasClavePrompt;
+                }
+                else if (Empresario.State == "PH-HP")
+                {
+                    this.State = PublicarState.HabilitacionPrompt;
+                }
+                else if (Empresario.State == "PH-CP")
+                {
+                    this.State = PublicarState.ConstantePrompt;
+                }
+                else if (Empresario.State == "PH-UP")
+                {
+                    this.State = PublicarState.UbicacionPrompt;
+                }
+                else if (Empresario.State == "PH-RP")
+                {
+                    this.State = PublicarState.ResiduoPrompt;
+                }
+            }
+
             if(realEmpresario == true && State ==  PublicarState.Start && message == "/publicar")
             {
                 // El estado PublicarState.PalabrasClavePrompt espera que el usuario ingrese el número de la palabra clave que 
                 //quiere utilizar
                 int contador = 0;
-                this.State = PublicarState.PalabrasClavePrompt;
+                this.Empresario.State = "PH-PCP";
                 string unfinishedResponse = "Ingrese el numero de la palabra clave que quiera agregar:\n";
                 foreach(string palabra in LasClaves.Palabras)
                 {
@@ -117,20 +143,26 @@ namespace ClassLibrary
                     contador += 1;
                 }
                 response = unfinishedResponse;
+                this.State = PublicarState.Start;
+
                 return true;
             }
             else if (State == PublicarState.PalabrasClavePrompt)
             {
                 this.PalabraClave = this.LasClaves.Palabras[(Convert.ToInt32(message))];
-                this.State = PublicarState.HabilitacionPrompt;
+                this.Empresario.State = "PH-HP";
                 response = "Porfavor ingrese la habilitacion para los residuos.";
+                this.State = PublicarState.Start;
+
                 return true;
             }
             else if (State == PublicarState.HabilitacionPrompt)
             {
                 this.HabilitacionData = message;
-                this.State = PublicarState.UbicacionPrompt;
+                this.Empresario.State = "PH-UP";
                 response = "Porfavor responda si o no, ¿Estos residuos que se generaron se generan de forma constante? Si fue puntual responda no.";
+                this.State = PublicarState.Start;
+
                 return true;
             }
             else if (State == PublicarState.UbicacionPrompt)
@@ -143,16 +175,20 @@ namespace ClassLibrary
                 {
                     this.Constante = false;
                 }
-                this.State = PublicarState.ConstantePrompt;
+                this.Empresario.State = "PH-CP";
                 response = "Porfavor ingrese la direccion de los residuos.";
+                this.State = PublicarState.Start;
+
                 return true;
             }
             else if (State == PublicarState.ConstantePrompt)
             {
                 // El estado PublicarState.ResiduoPrompt espera que el usuario ingrese el residuo que quiere publicar.
                 this.UbicacionData = new Ubicacion(message);
-                this.State = PublicarState.ResiduoPrompt;
+                this.Empresario.State = "PH-RP";
                 response = "Ahora dime sobre cual de tus residuos quieres publicar";
+                this.State = PublicarState.Start;
+
                 return true;
             }
             else if (State == PublicarState.ResiduoPrompt)
@@ -170,21 +206,26 @@ namespace ClassLibrary
                 if(this.ResiduoElegido != null && this.Result != null)
                 {
                     response = $"Se ha publicado la oferta de {this.Result.Residuo.Tipo} de la empresa {this.Result.Empresa.Nombre}. En la ubicacion {this.Result.Ubicacion.Direccion}";
+                    this.Empresario.State = "start";
                     this.State = PublicarState.Start;
+
+                    return true;
                 }
                 else
                 {
                     // El estado PublicarState.Start responde cuando no se puede crear una publicación.
                     response = "No se ha podido hacer crear la publicacion, vuelva a intentarlo.";
+                    this.Empresario.State = "start";
                     this.State = PublicarState.Start;
-                }
 
-                return true;
+                    return false;
+                }
             }
             else if (realEmpresario == false && message == this.Keywords[0])
             {
                 // Responde cuando no es un empresario, de esa manera no puede utilizar el codigo.
                 response = "Usted no es un empresario, no puede usar el codigo...";
+                this.State = PublicarState.Start;
 
                 return false;
             }
