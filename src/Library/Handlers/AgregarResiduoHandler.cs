@@ -14,7 +14,7 @@ namespace ClassLibrary
         public AgregarResiduoState State { get; private set; }
 
         /// <summary>
-        /// Los datos que va obteniendo el comando en los diferentes estados.
+        /// Es el usuario de la empresa.
         /// </summary>
         public Empresa EmpresaUsuario { get; private set; }
 
@@ -93,7 +93,7 @@ namespace ClassLibrary
             }
             else if (State == AgregarResiduoState.NombrePrompt)
             {
-                // En el estado FromAddressPrompt el mensaje recibido es la respuesta con la dirección de origen
+                // En el estado AgregarResiduosState el mensaje recibido es la respuesta con la cantidad que posee del residuo en cuestion.
                 this.NombreResiduo = message;
                 this.State = AgregarResiduoState.CantidadPrompt;
                 response = "Ahora ingrese la cantidad que posees de dicho residuo";
@@ -146,7 +146,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Retorna este "handler" al estado inicial.
+        /// Resetea el estado del handler.
         /// </summary>
         protected override void InternalCancel()
         {

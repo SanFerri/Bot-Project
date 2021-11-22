@@ -27,13 +27,13 @@ namespace ClassLibrary
         public int Elegido {get; private set;} = -1;
 
         /// <summary>
-        /// Las publicaciones de la empresa.
+        /// Lista de las publicaciones que hay.
         /// </summary>
         /// <value></value>
         public ListaPublicaciones PublicacionesUsuario { get; private set; }
 
         /// <summary>
-        /// Los datos que va obteniendo el comando en los diferentes estados.
+        /// Procesa el mensaje /verpublicaciones.
         /// </summary>
 
         public VerPublicacionesHandler(BaseHandler next) : base(next)
@@ -174,7 +174,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Indica los diferentes estados que puede tener el comando ResiduosPuntualesState
+        /// Indica los diferentes estados que puede tener el comando VerPublicacionesState.
         /// </summary>
         public enum VerPublicacionesState
         {

@@ -14,7 +14,7 @@ namespace ClassLibrary
         public ResiduosPuntualesState State { get; private set; }
 
         /// <summary>
-        /// Los datos que va obteniendo el comando en los diferentes estados.
+        /// Procesa el mensaje /residuospuntuales
         /// </summary>
 
         public ResiduosPuntualesHandler(BaseHandler next) : base(next)
