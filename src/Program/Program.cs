@@ -182,20 +182,31 @@ namespace Program
 {
     class Program
     {
-        BaseHandler handler1;
-        BaseHandler handler2;
-        BaseHandler handler3;
-        BaseHandler handler4;
-        BaseHandler handler5;
-        BaseHandler handler6;
-        BaseHandler handler7;
-        BaseHandler handler8;
-        BaseHandler handler9;
-        BaseHandler handler10;
-        BaseHandler handler11;
+        static BaseHandler handler1;
+        static BaseHandler handler2;
+        static BaseHandler handler3;
+        static BaseHandler handler4;
+        static BaseHandler handler5;
+        static BaseHandler handler6;
+        static BaseHandler handler7;
+        static BaseHandler handler8;
+        static BaseHandler handler9;
+        static BaseHandler handler10;
+        static BaseHandler handler11;
         public static void Main()
         {
-
+            handler1 = new OfertasHandler(null);
+            handler2 = new AgregarResiduoHandler(handler1);
+            handler3 = new CambiarDatosHandler(handler2);
+            handler4 = new InvitarHandler(handler3);
+            handler5 = new PublicarHandler(handler4);
+            handler6 = new RegistrarseHandler(handler5);
+            handler7 = new ResiduosConstantesHandler(handler6);
+            handler8 = new ResiduosPuntualesHandler(handler7);
+            handler9 = new VerEntregadosHandler(handler8);
+            handler10 = new VerPublicacionesHandler(handler9);
+            handler11 = new VerResiduosConsumidosHandler(handler10);
+            
             //Obtengo una instancia de TelegramBot
             TelegramBot telegramBot = TelegramBot.Instance;
             Console.WriteLine($"Hola soy el Bot de P2, mi nombre es {telegramBot.BotName} y tengo el Identificador {telegramBot.BotId}");
@@ -219,22 +230,9 @@ namespace Program
 
         private static async void OnMessage(object sender, MessageEventArgs messageEventArgs)
         {
-            BaseHandler handler1 = new OfertasHandler(null);
-            BaseHandler handler2 = new AgregarResiduoHandler(handler1);
-            BaseHandler handler3 = new CambiarDatosHandler(handler2);
-            BaseHandler handler4 = new InvitarHandler(handler3);
-            BaseHandler handler5 = new PublicarHandler(handler4);
-            BaseHandler handler6 = new RegistrarseHandler(handler5);
-            BaseHandler handler7 = new ResiduosConstantesHandler(handler6);
-            BaseHandler handler8 = new ResiduosPuntualesHandler(handler7);
-            BaseHandler handler9 = new VerEntregadosHandler(handler8);
-            BaseHandler handler10 = new VerPublicacionesHandler(handler9);
-            BaseHandler handler11 = new VerResiduosConsumidosHandler(handler10);
-            List<BaseHandler> AllHandlers = new List<BaseHandler>{handler11, handler10, handler9, handler8, handler7, handler6, handler5, handler4, handler3, handler2, handler1};
-        
-
             Message message = messageEventArgs.Message;
             Chat chatInfo = message.Chat;
+            Administrador administrador = new Administrador(Convert.ToInt32(chatInfo.Id));
             string messageText = message.Text.ToLower();
             if (messageText != null)
             {
@@ -265,18 +263,39 @@ namespace Program
                 {
                     string response;
                     handler11.Handle(messageText, Convert.ToInt32(chatInfo.Id), out response);
+                    if (response != string.Empty)
+                    {
                         await client.SendTextMessageAsync(
                                               chatId: chatInfo.Id,
                                               text: response
                                             );
-                }
-                else
-                {
-                    string response;
+                    }
+                    else
+                    {
                         await client.SendTextMessageAsync(
                                               chatId: chatInfo.Id,
                                               text: $"{chatInfo.FirstName}, no comprendo lo que dices 😕"
                                             );
+                    }
+                }
+                else
+                {
+                    string response;
+                    handler11.Handle(messageText, Convert.ToInt32(chatInfo.Id), out response);
+                    if (response == string.Empty)
+                    {
+                        await client.SendTextMessageAsync(
+                                              chatId: chatInfo.Id,
+                                              text: $"{chatInfo.FirstName}, no comprendo lo que dices 😕"
+                                            );
+                    }
+                    else
+                    {
+                        await client.SendTextMessageAsync(
+                                              chatId: chatInfo.Id,
+                                              text: response
+                                            );
+                    }
                 }
             }
         }
