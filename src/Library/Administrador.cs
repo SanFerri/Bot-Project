@@ -9,6 +9,8 @@ namespace ClassLibrary
     /// </summary>
     public class Administrador : IUsuario
     {   
+        public string State { get; set; } = "start";
+
         /// <summary>
         /// Constructor de Administrador
         /// </summary>
@@ -28,13 +30,13 @@ namespace ClassLibrary
         /// administrador.
         /// </summary>
         /// <value></value>
-        public int Invitacion{get; set;}
+        public string Invitacion{get; set;}
         /// <summary>
         /// Constructor de una instancia de administrador. 
         /// </summary>
         /// <param name="invitacion"></param>
 
-        public Administrador(int invitacion)
+        public Administrador(string invitacion)
         {
             this.Invitacion = invitacion;
             ListaAdministradores LosAdministradores = ListaAdministradores.GetInstance();

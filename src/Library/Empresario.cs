@@ -9,6 +9,7 @@ namespace ClassLibrary
     /// </summary>
     public class Empresario : IUsuario, IEmpresarioPublicaciones
     {
+        public string State { get; set; } = "start";
         /// <summary>
         /// Constructor de Empresario.
         /// </summary>
@@ -36,22 +37,19 @@ namespace ClassLibrary
         /// Es el encargado de conocer el valor de una invitación de acceso.
         /// </summary>
         /// <value></value>
-        public int Invitacion{get; set;}
+        public string Invitacion{get; set;}
        
         /// <summary>
         /// Constructor de una instancia de Empresario.
         /// </summary>
         /// <param name="invitacion"></param>
         /// <param name="empresa"></param>
-        public Empresario(int invitacion, Empresa empresa)
+        public Empresario(string invitacion, Empresa empresa)
         {
             this.Empresa = empresa;
             this.Invitacion = invitacion;
-            if (this.Empresa != null && this.Invitacion != null)
-            {
-                ListaEmpresarios LosEmpresarios = ListaEmpresarios.GetInstance();
-                LosEmpresarios.AddEmpresario(this);
-            }
+            ListaEmpresarios LosEmpresarios = ListaEmpresarios.GetInstance();
+            LosEmpresarios.AddEmpresario(this);
             this.LasPublicaciones = this.Empresa.Publicaciones;
         }
     }

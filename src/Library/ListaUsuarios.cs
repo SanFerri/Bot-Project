@@ -15,14 +15,14 @@ namespace ClassLibrary
         /// que lleva un registro de todos las Usuario que hay.
         /// </summary>
         /// <returns></returns>
-        public List<IUsuario> Usuarios {get; set;}
+        public List<Emprendedor> Usuarios {get; set;}
         private static ListaUsuarios _instance;
 
         /// <summary>
         /// AddUsuario es el encargado de agregar Usuario a la lista.
         /// </summary>
         /// <param name="usuario"></param>
-        public void AddUsuario(IUsuario usuario)
+        public void AddUsuario(Emprendedor usuario)
         {
             Usuarios.Add(usuario);
         }
@@ -34,7 +34,7 @@ namespace ClassLibrary
         /// RemoveUsuario es el encargado de remover Usuario de la lista.
         /// </summary>
         /// <param name="usuario"></param>
-        public void RemoveUsuario(IUsuario usuario)
+        public void RemoveUsuario(Emprendedor usuario)
         {
             Usuarios.Remove(usuario);
         }
@@ -43,7 +43,7 @@ namespace ClassLibrary
         /// </summary>
         private ListaUsuarios()
         {
-            this.Usuarios = new List<IUsuario>();
+            this.Usuarios = new List<Emprendedor>();
         }
 
         /// <summary>

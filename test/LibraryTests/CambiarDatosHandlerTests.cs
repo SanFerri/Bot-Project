@@ -30,7 +30,7 @@ namespace Tests
         {
             Residuo = new Residuo("metal", 100, "kg", 250, "$");
             
-            int invitacion = InvitationGenerator.Generate();
+            string invitacion = InvitationGenerator.Generate();
             Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
             Empresa.Residuos.AddResiduo(Residuo);
@@ -40,7 +40,7 @@ namespace Tests
             Empresarios.AddEmpresario(Usuario);
 
             Handler = new CambiarDatosHandler(null);
-            int invitacion2 = InvitationGenerator.Generate();
+            string invitacion2 = InvitationGenerator.Generate();
             Usuario2 = new Administrador(invitacion2);
             Usuario2.Id = Id;
             Administradores.AddAdministrador(Usuario2);
@@ -81,7 +81,7 @@ namespace Tests
         [Test]
         public void WorkingCambiarDatosHandlerTest()
         {
-            Empresario empresario = new Empresario(323234, Empresa);
+            Empresario empresario = new Empresario("323234", Empresa);
             Message = Handler.Keywords[0];
             string response;
 

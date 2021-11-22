@@ -23,7 +23,7 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
 
-        public int Invitacion { get; private set; }
+        public string Invitacion { get; private set; }
 
         /// <summary>
         /// Los datos de la empresa.
@@ -45,6 +45,8 @@ namespace ClassLibrary
         /// <value></value>
         public string ContactoData { get; private set; }
 
+        public Administrador Administrador { get; private set; }
+
         /// <summary>
         /// Es el resultado de la publicación.
         /// </summary>
@@ -52,7 +54,7 @@ namespace ClassLibrary
         public Publicacion Result { get; private set; }
 
         /// <summary>
-        /// Lista de todos los empresarios que hay.
+        /// Lista de todos los Administradors que hay.
         /// </summary>
         /// <returns></returns>
 
@@ -84,13 +86,35 @@ namespace ClassLibrary
                 if(administrador.Id == id)
                 {
                     realAdministrador = true;
+                    this.Administrador = administrador;
                 }
             }
+            if(realAdministrador == true)
+            {
+                if (Administrador.State == "IH-NP")
+                {
+                    State = InvitarState.NombrePrompt;
+                }
+                else if (Administrador.State == "IH-UP")
+                {
+                    this.State = InvitarState.UbicacionPrompt;
+                }
+                else if (Administrador.State == "IH-CP")
+                {
+                    this.State = InvitarState.ContactoPrompt;
+                }
+                else if (Administrador.State == "IH-AP")
+                {
+                    this.State = InvitarState.AdministradorPrompt;
+                }
+            }
+
             if(realAdministrador == true && State ==  InvitarState.Start && message == "/invitar")
             {
                 // En el estado Start le pide la dirección de origen y pasa al estado FromAddressPrompt
-                this.State = InvitarState.NombrePrompt;
+                this.Administrador.State = "IH-NP";
                 response = "¿Cual es el nombre de la empresa que quiere invitar?";
+                this.State = InvitarState.Start;
 
                 return true;
             }
@@ -98,15 +122,18 @@ namespace ClassLibrary
             {
                 // En el estado FromAddressPrompt el mensaje recibido es la respuesta con la dirección de origen
                 this.NombreEmpresa = message;
-                this.State = InvitarState.UbicacionPrompt;
+                this.Administrador.State = "IH-UP";
                 response = "Ahora dime la ubicacion de dicha empresa";
+                this.State = InvitarState.Start;
+
                 return true;
             }
             else if (State == InvitarState.UbicacionPrompt)
             {
                 this.UbicacionData = new Ubicacion(message);
-                this.State = InvitarState.ContactoPrompt;
+                this.Administrador.State = "IH-CP";
                 response = "Por ultimo dime el contacto de la empresa";
+                this.State = InvitarState.Start;
 
                 return true;
             }
@@ -117,23 +144,26 @@ namespace ClassLibrary
                 if (this.EmpresaData != null)
                 {
                     response = "Se ha creado la empresa ahora crearemos el usuario.";
-                    this.State = InvitarState.EmpresarioPrompt;
+                    this.Administrador.State = "IH-AP";
+                    this.State = InvitarState.Start;
 
                     return true;
                 }
                 else
                 {
                     response = "No se ha creado la empresa puede volver a intentar.";
+                    this.Administrador.State = "start";
                     this.State = InvitarState.Start;
 
                     return false;
                 }
             }
-            else if (State == InvitarState.EmpresarioPrompt)
+            else if (State == InvitarState.AdministradorPrompt)
             {
                 this.Invitacion = InvitationGenerator.Generate();
-                Empresario empresario = new Empresario(Invitacion, this.EmpresaData);
+                Empresario Empresario = new Empresario(Invitacion, this.EmpresaData);
                 response = $"Se ha creado el empresario y esta es la invitacion que debe usar para acceder a su status: {this.Invitacion}";
+                this.State = InvitarState.Start;
 
                 return true;
             }
@@ -142,6 +172,7 @@ namespace ClassLibrary
                 // En los estados FromAddressPrompt o ToAddressPrompt si no hay un buscador de direcciones hay que
                 // responder que hubo un error y volver al estado inicial.
                 response = "Usted no es un administrador, no puede usar el codigo...";
+                this.State = InvitarState.Start;
 
                 return false;
             }
@@ -184,9 +215,9 @@ namespace ClassLibrary
             ///estado 
             ContactoPrompt,
 
-            ///EmpresarioPrompt: En este estado el comando envia el contacto del empresario para asi ponerse
+            ///AdministradorPrompt: En este estado el comando envia el contacto del Administrador para asi ponerse
             ///en contacto. 
-            EmpresarioPrompt
+            AdministradorPrompt
         }
     }
 }

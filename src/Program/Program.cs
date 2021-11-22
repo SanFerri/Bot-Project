@@ -195,6 +195,15 @@ namespace Program
         static BaseHandler handler11;
         public static void Main()
         {
+            Residuo Residuo = new Residuo("metal", 100, "kg", 250, "$");
+            
+            string invitacion = InvitationGenerator.Generate();
+            Console.WriteLine(invitacion);
+            Ubicacion Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
+            Empresa Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
+            Empresa.Residuos.AddResiduo(Residuo);
+            Empresario Usuario = new Empresario(invitacion, Empresa);
+
             handler1 = new OfertasHandler(null);
             handler2 = new AgregarResiduoHandler(handler1);
             handler3 = new CambiarDatosHandler(handler2);
@@ -232,7 +241,7 @@ namespace Program
         {
             Message message = messageEventArgs.Message;
             Chat chatInfo = message.Chat;
-            Administrador administrador = new Administrador(Convert.ToInt32(chatInfo.Id));
+            Administrador administrador = new Administrador("7777");
             string messageText = message.Text.ToLower();
             if (messageText != null)
             {

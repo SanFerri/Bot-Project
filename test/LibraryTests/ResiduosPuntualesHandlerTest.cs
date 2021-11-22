@@ -31,7 +31,7 @@ namespace Tests
             Residuo = new Residuo("metal", 100, "kg", 250, "$");
             Handler = new ResiduosPuntualesHandler(null);
             
-            int invitacion = InvitationGenerator.Generate();
+            string invitacion = InvitationGenerator.Generate();
             Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
             Empresa.Residuos.AddResiduo(Residuo);
@@ -39,7 +39,7 @@ namespace Tests
             Id = 12345678;
             Usuario.Id = Id;
             Empresarios.AddEmpresario(Usuario);
-            int invitacion2 = InvitationGenerator.Generate();
+            string invitacion2 = InvitationGenerator.Generate();
             Usuario2 = new Administrador(invitacion2);
             Usuario2.Id = Id;
             Administradores.AddAdministrador(Usuario2);
