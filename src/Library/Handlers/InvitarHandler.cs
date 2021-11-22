@@ -14,7 +14,7 @@ namespace ClassLibrary
         public InvitarState State { get; private set; }
 
         /// <summary>
-        /// Los datos que va obteniendo el comando en los diferentes estados.
+        /// Pide la ubicación.
         /// </summary>
         public Ubicacion UbicacionData { get; private set; }
 
@@ -57,6 +57,7 @@ namespace ClassLibrary
         /// <returns></returns>
 
         public ListaAdministradores LosAdministradores = ListaAdministradores.GetInstance();
+        
         /// <summary>
         /// Esta clase procesa el mensaje /invitar.
         /// </summary>
@@ -88,7 +89,8 @@ namespace ClassLibrary
             }
             if(realAdministrador == true && State ==  InvitarState.Start && message == "/invitar")
             {
-                // En el estado Start le pide la dirección de origen y pasa al estado FromAddressPrompt
+                // El estado InvitarState.NombrePrompt espera que se ingrese el nombre de la empresa la cual
+                // se quiere invitar. 
                 this.State = InvitarState.NombrePrompt;
                 response = "¿Cual es el nombre de la empresa que quiere invitar?";
 
@@ -96,8 +98,7 @@ namespace ClassLibrary
             }
             else if (State == InvitarState.NombrePrompt)
             {
-                // En el estado FromAddressPrompt el mensaje recibido es la respuesta con la dirección de origen
-                this.NombreEmpresa = message;
+                // En el estado InvitarState.UbicacionPrompt el mensaje recibido es la respuesta con la ubicacion de la empresa                this.NombreEmpresa = message;
                 this.State = InvitarState.UbicacionPrompt;
                 response = "Ahora dime la ubicacion de dicha empresa";
                 return true;
@@ -139,8 +140,7 @@ namespace ClassLibrary
             }
             else if (realAdministrador == false && message == this.Keywords[0])
             {
-                // En los estados FromAddressPrompt o ToAddressPrompt si no hay un buscador de direcciones hay que
-                // responder que hubo un error y volver al estado inicial.
+                // Responde cuando no es un empresario, de esa manera no puede utilizar el codigo.
                 response = "Usted no es un administrador, no puede usar el codigo...";
 
                 return false;

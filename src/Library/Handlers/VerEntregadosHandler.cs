@@ -20,13 +20,13 @@ namespace ClassLibrary
         public Empresa EmpresaUsuario { get; private set; }
 
         /// <summary>
-        /// Las publicaciones de la empresa
+        /// Lista donde se almacenan las publicaciones.
         /// </summary>
         /// <value></value>
         public ListaPublicaciones PublicacionesUsuario { get; private set; }
 
         /// <summary>
-        /// Los datos que va obteniendo el comando en los diferentes estados.
+        /// Procesa el mensaje /verentregados.
         /// </summary>
 
         public VerEntregadosHandler(BaseHandler next) : base(next)
@@ -94,7 +94,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Indica los diferentes estados que puede tener el comando ResiduosPuntualesState
+        /// Indica los diferentes estados de VerPublicacionesState.
         /// </summary>
         public enum VerPublicacionesState
         {
