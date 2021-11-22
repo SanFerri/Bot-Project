@@ -9,6 +9,7 @@ namespace ClassLibrary
     public class InvitationGenerator
     {
         private static List<int> invitaciones{get;set;} = new List<int>();
+        
         /// <summary>
         /// Generamos un randomizer
         /// </summary>

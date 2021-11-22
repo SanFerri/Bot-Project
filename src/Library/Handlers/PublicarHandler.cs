@@ -14,7 +14,7 @@ namespace ClassLibrary
         public PublicarState State { get; private set; }
 
         /// <summary>
-        /// Los datos que va obteniendo el comando en los diferentes estados.
+        /// Es la ubicación.
         /// </summary>
         public Ubicacion UbicacionData { get; private set; }
 
@@ -77,7 +77,7 @@ namespace ClassLibrary
         public ListaPalabrasClave LasClaves= ListaPalabrasClave.GetInstance();
 
         /// <summary>
-        /// Es la palabra que se debe usar para poder ejecutar las funciones de este handler.
+        /// Esta clase procesa el mensaje /publicar.
         /// </summary>
         /// <param name="next"></param>
         /// <returns></returns>
@@ -132,7 +132,8 @@ namespace ClassLibrary
 
             if(realEmpresario == true && State ==  PublicarState.Start && message == "/publicar")
             {
-                // En el estado Start le pide la dirección de origen y pasa al estado FromAddressPrompt
+                // El estado PublicarState.PalabrasClavePrompt espera que el usuario ingrese el número de la palabra clave que 
+                //quiere utilizar
                 int contador = 0;
                 this.Empresario.State = "PH-PCP";
                 string unfinishedResponse = "Ingrese el numero de la palabra clave que quiera agregar:\n";
@@ -182,7 +183,7 @@ namespace ClassLibrary
             }
             else if (State == PublicarState.ConstantePrompt)
             {
-                // En el estado FromAddressPrompt el mensaje recibido es la respuesta con la dirección de origen
+                // El estado PublicarState.ResiduoPrompt espera que el usuario ingrese el residuo que quiere publicar.
                 this.UbicacionData = new Ubicacion(message);
                 this.Empresario.State = "PH-RP";
                 response = "Ahora dime sobre cual de tus residuos quieres publicar";
@@ -212,9 +213,7 @@ namespace ClassLibrary
                 }
                 else
                 {
-                    // Si no encuentra alguna de las direcciones se las pide de nuevo y vuelve al estado FromAddressPrompt.
-                    // Una versión más sofisticada podría determinar cuál de las dos direcciones no existe y volver al
-                    // estado en el que se pide la dirección que falta.
+                    // El estado PublicarState.Start responde cuando no se puede crear una publicación.
                     response = "No se ha podido hacer crear la publicacion, vuelva a intentarlo.";
                     this.Empresario.State = "start";
                     this.State = PublicarState.Start;
@@ -224,8 +223,7 @@ namespace ClassLibrary
             }
             else if (realEmpresario == false && message == this.Keywords[0])
             {
-                // En los estados FromAddressPrompt o ToAddressPrompt si no hay un buscador de direcciones hay que
-                // responder que hubo un error y volver al estado inicial.
+                // Responde cuando no es un empresario, de esa manera no puede utilizar el codigo.
                 response = "Usted no es un empresario, no puede usar el codigo...";
                 this.State = PublicarState.Start;
 

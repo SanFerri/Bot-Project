@@ -15,7 +15,7 @@ namespace ClassLibrary
         public RegistrarseState State { get; private set; }
 
         /// <summary>
-        /// Los datos que va obteniendo el comando en los diferentes estados.
+        /// Esta clase procesa el mensaje /registrarse.
         /// </summary>
 
         public RegistrarseHandler(BaseHandler next) : base(next)
@@ -76,8 +76,7 @@ namespace ClassLibrary
                 }    
                 else
                 {
-                    // En los estados FromAddressPrompt o ToAddressPrompt si no hay un buscador de direcciones hay que
-                    // responder que hubo un error y volver al estado inicial.
+                    // Responde cuando el usario ya esta registrado como un empresario.
                     response = "Usted ya esta registrado como un empresario";
                     this.State = RegistrarseState.Start;
 

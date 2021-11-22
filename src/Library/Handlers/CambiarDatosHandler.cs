@@ -14,7 +14,7 @@ namespace ClassLibrary
         public CambiarDatosState State { get; private set; }
 
         /// <summary>
-        /// Los datos que va obteniendo el comando en los diferentes estados.
+        /// Es el usario de la empresa.
         /// </summary>
         public Empresa EmpresaUsuario { get; private set; }
 
@@ -101,7 +101,7 @@ namespace ClassLibrary
             }
             else if (State == CambiarDatosState.NombrePrompt)
             {
-                // En el estado FromAddressPrompt el mensaje recibido es la respuesta con la dirección de origen
+                // En el estado CambiarDatosState el mensaje recibido con la ubicación de la empresa.
                 this.NombreEmpresa = message;
                 this.Empresario.State = "CDH-UP";
                 response = "Ahora dime la ubicacion de dicha empresa";
@@ -131,8 +131,8 @@ namespace ClassLibrary
             }
             else if (realEmpresario == false)
             {
-                // En los estados FromAddressPrompt o ToAddressPrompt si no hay un buscador de direcciones hay que
-                // responder que hubo un error y volver al estado inicial.
+                // En caso de que realEmpresario sea False, el bot interpreta que el usario en cuestion no es un empresario
+                //y por ende le responde que no puede utilizar los comandos de empresario.
                 response = "Usted no es un empresario, no puede usar el codigo...";
                 this.State = CambiarDatosState.Start;
 

@@ -16,7 +16,7 @@ namespace ClassLibrary
         public OfertasState State { get; private set; }
 
         /// <summary>
-        /// Los datos que va obteniendo el comando en los diferentes estados.
+        /// Es la ubicación donde se encuentra el producto.
         /// </summary>
         public Ubicacion UbicacionData { get; private set; }
 
@@ -57,6 +57,7 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public string PalabraClave { get; private set; }
+        
         /// <summary>
         /// Es una lista que contiene las palabras claves que se pueden usar.
         /// </summary>
@@ -171,7 +172,7 @@ namespace ClassLibrary
             }
             else if (State == OfertasState.UbicacionPrompt)
             {
-                // En el estado FromAddressPrompt el mensaje recibido es la respuesta con la dirección de origen
+                // En el estado OfertasState.ResiduoPrompt el mensaje recibido es el residuo que se esta buscando.
                 this.UbicacionData = new Ubicacion(message);
                 this.Emprendedor.State = "OH-RP";
                 this.State = OfertasState.Start;
