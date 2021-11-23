@@ -32,6 +32,10 @@ namespace ClassLibrary
         /// <value></value>
         public ListaPublicaciones PublicacionesUsuario { get; private set; }
 
+        public ListaEmpresarios LosEmpresarios { get; private set; }
+
+        public Empresario Empresario { get; private set; }
+
         /// <summary>
         /// Procesa el mensaje /verpublicaciones.
         /// </summary>
@@ -51,14 +55,34 @@ namespace ClassLibrary
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
-            ListaEmpresarios TodoEmpresario = ListaEmpresarios.GetInstance();
             bool realEmpresario = false;
-            foreach(Empresario empresario in TodoEmpresario.Empresarios)
+            LosEmpresarios = ListaEmpresarios.GetInstance();
+            foreach(Empresario empresario in this.LosEmpresarios.Empresarios)
             {
                 if(empresario.Id == id)
                 {
                     this.EmpresaUsuario = empresario.Empresa;
                     realEmpresario = true;
+                    this.Empresario = empresario;
+                }
+            }
+            if(realEmpresario == true)
+            {
+                if (Empresario.State == "VPH-CP")
+                {
+                    State = VerPublicacionesState.CambiarPrompt;
+                }
+                else if (Empresario.State == "VPH-EU")
+                {
+                    this.State = VerPublicacionesState.EntregadoUsuario;
+                }
+                else if (Empresario.State == "VPH-E")
+                {
+                    this.State = VerPublicacionesState.Eliminar;
+                }
+                else if (Empresario.State == "VPH-E2")
+                {
+                    this.State = VerPublicacionesState.Entregado;
                 }
             }
 
@@ -77,31 +101,43 @@ namespace ClassLibrary
                 }
                 unfinishedResponse += "¿Quieres eliminar alguna publicacion? o indicar que esta entregada? Responda elIminar, entregado, o no";
                 response = unfinishedResponse;
-                this.State = VerPublicacionesState.CambiarPrompt;
+                this.Empresario.State = "VPH-CP";
+                State = VerPublicacionesState.Start;
+
                 return true;
             } 
             else if (State == VerPublicacionesState.CambiarPrompt)
             {
                 if (message == "entregado")
                 {
-                    this.State = VerPublicacionesState.EntregadoUsuario;
+                    this.Empresario.State = "VPH-EU";
                     response = "Ingrese el numero de la publicacion que quiera indicar como entregada.";
+                    State = VerPublicacionesState.Start;
+
                     return true;
                 }
                 else if (message == "eliminar")
                 {
-                    this.State = VerPublicacionesState.Eliminar;
+                    this.Empresario.State = "VPH-E";
                     response = "Ingrese el numero de la publicacion que quiera eliminar.";
+                    State = VerPublicacionesState.Start;
+
                     return true;
                 }
                 else if (message == "no")
                 {
                     response = string.Empty;
+                    this.Empresario.State = "start";
+                    State = VerPublicacionesState.Start;
+
                     return false;
                 }
                 else
                 {
                     response = "No ingreso una respuesta valida";
+                    this.Empresario.State = "start";
+                    State = VerPublicacionesState.Start;
+
                     return false;
                 }
             }
@@ -111,7 +147,8 @@ namespace ClassLibrary
                 {
                     Elegido = Convert.ToInt32(message);
                 }
-                this.State = VerPublicacionesState.Entregado;
+                this.Empresario.State = "VPH-E";
+                State = VerPublicacionesState.Start;
                 response = "¿Cual es el id del usuario al que le ha entregado esta publicacion?";
 
                 return true;
@@ -133,12 +170,17 @@ namespace ClassLibrary
                     publicacionElegida.Entregado = true;
                     publicacionElegida.IdEntregado = id;
                     response = "Se ha puesto la publicacion como entregada";
+                    this.Empresario.State = "start";
+                    State = VerPublicacionesState.Start;
+
                     return true;
                 }
                 else
                 {
                     response = "El id indicado no existe.";
-                    this.State = VerPublicacionesState.EntregadoUsuario;
+                    this.Empresario.State = "VPH-EU";
+                    State = VerPublicacionesState.Start;
+
                     return true;
                 }
             }
@@ -149,6 +191,8 @@ namespace ClassLibrary
                 mercado.RemoveMercado(publicacionElegida);
                 EmpresaUsuario.Publicaciones.RemovePublicacion(publicacionElegida);
                 response = "Se ha eliminado la publicacion";
+                this.Empresario.State = "start";
+                State = VerPublicacionesState.Start;
 
                 return true;
             }
@@ -156,11 +200,15 @@ namespace ClassLibrary
             else if (realEmpresario == false && message == this.Keywords[0])
             {
                 response = "Usted no es un empresario, no puede hacer uso de este comando";
+                State = VerPublicacionesState.Start;
+
                 return true;
             }
             else
             {
                 response = string.Empty;
+                State = VerPublicacionesState.Start;
+
                 return false;
             }
         }

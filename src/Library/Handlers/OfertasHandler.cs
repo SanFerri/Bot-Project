@@ -176,17 +176,24 @@ namespace ClassLibrary
                 this.UbicacionData = new Ubicacion(message);
                 this.Emprendedor.State = "OH-RP";
                 this.State = OfertasState.Start;
-                response = "Ahora dime que tipo de residuos estas buscando?";
+                int contador = 0;
+                string unfinished = "Ingrese el tipo del residuo que quiere agregar:\n";
+                foreach(string residuo in PosiblesResiduos.GetInstance().Residuos)
+                {
+                    unfinished += $"{contador}. {residuo}\n";
+                    contador += 1;
+                }
+                response = unfinished;
 
                 return true;
             }
             else if (State == OfertasState.ResiduoPrompt)
             {
+                this.ResiduoTipo = PosiblesResiduos.GetInstance().Residuos[Convert.ToInt32(message)];
                 if(this.BuscarConPalabraClave == false)
                 {
                     int contador = 0;
                     string builderResponse = "";
-                    this.ResiduoTipo = message;
                     this.OfertasData = Buscador.Buscar(this.ResiduoTipo, this.UbicacionData);
                     builderResponse += "Ingrese el número de la publicación para ver más información de la misma:\n"; 
                     foreach(Publicacion publicacion in this.OfertasData)
@@ -212,13 +219,13 @@ namespace ClassLibrary
 
                         return false;
                     }
+                    this.State = OfertasState.Start;
                 }
                 else
                 {
                     this.OfertasData = Buscador.Buscar(PalabraClave);
                     int contador = 0;
                     string builderResponse = "";
-                    this.ResiduoTipo = message;
                     builderResponse += "Ingrese el número de la publicación para ver más información de la misma:\n"; 
                     foreach(Publicacion publicacion in this.OfertasData)
                     {
@@ -232,6 +239,7 @@ namespace ClassLibrary
                         // estado en el que se pide la dirección que falta.
                         response = "No se ha podido encontrar una publicacion en esa categoría, vuelva a intentarlo en otro momento.";
                         this.Emprendedor.State = "start";
+                        this.State = OfertasState.Start;
 
                         return false;
                     }
@@ -239,6 +247,7 @@ namespace ClassLibrary
                     {
                         response = builderResponse;
                         this.Emprendedor.State = "OH-NP";
+                        this.State = OfertasState.Start;
 
                         return true;
                     }
@@ -251,6 +260,7 @@ namespace ClassLibrary
                 Publicacion publicacion = this.OfertasData[this.Eleccion];
                 response = $"El número de contacto de esta publicación es {publicacion.Empresa.Contacto}";
                 this.Emprendedor.State = "start";
+                this.State = OfertasState.Start;
 
                 return false;
             }            
@@ -258,7 +268,8 @@ namespace ClassLibrary
             {
                 Console.WriteLine("Entro a Ofertas handler :(");
                 response = string.Empty;
-                this.InternalCancel();
+                this.State = OfertasState.Start;
+
                 return false;
             }
         }

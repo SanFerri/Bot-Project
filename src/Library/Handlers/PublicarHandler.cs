@@ -66,6 +66,7 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public bool Constante { get; private set; }
+        public ListaResiduos ResiduosUsuario { get; private set; }
         public Empresario Empresario { get; private set; }
         public ListaEmpresarios LosEmpresarios { get; private set; }
 
@@ -187,21 +188,22 @@ namespace ClassLibrary
                 // El estado PublicarState.ResiduoPrompt espera que el usuario ingrese el residuo que quiere publicar.
                 this.UbicacionData = new Ubicacion(message);
                 this.Empresario.State = "PH-RP";
-                response = "Ahora dime sobre cual de tus residuos quieres publicar";
+                int contador = 0;
+                string unfinishedResponse = "Indique el numero del residuo sobre el cual quiera publicar:\n";
+                this.ResiduosUsuario = EmpresaUsuario.Residuos;
+                foreach(Residuo residuo in this.ResiduosUsuario.Residuos)
+                {
+                    unfinishedResponse += $"{contador}. {residuo.Tipo}: {residuo.Cantidad}{residuo.Unidad}, cuesta {residuo.Cost}{residuo.Moneda}\n";
+                    contador += 1;
+                }
                 this.State = PublicarState.Start;
+                response = unfinishedResponse;
 
                 return true;
             }
             else if (State == PublicarState.ResiduoPrompt)
             {
-                this.ResiduoTipo = message;
-                foreach(Residuo residuo in this.EmpresaUsuario.Residuos.Residuos)
-                {
-                    if(residuo.Tipo == ResiduoTipo)
-                    {
-                        this.ResiduoElegido = residuo;
-                    }
-                }
+                this.ResiduoElegido = this.ResiduosUsuario.Residuos[Convert.ToInt32(message)];
                 this.Result = new Publicacion(this.ResiduoElegido, this.UbicacionData, this.EmpresaUsuario, this.HabilitacionData, this.Constante);
                 this.Result.AgregarPalabraClave(this.PalabraClave);
                 if(this.ResiduoElegido != null && this.Result != null)

@@ -19,6 +19,8 @@ namespace ClassLibrary
         /// <value></value>
         public Empresa EmpresaUsuario { get; private set; }
 
+        public Emprendedor Emprendedor { get; private set; }
+
         /// <summary>
         /// Lista de publicaciones de la empresa
         /// </summary>
@@ -44,10 +46,29 @@ namespace ClassLibrary
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
+            bool realEmprendedor = false;
+            foreach(Emprendedor emprendedor in ListaUsuarios.GetInstance().Usuarios)
+            {
+                if (emprendedor.Id == id)
+                {
+                    this.Emprendedor = emprendedor;
+                    realEmprendedor = true;
+                }
+            }
+            if (realEmprendedor == true)
+            {
+                if (Emprendedor.State == "VRCH-C")
+                {
+                    State = VerResiduosConsumidosState.Consumidos;
+                }
+            }
+
             if (State == VerResiduosConsumidosState.Start && message == "/verresiduosconsumidos")
             {
-                this.State = VerResiduosConsumidosState.Consumidos;
+                this.Emprendedor.State = "VRCH-C";
                 response = "¿Residuos entregados desde hace cuantos dias quieres ver?";
+                State = VerResiduosConsumidosState.Start;
+
                 return true;
             }
             if (State == VerResiduosConsumidosState.Consumidos)
@@ -61,11 +82,16 @@ namespace ClassLibrary
                     contador += 1;
                 }
                 response = unfinishedResponse;
+                State = VerResiduosConsumidosState.Start;
+                this.Emprendedor.State = "start";
+
                 return true;
             }
             else
             {
                 response = string.Empty;
+                State = VerResiduosConsumidosState.Start;
+
                 return false;
             }
         }

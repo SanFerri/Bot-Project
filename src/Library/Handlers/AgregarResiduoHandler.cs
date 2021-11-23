@@ -116,16 +116,23 @@ namespace ClassLibrary
 
             if (State == AgregarResiduoState.Start && message == "/agregarresiduo" && realEmpresario == true)
             {
+                int contador = 0;
                 Empresario.State = "ARH-NP";
-                response = "Ingrese el tipo del residuo que quiere agregar.";
+                string unfinished = "Ingrese el tipo del residuo que quiere agregar:\n";
+                foreach(string residuo in PosiblesResiduos.GetInstance().Residuos)
+                {
+                    unfinished += $"{contador}. {residuo}\n";
+                    contador += 1;
+                }
                 this.State = AgregarResiduoState.Start;
+                response = unfinished;
 
                 return true;
             }
             else if (State == AgregarResiduoState.NombrePrompt)
             {
                 // En el estado AgregarResiduosState el mensaje recibido es la respuesta con la cantidad que posee del residuo en cuestion.
-                this.NombreResiduo = message;
+                this.NombreResiduo = PosiblesResiduos.GetInstance().Residuos[Convert.ToInt32(message)];
                 Empresario.State = "ARH-CP";
                 response = "Ahora ingrese la cantidad que posees de dicho residuo";
                 this.State = AgregarResiduoState.Start;

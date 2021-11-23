@@ -107,9 +107,11 @@ namespace ClassLibrary
                 {
                     response = "Se te ha registrado correctamente, en caso de querer cambiar los datos predeterminados de la empresa use el comando /cambiardatos";
                 }
+                this.Emprendedor.State = "start";
+                this.State = RegistrarseState.Start;
                 return confirmRegistrado;
             } 
-            else if (message == "no")
+            else if (message == "no" && State == RegistrarseState.InvitacionPrompt)
             {
                 response = "Se te ha registrado como un emprendedor.";
                 return true;
