@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using ClassLibrary;
+using LocationApi;
 
 namespace Tests
 {
@@ -10,7 +11,7 @@ namespace Tests
     public class VerEntregadosHandlerTest
     {
         Residuo Residuo;
-        CambiarDatosHandler Handler;
+        VerEntregadosHandler Handler;
         string Message;
         Empresa Empresa;
         Empresario Usuario;
@@ -39,7 +40,7 @@ namespace Tests
             Usuario.Id = Id;
             Empresarios.AddEmpresario(Usuario);
 
-            Handler = new CambiarDatosHandler(null);
+            Handler = new VerEntregadosHandler(null);
             string invitacion2 = InvitationGenerator.Generate();
             Usuario2 = new Administrador(invitacion2);
             Usuario2.Id = Id;
@@ -47,21 +48,21 @@ namespace Tests
         }
 
         /// <summary>
-        /// Este test se encarga de comprobar que funciona el comando /publicar.
+        /// Este test se encarga de comprobar que funciona el comando /verentregados.
         /// </summary>
         [Test]
-        public void CambiarDatosCanHandleTest()
+        public void VerEntregadosCanHandleTest()
         {
             Message = Handler.Keywords[0];
             string response;
 
             IHandler result = Handler.Handle(Message, Id, out response);
 
-            Assert.That(response, Is.EqualTo("Ingrese el nombre de su empresa."));
+            Assert.That(response, Is.EqualTo("¿Publicaciones entregadas desde hace cuantos dias quieres ver?"));
         }
 
         /// <summary>
-        /// Este test se encarga de comprobar que el comando /publicar no funciona con un usuario que no es un empresario.
+        /// Este test se encarga de comprobar que el comando /verentregados no funciona con un usuario que no es un empresario.
         /// </summary>
         [Test]
         public void CambiarDatosCantHandleTest()
