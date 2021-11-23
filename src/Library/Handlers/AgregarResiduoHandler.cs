@@ -77,6 +77,7 @@ namespace ClassLibrary
         /// <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
         protected override bool InternalHandle(string message, int id, out string response)
         {
+            this.State = AgregarResiduoState.Start;
             bool realEmpresario = false;
             foreach(Empresario empresario in this.LosEmpresarios.Empresarios)
             {
@@ -84,9 +85,11 @@ namespace ClassLibrary
                 {
                     this.EmpresaUsuario = empresario.Empresa;
                     realEmpresario = true;
+                    Console.WriteLine("Es un empresario");
                     this.Empresario = empresario;
                 }
             }
+
             if(realEmpresario == true)
             {
                 if (Empresario.State == "ARH-NP")
