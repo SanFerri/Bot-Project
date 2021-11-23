@@ -18,6 +18,9 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public Empresa EmpresaUsuario { get; private set; }
+        
+        public ListaEmpresarios LosEmpresarios { get; private set; }
+        public Empresario Empresario { get; private set; }
 
         /// <summary>
         /// Lista donde se almacenan las publicaciones.
@@ -45,19 +48,30 @@ namespace ClassLibrary
         protected override bool InternalHandle(string message, int id, out string response)
         {
             bool realEmpresario = false;
-            ListaEmpresarios TodoEmpresario = ListaEmpresarios.GetInstance();
-            foreach(Empresario empresario in TodoEmpresario.Empresarios)
+            LosEmpresarios = ListaEmpresarios.GetInstance();
+            foreach(Empresario empresario in this.LosEmpresarios.Empresarios)
             {
                 if(empresario.Id == id)
                 {
                     this.EmpresaUsuario = empresario.Empresa;
                     realEmpresario = true;
+                    this.Empresario = empresario;
                 }
             }
+            if(realEmpresario == true)
+            {
+                if (Empresario.State == "VEH-E")
+                {
+                    State = VerPublicacionesState.Entregados;
+                }
+            }
+
             if (State == VerPublicacionesState.Start && message == "/verentregados" && realEmpresario == true)
             {
-                this.State = VerPublicacionesState.Entregados;
+                this.Empresario.State = "VEH-E";
                 response = "¿Publicaciones entregadas desde hace cuantos dias quieres ver?";
+                State = VerPublicacionesState.Start;
+
                 return true;
             }
             if (State == VerPublicacionesState.Entregados)
@@ -71,16 +85,23 @@ namespace ClassLibrary
                     contador += 1;
                 }
                 response = unfinishedResponse;
+                State = VerPublicacionesState.Start;
+                this.Empresario.State = "start";
+
                 return true;
             } 
             else if (realEmpresario == false && message == this.Keywords[0])
             {
                 response = "Usted no es un empresario, no puede hacer uso de este comando";
+                State = VerPublicacionesState.Start;
+
                 return false;
             }
             else
             {
                 response = string.Empty;
+                State = VerPublicacionesState.Start;
+
                 return false;
             }
         }

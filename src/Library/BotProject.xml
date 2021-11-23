@@ -1526,6 +1526,45 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:ClassLibrary.PosiblesResiduos">
+            <summary>
+            PosiblesResiduos es el experto en conocer a las Residuos, y 
+            por el patron Expert este tambien es quien
+            posee la responsabilidad de agregar Residuos y/o remover Residuos.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.PosiblesResiduos.Residuos">
+            <summary>
+            Variable estatica Residuos, porque es una lista de instancias de Empresa
+            que lleva un registro de todos las Residuos que hay.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.PosiblesResiduos.AddResiduo(System.String)">
+            <summary>
+            AddEmpresa es un metodo que se encarga de agregar una empresa a la lista, 
+            desginado  a esta clase por Expert.
+            </summary>
+            <param name="empresa"></param>
+        </member>
+        <member name="M:ClassLibrary.PosiblesResiduos.RemoveResiduo(System.String)">
+            <summary>
+            RemoveEmpresa es un metodo que se encarga de eliminar una empresa de la lista.
+            </summary>
+            <param name="empresa"></param>
+        </member>
+        <member name="M:ClassLibrary.PosiblesResiduos.#ctor">
+            <summary>
+            Constructor vacio para sumarle instancia a la clasica.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.PosiblesResiduos.GetInstance">
+            <summary>
+            Sirve para aplicar el singleton, verifica si Residuos es nula y si no es nula te devuelve el 
+            valor de la property.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.Publicacion">
             <summary>
             Publicación es una clase que conoce la información de empresa, residuo, la fecha

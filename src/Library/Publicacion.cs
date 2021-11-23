@@ -93,6 +93,10 @@ namespace ClassLibrary
             this.Ubicacion = ubicacion;
             this.Empresa = empresa;
             this.Fecha = DateTime.Now;
+            this.Habilitacion = habilitacion;
+            Mercado mercado = Mercado.GetInstance();
+            this.Empresa.Publicaciones.AddPublicacion(this);
+            mercado.AddMercado(this);
         }
 
         /// <summary>
