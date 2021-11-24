@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -6,7 +9,7 @@ namespace ClassLibrary
     /// por el patron Expert este tambien es quien
     /// posee la responsabilidad de agregar Empresas y/o remover Empresas.
     /// </summary>
-    public class ListaEmpresas
+    public class ListaEmpresas : IJsonConvertible
     {
         /// <summary>
         /// Variable estatica empresas, porque es una lista de instancias de Empresa
@@ -39,9 +42,26 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor para sumarle instancia a la clasica.
         /// </summary>
+        
+        [JsonConstructor]
         private ListaEmpresas()
         {
             this.Empresas = new List<Empresa>();
+        }
+
+        /// <summary>
+        /// Sirve para serializar la clase y todas sus property.
+        /// </summary>
+        /// <returns></returns>
+        public string ConvertToJson()
+        {
+            return JsonSerializer.Serialize(this);
+        }
+
+        public void LoadFromJson(string json)
+        {
+            ListaEmpresas deserialized = JsonSerializer.Deserialize<ListaEmpresas>(json);
+            this.Empresas = deserialized.Empresas;
         }
 
         /// <summary>

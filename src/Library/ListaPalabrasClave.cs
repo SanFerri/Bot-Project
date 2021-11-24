@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -53,6 +56,7 @@ namespace ClassLibrary
             return _instance;
         }
 
+        [JsonConstructor]
         private ListaPalabrasClave()
         {
             if(this.Palabras.Contains("Barato"))

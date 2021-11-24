@@ -10,7 +10,7 @@ using Telegram.Bot.Args;
 using Telegram.Bot.Types;
 using ClassLibrary;
 using Telegram.Bot.Types.Enums;
-using System.IO;
+using FileReader = System.IO ;
 using System.Text;
 
 namespace Program
@@ -30,7 +30,7 @@ namespace Program
         static BaseHandler handler11;
         public static void Main()
         {
-            Residuo Residuo = new Residuo("metal", 100, "kg", 250, "$");
+            Residuo Residuo = new Residuo("Metal", 100, "kg", 250, "$");
             
             string invitacion = InvitationGenerator.Generate();
             Console.WriteLine(invitacion);
@@ -38,6 +38,24 @@ namespace Program
             Empresa Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
             Empresa.Residuos.AddResiduo(Residuo);
             Empresario Usuario = new Empresario(invitacion, Empresa);
+
+            string json = ListaEmpresarios.GetInstance().ConvertToJson();
+            Console.WriteLine(json);
+            FileReader.File.WriteAllText(@"../Library/Jsons/EmpresariosData.json", json);
+
+            string json2 = ListaAdministradores.GetInstance().ConvertToJson();
+            Console.WriteLine(json2);
+            FileReader.File.WriteAllText(@"../Library/Jsons/AdministradoresData.json", json2);
+
+            string json3 = ListaUsuarios.GetInstance().ConvertToJson();
+            Console.WriteLine(json3);
+            FileReader.File.WriteAllText(@"../Library/Jsons/UsuariosData.json", json3);
+
+            string json4 = Mercado.GetInstance().ConvertToJson();
+            Console.WriteLine(json4);
+            FileReader.File.WriteAllText(@"../Library/Jsons/MercadoData.json", json4);
+
+            Publicacion publicacion = new Publicacion(Residuo, Ubicacion, Empresa, "Permiso para usar metales", true);
 
             handler1 = new OfertasHandler(null);
             handler2 = new AgregarResiduoHandler(handler1);
@@ -70,6 +88,7 @@ namespace Program
 
             //Detengo la escucha de mensajes 
             bot.StopReceiving();
+            
         }
 
         private static async void OnMessage(object sender, MessageEventArgs messageEventArgs)

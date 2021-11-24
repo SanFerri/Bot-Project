@@ -1350,7 +1350,7 @@
         </member>
         <member name="M:ClassLibrary.ListaAdministradores.GetInstance">
             <summary>
-            Sirve para aplicar el singleton, verifica si _intance es nula y si no es nula te devuelve el 
+            Sirve para aplicar el singleton, verifica si _instance es nula y si no es nula te devuelve el 
             valor de la property.
             </summary>
             <returns></returns>
@@ -1383,10 +1383,11 @@
             </summary>
             <param name="empresario"></param>
         </member>
-        <member name="M:ClassLibrary.ListaEmpresarios.#ctor">
+        <member name="M:ClassLibrary.ListaEmpresarios.ConvertToJson">
             <summary>
-            Constructor para sumarle instancias en la clase.
+            Sirve para serializar la clase y todas sus property.
             </summary>
+            <returns></returns>
         </member>
         <member name="M:ClassLibrary.ListaEmpresarios.RemoveEmpresario(ClassLibrary.Empresario)">
             <summary>
@@ -1396,7 +1397,7 @@
         </member>
         <member name="M:ClassLibrary.ListaEmpresarios.GetInstance">
             <summary>
-            Sirve para aplicar el singleton, verifica si ListaEmpresarios es nula y si no es nula te devuelve el 
+            Sirve para aplicar el singleton, verifica si empresarios es nula y si no es nula te devuelve el 
             valor de la property.
             </summary>
             <returns></returns>
@@ -1432,6 +1433,12 @@
             <summary>
             Constructor para sumarle instancia a la clasica.
             </summary>
+        </member>
+        <member name="M:ClassLibrary.ListaEmpresas.ConvertToJson">
+            <summary>
+            Sirve para serializar la clase y todas sus property.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:ClassLibrary.ListaEmpresas.GetInstance">
             <summary>
@@ -1590,10 +1597,11 @@
             </summary>
             <param name="usuario"></param>
         </member>
-        <member name="M:ClassLibrary.ListaUsuarios.#ctor">
+        <member name="M:ClassLibrary.ListaUsuarios.ConvertToJson">
             <summary>
-            Constructor vacio para agregarle instancias a la clase.
+            Sirve para serializar la clase y todas sus property.
             </summary>
+            <returns></returns>
         </member>
         <member name="M:ClassLibrary.ListaUsuarios.GetInstance">
             <summary>
@@ -1628,10 +1636,11 @@
             </summary>
             <param name="publicacion"></param>
         </member>
-        <member name="M:ClassLibrary.Mercado.#ctor">
+        <member name="M:ClassLibrary.Mercado.ConvertToJson">
             <summary>
-            Constructor vacio para agregarle instancias a la clase.
+            Sirve para serializar la clase y todas sus property.
             </summary>
+            <returns></returns>
         </member>
         <member name="M:ClassLibrary.Mercado.GetInstance">
             <summary>

@@ -8,6 +8,9 @@ namespace ClassLibrary
     /// </summary>
     public class ListaPublicaciones
     {
+        public ListaPublicaciones()
+        {
+        }
         /// <summary>
         /// Property publicación, es una lista de instancias de Publicacion
         /// que lleva el registro de las publicaciones de una empresa.

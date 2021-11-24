@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -8,7 +11,7 @@ namespace ClassLibrary
     /// A su vez depende de IUsuario para agregar cualquier tipo de usuario (emprendedor,
     /// administrador o Usuario).
     /// </summary>
-    public class ListaUsuarios
+    public class ListaUsuarios : IJsonConvertible
     {
         /// <summary>
         /// Variable estatica Usuario, porque es una lista de instancias de Usuario
@@ -38,12 +41,29 @@ namespace ClassLibrary
         {
             Usuarios.Remove(usuario);
         }
+
+        [JsonConstructor]
         /// <summary>
         /// Constructor vacio para agregarle instancias a la clase.
         /// </summary>
         private ListaUsuarios()
         {
             this.Usuarios = new List<Emprendedor>();
+        }
+
+        /// <summary>
+        /// Sirve para serializar la clase y todas sus property.
+        /// </summary>
+        /// <returns></returns>
+        public string ConvertToJson()
+        {
+            return JsonSerializer.Serialize(this);
+        }
+
+        public void LoadFromJson(string json)
+        {
+            ListaUsuarios deserialized = JsonSerializer.Deserialize<ListaUsuarios>(json);
+            this.Usuarios = deserialized.Usuarios;
         }
 
         /// <summary>
