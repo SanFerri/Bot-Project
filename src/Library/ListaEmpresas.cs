@@ -37,7 +37,7 @@ namespace ClassLibrary
         }
         
         /// <summary>
-        /// Constructor vacio para sumarle instancia a la clasica.
+        /// Constructor para sumarle instancia a la clasica.
         /// </summary>
         private ListaEmpresas()
         {
@@ -45,7 +45,7 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Sirve para aplicar el singleton, verifica si empresas es nula y si no es nula te devuelve el 
+        /// Sirve para aplicar el singleton, verifica si ListaEmpresas es nula y si no es nula te devuelve el 
         /// valor de la property.
         /// </summary>
         /// <returns></returns>

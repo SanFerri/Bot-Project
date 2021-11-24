@@ -10,6 +10,12 @@
             usuario, una property empresa que indica la empresa de la que participa el Empresario.
             </summary>
         </member>
+        <member name="P:ClassLibrary.Administrador.State">
+            <summary>
+            El estado del comando.
+            </summary>
+            <value></value>
+        </member>
         <member name="M:ClassLibrary.Administrador.#ctor">
             <summary>
             Constructor de Administrador
@@ -81,7 +87,7 @@
             <summary>
             Es un metodo que te devuelve la lista de elementos entregados.
             </summary>
-            <param name="usuario"></param>
+            <param name="publicaciones"></param>
             <param name="tiempo"></param>
             <returns></returns>
         </member>
@@ -127,6 +133,12 @@
             <summary>
             Clase Emprendedor del tipo IUsuario, posee el nombre, invitacion e id del emprendedor.
             </summary>
+        </member>
+        <member name="P:ClassLibrary.Emprendedor.State">
+            <summary>
+            El estado del comando.
+            </summary>
+            <value></value>
         </member>
         <member name="M:ClassLibrary.Emprendedor.#ctor">
             <summary>
@@ -221,6 +233,12 @@
             usuario, una property empresa que indica la empresa de la que participa el Empresario.
             </summary>
         </member>
+        <member name="P:ClassLibrary.Empresario.State">
+            <summary>
+            El estado del comando.
+            </summary>
+            <value></value>
+        </member>
         <member name="M:ClassLibrary.Empresario.#ctor">
             <summary>
             Constructor de Empresario.
@@ -235,6 +253,12 @@
         <member name="P:ClassLibrary.Empresario.Id">
             <summary>
             Es el encargado de conocer el id del empresario.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.Empresario.LasPublicaciones">
+            <summary>
+            Lista donde se almacenan las publicaciones.
             </summary>
             <value></value>
         </member>
@@ -295,6 +319,12 @@
             Lista de todos los empresarios que hay.
             </summary>
             <returns></returns>
+        </member>
+        <member name="P:ClassLibrary.AgregarResiduoHandler.Empresario">
+            <summary>
+            Son los empresarios que estan usando los handlers.
+            </summary>
+            <value></value>
         </member>
         <member name="P:ClassLibrary.AgregarResiduoHandler.MonedaResiduo">
             <summary>
@@ -456,6 +486,12 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.CambiarDatosHandler.Empresario">
+            <summary>
+            Son los empresarios que estan usando los handlers.
+            </summary>
+            <value></value>
+        </member>
         <member name="F:ClassLibrary.CambiarDatosHandler.LosEmpresarios">
             <summary>
             Lista de todos los empresarios que hay.
@@ -575,6 +611,12 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.InvitarHandler.Administrador">
+            <summary>
+            Son los empresarios que estan usando los handlers.
+            </summary>
+            <value></value>
+        </member>
         <member name="P:ClassLibrary.InvitarHandler.Result">
             <summary>
             Es el resultado de la publicación.
@@ -583,7 +625,7 @@
         </member>
         <member name="F:ClassLibrary.InvitarHandler.LosAdministradores">
             <summary>
-            Lista de todos los Administradors que hay.
+            Lista de todos los Administradores que hay.
             </summary>
             <returns></returns>
         </member>
@@ -714,6 +756,12 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.OfertasHandler.Emprendedor">
+            <summary>
+            Los emprendedores que usan este handler.
+            </summary>
+            <value></value>
+        </member>
         <member name="M:ClassLibrary.OfertasHandler.#ctor(ClassLibrary.BaseHandler)">
             <summary>
             Esta clase procesa el mensaje /ofertas.
@@ -826,6 +874,24 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.PublicarHandler.ResiduosUsuario">
+            <summary>
+            Lista de residuos que posee una empresa. 
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublicarHandler.Empresario">
+            <summary>
+            Son los empresarios que estan usando los handlers.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PublicarHandler.LosEmpresarios">
+            <summary>
+            Lista de los empresarios que usan este handler.
+            </summary>
+            <value></value>
+        </member>
         <member name="F:ClassLibrary.PublicarHandler.LasClaves">
             <summary>
             Es una lista de las palabras clave que se pueden añadir a una publicación.
@@ -880,6 +946,12 @@
             <summary>
             Un "handler" del patrón Chain of Responsibility que implementa el comando "Registrarse".
             </summary>
+        </member>
+        <member name="P:ClassLibrary.RegistrarseHandler.Emprendedor">
+            <summary>
+            Los emprendedores que usan este handler.
+            </summary>
+            <value></value>
         </member>
         <member name="P:ClassLibrary.RegistrarseHandler.State">
             <summary>
@@ -1008,6 +1080,18 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.VerEntregadosHandler.LosEmpresarios">
+            <summary>
+            Lista de los empresarios que hay. 
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.VerEntregadosHandler.Empresario">
+            <summary>
+            Son los empresarios que estan usando los handlers.
+            </summary>
+            <value></value>
+        </member>
         <member name="P:ClassLibrary.VerEntregadosHandler.PublicacionesUsuario">
             <summary>
             Lista donde se almacenan las publicaciones.
@@ -1072,6 +1156,18 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.VerPublicacionesHandler.LosEmpresarios">
+            <summary>
+            Lista de los empresarios que hay.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.VerPublicacionesHandler.Empresario">
+            <summary>
+            Son los empresarios que estan usando los handlers.
+            </summary>
+            <value></value>
+        </member>
         <member name="M:ClassLibrary.VerPublicacionesHandler.#ctor(ClassLibrary.BaseHandler)">
             <summary>
             Procesa el mensaje /verpublicaciones.
@@ -1128,6 +1224,12 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:ClassLibrary.VerResiduosConsumidosHandler.Emprendedor">
+            <summary>
+            Los emprendedores que usan este handler.
+            </summary>
+            <value></value>
+        </member>
         <member name="P:ClassLibrary.VerResiduosConsumidosHandler.PublicacionesUsuario">
             <summary>
             Lista de publicaciones de la empresa
@@ -1167,10 +1269,16 @@
         <member name="T:ClassLibrary.IEmpresarioPublicaciones">
             <summary>
             IEmpresarioPublicaciones es una interfaz para aplicar DIP, en buscador hay un metodo que precisa
-            saber esta informacion, pero es mas correcto pasarle esta interfaz en vez de un Empresario ya que
+            saber esta informacion, pero es mas correcto pasar esta interfaz en vez de un Empresario ya que
             de esta forma no solo la clase Empresario esta mas encapsulada, sino que ademas podemos agregar
             nuevas responsabilidades a Empresario sin que deba cambiar el programa.
             </summary>
+        </member>
+        <member name="P:ClassLibrary.IEmpresarioPublicaciones.LasPublicaciones">
+            <summary>
+            Lista donde se almacenan las publicaciones.
+            </summary>
+            <value></value>
         </member>
         <member name="T:ClassLibrary.IJsonConvertible">
             <summary>
@@ -1194,6 +1302,12 @@
         <member name="P:ClassLibrary.IUsuario.Id">
             <summary>
             El unico valor que comparte todo usuario es un valor id que es un int.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.IUsuario.State">
+            <summary>
+            El estado del comando.
             </summary>
             <value></value>
         </member>
@@ -1225,7 +1339,7 @@
         </member>
         <member name="M:ClassLibrary.ListaAdministradores.#ctor">
             <summary>
-            Constructor vacio para sumarle instancias a la clase.
+            Constructor para sumarle instancias a la clase.
             </summary>
         </member>
         <member name="M:ClassLibrary.ListaAdministradores.ConvertToJson">
@@ -1271,7 +1385,7 @@
         </member>
         <member name="M:ClassLibrary.ListaEmpresarios.#ctor">
             <summary>
-            Constructor vacio para sumarle instancias en la clase.
+            Constructor para sumarle instancias en la clase.
             </summary>
         </member>
         <member name="M:ClassLibrary.ListaEmpresarios.RemoveEmpresario(ClassLibrary.Empresario)">
@@ -1282,7 +1396,7 @@
         </member>
         <member name="M:ClassLibrary.ListaEmpresarios.GetInstance">
             <summary>
-            Sirve para aplicar el singleton, verifica si empresarios es nula y si no es nula te devuelve el 
+            Sirve para aplicar el singleton, verifica si ListaEmpresarios es nula y si no es nula te devuelve el 
             valor de la property.
             </summary>
             <returns></returns>
@@ -1316,19 +1430,19 @@
         </member>
         <member name="M:ClassLibrary.ListaEmpresas.#ctor">
             <summary>
-            Constructor vacio para sumarle instancia a la clasica.
+            Constructor para sumarle instancia a la clasica.
             </summary>
         </member>
         <member name="M:ClassLibrary.ListaEmpresas.GetInstance">
             <summary>
-            Sirve para aplicar el singleton, verifica si empresas es nula y si no es nula te devuelve el 
+            Sirve para aplicar el singleton, verifica si ListaEmpresas es nula y si no es nula te devuelve el 
             valor de la property.
             </summary>
             <returns></returns>
         </member>
         <member name="T:ClassLibrary.ListaEntregadas">
             <summary>
-            Lista publicaciones es un structurer de publicación que posee dos metodos AddPublicacion y removePublicacion
+            Lista entregadas es un structurer que posee dos metodos AddPublicacion y removePublicacion
             para añadir o remover elementos de una property de la clase llamada ListaPublicaciones, es el encargado
             de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
             </summary>
@@ -1354,18 +1468,18 @@
         </member>
         <member name="M:ClassLibrary.ListaEntregadas.GetInstance">
             <summary>
-            Sirve para aplicar el singleton, verifica si listaPublicaciones es nula y si no es nula te 
+            Sirve para aplicar el singleton, verifica si ListaEntregadas es nula y si no es nula te 
             devuelve el valor de la property.
             </summary>
         </member>
         <member name="M:ClassLibrary.ListaEntregadas.#ctor">
             <summary>
-            Constructor vacio para agregarle instancias a la clase.
+            Constructor vacio para agregarle instancias a ListaPublicaciones.
             </summary>
         </member>
         <member name="T:ClassLibrary.ListaPalabrasClave">
             <summary>
-            Lista palabras clave es una clase que contiene palabras clave que posee dos metodos AddPalabra y 
+            ListaPalabrasClave es una clase que contiene palabras clave que posee dos metodos AddPalabra y 
             RemovePalabra para añadir o remover elementos de una property de la clase llamada ListaPalabrasClave, es el encargado
             de llevar a cabo dichas tareas porque es el experto en conocer las palabras claves.
             </summary>
@@ -1431,7 +1545,7 @@
         </member>
         <member name="F:ClassLibrary.ListaResiduos.Residuos">
             <summary>
-            Property int residuo, es una lista de instancias de Residuo
+            Property residuo, es una lista de instancias de Residuo
             que lleva el registro de los residuos de una empresa.
             </summary>
             <returns></returns>
@@ -1483,7 +1597,7 @@
         </member>
         <member name="M:ClassLibrary.ListaUsuarios.GetInstance">
             <summary>
-            Sirve para aplicar el singleton, verifica si usuarios es nula y si no es nula te devuelve el 
+            Sirve para aplicar el singleton, verifica si la property ListaUsuarios es nula y si no es nula te devuelve el 
             valor de la property.
             </summary>
             <returns></returns>
@@ -1545,13 +1659,13 @@
             AddEmpresa es un metodo que se encarga de agregar una empresa a la lista, 
             desginado  a esta clase por Expert.
             </summary>
-            <param name="empresa"></param>
+            <param name="residuo"></param>
         </member>
         <member name="M:ClassLibrary.PosiblesResiduos.RemoveResiduo(System.String)">
             <summary>
             RemoveEmpresa es un metodo que se encarga de eliminar una empresa de la lista.
             </summary>
-            <param name="empresa"></param>
+            <param name="residuo"></param>
         </member>
         <member name="M:ClassLibrary.PosiblesResiduos.#ctor">
             <summary>
@@ -1675,6 +1789,13 @@
         <member name="M:ClassLibrary.Registrado.VerifyEmpresario(System.Int32)">
             <summary>
             Esta clase se encarga de identificar si el usuario esta registrado o no.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Registrado.VerifyUser(System.Int32)">
+            <summary>
+            Verifica que el usuario este registrado.
             </summary>
             <param name="id"></param>
             <returns></returns>

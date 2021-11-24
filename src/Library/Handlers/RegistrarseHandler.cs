@@ -8,6 +8,11 @@ namespace ClassLibrary
     /// </summary>
     public class RegistrarseHandler : BaseHandler
     {
+
+        /// <summary>
+        /// Los emprendedores que usan este handler.
+        /// </summary>
+        /// <value></value>
         public Emprendedor Emprendedor { get; private set; }
         /// <summary>
         /// El estado del comando.

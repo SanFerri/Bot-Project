@@ -29,6 +29,11 @@ namespace ClassLibrary
             }
             return registrado;
         }
+        /// <summary>
+        /// Verifica que el usuario este registrado.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static bool VerifyUser(int id)
         {
             bool registrado = false;

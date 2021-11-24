@@ -71,6 +71,11 @@ namespace ClassLibrary
         /// <value></value>
         public bool BuscarConPalabraClave { get; private set; }
 
+        /// <summary>
+        /// Los emprendedores que usan este handler.
+        /// </summary>
+        /// <value></value>
+
         public Emprendedor Emprendedor { get; private set; }
 
         /// <summary>
@@ -220,7 +225,6 @@ namespace ClassLibrary
 
                         return false;
                     }
-                    this.State = OfertasState.Start;
                 }
                 else
                 {

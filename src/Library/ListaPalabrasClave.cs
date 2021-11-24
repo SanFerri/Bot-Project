@@ -2,7 +2,7 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Lista palabras clave es una clase que contiene palabras clave que posee dos metodos AddPalabra y 
+    /// ListaPalabrasClave es una clase que contiene palabras clave que posee dos metodos AddPalabra y 
     /// RemovePalabra para añadir o remover elementos de una property de la clase llamada ListaPalabrasClave, es el encargado
     /// de llevar a cabo dichas tareas porque es el experto en conocer las palabras claves.
     /// </summary>
