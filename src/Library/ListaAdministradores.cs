@@ -38,7 +38,7 @@ namespace ClassLibrary
             this.Administradores.Remove(administrador);
         }
         /// <summary>
-        /// Constructor vacio para sumarle instancias a la clase.
+        /// Constructor para sumarle instancias a la clase.
         /// </summary>
         [JsonConstructor]
         private ListaAdministradores()

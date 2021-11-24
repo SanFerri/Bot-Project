@@ -49,6 +49,11 @@ namespace ClassLibrary
 
         public ListaEmpresarios LosEmpresarios = ListaEmpresarios.GetInstance();
 
+        /// <summary>
+        /// Son los empresarios que estan usando los handlers.
+        /// </summary>
+        /// <value></value>
+
         public Empresario Empresario { get; private set; }
 
         /// <summary>

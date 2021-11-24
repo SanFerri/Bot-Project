@@ -19,6 +19,11 @@ namespace ClassLibrary
         /// <value></value>
         public Empresa EmpresaUsuario { get; private set; }
 
+        /// <summary>
+        /// Los emprendedores que usan este handler.
+        /// </summary>
+        /// <value></value>
+
         public Emprendedor Emprendedor { get; private set; }
 
         /// <summary>

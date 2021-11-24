@@ -9,6 +9,10 @@ namespace ClassLibrary
     /// </summary>
     public class Empresario : IUsuario, IEmpresarioPublicaciones
     {
+        /// <summary>
+        /// El estado del comando.
+        /// </summary>
+        /// <value></value>
         public string State { get; set; } = "start";
         /// <summary>
         /// Constructor de Empresario.
@@ -30,6 +34,11 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public int Id{get; set;}
+
+        /// <summary>
+        /// Lista donde se almacenan las publicaciones.
+        /// </summary>
+        /// <value></value>
 
         public ListaPublicaciones LasPublicaciones { get; set; }
         

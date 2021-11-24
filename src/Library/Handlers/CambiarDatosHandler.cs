@@ -36,6 +36,11 @@ namespace ClassLibrary
         /// <value></value>
         public int Contacto { get; private set; }
 
+        /// <summary>
+        /// Son los empresarios que estan usando los handlers.
+        /// </summary>
+        /// <value></value>
+
         public Empresario Empresario { get; private set; }
 
         /// <summary>

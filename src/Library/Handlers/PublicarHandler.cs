@@ -66,8 +66,23 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public bool Constante { get; private set; }
+
+        /// <summary>
+        /// Lista de residuos que posee una empresa. 
+        /// </summary>
+        /// <value></value>
         public ListaResiduos ResiduosUsuario { get; private set; }
+
+        /// <summary>
+        /// Son los empresarios que estan usando los handlers.
+        /// </summary>
+        /// <value></value>
         public Empresario Empresario { get; private set; }
+
+        /// <summary>
+        /// Lista de los empresarios que usan este handler.
+        /// </summary>
+        /// <value></value>
         public ListaEmpresarios LosEmpresarios { get; private set; }
 
         /// <summary>

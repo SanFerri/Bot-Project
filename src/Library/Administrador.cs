@@ -9,6 +9,10 @@ namespace ClassLibrary
     /// </summary>
     public class Administrador : IUsuario
     {   
+        /// <summary>
+        /// El estado del comando.
+        /// </summary>
+        /// <value></value>
         public string State { get; set; } = "start";
 
         /// <summary>
@@ -25,12 +29,14 @@ namespace ClassLibrary
         /// </summary>
         /// <value></value>
         public int Id{get; set;}
+        
         /// <summary>
         /// Property invitacion, es el encargado de conocer el numero entero de la invitacion del 
         /// administrador.
         /// </summary>
         /// <value></value>
         public string Invitacion{get; set;}
+        
         /// <summary>
         /// Constructor de una instancia de administrador. 
         /// </summary>

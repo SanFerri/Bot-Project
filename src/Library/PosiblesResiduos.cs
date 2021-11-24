@@ -20,7 +20,7 @@ namespace ClassLibrary
         /// AddEmpresa es un metodo que se encarga de agregar una empresa a la lista, 
         /// desginado  a esta clase por Expert.
         /// </summary>
-        /// <param name="empresa"></param>
+        /// <param name="residuo"></param>
         public void AddResiduo(string residuo)
         {
             Residuos.Add(residuo);
@@ -30,7 +30,7 @@ namespace ClassLibrary
         /// <summary>
         /// RemoveEmpresa es un metodo que se encarga de eliminar una empresa de la lista.
         /// </summary>
-        /// <param name="empresa"></param>
+        /// <param name="residuo"></param>
         public void RemoveResiduo(string residuo)
         {
             Residuos.Remove(residuo);

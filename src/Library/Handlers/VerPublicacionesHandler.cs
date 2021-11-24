@@ -32,7 +32,17 @@ namespace ClassLibrary
         /// <value></value>
         public ListaPublicaciones PublicacionesUsuario { get; private set; }
 
+        /// <summary>
+        /// Lista de los empresarios que hay.
+        /// </summary>
+        /// <value></value>
+
         public ListaEmpresarios LosEmpresarios { get; private set; }
+
+        /// <summary>
+        /// Son los empresarios que estan usando los handlers.
+        /// </summary>
+        /// <value></value>
 
         public Empresario Empresario { get; private set; }
 

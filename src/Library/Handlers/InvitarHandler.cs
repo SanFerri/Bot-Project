@@ -45,6 +45,11 @@ namespace ClassLibrary
         /// <value></value>
         public string ContactoData { get; private set; }
 
+        /// <summary>
+        /// Son los empresarios que estan usando los handlers.
+        /// </summary>
+        /// <value></value>
+
         public Administrador Administrador { get; private set; }
 
         /// <summary>
@@ -54,7 +59,7 @@ namespace ClassLibrary
         public Publicacion Result { get; private set; }
 
         /// <summary>
-        /// Lista de todos los Administradors que hay.
+        /// Lista de todos los Administradores que hay.
         /// </summary>
         /// <returns></returns>
 

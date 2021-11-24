@@ -102,7 +102,7 @@ namespace ClassLibrary
         /// <summary>
         /// Es un metodo que te devuelve la lista de elementos entregados.
         /// </summary>
-        /// <param name="usuario"></param>
+        /// <param name="publicaciones"></param>
         /// <param name="tiempo"></param>
         /// <returns></returns>
 

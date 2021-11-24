@@ -9,7 +9,7 @@ namespace ClassLibrary
     public class ListaResiduos
     {
         /// <summary>
-        /// Property int residuo, es una lista de instancias de Residuo
+        /// Property residuo, es una lista de instancias de Residuo
         /// que lleva el registro de los residuos de una empresa.
         /// </summary>
         /// <returns></returns>

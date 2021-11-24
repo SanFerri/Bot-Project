@@ -2,7 +2,7 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// Lista publicaciones es un structurer de publicación que posee dos metodos AddPublicacion y removePublicacion
+    /// Lista entregadas es un structurer que posee dos metodos AddPublicacion y removePublicacion
     /// para añadir o remover elementos de una property de la clase llamada ListaPublicaciones, es el encargado
     /// de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
     /// </summary>
@@ -39,7 +39,7 @@ namespace ClassLibrary
             ListaPublicaciones.Remove(publicacion);
         }
         /// <summary>
-        /// Sirve para aplicar el singleton, verifica si listaPublicaciones es nula y si no es nula te 
+        /// Sirve para aplicar el singleton, verifica si ListaEntregadas es nula y si no es nula te 
         /// devuelve el valor de la property.
         /// </summary>
         public static ListaEntregadas GetInstance()
@@ -52,7 +52,7 @@ namespace ClassLibrary
         }
       
         /// <summary>
-        /// Constructor vacio para agregarle instancias a la clase.
+        /// Constructor vacio para agregarle instancias a ListaPublicaciones.
         /// </summary>
         private ListaEntregadas()
         {

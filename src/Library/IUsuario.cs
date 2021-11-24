@@ -13,6 +13,10 @@ namespace ClassLibrary
         /// <value></value>
         int Id { get; set; }
 
+        /// <summary>
+        /// El estado del comando.
+        /// </summary>
+        /// <value></value>
         string State { get; set; }
     }
 }
