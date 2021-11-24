@@ -44,7 +44,6 @@ namespace ClassLibrary
         {
             this.Ofertas.Remove(publicacion);
         }
-
         [JsonConstructor]
         /// <summary>
         /// Constructor vacio para agregarle instancias a la clase.
@@ -63,6 +62,12 @@ namespace ClassLibrary
             return JsonSerializer.Serialize(this);
         }
 
+        /// <summary>
+        /// Sirve para deserializar un string de json para asi 
+        /// asignarle una nueva clase Mercado los valores 
+        /// previos a ponerle un stop al program para asi mantener la información.
+        /// </summary>
+        /// <param name="json"></param>
         public void LoadFromJson(string json)
         {
             Mercado deserialized = JsonSerializer.Deserialize<Mercado>(json);
