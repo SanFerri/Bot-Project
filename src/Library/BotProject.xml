@@ -1477,6 +1477,32 @@
             Constructor vacio para agregarle instancias a ListaPublicaciones.
             </summary>
         </member>
+        <member name="T:ClassLibrary.ListaInvitaciones">
+            <summary>
+            ListaPalabrasClave es una clase que contiene palabras clave que posee dos metodos AddPalabra y 
+            RemovePalabra para añadir o remover elementos de una property de la clase llamada ListaPalabrasClave, es el encargado
+            de llevar a cabo dichas tareas porque es el experto en conocer las palabras claves.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ListaInvitaciones.Invitaciones">
+            <summary>
+            Property string palabras, es una lista de instancias de palabras clave
+            que lleva el registro de las palabras clave.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ListaInvitaciones.AddInvitacion(System.String)">
+            <summary>
+            AddPalabra es un metodo que se encarga de agregar palabras a la lista.
+            </summary>
+            <param name="palabra"></param>
+        </member>
+        <member name="M:ClassLibrary.ListaInvitaciones.RemoveInvitacion(System.String)">
+            <summary>
+            RemovePalabra es un metodo que se encarga de eliminar palabras de la lista.
+            </summary>
+            <param name="palabra"></param>
+        </member>
         <member name="T:ClassLibrary.ListaPalabrasClave">
             <summary>
             ListaPalabrasClave es una clase que contiene palabras clave que posee dos metodos AddPalabra y 

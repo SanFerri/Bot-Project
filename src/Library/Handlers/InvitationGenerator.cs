@@ -23,8 +23,22 @@ namespace ClassLibrary
         /// <returns></returns>
         public static string Generate()
         {
-            int invitation = Random.Next(1000000);
-            string invitacion = Convert.ToString(invitation);
+            string invitacion = "";
+            int invitation;
+            bool agregado = false;
+            while (agregado == false)
+            {
+                invitation = Random.Next(1000000);
+                invitacion = Convert.ToString(invitation); 
+                if(ListaInvitaciones.GetInstance().Invitaciones.Contains(invitacion))
+                {
+                }
+                else
+                {
+                    agregado = true;
+                }
+            }
+            ListaInvitaciones.GetInstance().AddInvitacion(invitacion);
             return invitacion;
         }
     }
