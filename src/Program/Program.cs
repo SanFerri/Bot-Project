@@ -91,7 +91,7 @@ namespace Program
                                                                             .Append("/invitar: Invite a nuevas empresas\n")
                                                                             .Append("/ofertas: Vea las ofertas en el mercado\n")
                                                                             .Append("/publicar: Publique nuevas ofertas de residuos\n")
-                                                                            .Append("/agregarresiduos: Agregue nuevos residuos a su empresa\n")
+                                                                            .Append("/agregarresiduo: Agregue nuevos residuos a su empresa\n")
                                                                             .Append("/residuosconstantes: Aqui se mostraran los residuos que aparecen constantemente\n")
                                                                             .Append("/residuospuntuales: Aqui se mostraran los residuos que aparecen puntualmente\n")
                                                                             .Append("/verentregados: Vea sus publicaciones ya entregadas.\n")
