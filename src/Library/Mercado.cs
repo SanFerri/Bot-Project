@@ -22,7 +22,13 @@ namespace ClassLibrary
         /// <param name="publicacion"></param>
         public void AddMercado(Publicacion publicacion)
         {
-            this.Ofertas.Add(publicacion);
+            if(this.Ofertas.Contains(publicacion))
+            {
+            }
+            else
+            {
+                this.Ofertas.Add(publicacion);
+            }
         }
 
         //[JsonInclude]

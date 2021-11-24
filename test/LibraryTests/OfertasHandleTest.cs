@@ -33,7 +33,8 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            Residuo = new Residuo("metal", 100, "kg", 250, "$");
+            Mercado.GetInstance().Ofertas.Clear();
+            Residuo = new Residuo("Metal", 100, "kg", 250, "$");
             Handler = new OfertasHandler(null);
             string Invitacion = InvitationGenerator.Generate();
             Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
@@ -46,12 +47,9 @@ namespace Tests
             Id2 = 87654321;
             UsuarioEmprendedor.Id = Id;
             UsuarioEmpresario.Id = Id2;
-            Empresarios.AddEmpresario(UsuarioEmpresario);
-            Usuarios.AddUsuario(UsuarioEmprendedor);
             Contador = 0;
             Publicacion = new Publicacion(Residuo, Ubicacion2, Empresa, "tener un camion", true);
             Publicacion.AgregarPalabraClave("Envio Gratis");
-            Mercado.AddMercado(Publicacion);
         }
 
         /// <summary>
@@ -60,6 +58,7 @@ namespace Tests
         [Test]
         public void OfertasCanHandleTest()
         {
+            Mercado.GetInstance().Ofertas.Clear();
             Message = Handler.Keywords[0];
             string response;
 
@@ -74,12 +73,13 @@ namespace Tests
         [Test]
         public void OfertasEmpresarioCanHandleTest()
         {
+            Mercado.GetInstance().Ofertas.Clear();
             Message = Handler.Keywords[0];
             string response;
 
             IHandler result = Handler.Handle(Message, UsuarioEmpresario.Id, out response);
 
-            Assert.That(response, Is.EqualTo("¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no"));
+            Assert.That(response, Is.EqualTo(string.Empty));
         }
         /// <summary>
         /// Este test se encarga de comprobar la funcionalidad de buscar una publicación con palabra clave.
@@ -87,6 +87,24 @@ namespace Tests
         [Test]
         public void WithKeywordOfertasHandlerTest()
         {
+            Mercado.GetInstance().Ofertas.Clear();
+            Residuo = new Residuo("Metal", 100, "kg", 250, "$");
+            Handler = new OfertasHandler(null);
+            string Invitacion = InvitationGenerator.Generate();
+            Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
+            Ubicacion2 = new Ubicacion("Av. Italia 3479");
+            Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
+            Empresa.Residuos.AddResiduo(Residuo);
+            UsuarioEmpresario = new Empresario(Invitacion, Empresa);
+            UsuarioEmprendedor = new Emprendedor(Id);
+            Id = 12345678;
+            Id2 = 87654321;
+            UsuarioEmprendedor.Id = Id;
+            UsuarioEmpresario.Id = Id2;
+            Contador = 0;
+            Publicacion = new Publicacion(Residuo, Ubicacion2, Empresa, "tener un camion", true);
+            Publicacion.AgregarPalabraClave("Envio Gratis");
+
             Message = Handler.Keywords[0];
             string response;
 
@@ -101,8 +119,8 @@ namespace Tests
             Assert.That(response, Is.EqualTo("¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad)"));
             Message = Ubicacion2.Direccion;
             Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
-            Assert.That(response, Is.EqualTo("Ahora dime que tipo de residuos estas buscando?"));
-            Message = Residuo.Tipo;
+            Assert.That(response, Is.EqualTo("Ingrese el tipo del residuo que quiere buscar:\n0. Metal\n1. Plastico\n2. Madera\n3. Goma\n4. Aluminio\n5. Cobre\n6. Nylon\n7. Papel\n8. Algodon\n9. Cuero\n10. Tela\n11. Fibra\n12. Organico\n13. Cables\n14. Pintura\n15. Carbon\n16. Componentes Electronicos\n17. Otros\n"));
+            Message = "0";
             Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
             Assert.That(response, Is.EqualTo($"Ingrese el número de la publicación para ver más información de la misma:\n0. {Publicacion.Empresa.Nombre} ofrece: {Publicacion.Residuo.Cantidad} {Publicacion.Residuo.Unidad} de {Publicacion.Residuo.Tipo} en {Publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {Publicacion.Habilitacion}\n"));
         }
@@ -112,6 +130,23 @@ namespace Tests
         [Test]
         public void WithoutKeywordOfertasHandlerTest()
         {
+            Mercado.GetInstance().Ofertas.Clear();
+            Residuo = new Residuo("Metal", 100, "kg", 250, "$");
+            Handler = new OfertasHandler(null);
+            string Invitacion = InvitationGenerator.Generate();
+            Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
+            Ubicacion2 = new Ubicacion("Av. Italia 3479");
+            Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
+            Empresa.Residuos.AddResiduo(Residuo);
+            UsuarioEmpresario = new Empresario(Invitacion, Empresa);
+            UsuarioEmprendedor = new Emprendedor(Id);
+            Id = 12345678;
+            Id2 = 87654321;
+            UsuarioEmprendedor.Id = Id;
+            UsuarioEmpresario.Id = Id2;
+            Contador = 0;
+            Publicacion = new Publicacion(Residuo, Ubicacion2, Empresa, "tener un camion", true);
+            Publicacion.AgregarPalabraClave("Envio Gratis");
             Message = Handler.Keywords[0];
             string response;
 
@@ -123,8 +158,8 @@ namespace Tests
             Assert.That(response, Is.EqualTo("¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad)"));
             Message = Ubicacion2.Direccion;
             Handler.Handle(Message, UsuarioEmprendedor.Id, out response);  
-            Assert.That(response, Is.EqualTo("Ahora dime que tipo de residuos estas buscando?"));
-            Message = Residuo.Tipo;
+            Assert.That(response, Is.EqualTo("Ingrese el tipo del residuo que quiere buscar:\n0. Metal\n1. Plastico\n2. Madera\n3. Goma\n4. Aluminio\n5. Cobre\n6. Nylon\n7. Papel\n8. Algodon\n9. Cuero\n10. Tela\n11. Fibra\n12. Organico\n13. Cables\n14. Pintura\n15. Carbon\n16. Componentes Electronicos\n17. Otros\n"));
+            Message = "0";
             Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
             Assert.That(response, Is.EqualTo($"Ingrese el número de la publicación para ver más información de la misma:\n0. {Publicacion.Empresa.Nombre} ofrece: {Publicacion.Residuo.Cantidad} {Publicacion.Residuo.Unidad} de {Publicacion.Residuo.Tipo} en {Publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {Publicacion.Habilitacion}\n"));
         }

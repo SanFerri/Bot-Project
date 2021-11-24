@@ -56,7 +56,7 @@ namespace Tests
 
             IHandler result = Handler.Handle(Message, Id, out response);
 
-            Assert.That(response, Is.EqualTo("Ingrese el tipo del residuo que quiere agregar."));
+            Assert.That(response, Is.EqualTo("Ingrese el tipo del residuo que quiere agregar:\n0. Metal\n1. Plastico\n2. Madera\n3. Goma\n4. Aluminio\n5. Cobre\n6. Nylon\n7. Papel\n8. Algodon\n9. Cuero\n10. Tela\n11. Fibra\n12. Organico\n13. Cables\n14. Pintura\n15. Carbon\n16. Componentes Electronicos\n17. Otros\n"));
         }
         /// <summary>
         /// Si el que trata de usar el comando /agregarresiduos no es un empresario
@@ -84,7 +84,7 @@ namespace Tests
 
             IHandler result = Handler.Handle(Message, Usuario2.Id, out response);
             
-            Message = Residuo.Tipo;
+            Message = "0";
             Handler.Handle(Message, Usuario2.Id, out response);
             Message = $"{Residuo.Cantidad}";
             Handler.Handle(Message, Usuario2.Id, out response);
@@ -96,7 +96,7 @@ namespace Tests
             Handler.Handle(Message, Usuario2.Id, out response);
 
 
-            Assert.That(response, Is.EqualTo($"Se ha agregado el residuo {Residuo.Tipo}"));
+            Assert.That(response, Is.EqualTo($"Se ha agregado el residuo Metal"));
         }
     }
 }

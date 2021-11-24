@@ -177,7 +177,7 @@ namespace ClassLibrary
                 this.Emprendedor.State = "OH-RP";
                 this.State = OfertasState.Start;
                 int contador = 0;
-                string unfinished = "Ingrese el tipo del residuo que quiere agregar:\n";
+                string unfinished = "Ingrese el tipo del residuo que quiere buscar:\n";
                 foreach(string residuo in PosiblesResiduos.GetInstance().Residuos)
                 {
                     unfinished += $"{contador}. {residuo}\n";
@@ -215,6 +215,7 @@ namespace ClassLibrary
                     else
                     {
                         response = builderResponse;
+                        this.Emprendedor.State = "start";
                         this.State = OfertasState.Start;
 
                         return false;

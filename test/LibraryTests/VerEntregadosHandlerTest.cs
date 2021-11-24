@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using ClassLibrary;
-using LocationApi;
+using Ucu.Poo.Locations.Client;
 
 namespace Tests
 {

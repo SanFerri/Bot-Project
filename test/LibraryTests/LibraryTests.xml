@@ -171,11 +171,6 @@
             Este test se encarga de comprobar la funcionalidad de buscar una publicación con palabra clave.
             </summary>
         </member>
-        <member name="M:Tests.RegistrarseHandlerTests.WithoutKeywordOfertasHandlerTest">
-            <summary>
-            Este test se encarga de comprobar la funcionalidad de buscar una publicación sin usar una palabra clave.
-            </summary>
-        </member>
         <member name="T:Tests.ResiduosConstantesTests">
             <summary>
             Clase de test que se encarga de probar las distintas funciones del ResiduosConstantesHandler.
@@ -218,6 +213,58 @@
             <summary>
             Este test se encarga de comprobar que el handler no responde nada si se utiliza 
             un comando distinto de /residuospuntuales.
+            </summary>
+        </member>
+        <member name="T:Tests.VerEntregadosHandlerTest">
+            <summary>
+            Clase de test que se encarga de probar las distintas funciones del PublicarHandler.
+            Los test individualmente utilizando "run test" funcionan correctamente, pero al intentar usar "run all tests" no detecta ninguno.
+            </summary>
+        </member>
+        <member name="M:Tests.VerEntregadosHandlerTest.Setup">
+            <summary>
+            el set up de los test.
+            </summary>
+        </member>
+        <member name="M:Tests.VerEntregadosHandlerTest.VerEntregadosCanHandleTest">
+            <summary>
+            Este test se encarga de comprobar que funciona el comando /verentregados.
+            </summary>
+        </member>
+        <member name="M:Tests.VerEntregadosHandlerTest.CambiarDatosCantHandleTest">
+            <summary>
+            Este test se encarga de comprobar que el comando /verentregados no funciona con un usuario que no es un empresario.
+            </summary>
+        </member>
+        <member name="M:Tests.VerEntregadosHandlerTest.WorkingCambiarDatosHandlerTest">
+            <summary>
+            Este test se encarga de comprobar la funcionalidad de crear una publicación.
+            </summary>
+        </member>
+        <member name="T:Tests.VerPublicacionesHandlerTest">
+            <summary>
+            Clase de test que se encarga de probar las distintas funciones del PublicarHandler.
+            Los test individualmente utilizando "run test" funcionan correctamente, pero al intentar usar "run all tests" no detecta ninguno.
+            </summary>
+        </member>
+        <member name="M:Tests.VerPublicacionesHandlerTest.Setup">
+            <summary>
+            el set up de los test.
+            </summary>
+        </member>
+        <member name="M:Tests.VerPublicacionesHandlerTest.CambiarDatosCanHandleTest">
+            <summary>
+            Este test se encarga de comprobar que funciona el comando /publicar.
+            </summary>
+        </member>
+        <member name="M:Tests.VerPublicacionesHandlerTest.CambiarDatosCantHandleTest">
+            <summary>
+            Este test se encarga de comprobar que el comando /publicar no funciona con un usuario que no es un empresario.
+            </summary>
+        </member>
+        <member name="M:Tests.VerPublicacionesHandlerTest.WorkingCambiarDatosHandlerTest">
+            <summary>
+            Este test se encarga de comprobar la funcionalidad de crear una publicación.
             </summary>
         </member>
     </members>
