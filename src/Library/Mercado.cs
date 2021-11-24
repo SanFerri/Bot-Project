@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 namespace ClassLibrary
 {
     /// <summary>
@@ -7,7 +9,7 @@ namespace ClassLibrary
     /// la experta en la informacion de todas las publicaciones tambien es la
     /// encargada a través de sus 2 metodo Add y Remove Mercado de agregar o remover publicaciones.
     /// </summary>
-    public class Mercado
+    public class Mercado : IJsonConvertible
     {
         /// <summary>
         /// Property oferta, es una lista que contiene publicaciones.
@@ -42,12 +44,29 @@ namespace ClassLibrary
         {
             this.Ofertas.Remove(publicacion);
         }
+
+        [JsonConstructor]
         /// <summary>
         /// Constructor vacio para agregarle instancias a la clase.
         /// </summary>
         private Mercado()
         {
             this.Ofertas = new List<Publicacion>();
+        }
+
+        /// <summary>
+        /// Sirve para serializar la clase y todas sus property.
+        /// </summary>
+        /// <returns></returns>
+        public string ConvertToJson()
+        {
+            return JsonSerializer.Serialize(this);
+        }
+
+        public void LoadFromJson(string json)
+        {
+            Mercado deserialized = JsonSerializer.Deserialize<Mercado>(json);
+            this.Ofertas = deserialized.Ofertas;
         }
 
         /// <summary>
