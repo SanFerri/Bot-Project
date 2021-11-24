@@ -26,6 +26,7 @@ namespace Tests
         ListaAdministradores Administradores = ListaAdministradores.GetInstance();
         ListaUsuarios Usuarios = ListaUsuarios.GetInstance();
         Mercado Mercado = Mercado.GetInstance();
+        string Invitacion;
         
         /// <summary>
         /// El Setup de los test
@@ -45,7 +46,7 @@ namespace Tests
             Id = 12345678;
             Id2 = 87654321;
             UsuarioEmprendedor.Id = Id;
-            UsuarioEmpresario.Id = Id2;
+            
             Empresarios.AddEmpresario(UsuarioEmpresario);
             Usuarios.AddUsuario(UsuarioEmprendedor);
             Contador = 0;
@@ -93,40 +94,10 @@ namespace Tests
             IHandler result = Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
             
             Assert.That(response, Is.EqualTo("Esta registrado como un emprendedor, ingrese una invitación si es parte de una empresa, en caso de no serlo responda con un no"));
-            Message = "si";
+            Message = Invitacion;
             Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
             Assert.That(response, Is.EqualTo("Ingrese el numero de la palabra clave que buscar:\n0. Barato.\n1. Envio Gratis.\n2. Usado.\n3. Nuevo.\n"));
             Message = "1";
-            Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
-            Assert.That(response, Is.EqualTo("¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad)"));
-            Message = Ubicacion2.Direccion;
-            Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
-            Assert.That(response, Is.EqualTo("Ahora dime que tipo de residuos estas buscando?"));
-            Message = Residuo.Tipo;
-            Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
-            Assert.That(response, Is.EqualTo($"Ingrese el número de la publicación para ver más información de la misma:\n0. {Publicacion.Empresa.Nombre} ofrece: {Publicacion.Residuo.Cantidad} {Publicacion.Residuo.Unidad} de {Publicacion.Residuo.Tipo} en {Publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {Publicacion.Habilitacion}\n"));
-        }
-        /// <summary>
-        /// Este test se encarga de comprobar la funcionalidad de buscar una publicación sin usar una palabra clave.
-        /// </summary>
-        [Test]
-        public void WithoutKeywordOfertasHandlerTest()
-        {
-            Message = Handler.Keywords[0];
-            string response;
-
-            IHandler result = Handler.Handle(Message, Id, out response);
-            
-            Assert.That(response, Is.EqualTo("¿Quieres realizar tu busqueda usando una palabra clave? Responda si o no"));
-            Message = "no";
-            Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
-            Assert.That(response, Is.EqualTo("¿Cual es tu direccion? (Asi encontraremos publicaciones por proximidad)"));
-            Message = Ubicacion2.Direccion;
-            Handler.Handle(Message, UsuarioEmprendedor.Id, out response);  
-            Assert.That(response, Is.EqualTo("Ahora dime que tipo de residuos estas buscando?"));
-            Message = Residuo.Tipo;
-            Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
-            Assert.That(response, Is.EqualTo($"Ingrese el número de la publicación para ver más información de la misma:\n0. {Publicacion.Empresa.Nombre} ofrece: {Publicacion.Residuo.Cantidad} {Publicacion.Residuo.Unidad} de {Publicacion.Residuo.Tipo} en {Publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {Publicacion.Habilitacion}\n"));
         }
     }
 }

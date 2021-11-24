@@ -29,7 +29,7 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            Residuo = new Residuo("metal", 100, "kg", 250, "$");
+            Residuo = new Residuo("Metal", 100, "kg", 250, "$");
             Handler = new PublicarHandler(null);
             
             string invitacion = InvitationGenerator.Generate();
@@ -103,9 +103,9 @@ namespace Tests
 
             Message = Ubicacion.Direccion;
             Handler.Handle(Message, Usuario.Id, out response);
-            Assert.That(response, Is.EqualTo("Ahora dime sobre cual de tus residuos quieres publicar"));
+            Assert.That(response, Is.EqualTo("Indique el numero del residuo sobre el cual quiera publicar:\n0. Metal: 100kg, cuesta 250$\n"));
 
-            Message = Residuo.Tipo;
+            Message = "0";
             Handler.Handle(Message, Usuario.Id, out response);
             Assert.That(response, Is.EqualTo($"Se ha publicado la oferta de {Residuo.Tipo} de la empresa {Empresa.Nombre}. En la ubicacion {Ubicacion.Direccion}"));
         }
