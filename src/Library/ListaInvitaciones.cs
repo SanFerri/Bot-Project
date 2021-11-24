@@ -2,15 +2,15 @@ using System.Collections.Generic;
 namespace ClassLibrary
 {
     /// <summary>
-    /// ListaPalabrasClave es una clase que contiene palabras clave que posee dos metodos AddPalabra y 
-    /// RemovePalabra para añadir o remover elementos de una property de la clase llamada ListaPalabrasClave, es el encargado
-    /// de llevar a cabo dichas tareas porque es el experto en conocer las palabras claves.
+    /// ListaInvitaciones es una clase que contiene invitaciones que posee dos metodos AddInvitacion y 
+    /// RemoveInvitacion para añadir o remover invitaciones de una property de la clase llamada ListaInvitaciones, es el encargado
+    /// de llevar a cabo dichas tareas porque es el experto en conocer las invitaciones.
     /// </summary>
     public class ListaInvitaciones
     {
         /// <summary>
-        /// Property string palabras, es una lista de instancias de palabras clave
-        /// que lleva el registro de las palabras clave.
+        /// Property string invitaciones, es una lista de instancias de invitaciones
+        /// que lleva el registro de las invitaciones.
         /// </summary>
         /// <returns></returns>
         public List<string> Invitaciones = new List<string>();
@@ -18,9 +18,9 @@ namespace ClassLibrary
         private static ListaInvitaciones _instance;
 
         /// <summary>
-        /// AddPalabra es un metodo que se encarga de agregar palabras a la lista.
+        /// AddInvitacion es un metodo que se encarga de agregar invitaciones a la lista.
         /// </summary>
-        /// <param name="palabra"></param>
+        /// <param name="invitacion"></param>
         public void AddInvitacion(string invitacion)
         {
             this.Invitaciones.Add(invitacion);
@@ -30,13 +30,18 @@ namespace ClassLibrary
         //public IList<string> Steps { get; private set; } = new List<string>();
 
         /// <summary>
-        /// RemovePalabra es un metodo que se encarga de eliminar palabras de la lista.
+        /// RemoveInvitacion es un metodo que se encarga de eliminar invitaciones de la lista.
         /// </summary>
-        /// <param name="palabra"></param>
+        /// <param name="invitacion"></param>
         public void RemoveInvitacion(string invitacion)
         {
             this.Invitaciones.Add(invitacion);
         }
+        /// <summary>
+        /// Sirve para aplicar el singleton, verifica si ListaInvitaciones es nula y si no es nula te 
+        /// devuelve el valor de la property.
+        /// </summary>
+        /// <returns></returns>
         public static ListaInvitaciones GetInstance()
         {
             if (_instance == null)

@@ -58,6 +58,12 @@ namespace ClassLibrary
             return JsonSerializer.Serialize(this);
         }
 
+        /// <summary>
+        /// Sirve para deserializar un string de json para asi 
+        /// asignarle una nueva clase ListaEmpresas los valores 
+        /// previos a ponerle un stop al program para asi mantener la información.
+        /// </summary>
+        /// <param name="json"></param>
         public void LoadFromJson(string json)
         {
             ListaEmpresas deserialized = JsonSerializer.Deserialize<ListaEmpresas>(json);
