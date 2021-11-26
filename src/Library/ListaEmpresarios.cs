@@ -8,8 +8,9 @@ namespace ClassLibrary
     /// por el patron Expert este tambien es quien
     /// posee la responsabilidad de agregar Empresarios y/o remover Empresarios.
     /// </summary>
-    public class ListaEmpresarios : IJsonConvertible
+    public class ListaEmpresarios
     {
+        [JsonInclude]
         /// <summary>
         /// Variable estatica empresarios, porque es una lista de instancias de Empresario
         /// que lleva un registro de todos los empresarios que hay.
@@ -29,7 +30,6 @@ namespace ClassLibrary
             this.Empresarios.Add(empresario);
         }
 
-        [JsonConstructor]
         /// <summary>
         /// Constructor vacio para sumarle instancias en la clase.
         /// </summary>
@@ -37,21 +37,6 @@ namespace ClassLibrary
         private ListaEmpresarios()
         {
             this.Empresarios = new List<Empresario>();
-        }
-        
-        /// <summary>
-        /// Sirve para serializar la clase y todas sus property.
-        /// </summary>
-        /// <returns></returns>
-        public string ConvertToJson()
-        {
-            return JsonSerializer.Serialize(this);
-        }
-
-        public void LoadFromJson(string json)
-        {
-            ListaEmpresarios deserialized = JsonSerializer.Deserialize<ListaEmpresarios>(json);
-            this.Empresarios = deserialized.Empresarios;
         }
 
         /// <summary>

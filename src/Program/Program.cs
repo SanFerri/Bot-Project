@@ -12,6 +12,8 @@ using ClassLibrary;
 using Telegram.Bot.Types.Enums;
 using FileReader = System.IO ;
 using System.Text;
+using System.Text.Json;
+using System.Linq;
 
 namespace Program
 {
@@ -30,6 +32,62 @@ namespace Program
         static BaseHandler handler11;
         public static void Main()
         {
+            if (!FileReader.File.Exists(@"AdministradoresData.json") || !FileReader.File.Exists(@"MercadoData.json") || !FileReader.File.Exists(@"UsuariosData.json"))
+            {
+
+                string JsonAdministradores = ListaAdministradores.GetInstance().ConvertToJson();
+                Console.WriteLine(JsonAdministradores);
+                FileReader.File.WriteAllText(@"../Library/Jsons/AdministradoresData.json", JsonAdministradores);
+
+                string JsonUsuarios = ListaUsuarios.GetInstance().ConvertToJson();
+                Console.WriteLine(JsonUsuarios);
+                FileReader.File.WriteAllText(@"../Library/Jsons/UsuariosData.json", JsonUsuarios);
+
+                string JsonMercado = Mercado.GetInstance().ConvertToJson();
+                Console.WriteLine(JsonMercado);
+                FileReader.File.WriteAllText(@"../Library/Jsons/MercadoData.json", JsonMercado);
+
+                string JsonInvitaciones = ListaInvitaciones.GetInstance().ConvertToJson();
+                Console.WriteLine(JsonInvitaciones);
+                FileReader.File.WriteAllText(@"../Library/Jsons/InvitacionesData.json", JsonInvitaciones);
+
+                string JsonEmpresas = ListaEmpresas.GetInstance().ConvertToJson();
+                Console.WriteLine(JsonEmpresas);
+                FileReader.File.WriteAllText(@"../Library/Jsons/EmpresasData.json", JsonEmpresas);
+            }
+            else
+            {
+                string JsonAdministradores = FileReader.File.ReadAllText(@"../Library/Jsons/AdministradoresData.json");
+                string JsonEmpresarios = FileReader.File.ReadAllText(@"../Library/Jsons/EmpresariosData.json");
+                string JsonMercado = FileReader.File.ReadAllText(@"../Library/Jsons/MercadoData.json");
+                string JsonUsuarios = FileReader.File.ReadAllText(@"../Library/Jsons/UsuariosData.json");
+                string JsonEmpresas = FileReader.File.ReadAllText(@"../Library/Jsons/EmpresasData.json");
+                string JsonInvitaciones = FileReader.File.ReadAllText(@"../Library/Jsons/InvitacionesData.json");
+
+
+                JsonSerializerOptions options = new()
+                {
+                    ReferenceHandler = MyReferenceHandler.Instance,
+                    WriteIndented = true
+                };
+
+                ListaAdministradores administradores = JsonSerializer.Deserialize<ListaAdministradores>(JsonAdministradores, options);
+                Console.WriteLine(administradores.ConvertToJson());
+
+
+                Mercado mercado = JsonSerializer.Deserialize<Mercado>(JsonUsuarios, options);
+                Console.WriteLine(mercado.ConvertToJson());
+
+                ListaUsuarios usuarios = JsonSerializer.Deserialize<ListaUsuarios>(JsonMercado, options);
+                Console.WriteLine(usuarios.ConvertToJson());
+
+                ListaEmpresas empresas = JsonSerializer.Deserialize<ListaEmpresas>(JsonEmpresas, options);
+                Console.WriteLine(empresas.ConvertToJson());
+
+                ListaInvitaciones invitaciones = JsonSerializer.Deserialize<ListaInvitaciones>(JsonInvitaciones, options);
+                Console.WriteLine(usuarios.ConvertToJson());
+            }
+
             Residuo Residuo = new Residuo("Metal", 100, "kg", 250, "$");
             
             string invitacion = InvitationGenerator.Generate();
@@ -39,9 +97,7 @@ namespace Program
             Empresa.Residuos.AddResiduo(Residuo);
             Empresario Usuario = new Empresario(invitacion, Empresa);
 
-            Publicacion publicacion = new Publicacion(Residuo, Ubicacion, Empresa, "Permiso para usar metales", true);
-
-            Residuo Residuo1 = new Residuo("madera", 150, "kg", 150, "$");
+            Residuo Residuo1 = new Residuo("Madera", 150, "kg", 150, "$");
 
             string invitacion1 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion1);
@@ -50,7 +106,7 @@ namespace Program
             Empresa.Residuos.AddResiduo(Residuo);
             Empresario Usuario1 = new Empresario(invitacion, Empresa);
 
-            Residuo Residuo2 = new Residuo("nylon", 100, "kg", 50, "$");
+            Residuo Residuo2 = new Residuo("Nylon", 100, "kg", 50, "$");
 
             string invitacion2 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion2);
@@ -59,7 +115,7 @@ namespace Program
             Empresa.Residuos.AddResiduo(Residuo);
             Empresario Usuario2 = new Empresario(invitacion, Empresa);
 
-            Residuo Residuo3 = new Residuo("aluminio", 400, "kg", 450, "$");
+            Residuo Residuo3 = new Residuo("Aluminio", 400, "kg", 450, "$");
 
             string invitacion3 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion3);
@@ -68,7 +124,7 @@ namespace Program
             Empresa.Residuos.AddResiduo(Residuo);
             Empresario Usuario3 = new Empresario(invitacion, Empresa);
 
-            Residuo Residuo4 = new Residuo("plastico", 300, "kg", 50, "$");
+            Residuo Residuo4 = new Residuo("Plastico", 300, "kg", 50, "$");
 
             string invitacion4 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion4);
@@ -77,7 +133,7 @@ namespace Program
             Empresa.Residuos.AddResiduo(Residuo);
             Empresario Usuario4 = new Empresario(invitacion, Empresa);
 
-            Residuo Residuo5 = new Residuo("goma", 600, "kg", 500, "$");
+            Residuo Residuo5 = new Residuo("Goma", 600, "kg", 500, "$");
 
             string invitacion5 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion5);
@@ -86,7 +142,7 @@ namespace Program
             Empresa.Residuos.AddResiduo(Residuo);
             Empresario Usuario5 = new Empresario(invitacion, Empresa);
 
-            Residuo Residuo6 = new Residuo("cobre", 60, "kg", 300, "$");
+            Residuo Residuo6 = new Residuo("Cobre", 60, "kg", 300, "$");
 
             string invitacion6 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion6);
@@ -95,7 +151,7 @@ namespace Program
             Empresa.Residuos.AddResiduo(Residuo);
             Empresario Usuario6 = new Empresario(invitacion, Empresa);
 
-            Residuo Residuo7 = new Residuo("papel", 1000, "kg", 30, "$");
+            Residuo Residuo7 = new Residuo("Papel", 1000, "kg", 30, "$");
 
             string invitacion7 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion7);
@@ -113,7 +169,7 @@ namespace Program
             Empresa.Residuos.AddResiduo(Residuo);
             Empresario Usuario8 = new Empresario(invitacion, Empresa);
 
-            Residuo Residuo9 = new Residuo("cuero", 70, "kg", 1000, "$");
+            Residuo Residuo9 = new Residuo("Cuero", 70, "kg", 1000, "$");
 
             string invitacion9 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion9);
@@ -141,22 +197,6 @@ namespace Program
             Publicacion publicacion8 = new Publicacion(Residuo8, Ubicacion8, Empresa8, "No es necesario un permiso", false);
 
             Publicacion publicacion9 = new Publicacion(Residuo9, Ubicacion9, Empresa9, "Permiso para transportar", true);
-          
-            string json = ListaEmpresarios.GetInstance().ConvertToJson();
-            Console.WriteLine(json);
-            FileReader.File.WriteAllText(@"../Library/Jsons/EmpresariosData.json", json);
-
-            string json2 = ListaAdministradores.GetInstance().ConvertToJson();
-            Console.WriteLine(json2);
-            FileReader.File.WriteAllText(@"../Library/Jsons/AdministradoresData.json", json2);
-
-            string json3 = ListaUsuarios.GetInstance().ConvertToJson();
-            Console.WriteLine(json3);
-            FileReader.File.WriteAllText(@"../Library/Jsons/UsuariosData.json", json3);
-
-            string json4 = Mercado.GetInstance().ConvertToJson();
-            Console.WriteLine(json4);
-            FileReader.File.WriteAllText(@"../Library/Jsons/MercadoData.json", json4);
 
             handler1 = new OfertasHandler(null);
             handler2 = new AgregarResiduoHandler(handler1);
@@ -189,7 +229,27 @@ namespace Program
 
             //Detengo la escucha de mensajes 
             bot.StopReceiving();
+
+
+            string json2 = ListaAdministradores.GetInstance().ConvertToJson();
+            Console.WriteLine(json2);
+            FileReader.File.WriteAllText(@"../Library/Jsons/AdministradoresData.json", json2);
+
+            string json3 = ListaUsuarios.GetInstance().ConvertToJson();
+            Console.WriteLine(json3);
+            FileReader.File.WriteAllText(@"../Library/Jsons/UsuariosData.json", json3);
+
+            string json4 = Mercado.GetInstance().ConvertToJson();
+            Console.WriteLine(json4);
+            FileReader.File.WriteAllText(@"../Library/Jsons/MercadoData.json", json4);
+
+            string json5 = ListaEmpresas.GetInstance().ConvertToJson();
+            Console.WriteLine(json5);
+            FileReader.File.WriteAllText(@"../Library/Jsons/EmpresasData.json", json5);
             
+            string json6 = ListaInvitaciones.GetInstance().ConvertToJson();
+            Console.WriteLine(json6);
+            FileReader.File.WriteAllText(@"../Library/Jsons/InvitacionesData.json", json6);
         }
 
         private static async void OnMessage(object sender, MessageEventArgs messageEventArgs)

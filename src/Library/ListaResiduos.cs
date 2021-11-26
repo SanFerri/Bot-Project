@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -8,6 +11,7 @@ namespace ClassLibrary
     /// </summary>
     public class ListaResiduos
     {
+        [JsonInclude]
         /// <summary>
         /// Property residuo, es una lista de instancias de Residuo
         /// que lleva el registro de los residuos de una empresa.

@@ -1370,24 +1370,11 @@
             posee la responsabilidad de agregar Empresarios y/o remover Empresarios.
             </summary>
         </member>
-        <member name="P:ClassLibrary.ListaEmpresarios.Empresarios">
-            <summary>
-            Variable estatica empresarios, porque es una lista de instancias de Empresario
-            que lleva un registro de todos los empresarios que hay.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:ClassLibrary.ListaEmpresarios.AddEmpresario(ClassLibrary.Empresario)">
             <summary>
             Metodo que agrega un empresario a la lista de empresarios, desginado a esta clase por Expert.
             </summary>
             <param name="empresario"></param>
-        </member>
-        <member name="M:ClassLibrary.ListaEmpresarios.ConvertToJson">
-            <summary>
-            Sirve para serializar la clase y todas sus property.
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:ClassLibrary.ListaEmpresarios.RemoveEmpresario(ClassLibrary.Empresario)">
             <summary>
@@ -1491,13 +1478,6 @@
             de llevar a cabo dichas tareas porque es el experto en conocer las palabras claves.
             </summary>
         </member>
-        <member name="F:ClassLibrary.ListaInvitaciones.Invitaciones">
-            <summary>
-            Property string palabras, es una lista de instancias de palabras clave
-            que lleva el registro de las palabras clave.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:ClassLibrary.ListaInvitaciones.AddInvitacion(System.String)">
             <summary>
             AddPalabra es un metodo que se encarga de agregar palabras a la lista.
@@ -1509,6 +1489,12 @@
             RemovePalabra es un metodo que se encarga de eliminar palabras de la lista.
             </summary>
             <param name="palabra"></param>
+        </member>
+        <member name="M:ClassLibrary.ListaInvitaciones.ConvertToJson">
+            <summary>
+            Sirve para serializar la clase y todas sus property.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:ClassLibrary.ListaPalabrasClave">
             <summary>
@@ -1550,13 +1536,6 @@
             de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
             </summary>
         </member>
-        <member name="F:ClassLibrary.ListaPublicaciones.Publicaciones">
-            <summary>
-            Property publicación, es una lista de instancias de Publicacion
-            que lleva el registro de las publicaciones de una empresa.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:ClassLibrary.ListaPublicaciones.AddPublicacion(ClassLibrary.Publicacion)">
             <summary>
             AddPublicacion es un metodo que se encarga de agregar publicaciones a la lista
@@ -1575,13 +1554,6 @@
             para añadir o remover elementos de una property de la clase llamada ListaResiduo, es el encargado
             de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
             </summary>
-        </member>
-        <member name="F:ClassLibrary.ListaResiduos.Residuos">
-            <summary>
-            Property residuo, es una lista de instancias de Residuo
-            que lleva el registro de los residuos de una empresa.
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:ClassLibrary.ListaResiduos.AddResiduo(ClassLibrary.Residuo)">
             <summary>

@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -8,6 +11,7 @@ namespace ClassLibrary
     /// </summary>
     public class ListaInvitaciones
     {
+        [JsonInclude]
         /// <summary>
         /// Property string palabras, es una lista de instancias de palabras clave
         /// que lleva el registro de las palabras clave.

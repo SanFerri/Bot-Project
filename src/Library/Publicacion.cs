@@ -94,9 +94,17 @@ namespace ClassLibrary
             this.Empresa = empresa;
             this.Fecha = DateTime.Now;
             this.Habilitacion = habilitacion;
-            Mercado mercado = Mercado.GetInstance();
+            if (this.Entregado == false)
+            {
+                Mercado mercado = Mercado.GetInstance();
+                mercado.AddMercado(this);
+            }
+            else
+            {
+                ListaEntregadas entregadas = ListaEntregadas.GetInstance();
+                entregadas.AddPublicacion(this);
+            }
             this.Empresa.Publicaciones.AddPublicacion(this);
-            mercado.AddMercado(this);
         }
 
         /// <summary>

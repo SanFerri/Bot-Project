@@ -59,6 +59,7 @@ namespace ClassLibrary
             this.Invitacion = invitacion;
             ListaEmpresarios LosEmpresarios = ListaEmpresarios.GetInstance();
             LosEmpresarios.AddEmpresario(this);
+            this.Empresa.Empresario = this;
             this.LasPublicaciones = this.Empresa.Publicaciones;
         }
     }
