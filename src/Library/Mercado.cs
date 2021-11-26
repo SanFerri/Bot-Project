@@ -44,10 +44,11 @@ namespace ClassLibrary
         {
             this.Ofertas.Remove(publicacion);
         }
-        [JsonConstructor]
+
         /// <summary>
         /// Constructor vacio para agregarle instancias a la clase.
         /// </summary>
+        [JsonConstructor]
         private Mercado()
         {
             this.Ofertas = new List<Publicacion>();

@@ -46,19 +46,15 @@ namespace ClassLibrary
         }
 
         /// <summary>
-        /// Constructor de instancia CalculateLocation.
+        /// Sirve para calcular la localización de la dirección de una instancia de ubicación.
         /// </summary>
         /// <returns></returns>
 
         public async void CalculateLocation()
         {
-            //this.Location = await client.GetLocationAsync(this.Direccion);
+            this.Location = await client.GetLocationAsync(this.Direccion);
         }
 
-        /// <summary>
-        /// Metodo que convierte una clase en string Json (serializa).
-        /// </summary>
-        /// <returns></returns>
         /// <summary>
         /// Metodo que convierte una clase en string Json (serializa).
         /// </summary>
