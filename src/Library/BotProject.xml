@@ -1628,13 +1628,6 @@
             administrador o Usuario).
             </summary>
         </member>
-        <member name="P:ClassLibrary.ListaUsuarios.Usuarios">
-            <summary>
-            Variable estatica Usuario, porque es una lista de instancias de Usuario
-            que lleva un registro de todos las Usuario que hay.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:ClassLibrary.ListaUsuarios.AddUsuario(ClassLibrary.Emprendedor)">
             <summary>
             AddUsuario es el encargado de agregar Usuario a la lista.

@@ -1,1 +1,14 @@
-{"Usuarios":[]}
+{
+  "$id": "1",
+  "Usuarios": {
+    "$id": "2",
+    "$values": [
+      {
+        "$id": "3",
+        "State": "start",
+        "Invitacion": 0,
+        "Id": 9093
+      }
+    ]
+  }
+}

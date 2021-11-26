@@ -13,6 +13,7 @@ namespace ClassLibrary
     /// </summary>
     public class ListaUsuarios : IJsonConvertible
     {
+        [JsonInclude]
         /// <summary>
         /// Variable estatica Usuario, porque es una lista de instancias de Usuario
         /// que lleva un registro de todos las Usuario que hay.
@@ -57,7 +58,13 @@ namespace ClassLibrary
         /// <returns></returns>
         public string ConvertToJson()
         {
-            return JsonSerializer.Serialize(this);
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Serialize(this, options);
         }
 
         /// <summary>
