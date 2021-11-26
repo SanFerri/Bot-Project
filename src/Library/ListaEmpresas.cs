@@ -11,6 +11,7 @@ namespace ClassLibrary
     /// </summary>
     public class ListaEmpresas : IJsonConvertible
     {
+        [JsonInclude]
         /// <summary>
         /// Variable estatica empresas, porque es una lista de instancias de Empresa
         /// que lleva un registro de todos las empresas que hay.
@@ -55,7 +56,13 @@ namespace ClassLibrary
         /// <returns></returns>
         public string ConvertToJson()
         {
-            return JsonSerializer.Serialize(this);
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Serialize(this, options);
         }
 
         public void LoadFromJson(string json)

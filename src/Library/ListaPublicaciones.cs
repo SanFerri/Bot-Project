@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -6,11 +9,14 @@ namespace ClassLibrary
     /// para añadir o remover elementos de una property de la clase llamada ListaPublicaciones, es el encargado
     /// de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
     /// </summary>
-    public class ListaPublicaciones
+    public class ListaPublicaciones : IJsonConvertible
     {
+        [JsonConstructor]
         public ListaPublicaciones()
         {
         }
+
+        [JsonInclude]
         /// <summary>
         /// Property publicación, es una lista de instancias de Publicacion
         /// que lleva el registro de las publicaciones de una empresa.
@@ -38,5 +44,21 @@ namespace ClassLibrary
         {
             Publicaciones.Remove(publicacion);
         }
+
+        /// <summary>
+        /// Sirve para serializar la clase y todas sus property.
+        /// </summary>
+        /// <returns></returns>
+        public string ConvertToJson()
+        {
+            return JsonSerializer.Serialize(this);
+        }
+
+        public void LoadFromJson(string json)
+        {
+            ListaPublicaciones deserialized = JsonSerializer.Deserialize<ListaPublicaciones>(json);
+            this.Publicaciones = deserialized.Publicaciones;
+        }
+
     }
 }

@@ -10,6 +10,7 @@ namespace ClassLibrary
     /// </summary>
     public class ListaEmpresarios : IJsonConvertible
     {
+        [JsonInclude]
         /// <summary>
         /// Variable estatica empresarios, porque es una lista de instancias de Empresario
         /// que lleva un registro de todos los empresarios que hay.

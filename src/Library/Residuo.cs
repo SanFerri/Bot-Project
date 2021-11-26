@@ -74,15 +74,13 @@ namespace ClassLibrary
         /// </summary>
         /// <returns></returns>
 
+        /// <summary>
+        /// Metodo que convierte una clase en string Json (serializa).
+        /// </summary>
+        /// <returns></returns>
         public string ConvertToJson()
         {
-            JsonSerializerOptions options = new()
-            {
-                ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true
-            };
-
-            return JsonSerializer.Serialize(this, options);
+            return JsonSerializer.Serialize(this);
         }
         
     }

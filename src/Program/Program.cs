@@ -39,8 +39,6 @@ namespace Program
             Empresa.Residuos.AddResiduo(Residuo);
             Empresario Usuario = new Empresario(invitacion, Empresa);
 
-            Publicacion publicacion = new Publicacion(Residuo, Ubicacion, Empresa, "Permiso para usar metales", true);
-
             Residuo Residuo1 = new Residuo("madera", 150, "kg", 150, "$");
 
             string invitacion1 = InvitationGenerator.Generate();
@@ -142,9 +140,6 @@ namespace Program
 
             Publicacion publicacion9 = new Publicacion(Residuo9, Ubicacion9, Empresa9, "Permiso para transportar", true);
           
-            string json = ListaEmpresarios.GetInstance().ConvertToJson();
-            Console.WriteLine(json);
-            FileReader.File.WriteAllText(@"../Library/Jsons/EmpresariosData.json", json);
 
             string json2 = ListaAdministradores.GetInstance().ConvertToJson();
             Console.WriteLine(json2);
@@ -154,9 +149,9 @@ namespace Program
             Console.WriteLine(json3);
             FileReader.File.WriteAllText(@"../Library/Jsons/UsuariosData.json", json3);
 
-            string json4 = Mercado.GetInstance().ConvertToJson();
+            string json4 = ListaEmpresas.GetInstance().ConvertToJson();
             Console.WriteLine(json4);
-            FileReader.File.WriteAllText(@"../Library/Jsons/MercadoData.json", json4);
+            FileReader.File.WriteAllText(@"../Library/Jsons/EmpresasData.json", json4);
 
             handler1 = new OfertasHandler(null);
             handler2 = new AgregarResiduoHandler(handler1);
@@ -189,6 +184,10 @@ namespace Program
 
             //Detengo la escucha de mensajes 
             bot.StopReceiving();
+
+            string json = ListaEmpresas.GetInstance().ConvertToJson();
+            Console.WriteLine(json);
+            FileReader.File.WriteAllText(@"EmpresasData.json", json);
             
         }
 

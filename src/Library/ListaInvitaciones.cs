@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace ClassLibrary
 {
     /// <summary>
@@ -8,6 +11,7 @@ namespace ClassLibrary
     /// </summary>
     public class ListaInvitaciones
     {
+        [JsonInclude]
         /// <summary>
         /// Property string palabras, es una lista de instancias de palabras clave
         /// que lleva el registro de las palabras clave.
@@ -45,9 +49,26 @@ namespace ClassLibrary
             }
             return _instance;
         }
-
+        [JsonConstructor]
         private ListaInvitaciones()
         {
         }
+
+
+        /// <summary>
+        /// Sirve para serializar la clase y todas sus property.
+        /// </summary>
+        /// <returns></returns>
+        public string ConvertToJson()
+        {
+            return JsonSerializer.Serialize(this);
+        }
+
+        public void LoadFromJson(string json)
+        {
+            ListaInvitaciones deserialized = JsonSerializer.Deserialize<ListaInvitaciones>(json);
+            this.Invitaciones = deserialized.Invitaciones;
+        }
+
     }
 }
