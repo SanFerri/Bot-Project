@@ -74,7 +74,7 @@ namespace ClassLibrary
         /// un mensaje.
         /// </summary>
         /// <param name="message">El mensaje a procesar.</param>
-        /// <returns>true si el mensaje puede ser pocesado; false en caso contrario.</returns>
+        /// <returns>true si el mensaje puede ser procesado; false en caso contrario.</returns>
         protected virtual bool CanHandle(string message)
         {
             // Cuando no hay palabras clave este método debe ser sobreescrito por las clases sucesoras y por lo tanto
