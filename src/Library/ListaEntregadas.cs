@@ -11,12 +11,12 @@ namespace ClassLibrary
     /// </summary>
     public class ListaEntregadas : IJsonConvertible
     {
-        [JsonInclude]
         /// <summary>
         /// Property publicación, es una lista de instancias de Publicacion
         /// que lleva el registro de las publicaciones de una empresa.
         /// </summary>
         /// <returns></returns>
+        [JsonInclude]
         public List<Publicacion> ListaPublicaciones { get; set; }
 
         private static ListaEntregadas _instance;
@@ -72,6 +72,12 @@ namespace ClassLibrary
             return JsonSerializer.Serialize(this);
         }
 
+        /// <summary>
+        /// Sirve para deserializar un string de json para asi 
+        /// asignarle una nueva clase ListaEmpresarios los valores 
+        /// previos a ponerle un stop al program para asi mantener la información.
+        /// </summary>
+        /// <param name="json"></param>
         public void LoadFromJson(string json)
         {
             ListaEntregadas deserialized = JsonSerializer.Deserialize<ListaEntregadas>(json);

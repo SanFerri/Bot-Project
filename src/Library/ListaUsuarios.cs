@@ -42,10 +42,10 @@ namespace ClassLibrary
             Usuarios.Remove(usuario);
         }
 
-        [JsonConstructor]
         /// <summary>
         /// Constructor vacio para agregarle instancias a la clase.
         /// </summary>
+        [JsonConstructor]
         private ListaUsuarios()
         {
             this.Usuarios = new List<Emprendedor>();

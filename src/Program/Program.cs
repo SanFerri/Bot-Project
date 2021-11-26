@@ -46,7 +46,7 @@ namespace Program
             Ubicacion Ubicacion1 = new Ubicacion("Av. 18 de Julio");
             Empresa Empresa1 = new Empresa("MaderasUY", Ubicacion, "098954786");
             Empresa.Residuos.AddResiduo(Residuo);
-            Empresario Usuario1 = new Empresario(invitacion, Empresa);
+            Empresario Usuario1 = new Empresario(invitacion1, Empresa1);
 
             Residuo Residuo2 = new Residuo("nylon", 100, "kg", 50, "$");
 
@@ -55,7 +55,7 @@ namespace Program
             Ubicacion Ubicacion2 = new Ubicacion("Av. Italia");
             Empresa Empresa2 = new Empresa("NylonS", Ubicacion, "099452698");
             Empresa.Residuos.AddResiduo(Residuo);
-            Empresario Usuario2 = new Empresario(invitacion, Empresa);
+            Empresario Usuario2 = new Empresario(invitacion2, Empresa2);
 
             Residuo Residuo3 = new Residuo("aluminio", 400, "kg", 450, "$");
 
@@ -64,7 +64,7 @@ namespace Program
             Ubicacion Ubicacion3 = new Ubicacion("Colonia");
             Empresa Empresa3 = new Empresa("CRAP", Ubicacion, "097219632");
             Empresa.Residuos.AddResiduo(Residuo);
-            Empresario Usuario3 = new Empresario(invitacion, Empresa);
+            Empresario Usuario3 = new Empresario(invitacion3, Empresa3);
 
             Residuo Residuo4 = new Residuo("plastico", 300, "kg", 50, "$");
 
@@ -73,7 +73,7 @@ namespace Program
             Ubicacion Ubicacion4 = new Ubicacion("Uruguay");
             Empresa Empresa4 = new Empresa("PLASuy", Ubicacion, "094572984");
             Empresa.Residuos.AddResiduo(Residuo);
-            Empresario Usuario4 = new Empresario(invitacion, Empresa);
+            Empresario Usuario4 = new Empresario(invitacion4, Empresa4);
 
             Residuo Residuo5 = new Residuo("goma", 600, "kg", 500, "$");
 
@@ -82,7 +82,7 @@ namespace Program
             Ubicacion Ubicacion5 = new Ubicacion("Sanchez");
             Empresa Empresa5 = new Empresa("GomeriaRAD", Ubicacion, "096785482");
             Empresa.Residuos.AddResiduo(Residuo);
-            Empresario Usuario5 = new Empresario(invitacion, Empresa);
+            Empresario Usuario5 = new Empresario(invitacion5, Empresa5);
 
             Residuo Residuo6 = new Residuo("cobre", 60, "kg", 300, "$");
 
@@ -91,7 +91,7 @@ namespace Program
             Ubicacion Ubicacion6 = new Ubicacion("Rivera");
             Empresa Empresa6 = new Empresa("InterTECH", Ubicacion, "091536982");
             Empresa.Residuos.AddResiduo(Residuo);
-            Empresario Usuario6 = new Empresario(invitacion, Empresa);
+            Empresario Usuario6 = new Empresario(invitacion6, Empresa6);
 
             Residuo Residuo7 = new Residuo("papel", 1000, "kg", 30, "$");
 
@@ -100,7 +100,7 @@ namespace Program
             Ubicacion Ubicacion7 = new Ubicacion("Treinta y tres");
             Empresa Empresa7 = new Empresa("Papeleria", Ubicacion, "097549621");
             Empresa.Residuos.AddResiduo(Residuo);
-            Empresario Usuario7 = new Empresario(invitacion, Empresa);
+            Empresario Usuario7 = new Empresario(invitacion7, Empresa7);
 
             Residuo Residuo8 = new Residuo("Algodon", 200, "kg", 50, "$");
 
@@ -109,7 +109,7 @@ namespace Program
             Ubicacion Ubicacion8 = new Ubicacion("La Rosa");
             Empresa Empresa8 = new Empresa("CottonTAP", Ubicacion, "097012958");
             Empresa.Residuos.AddResiduo(Residuo);
-            Empresario Usuario8 = new Empresario(invitacion, Empresa);
+            Empresario Usuario8 = new Empresario(invitacion8, Empresa8);
 
             Residuo Residuo9 = new Residuo("cuero", 70, "kg", 1000, "$");
 
@@ -118,7 +118,7 @@ namespace Program
             Ubicacion Ubicacion9 = new Ubicacion("Almirante");
             Empresa Empresa9 = new Empresa("LeatherSUR", Ubicacion, "097519862");
             Empresa.Residuos.AddResiduo(Residuo);
-            Empresario Usuario9 = new Empresario(invitacion, Empresa);
+            Empresario Usuario9 = new Empresario(invitacion9, Empresa9);
 
             Publicacion publicacion = new Publicacion(Residuo, Ubicacion, Empresa, "Permiso para manipular metales", true);
 

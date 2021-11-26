@@ -10,12 +10,12 @@ namespace ClassLibrary
     /// </summary>
     public class ListaEmpresarios : IJsonConvertible
     {
-        [JsonInclude]
         /// <summary>
         /// Variable estatica empresarios, porque es una lista de instancias de Empresario
         /// que lleva un registro de todos los empresarios que hay.
         /// </summary>
         /// <returns></returns>
+        [JsonInclude]
         public List<Empresario> Empresarios { get; set; }
         
         private static ListaEmpresarios _instance;
@@ -29,12 +29,11 @@ namespace ClassLibrary
         {
             this.Empresarios.Add(empresario);
         }
-
-        [JsonConstructor]
+        
         /// <summary>
         /// Constructor vacio para sumarle instancias en la clase.
         /// </summary>
-
+        [JsonConstructor]
         private ListaEmpresarios()
         {
             this.Empresarios = new List<Empresario>();

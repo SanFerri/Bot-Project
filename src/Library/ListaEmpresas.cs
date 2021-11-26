@@ -11,12 +11,12 @@ namespace ClassLibrary
     /// </summary>
     public class ListaEmpresas : IJsonConvertible
     {
-        [JsonInclude]
         /// <summary>
         /// Variable estatica empresas, porque es una lista de instancias de Empresa
         /// que lleva un registro de todos las empresas que hay.
         /// </summary>
         /// <returns></returns>
+        [JsonInclude]
         public List<Empresa> Empresas {get; set;}
         private static ListaEmpresas _instance;
 
