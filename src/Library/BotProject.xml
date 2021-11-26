@@ -287,6 +287,12 @@
             <param name="invitacion"></param>
             <param name="empresa"></param>
         </member>
+        <member name="M:ClassLibrary.Empresario.ConvertToJson">
+            <summary>
+            Metodo que convierte una clase en string Json (serializa).
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.AgregarResiduoHandler">
             <summary>
             Un "handler" del patrón Chain of Responsibility que implementa el comando "AgregarResiduo".
@@ -1382,13 +1388,6 @@
             posee la responsabilidad de agregar Empresarios y/o remover Empresarios.
             </summary>
         </member>
-        <member name="P:ClassLibrary.ListaEmpresarios.Empresarios">
-            <summary>
-            Variable estatica empresarios, porque es una lista de instancias de Empresario
-            que lleva un registro de todos los empresarios que hay.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:ClassLibrary.ListaEmpresarios.AddEmpresario(ClassLibrary.Empresario)">
             <summary>
             Metodo que agrega un empresario a la lista de empresarios, desginado a esta clase por Expert.
@@ -1400,6 +1399,14 @@
             Sirve para serializar la clase y todas sus property.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ListaEmpresarios.LoadFromJson(System.String)">
+            <summary>
+            Sirve para deserializar un string de json para asi 
+            asignarle una nueva clase ListaEmpresarios los valores 
+            previos a ponerle un stop al program para asi mantener la información.
+            </summary>
+            <param name="json"></param>
         </member>
         <member name="M:ClassLibrary.ListaEmpresarios.RemoveEmpresario(ClassLibrary.Empresario)">
             <summary>
@@ -1444,6 +1451,14 @@
             Sirve para serializar la clase y todas sus property.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ListaEmpresas.LoadFromJson(System.String)">
+            <summary>
+            Sirve para deserializar un string de json para asi 
+            asignarle una nueva clase ListaEmpresas los valores 
+            previos a ponerle un stop al program para asi mantener la información.
+            </summary>
+            <param name="json"></param>
         </member>
         <member name="M:ClassLibrary.ListaEmpresas.GetInstance">
             <summary>
@@ -1490,22 +1505,29 @@
         </member>
         <member name="T:ClassLibrary.ListaInvitaciones">
             <summary>
-            ListaPalabrasClave es una clase que contiene palabras clave que posee dos metodos AddPalabra y 
-            RemovePalabra para añadir o remover elementos de una property de la clase llamada ListaPalabrasClave, es el encargado
-            de llevar a cabo dichas tareas porque es el experto en conocer las palabras claves.
+            ListaInvitaciones es una clase que contiene invitaciones que posee dos metodos AddInvitacion y 
+            RemoveInvitacion para añadir o remover invitaciones de una property de la clase llamada ListaInvitaciones, es el encargado
+            de llevar a cabo dichas tareas porque es el experto en conocer las invitaciones.
             </summary>
         </member>
         <member name="M:ClassLibrary.ListaInvitaciones.AddInvitacion(System.String)">
             <summary>
-            AddPalabra es un metodo que se encarga de agregar palabras a la lista.
+            AddInvitacion es un metodo que se encarga de agregar invitaciones a la lista.
             </summary>
-            <param name="palabra"></param>
+            <param name="invitacion"></param>
         </member>
         <member name="M:ClassLibrary.ListaInvitaciones.RemoveInvitacion(System.String)">
             <summary>
-            RemovePalabra es un metodo que se encarga de eliminar palabras de la lista.
+            RemoveInvitacion es un metodo que se encarga de eliminar invitaciones de la lista.
             </summary>
-            <param name="palabra"></param>
+            <param name="invitacion"></param>
+        </member>
+        <member name="M:ClassLibrary.ListaInvitaciones.GetInstance">
+            <summary>
+            Sirve para aplicar el singleton, verifica si ListaInvitaciones es nula y si no es nula te 
+            devuelve el valor de la property.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:ClassLibrary.ListaInvitaciones.ConvertToJson">
             <summary>
@@ -1631,6 +1653,14 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ClassLibrary.ListaUsuarios.LoadFromJson(System.String)">
+            <summary>
+            Sirve para deserializar un string de json para asi 
+            asignarle una nueva clase ListaInvitaciones los valores 
+            previos a ponerle un stop al program para asi mantener la información.
+            </summary>
+            <param name="json"></param>
+        </member>
         <member name="M:ClassLibrary.ListaUsuarios.GetInstance">
             <summary>
             Sirve para aplicar el singleton, verifica si la property ListaUsuarios es nula y si no es nula te devuelve el 
@@ -1669,6 +1699,14 @@
             Sirve para serializar la clase y todas sus property.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.Mercado.LoadFromJson(System.String)">
+            <summary>
+            Sirve para deserializar un string de json para asi 
+            asignarle una nueva clase Mercado los valores 
+            previos a ponerle un stop al program para asi mantener la información.
+            </summary>
+            <param name="json"></param>
         </member>
         <member name="M:ClassLibrary.Mercado.GetInstance">
             <summary>
