@@ -123,13 +123,7 @@ namespace ClassLibrary
         /// <returns></returns>
         public string ConvertToJson()
         {
-            JsonSerializerOptions options = new()
-            {
-                ReferenceHandler = MyReferenceHandler.Instance,
-                WriteIndented = true
-            };
-
-            return JsonSerializer.Serialize(this, options);
+            return JsonSerializer.Serialize(this);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace ClassLibrary
     /// <summary>
     /// Clase Emprendedor del tipo IUsuario, posee el nombre, invitacion e id del emprendedor.
     /// </summary>
-    public class Emprendedor : IUsuario
+    public class Emprendedor : IUsuario, IJsonConvertible
     {
         /// <summary>
         /// El estado del comando.
@@ -45,6 +45,15 @@ namespace ClassLibrary
             this.Id = id;
             ListaUsuarios LosUsuarios = ListaUsuarios.GetInstance();
             LosUsuarios.AddUsuario(this);
+        }
+
+        /// <summary>
+        /// Metodo que convierte una clase en string Json (serializa).
+        /// </summary>
+        /// <returns></returns>
+        public string ConvertToJson()
+        {
+            return JsonSerializer.Serialize(this);
         }
     }
 

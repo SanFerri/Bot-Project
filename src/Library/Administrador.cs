@@ -7,7 +7,7 @@ namespace ClassLibrary
     /// Clase Administrador del tipo IUsuario, posee, ademas de las property id, name e invitacion de toda clase 
     /// usuario, una property empresa que indica la empresa de la que participa el Empresario.
     /// </summary>
-    public class Administrador : IUsuario
+    public class Administrador : IUsuario, IJsonConvertible
     {   
         /// <summary>
         /// El estado del comando.
@@ -47,6 +47,15 @@ namespace ClassLibrary
             this.Invitacion = invitacion;
             ListaAdministradores LosAdministradores = ListaAdministradores.GetInstance();
             LosAdministradores.AddAdministrador(this);
+        }
+
+        /// <summary>
+        /// Metodo que convierte una clase en string Json (serializa).
+        /// </summary>
+        /// <returns></returns>
+        public string ConvertToJson()
+        {
+            return JsonSerializer.Serialize(this);
         }
     }
 }

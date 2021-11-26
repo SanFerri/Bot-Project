@@ -7,7 +7,7 @@ namespace ClassLibrary
     /// Clase Empresario del tipo IUsuario, posee, ademas de las property id e invitacion de toda clase 
     /// usuario, una property empresa que indica la empresa de la que participa el Empresario.
     /// </summary>
-    public class Empresario : IUsuario, IEmpresarioPublicaciones
+    public class Empresario : IUsuario, IEmpresarioPublicaciones, IJsonConvertible
     {
         /// <summary>
         /// El estado del comando.
@@ -60,6 +60,15 @@ namespace ClassLibrary
             ListaEmpresarios LosEmpresarios = ListaEmpresarios.GetInstance();
             LosEmpresarios.AddEmpresario(this);
             this.LasPublicaciones = this.Empresa.Publicaciones;
+        }
+
+        /// <summary>
+        /// Metodo que convierte una clase en string Json (serializa).
+        /// </summary>
+        /// <returns></returns>
+        public string ConvertToJson()
+        {
+            return JsonSerializer.Serialize(this);
         }
     }
 }
