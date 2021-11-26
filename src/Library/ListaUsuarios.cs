@@ -13,12 +13,12 @@ namespace ClassLibrary
     /// </summary>
     public class ListaUsuarios : IJsonConvertible
     {
-        [JsonInclude]
         /// <summary>
         /// Variable estatica Usuario, porque es una lista de instancias de Usuario
         /// que lleva un registro de todos las Usuario que hay.
         /// </summary>
         /// <returns></returns>
+        [JsonInclude]
         public List<Emprendedor> Usuarios {get; set;}
         private static ListaUsuarios _instance;
 
