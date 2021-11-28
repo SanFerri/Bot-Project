@@ -194,9 +194,30 @@ namespace ClassLibrary
                 return true;
             }
             else if (State == OfertasState.ResiduoPrompt)
-            {
-                this.ResiduoTipo = PosiblesResiduos.GetInstance().Residuos[Convert.ToInt32(message)];
-                if(this.BuscarConPalabraClave == false)
+            {   
+                response = "";
+                /// <summary>
+                /// Utilizamos este bloque de código para atrapar una excepeción (System.FormatExcepetion)
+                /// la cual ocurre si el usuario ingresa una letra en vez de un número, lo cual provocaría un error que terminaria con el funcionamiento del bot.
+                /// </summary>
+                /// <value></value>
+                try
+                {
+                    this.ResiduoTipo = PosiblesResiduos.GetInstance().Residuos[Convert.ToInt32(message)];
+                }
+                catch (System.FormatException)
+                {
+                    response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
+                    this.State = OfertasState.Start;
+                    this.Emprendedor.State = "OH-RP";
+                }
+                /*
+                finally
+                {
+                    this.State = OfertasState.Start;
+                }
+                */
+                if(this.BuscarConPalabraClave == false && response != "Usted no ha ingresado un número válido, porfavor intentelo nuevamente")
                 {
                     int contador = 0;
                     string builderResponse = "";
@@ -227,7 +248,7 @@ namespace ClassLibrary
                         return false;
                     }
                 }
-                else
+                else if (response != "Usted no ha ingresado un número válido, porfavor intentelo nuevamente")
                 {
                     this.OfertasData = Buscador.Buscar(PalabraClave);
                     int contador = 0;
@@ -261,6 +282,11 @@ namespace ClassLibrary
                     }
 
                 }
+                else
+                {
+                    return true;
+                }
+                
             }
             else if (State == OfertasState.NumeroPrompt)
             {
