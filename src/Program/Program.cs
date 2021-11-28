@@ -40,85 +40,85 @@ namespace Program
             Empresa.Residuos.AddResiduo(Residuo);
             Empresario Usuario = new Empresario(invitacion, Empresa);
 
-            Residuo Residuo1 = new Residuo("Madera", 150, "kg", 150, "$");
+            Residuo Residuo1 = new Residuo("Plastico (PET)", 150, "kg", 150, "$");
 
             string invitacion1 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion1);
             Ubicacion Ubicacion1 = new Ubicacion("Av. 18 de Julio");
-            Empresa Empresa1 = new Empresa("MaderasUY", Ubicacion, "098954786");
-            Empresa.Residuos.AddResiduo(Residuo);
+            Empresa Empresa1 = new Empresa("PlasticAssets", Ubicacion, "098954786");
+            Empresa.Residuos.AddResiduo(Residuo1);
             Empresario Usuario1 = new Empresario(invitacion1, Empresa1);
 
-            Residuo Residuo2 = new Residuo("Nylon", 100, "kg", 50, "$");
+            Residuo Residuo2 = new Residuo("Plastico (PET)", 100, "kg", 50, "$");
 
             string invitacion2 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion2);
-            Ubicacion Ubicacion2 = new Ubicacion("Av. Italia");
-            Empresa Empresa2 = new Empresa("NylonS", Ubicacion, "099452698");
-            Empresa.Residuos.AddResiduo(Residuo);
+            Ubicacion Ubicacion2 = new Ubicacion("Av. Luis Alberto Herrera 1290");
+            Empresa Empresa2 = new Empresa("BagsCompany", Ubicacion, "099452698");
+            Empresa.Residuos.AddResiduo(Residuo2);
             Empresario Usuario2 = new Empresario(invitacion2, Empresa2);
 
-            Residuo Residuo3 = new Residuo("Aluminio", 400, "kg", 450, "$");
+            Residuo Residuo3 = new Residuo("Plastico (PET)", 400, "kg", 450, "$");
 
             string invitacion3 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion3);
-            Ubicacion Ubicacion3 = new Ubicacion("Colonia");
-            Empresa Empresa3 = new Empresa("CRAP", Ubicacion, "097219632");
-            Empresa.Residuos.AddResiduo(Residuo);
+            Ubicacion Ubicacion3 = new Ubicacion("Bv. Gral Artigas 1825");
+            Empresa Empresa3 = new Empresa("DeliciousBettyCrackers", Ubicacion, "097219632");
+            Empresa.Residuos.AddResiduo(Residuo3);
             Empresario Usuario3 = new Empresario(invitacion3, Empresa3);
 
-            Residuo Residuo4 = new Residuo("Plastico", 300, "kg", 50, "$");
+            Residuo Residuo4 = new Residuo("Plastico (PET)", 300, "kg", 50, "$");
 
             string invitacion4 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion4);
-            Ubicacion Ubicacion4 = new Ubicacion("Uruguay");
-            Empresa Empresa4 = new Empresa("PLASuy", Ubicacion, "094572984");
-            Empresa.Residuos.AddResiduo(Residuo);
+            Ubicacion Ubicacion4 = new Ubicacion("Av. Luis Alberto Herrera 3365");
+            Empresa Empresa4 = new Empresa("MegaBottlesUY", Ubicacion, "094572984");
+            Empresa.Residuos.AddResiduo(Residuo4);
             Empresario Usuario4 = new Empresario(invitacion4, Empresa4);
 
             Residuo Residuo5 = new Residuo("Goma", 600, "kg", 500, "$");
 
             string invitacion5 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion5);
-            Ubicacion Ubicacion5 = new Ubicacion("Sanchez");
+            Ubicacion Ubicacion5 = new Ubicacion("Magallanes 1721");
             Empresa Empresa5 = new Empresa("GomeriaRAD", Ubicacion, "096785482");
-            Empresa.Residuos.AddResiduo(Residuo);
+            Empresa.Residuos.AddResiduo(Residuo5);
             Empresario Usuario5 = new Empresario(invitacion5, Empresa5);
 
             Residuo Residuo6 = new Residuo("Cobre", 60, "kg", 300, "$");
 
             string invitacion6 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion6);
-            Ubicacion Ubicacion6 = new Ubicacion("Rivera");
+            Ubicacion Ubicacion6 = new Ubicacion("Jose Eullari 350");
             Empresa Empresa6 = new Empresa("InterTECH", Ubicacion, "091536982");
-            Empresa.Residuos.AddResiduo(Residuo);
+            Empresa.Residuos.AddResiduo(Residuo6);
             Empresario Usuario6 = new Empresario(invitacion6, Empresa6);
 
             Residuo Residuo7 = new Residuo("Papel", 1000, "kg", 30, "$");
 
             string invitacion7 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion7);
-            Ubicacion Ubicacion7 = new Ubicacion("Treinta y tres");
+            Ubicacion Ubicacion7 = new Ubicacion("Av. Italia 5775");
             Empresa Empresa7 = new Empresa("Papeleria", Ubicacion, "097549621");
-            Empresa.Residuos.AddResiduo(Residuo);
+            Empresa.Residuos.AddResiduo(Residuo7);
             Empresario Usuario7 = new Empresario(invitacion7, Empresa7);
 
             Residuo Residuo8 = new Residuo("Algodon", 200, "kg", 50, "$");
 
             string invitacion8 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion8);
-            Ubicacion Ubicacion8 = new Ubicacion("La Rosa");
+            Ubicacion Ubicacion8 = new Ubicacion("Claudio Williman 626");
             Empresa Empresa8 = new Empresa("CottonTAP", Ubicacion, "097012958");
-            Empresa.Residuos.AddResiduo(Residuo);
+            Empresa.Residuos.AddResiduo(Residuo8);
             Empresario Usuario8 = new Empresario(invitacion8, Empresa8);
 
             Residuo Residuo9 = new Residuo("Cuero", 70, "kg", 1000, "$");
 
             string invitacion9 = InvitationGenerator.Generate();
             Console.WriteLine(invitacion9);
-            Ubicacion Ubicacion9 = new Ubicacion("Almirante");
+            Ubicacion Ubicacion9 = new Ubicacion("Av. Alfredo Arocena 1806");
             Empresa Empresa9 = new Empresa("LeatherSUR", Ubicacion, "097519862");
-            Empresa.Residuos.AddResiduo(Residuo);
+            Empresa.Residuos.AddResiduo(Residuo9);
             Empresario Usuario9 = new Empresario(invitacion9, Empresa9);
 
             Publicacion publicacion = new Publicacion(Residuo, Ubicacion, Empresa, "Permiso para manipular metales", true);
@@ -179,6 +179,8 @@ namespace Program
             handler9 = new VerEntregadosHandler(handler8);
             handler10 = new VerPublicacionesHandler(handler9);
             handler11 = new VerResiduosConsumidosHandler(handler10);
+
+            Console.WriteLine(invitacion4);
             
             //Obtengo una instancia de TelegramBot
             TelegramBot telegramBot = TelegramBot.Instance;

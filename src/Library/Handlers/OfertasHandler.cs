@@ -107,6 +107,7 @@ namespace ClassLibrary
                     realEmprendedor = true;
                 }
             }
+
             if (realEmprendedor == true)
             {
                 if (Emprendedor.State == "OH-CP")
@@ -231,13 +232,15 @@ namespace ClassLibrary
                     this.OfertasData = Buscador.Buscar(PalabraClave);
                     int contador = 0;
                     string builderResponse = "";
+                    bool existenPublicaciones = false;
                     builderResponse += "Ingrese el número de la publicación para ver más información de la misma:\n"; 
                     foreach(Publicacion publicacion in this.OfertasData)
                     {
                         builderResponse += ($"{contador}. {publicacion.Empresa.Nombre} ofrece: {publicacion.Residuo.Cantidad} kg de {publicacion.Residuo.Tipo} en {publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.Habilitacion}\n");
                         contador += 1;
+                        existenPublicaciones = true;
                     }   
-                    if(this.OfertasData == new List<Publicacion>())
+                    if(existenPublicaciones == false)
                     {
                         // Si no encuentra alguna publicacion se las pide de nuevo y vuelve al estado ResiduosPrompt.
                         // Una versión más sofisticada podría determinar cuál de las dos direcciones no existe y volver al

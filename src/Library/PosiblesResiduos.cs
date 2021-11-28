@@ -41,7 +41,7 @@ namespace ClassLibrary
         /// </summary>
         private PosiblesResiduos()
         {
-            this.Residuos = new List<string>{"Metal", "Plastico", "Madera", "Goma", "Aluminio", "Cobre", "Nylon", "Papel", "Algodon", "Cuero", "Tela", "Fibra", "Organico", "Cables", "Pintura", "Carbon", "Componentes Electronicos", "Otros"};
+            this.Residuos = new List<string>{"Metal", "Plastico (PET)", "Madera", "Goma", "Aluminio", "Cobre", "Nylon", "Papel", "Algodon", "Cuero", "Tela", "Fibra", "Organico", "Cables", "Pintura", "Carbon", "Componentes Electronicos", "Otros"};
         }
 
         /// <summary>
