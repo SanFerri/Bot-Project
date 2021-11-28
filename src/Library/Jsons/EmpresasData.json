@@ -1,479 +1,646 @@
 {
   "$id": "4",
-  "Empresas": {
-    "$id": "5",
-    "$values": [
-      {
+  "$values": [
+    {
+      "$id": "5",
+      "Nombre": "MercadoPrivado",
+      "Ubicacion": {
         "$id": "6",
-        "Nombre": "MercadoPrivado",
-        "Ubicacion": {
-          "$id": "7",
-          "Location": null,
-          "Direccion": "Av. 8 de Octubre 2738"
-        },
-        "Contacto": "099679938",
+        "Location": null,
+        "Direccion": "Av. 8 de Octubre 2738"
+      },
+      "Contacto": "099679938",
+      "Residuos": {
+        "$id": "7",
         "Residuos": {
-          "$id": "8"
-        },
-        "Publicaciones": {
-          "$id": "9",
-          "Publicaciones": {
-            "$id": "10",
-            "$values": [
-              {
-                "$id": "11",
-                "Empresa": {
-                  "$ref": "6"
-                },
-                "Habilitacion": "Permiso para manipular metales",
-                "Residuo": {
-                  "$id": "12",
-                  "Tipo": "Metal",
-                  "Cantidad": 100,
-                  "Unidad": "kg",
-                  "Cost": 250,
-                  "Moneda": "$"
-                },
-                "Ubicacion": {
-                  "$ref": "7"
-                },
-                "Constante": true,
-                "UsuarioEntregado": 0,
-                "PalabraClave": null,
-                "Fecha": "2021-11-26T15:16:53.706555-03:00",
-                "Entregado": false,
-                "IdEntregado": 0
-              }
-            ]
-          }
-        },
-        "Empresario": {
-          "$id": "13",
-          "State": "start",
-          "Empresa": {
-            "$ref": "6"
-          },
-          "Id": 0,
-          "LasPublicaciones": {
-            "$ref": "9"
-          },
-          "Invitacion": "833280"
+          "$id": "8",
+          "$values": [
+            {
+              "$id": "9",
+              "Tipo": "Metal",
+              "Cantidad": 100,
+              "Unidad": "kg",
+              "Cost": 250,
+              "Moneda": "$"
+            },
+            {
+              "$ref": "9"
+            },
+            {
+              "$ref": "9"
+            },
+            {
+              "$ref": "9"
+            },
+            {
+              "$ref": "9"
+            },
+            {
+              "$ref": "9"
+            },
+            {
+              "$ref": "9"
+            },
+            {
+              "$ref": "9"
+            },
+            {
+              "$ref": "9"
+            },
+            {
+              "$ref": "9"
+            }
+          ]
         }
       },
-      {
-        "$id": "14",
-        "Nombre": "MaderasUY",
-        "Ubicacion": {
-          "$ref": "7"
-        },
-        "Contacto": "098954786",
-        "Residuos": {
-          "$id": "15"
-        },
+      "Publicaciones": {
+        "$id": "10",
         "Publicaciones": {
+          "$id": "11",
+          "$values": [
+            {
+              "$id": "12",
+              "Empresa": {
+                "$ref": "5"
+              },
+              "Habilitacion": "Permiso para manipular metales",
+              "Residuo": {
+                "$ref": "9"
+              },
+              "Ubicacion": {
+                "$ref": "6"
+              },
+              "Constante": true,
+              "UsuarioEntregado": 0,
+              "PalabraClave": null,
+              "Fecha": "2021-11-28T15:56:37.0539668-03:00",
+              "Entregado": false,
+              "IdEntregado": 0
+            }
+          ]
+        }
+      },
+      "Empresario": {
+        "$id": "13",
+        "State": "start",
+        "Empresa": {
+          "$ref": "5"
+        },
+        "Id": 0,
+        "LasPublicaciones": {
+          "$ref": "10"
+        },
+        "Invitacion": "724921"
+      }
+    },
+    {
+      "$id": "14",
+      "Nombre": "MaderasUY",
+      "Ubicacion": {
+        "$ref": "6"
+      },
+      "Contacto": "098954786",
+      "Residuos": {
+        "$id": "15",
+        "Residuos": {
           "$id": "16",
-          "Publicaciones": {
-            "$id": "17",
-            "$values": [
-              {
-                "$id": "18",
-                "Empresa": {
-                  "$ref": "14"
-                },
-                "Habilitacion": "Permiso para transporte pesado",
-                "Residuo": {
-                  "$id": "19",
-                  "Tipo": "Madera",
-                  "Cantidad": 150,
-                  "Unidad": "kg",
-                  "Cost": 150,
-                  "Moneda": "$"
-                },
-                "Ubicacion": {
-                  "$id": "20",
-                  "Location": null,
-                  "Direccion": "Av. 18 de Julio"
-                },
-                "Constante": true,
-                "UsuarioEntregado": 0,
-                "PalabraClave": null,
-                "Fecha": "2021-11-26T15:16:53.7141039-03:00",
-                "Entregado": false,
-                "IdEntregado": 0
-              }
-            ]
-          }
-        },
-        "Empresario": null
+          "$values": []
+        }
       },
-      {
-        "$id": "21",
-        "Nombre": "NylonS",
-        "Ubicacion": {
-          "$ref": "7"
-        },
-        "Contacto": "099452698",
-        "Residuos": {
-          "$id": "22"
-        },
+      "Publicaciones": {
+        "$id": "17",
         "Publicaciones": {
-          "$id": "23",
-          "Publicaciones": {
-            "$id": "24",
-            "$values": [
-              {
-                "$id": "25",
-                "Empresa": {
-                  "$ref": "21"
-                },
-                "Habilitacion": "Permiso para manipular nylon",
-                "Residuo": {
-                  "$id": "26",
-                  "Tipo": "Nylon",
-                  "Cantidad": 100,
-                  "Unidad": "kg",
-                  "Cost": 50,
-                  "Moneda": "$"
-                },
-                "Ubicacion": {
-                  "$id": "27",
-                  "Location": null,
-                  "Direccion": "Av. Italia"
-                },
-                "Constante": false,
-                "UsuarioEntregado": 0,
-                "PalabraClave": null,
-                "Fecha": "2021-11-26T15:16:53.7144134-03:00",
-                "Entregado": false,
-                "IdEntregado": 0
-              }
-            ]
-          }
-        },
-        "Empresario": null
+          "$id": "18",
+          "$values": [
+            {
+              "$id": "19",
+              "Empresa": {
+                "$ref": "14"
+              },
+              "Habilitacion": "Permiso para transporte pesado",
+              "Residuo": {
+                "$id": "20",
+                "Tipo": "Madera",
+                "Cantidad": 150,
+                "Unidad": "kg",
+                "Cost": 150,
+                "Moneda": "$"
+              },
+              "Ubicacion": {
+                "$id": "21",
+                "Location": null,
+                "Direccion": "Av. 18 de Julio"
+              },
+              "Constante": true,
+              "UsuarioEntregado": 0,
+              "PalabraClave": null,
+              "Fecha": "2021-11-28T15:56:37.0556605-03:00",
+              "Entregado": false,
+              "IdEntregado": 0
+            }
+          ]
+        }
       },
-      {
-        "$id": "28",
-        "Nombre": "CRAP",
-        "Ubicacion": {
-          "$ref": "7"
+      "Empresario": {
+        "$id": "22",
+        "State": "start",
+        "Empresa": {
+          "$ref": "14"
         },
-        "Contacto": "097219632",
+        "Id": 0,
+        "LasPublicaciones": {
+          "$ref": "17"
+        },
+        "Invitacion": "16627"
+      }
+    },
+    {
+      "$id": "23",
+      "Nombre": "NylonS",
+      "Ubicacion": {
+        "$ref": "6"
+      },
+      "Contacto": "099452698",
+      "Residuos": {
+        "$id": "24",
         "Residuos": {
-          "$id": "29"
-        },
-        "Publicaciones": {
-          "$id": "30",
-          "Publicaciones": {
-            "$id": "31",
-            "$values": [
-              {
-                "$id": "32",
-                "Empresa": {
-                  "$ref": "28"
-                },
-                "Habilitacion": "Permiso para uso de aluminio",
-                "Residuo": {
-                  "$id": "33",
-                  "Tipo": "Aluminio",
-                  "Cantidad": 400,
-                  "Unidad": "kg",
-                  "Cost": 450,
-                  "Moneda": "$"
-                },
-                "Ubicacion": {
-                  "$id": "34",
-                  "Location": null,
-                  "Direccion": "Colonia"
-                },
-                "Constante": false,
-                "UsuarioEntregado": 0,
-                "PalabraClave": null,
-                "Fecha": "2021-11-26T15:16:53.7144201-03:00",
-                "Entregado": false,
-                "IdEntregado": 0
-              }
-            ]
-          }
-        },
-        "Empresario": null
+          "$id": "25",
+          "$values": []
+        }
       },
-      {
+      "Publicaciones": {
+        "$id": "26",
+        "Publicaciones": {
+          "$id": "27",
+          "$values": [
+            {
+              "$id": "28",
+              "Empresa": {
+                "$ref": "23"
+              },
+              "Habilitacion": "Permiso para manipular nylon",
+              "Residuo": {
+                "$id": "29",
+                "Tipo": "Nylon",
+                "Cantidad": 100,
+                "Unidad": "kg",
+                "Cost": 50,
+                "Moneda": "$"
+              },
+              "Ubicacion": {
+                "$id": "30",
+                "Location": null,
+                "Direccion": "Av. Italia"
+              },
+              "Constante": false,
+              "UsuarioEntregado": 0,
+              "PalabraClave": null,
+              "Fecha": "2021-11-28T15:56:37.0557579-03:00",
+              "Entregado": false,
+              "IdEntregado": 0
+            }
+          ]
+        }
+      },
+      "Empresario": {
+        "$id": "31",
+        "State": "start",
+        "Empresa": {
+          "$ref": "23"
+        },
+        "Id": 0,
+        "LasPublicaciones": {
+          "$ref": "26"
+        },
+        "Invitacion": "378539"
+      }
+    },
+    {
+      "$id": "32",
+      "Nombre": "CRAP",
+      "Ubicacion": {
+        "$ref": "6"
+      },
+      "Contacto": "097219632",
+      "Residuos": {
+        "$id": "33",
+        "Residuos": {
+          "$id": "34",
+          "$values": []
+        }
+      },
+      "Publicaciones": {
         "$id": "35",
-        "Nombre": "PLASuy",
-        "Ubicacion": {
-          "$ref": "7"
-        },
-        "Contacto": "094572984",
-        "Residuos": {
-          "$id": "36"
-        },
         "Publicaciones": {
-          "$id": "37",
-          "Publicaciones": {
-            "$id": "38",
-            "$values": [
-              {
+          "$id": "36",
+          "$values": [
+            {
+              "$id": "37",
+              "Empresa": {
+                "$ref": "32"
+              },
+              "Habilitacion": "Permiso para uso de aluminio",
+              "Residuo": {
+                "$id": "38",
+                "Tipo": "Aluminio",
+                "Cantidad": 400,
+                "Unidad": "kg",
+                "Cost": 450,
+                "Moneda": "$"
+              },
+              "Ubicacion": {
                 "$id": "39",
-                "Empresa": {
-                  "$ref": "35"
-                },
-                "Habilitacion": "Este residuo no precisa de un permiso",
-                "Residuo": {
-                  "$id": "40",
-                  "Tipo": "Plastico",
-                  "Cantidad": 300,
-                  "Unidad": "kg",
-                  "Cost": 50,
-                  "Moneda": "$"
-                },
-                "Ubicacion": {
-                  "$id": "41",
-                  "Location": null,
-                  "Direccion": "Uruguay"
-                },
-                "Constante": true,
-                "UsuarioEntregado": 0,
-                "PalabraClave": null,
-                "Fecha": "2021-11-26T15:16:53.7144214-03:00",
-                "Entregado": false,
-                "IdEntregado": 0
-              }
-            ]
-          }
-        },
-        "Empresario": null
+                "Location": null,
+                "Direccion": "Colonia"
+              },
+              "Constante": false,
+              "UsuarioEntregado": 0,
+              "PalabraClave": null,
+              "Fecha": "2021-11-28T15:56:37.0557591-03:00",
+              "Entregado": false,
+              "IdEntregado": 0
+            }
+          ]
+        }
       },
-      {
+      "Empresario": {
+        "$id": "40",
+        "State": "start",
+        "Empresa": {
+          "$ref": "32"
+        },
+        "Id": 0,
+        "LasPublicaciones": {
+          "$ref": "35"
+        },
+        "Invitacion": "153968"
+      }
+    },
+    {
+      "$id": "41",
+      "Nombre": "PLASuy",
+      "Ubicacion": {
+        "$ref": "6"
+      },
+      "Contacto": "094572984",
+      "Residuos": {
         "$id": "42",
-        "Nombre": "GomeriaRAD",
-        "Ubicacion": {
-          "$ref": "7"
-        },
-        "Contacto": "096785482",
         "Residuos": {
-          "$id": "43"
-        },
-        "Publicaciones": {
-          "$id": "44",
-          "Publicaciones": {
-            "$id": "45",
-            "$values": [
-              {
-                "$id": "46",
-                "Empresa": {
-                  "$ref": "42"
-                },
-                "Habilitacion": "Permiso para transporte",
-                "Residuo": {
-                  "$id": "47",
-                  "Tipo": "Goma",
-                  "Cantidad": 600,
-                  "Unidad": "kg",
-                  "Cost": 500,
-                  "Moneda": "$"
-                },
-                "Ubicacion": {
-                  "$id": "48",
-                  "Location": null,
-                  "Direccion": "Sanchez"
-                },
-                "Constante": false,
-                "UsuarioEntregado": 0,
-                "PalabraClave": null,
-                "Fecha": "2021-11-26T15:16:53.714424-03:00",
-                "Entregado": false,
-                "IdEntregado": 0
-              }
-            ]
-          }
-        },
-        "Empresario": null
+          "$id": "43",
+          "$values": []
+        }
       },
-      {
+      "Publicaciones": {
+        "$id": "44",
+        "Publicaciones": {
+          "$id": "45",
+          "$values": [
+            {
+              "$id": "46",
+              "Empresa": {
+                "$ref": "41"
+              },
+              "Habilitacion": "Este residuo no precisa de un permiso",
+              "Residuo": {
+                "$id": "47",
+                "Tipo": "Plastico",
+                "Cantidad": 300,
+                "Unidad": "kg",
+                "Cost": 50,
+                "Moneda": "$"
+              },
+              "Ubicacion": {
+                "$id": "48",
+                "Location": null,
+                "Direccion": "Uruguay"
+              },
+              "Constante": true,
+              "UsuarioEntregado": 0,
+              "PalabraClave": null,
+              "Fecha": "2021-11-28T15:56:37.0557594-03:00",
+              "Entregado": false,
+              "IdEntregado": 0
+            }
+          ]
+        }
+      },
+      "Empresario": {
         "$id": "49",
-        "Nombre": "InterTECH",
-        "Ubicacion": {
-          "$ref": "7"
+        "State": "start",
+        "Empresa": {
+          "$ref": "41"
         },
-        "Contacto": "091536982",
-        "Residuos": {
-          "$id": "50"
+        "Id": 0,
+        "LasPublicaciones": {
+          "$ref": "44"
         },
-        "Publicaciones": {
-          "$id": "51",
-          "Publicaciones": {
-            "$id": "52",
-            "$values": [
-              {
-                "$id": "53",
-                "Empresa": {
-                  "$ref": "49"
-                },
-                "Habilitacion": "Permiso para manipular y transportar este material",
-                "Residuo": {
-                  "$id": "54",
-                  "Tipo": "Cobre",
-                  "Cantidad": 60,
-                  "Unidad": "kg",
-                  "Cost": 300,
-                  "Moneda": "$"
-                },
-                "Ubicacion": {
-                  "$id": "55",
-                  "Location": null,
-                  "Direccion": "Rivera"
-                },
-                "Constante": false,
-                "UsuarioEntregado": 0,
-                "PalabraClave": null,
-                "Fecha": "2021-11-26T15:16:53.7144251-03:00",
-                "Entregado": false,
-                "IdEntregado": 0
-              }
-            ]
-          }
-        },
-        "Empresario": null
+        "Invitacion": "251605"
+      }
+    },
+    {
+      "$id": "50",
+      "Nombre": "GomeriaRAD",
+      "Ubicacion": {
+        "$ref": "6"
       },
-      {
-        "$id": "56",
-        "Nombre": "Papeleria",
-        "Ubicacion": {
-          "$ref": "7"
-        },
-        "Contacto": "097549621",
+      "Contacto": "096785482",
+      "Residuos": {
+        "$id": "51",
         "Residuos": {
-          "$id": "57"
-        },
-        "Publicaciones": {
-          "$id": "58",
-          "Publicaciones": {
-            "$id": "59",
-            "$values": [
-              {
-                "$id": "60",
-                "Empresa": {
-                  "$ref": "56"
-                },
-                "Habilitacion": "No requiere de un permiso",
-                "Residuo": {
-                  "$id": "61",
-                  "Tipo": "Papel",
-                  "Cantidad": 1000,
-                  "Unidad": "kg",
-                  "Cost": 30,
-                  "Moneda": "$"
-                },
-                "Ubicacion": {
-                  "$id": "62",
-                  "Location": null,
-                  "Direccion": "Treinta y tres"
-                },
-                "Constante": true,
-                "UsuarioEntregado": 0,
-                "PalabraClave": null,
-                "Fecha": "2021-11-26T15:16:53.7144258-03:00",
-                "Entregado": false,
-                "IdEntregado": 0
-              }
-            ]
-          }
-        },
-        "Empresario": null
+          "$id": "52",
+          "$values": []
+        }
       },
-      {
-        "$id": "63",
-        "Nombre": "CottonTAP",
-        "Ubicacion": {
-          "$ref": "7"
-        },
-        "Contacto": "097012958",
-        "Residuos": {
-          "$id": "64"
-        },
+      "Publicaciones": {
+        "$id": "53",
         "Publicaciones": {
-          "$id": "65",
-          "Publicaciones": {
-            "$id": "66",
-            "$values": [
-              {
-                "$id": "67",
-                "Empresa": {
-                  "$ref": "63"
-                },
-                "Habilitacion": "No es necesario un permiso",
-                "Residuo": {
-                  "$id": "68",
-                  "Tipo": "Algodon",
-                  "Cantidad": 200,
-                  "Unidad": "kg",
-                  "Cost": 50,
-                  "Moneda": "$"
-                },
-                "Ubicacion": {
-                  "$id": "69",
-                  "Location": null,
-                  "Direccion": "La Rosa"
-                },
-                "Constante": false,
-                "UsuarioEntregado": 0,
-                "PalabraClave": null,
-                "Fecha": "2021-11-26T15:16:53.7144265-03:00",
-                "Entregado": false,
-                "IdEntregado": 0
-              }
-            ]
-          }
-        },
-        "Empresario": null
+          "$id": "54",
+          "$values": [
+            {
+              "$id": "55",
+              "Empresa": {
+                "$ref": "50"
+              },
+              "Habilitacion": "Permiso para transporte",
+              "Residuo": {
+                "$id": "56",
+                "Tipo": "Goma",
+                "Cantidad": 600,
+                "Unidad": "kg",
+                "Cost": 500,
+                "Moneda": "$"
+              },
+              "Ubicacion": {
+                "$id": "57",
+                "Location": null,
+                "Direccion": "Sanchez"
+              },
+              "Constante": false,
+              "UsuarioEntregado": 0,
+              "PalabraClave": null,
+              "Fecha": "2021-11-28T15:56:37.05576-03:00",
+              "Entregado": false,
+              "IdEntregado": 0
+            }
+          ]
+        }
       },
-      {
-        "$id": "70",
-        "Nombre": "LeatherSUR",
-        "Ubicacion": {
-          "$ref": "7"
+      "Empresario": {
+        "$id": "58",
+        "State": "start",
+        "Empresa": {
+          "$ref": "50"
         },
-        "Contacto": "097519862",
+        "Id": 0,
+        "LasPublicaciones": {
+          "$ref": "53"
+        },
+        "Invitacion": "59421"
+      }
+    },
+    {
+      "$id": "59",
+      "Nombre": "InterTECH",
+      "Ubicacion": {
+        "$ref": "6"
+      },
+      "Contacto": "091536982",
+      "Residuos": {
+        "$id": "60",
         "Residuos": {
-          "$id": "71"
+          "$id": "61",
+          "$values": []
+        }
+      },
+      "Publicaciones": {
+        "$id": "62",
+        "Publicaciones": {
+          "$id": "63",
+          "$values": [
+            {
+              "$id": "64",
+              "Empresa": {
+                "$ref": "59"
+              },
+              "Habilitacion": "Permiso para manipular y transportar este material",
+              "Residuo": {
+                "$id": "65",
+                "Tipo": "Cobre",
+                "Cantidad": 60,
+                "Unidad": "kg",
+                "Cost": 300,
+                "Moneda": "$"
+              },
+              "Ubicacion": {
+                "$id": "66",
+                "Location": null,
+                "Direccion": "Rivera"
+              },
+              "Constante": false,
+              "UsuarioEntregado": 0,
+              "PalabraClave": null,
+              "Fecha": "2021-11-28T15:56:37.0557604-03:00",
+              "Entregado": false,
+              "IdEntregado": 0
+            }
+          ]
+        }
+      },
+      "Empresario": {
+        "$id": "67",
+        "State": "start",
+        "Empresa": {
+          "$ref": "59"
         },
+        "Id": 0,
+        "LasPublicaciones": {
+          "$ref": "62"
+        },
+        "Invitacion": "375216"
+      }
+    },
+    {
+      "$id": "68",
+      "Nombre": "Papeleria",
+      "Ubicacion": {
+        "$ref": "6"
+      },
+      "Contacto": "097549621",
+      "Residuos": {
+        "$id": "69",
+        "Residuos": {
+          "$id": "70",
+          "$values": []
+        }
+      },
+      "Publicaciones": {
+        "$id": "71",
         "Publicaciones": {
           "$id": "72",
-          "Publicaciones": {
-            "$id": "73",
-            "$values": [
-              {
+          "$values": [
+            {
+              "$id": "73",
+              "Empresa": {
+                "$ref": "68"
+              },
+              "Habilitacion": "No requiere de un permiso",
+              "Residuo": {
                 "$id": "74",
-                "Empresa": {
-                  "$ref": "70"
-                },
-                "Habilitacion": "Permiso para transportar",
-                "Residuo": {
-                  "$id": "75",
-                  "Tipo": "Cuero",
-                  "Cantidad": 70,
-                  "Unidad": "kg",
-                  "Cost": 1000,
-                  "Moneda": "$"
-                },
-                "Ubicacion": {
-                  "$id": "76",
-                  "Location": null,
-                  "Direccion": "Almirante"
-                },
-                "Constante": true,
-                "UsuarioEntregado": 0,
-                "PalabraClave": null,
-                "Fecha": "2021-11-26T15:16:53.7144275-03:00",
-                "Entregado": false,
-                "IdEntregado": 0
-              }
-            ]
-          }
+                "Tipo": "Papel",
+                "Cantidad": 1000,
+                "Unidad": "kg",
+                "Cost": 30,
+                "Moneda": "$"
+              },
+              "Ubicacion": {
+                "$id": "75",
+                "Location": null,
+                "Direccion": "Treinta y tres"
+              },
+              "Constante": true,
+              "UsuarioEntregado": 0,
+              "PalabraClave": null,
+              "Fecha": "2021-11-28T15:56:37.0557606-03:00",
+              "Entregado": false,
+              "IdEntregado": 0
+            }
+          ]
+        }
+      },
+      "Empresario": {
+        "$id": "76",
+        "State": "start",
+        "Empresa": {
+          "$ref": "68"
         },
-        "Empresario": null
+        "Id": 0,
+        "LasPublicaciones": {
+          "$ref": "71"
+        },
+        "Invitacion": "376516"
       }
-    ]
-  }
+    },
+    {
+      "$id": "77",
+      "Nombre": "CottonTAP",
+      "Ubicacion": {
+        "$ref": "6"
+      },
+      "Contacto": "097012958",
+      "Residuos": {
+        "$id": "78",
+        "Residuos": {
+          "$id": "79",
+          "$values": []
+        }
+      },
+      "Publicaciones": {
+        "$id": "80",
+        "Publicaciones": {
+          "$id": "81",
+          "$values": [
+            {
+              "$id": "82",
+              "Empresa": {
+                "$ref": "77"
+              },
+              "Habilitacion": "No es necesario un permiso",
+              "Residuo": {
+                "$id": "83",
+                "Tipo": "Algodon",
+                "Cantidad": 200,
+                "Unidad": "kg",
+                "Cost": 50,
+                "Moneda": "$"
+              },
+              "Ubicacion": {
+                "$id": "84",
+                "Location": null,
+                "Direccion": "La Rosa"
+              },
+              "Constante": false,
+              "UsuarioEntregado": 0,
+              "PalabraClave": null,
+              "Fecha": "2021-11-28T15:56:37.0557608-03:00",
+              "Entregado": false,
+              "IdEntregado": 0
+            }
+          ]
+        }
+      },
+      "Empresario": {
+        "$id": "85",
+        "State": "start",
+        "Empresa": {
+          "$ref": "77"
+        },
+        "Id": 0,
+        "LasPublicaciones": {
+          "$ref": "80"
+        },
+        "Invitacion": "32643"
+      }
+    },
+    {
+      "$id": "86",
+      "Nombre": "LeatherSUR",
+      "Ubicacion": {
+        "$ref": "6"
+      },
+      "Contacto": "097519862",
+      "Residuos": {
+        "$id": "87",
+        "Residuos": {
+          "$id": "88",
+          "$values": []
+        }
+      },
+      "Publicaciones": {
+        "$id": "89",
+        "Publicaciones": {
+          "$id": "90",
+          "$values": [
+            {
+              "$id": "91",
+              "Empresa": {
+                "$ref": "86"
+              },
+              "Habilitacion": "Permiso para transportar",
+              "Residuo": {
+                "$id": "92",
+                "Tipo": "Cuero",
+                "Cantidad": 70,
+                "Unidad": "kg",
+                "Cost": 1000,
+                "Moneda": "$"
+              },
+              "Ubicacion": {
+                "$id": "93",
+                "Location": null,
+                "Direccion": "Almirante"
+              },
+              "Constante": true,
+              "UsuarioEntregado": 0,
+              "PalabraClave": null,
+              "Fecha": "2021-11-28T15:56:37.0557611-03:00",
+              "Entregado": false,
+              "IdEntregado": 0
+            }
+          ]
+        }
+      },
+      "Empresario": {
+        "$id": "94",
+        "State": "start",
+        "Empresa": {
+          "$ref": "86"
+        },
+        "Id": 0,
+        "LasPublicaciones": {
+          "$ref": "89"
+        },
+        "Invitacion": "392680"
+      }
+    }
+  ]
 }
