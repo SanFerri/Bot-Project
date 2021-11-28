@@ -62,19 +62,16 @@ namespace ClassLibrary
                 WriteIndented = true
             };
 
-            return JsonSerializer.Serialize(this, options);
+            return JsonSerializer.Serialize(this.Empresas, options);
         }
 
-        /// <summary>
-        /// Sirve para deserializar un string de json para asi 
-        /// asignarle una nueva clase ListaEmpresas los valores 
-        /// previos a ponerle un stop al program para asi mantener la información.
-        /// </summary>
-        /// <param name="json"></param>
         public void LoadFromJson(string json)
         {
-            ListaEmpresas deserialized = JsonSerializer.Deserialize<ListaEmpresas>(json);
-            this.Empresas = deserialized.Empresas;
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new JsonStringEnumConverter());
+
+            List<Empresa> empresas = JsonSerializer.Deserialize<List<Empresa>>(json, options);
+            this.Empresas = empresas;
         }
 
         /// <summary>

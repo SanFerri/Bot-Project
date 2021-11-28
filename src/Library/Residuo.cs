@@ -80,7 +80,13 @@ namespace ClassLibrary
         /// <returns></returns>
         public string ConvertToJson()
         {
-            return JsonSerializer.Serialize(this);
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Serialize(this, options);
         }
         
     }
