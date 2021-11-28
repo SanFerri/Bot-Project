@@ -10,13 +10,6 @@ namespace ClassLibrary
     public class Ubicacion : IJsonConvertible
     {
         /// <summary>
-        /// Constructor de Ubicacion.
-        /// </summary>
-        [JsonConstructor]
-        public Ubicacion()
-        {
-        }
-        /// <summary>
         /// Property location, es el locación donde se encuentra la empresa.
         /// </summary>
         /// <value></value>
@@ -38,6 +31,7 @@ namespace ClassLibrary
         /// Constructor de instancia ubicación. 
         /// </summary>
         /// <param name="direccion"></param>
+        [JsonConstructor]
 
         public Ubicacion(string direccion)
         {

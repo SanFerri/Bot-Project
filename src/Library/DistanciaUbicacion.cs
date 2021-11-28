@@ -9,7 +9,7 @@ namespace ClassLibrary
     /// </summary>
     public class DistanciaUbicacion
     {
-        private LocationApiClient client;
+        private LocationApiClient client = new LocationApiClient();
 
         /// <summary>
         /// Property LocationDistance, es la distancia que se ingresa.
@@ -22,9 +22,8 @@ namespace ClassLibrary
         /// </summary>
         /// <param name="client"></param>
 
-        public DistanciaUbicacion(LocationApiClient client)
+        public DistanciaUbicacion()
         {
-            this.client = client;
         }
         /// <summary>
         /// Constructor de una instancia de distancia.

@@ -121,7 +121,7 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:ClassLibrary.DistanciaUbicacion.#ctor(Ucu.Poo.Locations.Client.LocationApiClient)">
+        <member name="M:ClassLibrary.DistanciaUbicacion.#ctor">
             <summary>
             Constructor de una instancia de DistanciaUbicacion.
             </summary>
@@ -828,6 +828,64 @@
         </member>
         <member name="F:ClassLibrary.OfertasHandler.OfertasState.NumeroPrompt">
             -NumeroPrompt: En este estado el comando envia el numero de ese tipo de ofertas que hay.
+        </member>
+        <member name="T:ClassLibrary.PerfilHandler">
+            <summary>
+            Un "handler" del patrón Chain of Responsibility que implementa el comando "ResiduosPuntuales".
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.PerfilHandler.State">
+            <summary>
+            El estado del comando.
+            </summary>
+        </member>
+        <member name="P:ClassLibrary.PerfilHandler.EmpresaUsuario">
+            <summary>
+            El usuario de la empresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PerfilHandler.Emprendedor">
+            <summary>
+            Los emprendedores que usan este handler.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.PerfilHandler.PublicacionesUsuario">
+            <summary>
+            Lista de publicaciones de la empresa
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:ClassLibrary.PerfilHandler.#ctor(ClassLibrary.BaseHandler)">
+            <summary>
+            Procesa el mensaje /verresiduosconsumidos.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.PerfilHandler.InternalHandle(System.String,System.Int32,System.String@)">
+            <summary>
+            Procesa todos los mensajes y retorna true siempre.
+            </summary>
+            <param name="message">El mensaje a procesar.</param>
+            <param name="response">La respuesta al mensaje procesado indicando que el mensaje no pudo se procesado.</param>
+            <param name="id">Es el id del usuario.</param>
+            <returns>true si el mensaje fue procesado; false en caso contrario.</returns>
+        </member>
+        <member name="M:ClassLibrary.PerfilHandler.InternalCancel">
+            <summary>
+            Retorna este "handler" al estado inicial.
+            </summary>
+        </member>
+        <member name="T:ClassLibrary.PerfilHandler.PerfilState">
+            <summary>
+            Indica los diferentes estados que puede tener el comando PerfilState.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.PerfilHandler.PerfilState.Start">
+            -Start: Es el comando inicial.
+        </member>
+        <member name="F:ClassLibrary.PerfilHandler.PerfilState.Consumidos">
+            -CambiarPrompt: Es el estado en el que te pregunta si quieres o no cambiar o borrar una publicacion.
         </member>
         <member name="T:ClassLibrary.PublicarHandler">
             <summary>
@@ -2018,11 +2076,6 @@
         <member name="T:ClassLibrary.Ubicacion">
             <summary>
             Clase Ubicacion, esta es experta en conocer la ubicacion.
-            </summary>
-        </member>
-        <member name="M:ClassLibrary.Ubicacion.#ctor">
-            <summary>
-            Constructor de Ubicacion.
             </summary>
         </member>
         <member name="P:ClassLibrary.Ubicacion.Location">

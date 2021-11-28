@@ -49,6 +49,8 @@ namespace ClassLibrary
 
         public ListaEmpresarios LosEmpresarios = ListaEmpresarios.GetInstance();
 
+        public List<string> LasUnidades = new List<string>{"g", "kg", "t", "l"};
+
         /// <summary>
         /// Son los empresarios que estan usando los handlers.
         /// </summary>
@@ -139,23 +141,31 @@ namespace ClassLibrary
                 // En el estado AgregarResiduosState el mensaje recibido es la respuesta con la cantidad que posee del residuo en cuestion.
                 this.NombreResiduo = PosiblesResiduos.GetInstance().Residuos[Convert.ToInt32(message)];
                 Empresario.State = "ARH-CP";
-                response = "Ahora ingrese la cantidad que posees de dicho residuo";
+                response = "Ahora ingrese la cantidad que posees de dicho residuo (Sin la unidad)";
                 this.State = AgregarResiduoState.Start;
 
                 return true;
             }
             else if (State == AgregarResiduoState.CantidadPrompt)
             {
+                int contador = 0;
                 this.VolumenResiduo = Convert.ToInt32(message);;
                 Empresario.State = "ARH-UP";
-                response = "Ingrese la unidad del volumen dado previamente";
+                string unfinishedResponse = "Ingrese el numero de la unidad:\n";
+                foreach(string palabra in this.LasUnidades)
+                {
+                    unfinishedResponse += $"{contador}. {palabra}.\n";
+                    contador += 1;
+                }
+                response = unfinishedResponse;
+
                 this.State = AgregarResiduoState.Start;
 
                 return true;
             }
-            else if (State == AgregarResiduoState.UnidadPrompt && (message == "kg" || message == "g" || message == "l"))
+            else if (State == AgregarResiduoState.UnidadPrompt)
             {
-                this.UnidadResiduo = message;
+                this.UnidadResiduo = this.LasUnidades[Convert.ToInt32(message)];
                 Empresario.State = "ARH-CP2";
                 response = "Ingrese el costo y/o valor del residuo";
                 this.State = AgregarResiduoState.Start;
@@ -173,14 +183,24 @@ namespace ClassLibrary
             }
             else if (State == AgregarResiduoState.MonedaPrompt)
             {
-                this.MonedaResiduo = message;
-                Residuo residuo = new Residuo(this.NombreResiduo, this.VolumenResiduo, this.UnidadResiduo, this.CostoResiduo, this.MonedaResiduo);
-                this.EmpresaUsuario.Residuos.AddResiduo(residuo);
-                Empresario.State = "start";
-                response = $"Se ha agregado el residuo {this.NombreResiduo}";
-                this.State = AgregarResiduoState.Start;
+                if(message == "$" || message == "U$S")
+                {
+                    this.MonedaResiduo = message;
+                    Residuo residuo = new Residuo(this.NombreResiduo, this.VolumenResiduo, this.UnidadResiduo, this.CostoResiduo, this.MonedaResiduo);
+                    this.EmpresaUsuario.Residuos.AddResiduo(residuo);
+                    Empresario.State = "start";
+                    response = $"Se ha agregado el residuo {this.NombreResiduo}";
+                    this.State = AgregarResiduoState.Start;
 
-                return true;
+                    return true;
+                }
+                else
+                {
+                    response = "No has ingresado una moneda valida, vuelve a intentarlo.";
+                    this.State = AgregarResiduoState.Start;
+
+                    return true;
+                }
             }
             else if (realEmpresario == false && message == "/agregarresiduo")
             {

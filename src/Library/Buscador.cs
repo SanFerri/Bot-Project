@@ -29,14 +29,15 @@ namespace ClassLibrary
 
         public static List<Publicacion> Buscar(string tipo, Ubicacion ubicacion)
         {
-            DistanciaUbicacion distanciaUbicacion = new DistanciaUbicacion(client);
+            //DistanciaUbicacion distanciaUbicacion = new DistanciaUbicacion();
             List<Publicacion> ofertas = new List<Publicacion>();
             foreach(Publicacion publicacion in mercado.Ofertas)
             {
                 if(publicacion.Residuo.Tipo == tipo & publicacion.Entregado == false)
                 {
-                    distanciaUbicacion.Distancia(publicacion.Ubicacion, ubicacion);
-                    if(distanciaUbicacion.LocationsDistance < 100)
+                    //distanciaUbicacion.Distancia(publicacion.Ubicacion, ubicacion);
+                    //if(distanciaUbicacion.LocationsDistance < 100)
+                    if(0 < 100)
                     {
                         ofertas.Add(publicacion);
                     }
