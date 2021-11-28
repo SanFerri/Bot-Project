@@ -453,7 +453,7 @@
             un mensaje.
             </summary>
             <param name="message">El mensaje a procesar.</param>
-            <returns>true si el mensaje puede ser pocesado; false en caso contrario.</returns>
+            <returns>true si el mensaje puede ser procesado; false en caso contrario.</returns>
         </member>
         <member name="M:ClassLibrary.BaseHandler.Handle(System.String,System.Int32,System.String@)">
             <summary>
@@ -1388,11 +1388,23 @@
             posee la responsabilidad de agregar Empresarios y/o remover Empresarios.
             </summary>
         </member>
+        <member name="P:ClassLibrary.ListaEmpresarios.Empresarios">
+            <summary>
+            Variable estatica empresarios, porque es una lista de instancias de Empresario
+            que lleva un registro de todos los empresarios que hay.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ClassLibrary.ListaEmpresarios.AddEmpresario(ClassLibrary.Empresario)">
             <summary>
             Metodo que agrega un empresario a la lista de empresarios, desginado a esta clase por Expert.
             </summary>
             <param name="empresario"></param>
+        </member>
+        <member name="M:ClassLibrary.ListaEmpresarios.#ctor">
+            <summary>
+            Constructor vacio para sumarle instancias en la clase.
+            </summary>
         </member>
         <member name="M:ClassLibrary.ListaEmpresarios.ConvertToJson">
             <summary>
@@ -1428,6 +1440,13 @@
             posee la responsabilidad de agregar Empresas y/o remover Empresas.
             </summary>
         </member>
+        <member name="P:ClassLibrary.ListaEmpresas.Empresas">
+            <summary>
+            Variable estatica empresas, porque es una lista de instancias de Empresa
+            que lleva un registro de todos las empresas que hay.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ClassLibrary.ListaEmpresas.AddEmpresa(ClassLibrary.Empresa)">
             <summary>
             AddEmpresa es un metodo que se encarga de agregar una empresa a la lista, 
@@ -1452,14 +1471,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.ListaEmpresas.LoadFromJson(System.String)">
-            <summary>
-            Sirve para deserializar un string de json para asi 
-            asignarle una nueva clase ListaEmpresas los valores 
-            previos a ponerle un stop al program para asi mantener la información.
-            </summary>
-            <param name="json"></param>
-        </member>
         <member name="M:ClassLibrary.ListaEmpresas.GetInstance">
             <summary>
             Sirve para aplicar el singleton, verifica si ListaEmpresas es nula y si no es nula te devuelve el 
@@ -1473,6 +1484,13 @@
             para añadir o remover elementos de una property de la clase llamada ListaPublicaciones, es el encargado
             de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
             </summary>
+        </member>
+        <member name="P:ClassLibrary.ListaEntregadas.ListaPublicaciones">
+            <summary>
+            Property publicación, es una lista de instancias de Publicacion
+            que lleva el registro de las publicaciones de una empresa.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:ClassLibrary.ListaEntregadas.AddPublicacion(ClassLibrary.Publicacion)">
             <summary>
@@ -1503,12 +1521,27 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ClassLibrary.ListaEntregadas.LoadFromJson(System.String)">
+            <summary>
+            Sirve para deserializar un string de json para asi 
+            asignarle una nueva clase ListaEmpresarios los valores 
+            previos a ponerle un stop al program para asi mantener la información.
+            </summary>
+            <param name="json"></param>
+        </member>
         <member name="T:ClassLibrary.ListaInvitaciones">
             <summary>
             ListaInvitaciones es una clase que contiene invitaciones que posee dos metodos AddInvitacion y 
             RemoveInvitacion para añadir o remover invitaciones de una property de la clase llamada ListaInvitaciones, es el encargado
             de llevar a cabo dichas tareas porque es el experto en conocer las invitaciones.
             </summary>
+        </member>
+        <member name="F:ClassLibrary.ListaInvitaciones.Invitaciones">
+            <summary>
+            Property string invitaciones, es una lista de instancias de invitaciones
+            que lleva el registro de las invitaciones.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:ClassLibrary.ListaInvitaciones.AddInvitacion(System.String)">
             <summary>
@@ -1534,6 +1567,14 @@
             Sirve para serializar la clase y todas sus property.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ListaInvitaciones.LoadFromJson(System.String)">
+            <summary>
+            Sirve para deserializar un string de json para asi 
+            asignarle una nueva clase ListaInvitaciones los valores 
+            previos a ponerle un stop al program para asi mantener la información.
+            </summary>
+            <param name="json"></param>
         </member>
         <member name="T:ClassLibrary.ListaPalabrasClave">
             <summary>
@@ -1575,6 +1616,18 @@
             de llevar a cabo dichas tareas porque es el experto en conocer los residuos.
             </summary>
         </member>
+        <member name="M:ClassLibrary.ListaPublicaciones.#ctor">
+            <summary>
+            Constructor de la clase ListaPublicaciones vacio intencionalmente.
+            </summary>
+        </member>
+        <member name="F:ClassLibrary.ListaPublicaciones.Publicaciones">
+            <summary>
+            Property publicación, es una lista de instancias de Publicacion
+            que lleva el registro de las publicaciones de una empresa.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:ClassLibrary.ListaPublicaciones.AddPublicacion(ClassLibrary.Publicacion)">
             <summary>
             AddPublicacion es un metodo que se encarga de agregar publicaciones a la lista
@@ -1592,6 +1645,14 @@
             Sirve para serializar la clase y todas sus property.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ListaPublicaciones.LoadFromJson(System.String)">
+            <summary>
+            Sirve para deserializar un string de json para asi 
+            asignarle una nueva clase ListaEmpresarios los valores 
+            previos a ponerle un stop al program para asi mantener la información.
+            </summary>
+            <param name="json"></param>
         </member>
         <member name="T:ClassLibrary.ListaResiduos">
             <summary>
@@ -1619,6 +1680,12 @@
             </summary>
             <param name="residuo"></param>
         </member>
+        <member name="M:ClassLibrary.ListaResiduos.ConvertToJson">
+            <summary>
+            Metodo que convierte una clase en string Json (serializa).
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.ListaUsuarios">
             <summary>
             ListaUsuarios es el experto en conocer a todos los Usuario, y 
@@ -1627,6 +1694,13 @@
             A su vez depende de IUsuario para agregar cualquier tipo de usuario (emprendedor,
             administrador o Usuario).
             </summary>
+        </member>
+        <member name="P:ClassLibrary.ListaUsuarios.Usuarios">
+            <summary>
+            Variable estatica Usuario, porque es una lista de instancias de Usuario
+            que lleva un registro de todos las Usuario que hay.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:ClassLibrary.ListaUsuarios.AddUsuario(ClassLibrary.Emprendedor)">
             <summary>
@@ -1639,6 +1713,11 @@
             RemoveUsuario es el encargado de remover Usuario de la lista.
             </summary>
             <param name="usuario"></param>
+        </member>
+        <member name="M:ClassLibrary.ListaUsuarios.#ctor">
+            <summary>
+            Constructor vacio para agregarle instancias a la clase.
+            </summary>
         </member>
         <member name="M:ClassLibrary.ListaUsuarios.ConvertToJson">
             <summary>
@@ -1686,6 +1765,11 @@
             RemoveMercado, metodo para remover publicaciones al mercado, designado por Expert.
             </summary>
             <param name="publicacion"></param>
+        </member>
+        <member name="M:ClassLibrary.Mercado.#ctor">
+            <summary>
+            Constructor vacio para agregarle instancias a la clase.
+            </summary>
         </member>
         <member name="M:ClassLibrary.Mercado.ConvertToJson">
             <summary>
@@ -1967,15 +2051,11 @@
         </member>
         <member name="M:ClassLibrary.Ubicacion.CalculateLocation">
             <summary>
-            Constructor de instancia CalculateLocation.
+            Sirve para calcular la localización de la dirección de una instancia de ubicación.
             </summary>
             <returns></returns>
         </member>
         <member name="M:ClassLibrary.Ubicacion.ConvertToJson">
-            <summary>
-            Metodo que convierte una clase en string Json (serializa).
-            </summary>
-            <returns></returns>
             <summary>
             Metodo que convierte una clase en string Json (serializa).
             </summary>

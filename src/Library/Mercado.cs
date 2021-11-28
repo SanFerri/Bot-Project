@@ -15,6 +15,7 @@ namespace ClassLibrary
         /// Property oferta, es una lista que contiene publicaciones.
         /// </summary>
         /// <value></value>
+        [JsonInclude]
         public List<Publicacion> Ofertas {get; set;}
 
         private static Mercado _instance;
@@ -60,7 +61,13 @@ namespace ClassLibrary
         /// <returns></returns>
         public string ConvertToJson()
         {
-            return JsonSerializer.Serialize(this);
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = MyReferenceHandler.Instance,
+                WriteIndented = true
+            };
+
+            return JsonSerializer.Serialize(this, options);
         }
 
         /// <summary>

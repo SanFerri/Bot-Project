@@ -12,6 +12,7 @@ using ClassLibrary;
 using Telegram.Bot.Types.Enums;
 using FileReader = System.IO ;
 using System.Text;
+using System.Text.Json;
 
 namespace Program
 {
@@ -142,6 +143,19 @@ namespace Program
           
             Emprendedor emprendedor = new Emprendedor(9093);
 
+            string JsonEmpresas = FileReader.File.ReadAllText(@"EmpresasData.json");
+            string JsonUsuarios = FileReader.File.ReadAllText(@"UsuariosData.json");
+
+            JsonSerializerOptions options = new()
+                {
+                    ReferenceHandler = MyReferenceHandler.Instance,
+                    WriteIndented = true
+                };
+            //ListaEmpresas.GetInstance().LoadFromJson(JsonEmpresas);
+            //ListaUsuarios Usuarios = ListaUsuarios.GetInstance();
+            //Usuarios = JsonSerializer.Deserialize<ListaUsuarios>(JsonUsuarios, options);
+
+
             string json2 = ListaAdministradores.GetInstance().ConvertToJson();
             Console.WriteLine(json2);
             FileReader.File.WriteAllText(@"../Library/Jsons/AdministradoresData.json", json2);
@@ -186,13 +200,13 @@ namespace Program
             //Detengo la escucha de mensajes 
             bot.StopReceiving();
 
-            string JsonEmpresas = ListaEmpresas.GetInstance().ConvertToJson();
-            Console.WriteLine(JsonEmpresas);
-            FileReader.File.WriteAllText(@"EmpresasData.json", JsonEmpresas);
+            string JsonEmpresa = ListaEmpresas.GetInstance().ConvertToJson();
+            Console.WriteLine(JsonEmpresa);
+            FileReader.File.WriteAllText(@"EmpresasData.json", JsonEmpresa);
 
-            string JsonUsuarios = ListaUsuarios.GetInstance().ConvertToJson();
+            string JsonUsuario = ListaUsuarios.GetInstance().ConvertToJson();
             Console.WriteLine(JsonUsuarios);
-            FileReader.File.WriteAllText(@"UsuariosData.json", JsonUsuarios);
+            FileReader.File.WriteAllText(@"UsuariosData.json", JsonUsuario);
             
         }
 
