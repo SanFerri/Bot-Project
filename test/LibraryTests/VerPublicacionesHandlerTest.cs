@@ -28,7 +28,7 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            Residuo = new Residuo("metal", 100, "kg", 250, "$");
+            Residuo = new Residuo("Metal", 100, "kg", 250, "$");
             
             string invitacion = InvitationGenerator.Generate();
             Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
@@ -122,7 +122,7 @@ namespace Tests
             Assert.That(empresario.Empresa.Publicaciones.Publicaciones.Contains(Publicacion));
 
             IHandler result = Handler.Handle(Message, empresario.Id, out response);
-            Assert.That(response, Is.EqualTo($"Estas son tus publicaciones:\n0. Ofrece: 100 kg de metal en Av. 8 de Octubre 2738. Ademas la habilitacion para conseguir estos residuos es: Permisos Fecha: {Publicacion.Fecha}\n¿Quieres eliminar alguna publicacion? o indicar que esta entregada? Responda eliminar, entregado, o no"));
+            Assert.That(response, Is.EqualTo($"Estas son tus publicaciones:\n0. Ofrece: 100 kg de Metal en Av. 8 de Octubre 2738. Ademas la habilitacion para conseguir estos residuos es: Permisos Fecha: {Publicacion.Fecha}\n¿Quieres eliminar alguna publicacion? o indicar que esta entregada? Responda eliminar, entregado, o no"));
 
             Message = "entregado";
             Handler.Handle(Message, empresario.Id, out response);
@@ -134,7 +134,7 @@ namespace Tests
 
             Message = "323";
             Handler.Handle(Message, empresario.Id, out response);
-            Assert.That(response, Is.EqualTo("¿Cual es el id del usuario al que le ha entregado esta publicacion?"));
+            Assert.That(response, Is.EqualTo("Se ha puesto la publicacion como entregada"));
 
             Assert.That(ListaEntregadas.GetInstance().ListaPublicaciones.Contains(Publicacion));
             Assert.That(!Mercado.GetInstance().Ofertas.Contains(Publicacion));
