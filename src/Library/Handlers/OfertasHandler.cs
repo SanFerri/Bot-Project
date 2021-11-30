@@ -197,8 +197,10 @@ namespace ClassLibrary
             {   
                 response = "";
                 /// <summary>
-                /// Utilizamos este bloque de código para atrapar una excepeción (System.FormatExcepetion)
-                /// la cual ocurre si el usuario ingresa una letra en vez de un número, lo cual provocaría un error que terminaria con el funcionamiento del bot.
+                /// Utilizamos este bloque de código para atrapar dos excepciones (System.FormatExcepetion) y (System.ArgumentOutOfRangeException)
+                /// la cual la primera ocurre si el usuario ingresa una letra en vez de un número, y la segunda ocurre si el usuario ingresa un argumento 
+                /// cuyo valor este fuera de el rango de valores definidos por el método invocado.
+                /// Cualquiera de estas dos excepciones de no ser manejadas provocarían un error que terminaria con el funcionamiento del bot.
                 /// </summary>
                 /// <value></value>
                 try
@@ -206,6 +208,12 @@ namespace ClassLibrary
                     this.ResiduoTipo = PosiblesResiduos.GetInstance().Residuos[Convert.ToInt32(message)];
                 }
                 catch (System.FormatException)
+                {
+                    response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
+                    this.State = OfertasState.Start;
+                    this.Emprendedor.State = "OH-RP";
+                }
+                catch (System.ArgumentOutOfRangeException)
                 {
                     response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
                     this.State = OfertasState.Start;
@@ -242,7 +250,7 @@ namespace ClassLibrary
                     else
                     {
                         response = builderResponse;
-                        this.Emprendedor.State = "start";
+                        this.Emprendedor.State = "OH-NP";
                         this.State = OfertasState.Start;
 
                         return false;
@@ -290,13 +298,45 @@ namespace ClassLibrary
             }
             else if (State == OfertasState.NumeroPrompt)
             {
-                this.Eleccion = Convert.ToInt32(message);
-                Publicacion publicacion = this.OfertasData[this.Eleccion];
-                response = $"El número de contacto de esta publicación es {publicacion.Empresa.Contacto}";
-                this.Emprendedor.State = "start";
-                this.State = OfertasState.Start;
+                response = "";
+                /// <summary>
+                /// Utilizamos este bloque de código para atrapar dos excepciones (System.FormatExcepetion) y (System.ArgumentOutOfRangeException)
+                /// la cual la primera ocurre si el usuario ingresa una letra en vez de un número, y la segunda ocurre si el usuario ingresa un argumento 
+                /// cuyo valor este fuera de el rango de valores definidos por el método invocado.
+                /// Cualquiera de estas dos excepciones de no ser manejadas provocarían un error que terminaria con el funcionamiento del bot.
+                /// </summary>
+                /// <value></value>
+                try
+                {
+                    this.Eleccion = Convert.ToInt32(message);
+                    Publicacion publicacion = this.OfertasData[this.Eleccion];
+                }
+                catch (System.FormatException)
+                {
+                    response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
+                    this.State = OfertasState.Start;
+                    this.Emprendedor.State = "OH-NP";
+                }
+                catch (System.ArgumentOutOfRangeException)
+                {
+                    response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
+                    this.State = OfertasState.Start;
+                    this.Emprendedor.State = "OH-NP";
+                }
+    
+                if (response != "Usted no ha ingresado un número válido, porfavor intentelo nuevamente")
+                {    
+                    Publicacion publicacion = this.OfertasData[this.Eleccion];
+                    response = $"El número de contacto de esta publicación es {publicacion.Empresa.Contacto}";
+                    this.Emprendedor.State = "start";
+                    this.State = OfertasState.Start;
 
-                return false;
+                    return false;
+                }
+                else
+                {
+                    return false;
+                }
             }            
             else
             {

@@ -64,7 +64,6 @@ namespace ClassLibrary
             if (State == PerfilState.Start && message == "/verresiduosconsumidos" && realEmprendedor == true)
             {
                 response = "¿Residuos entregados desde hace cuantos dias quieres ver?";
-                
                 int contador = 0;
                 string unfinishedResponse = "Estas son tus residuos consumidos:\n";
                 List<Residuo> consumidos = Buscador.Buscar(id, Convert.ToInt32(message));

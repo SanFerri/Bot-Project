@@ -157,7 +157,7 @@ namespace ClassLibrary
                 {
                     Elegido = Convert.ToInt32(message);
                 }
-                this.Empresario.State = "VPH-E";
+                this.Empresario.State = "VPH-E2";
                 State = VerPublicacionesState.Start;
                 response = "¿Cual es el id del usuario al que le ha entregado esta publicacion?";
 

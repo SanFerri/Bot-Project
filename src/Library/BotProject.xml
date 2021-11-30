@@ -1193,15 +1193,15 @@
             Retorna este "handler" al estado inicial.
             </summary>
         </member>
-        <member name="T:ClassLibrary.VerEntregadosHandler.VerPublicacionesState">
+        <member name="T:ClassLibrary.VerEntregadosHandler.VerEntregadosState">
             <summary>
-            Indica los diferentes estados de VerPublicacionesState.
+            Indica los diferentes estados de VerEntregadosState.
             </summary>
         </member>
-        <member name="F:ClassLibrary.VerEntregadosHandler.VerPublicacionesState.Start">
+        <member name="F:ClassLibrary.VerEntregadosHandler.VerEntregadosState.Start">
             -Start: Es el comando inicial.
         </member>
-        <member name="F:ClassLibrary.VerEntregadosHandler.VerPublicacionesState.Entregados">
+        <member name="F:ClassLibrary.VerEntregadosHandler.VerEntregadosState.Entregados">
             -CambiarPrompt: Es el estado en el que te pregunta si quieres o no cambiar o borrar una publicacion.
         </member>
         <member name="T:ClassLibrary.VerPublicacionesHandler">

@@ -78,19 +78,43 @@ namespace ClassLibrary
             }
             if (State == VerResiduosConsumidosState.Consumidos)
             {
-                int contador = 0;
-                string unfinishedResponse = "Estas son tus residuos consumidos:\n";
-                List<Residuo> consumidos = Buscador.Buscar(id, Convert.ToInt32(message));
-                foreach(Residuo residuo in consumidos)
+                response = "";
+                /// <summary>
+                /// Utilizamos este bloque de código para atrapar la excepción (System.FormatExcepetion)
+                /// la cual ocurre si el usuario ingresa como argumento una letra en vez de un número, 
+                /// esta excepción de no ser manejada provocaría un error que terminaria con el funcionamiento del bot.
+                /// </summary>
+                /// <value></value>
+                try
                 {
-                    unfinishedResponse += $"Consumio: {residuo.Cantidad} de {residuo.Tipo}, el costo de este es {residuo.Cost}{residuo.Moneda}\n";
-                    contador += 1;
+                    Convert.ToInt32(message);
                 }
-                response = unfinishedResponse;
-                State = VerResiduosConsumidosState.Start;
-                this.Emprendedor.State = "start";
+                catch (System.FormatException)
+                {
+                    response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
+                    this.State = VerResiduosConsumidosState.Start;
+                    this.Emprendedor.State = "VRCH-C";
+                }
+                if(response != "Usted no ha ingresado un número válido, porfavor intentelo nuevamente")
+                {
+                    int contador = 0;
+                    string unfinishedResponse = "Estas son tus residuos consumidos:\n";
+                    List<Residuo> consumidos = Buscador.Buscar(id, Convert.ToInt32(message));
+                    foreach(Residuo residuo in consumidos)
+                    {
+                        unfinishedResponse += $"Consumio: {residuo.Cantidad} de {residuo.Tipo}, el costo de este es {residuo.Cost}{residuo.Moneda}\n";
+                        contador += 1;
+                    }
+                    response = unfinishedResponse;
+                    State = VerResiduosConsumidosState.Start;
+                    this.Emprendedor.State = "start";
 
-                return true;
+                    return true;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else
             {
