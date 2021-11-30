@@ -95,6 +95,12 @@ namespace Tests
 
 
             Assert.That(response, Is.EqualTo($"Se ha creado el empresario y esta es la invitacion que debe usar para acceder a su status: {Handler.Invitacion}"));
+            Assert.That(ListaInvitaciones.GetInstance().Invitaciones.Contains(Handler.Invitacion));
+            Assert.That(Handler.Empresario.Empresa, Is.EqualTo(Handler.EmpresaData));
+            Assert.That(Handler.Empresario.Invitacion, Is.EqualTo(Handler.Invitacion));
+            Assert.That(ListaEmpresarios.GetInstance().Empresarios.Contains(Handler.Empresario));
+            Assert.That(ListaEmpresas.GetInstance().Empresas.Contains(Handler.EmpresaData));
+            Assert.That(Handler.EmpresaData.Empresario, Is.EqualTo(Handler.Empresario));
         }
     }
 }

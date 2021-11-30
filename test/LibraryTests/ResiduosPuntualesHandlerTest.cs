@@ -21,6 +21,7 @@ namespace Tests
         ListaAdministradores Administradores = ListaAdministradores.GetInstance();
         ListaUsuarios Usuarios = ListaUsuarios.GetInstance();
         Mercado Mercado = Mercado.GetInstance();
+        Publicacion Publicacion;
 
         /// <summary>
         /// El Setup de los test
@@ -43,8 +44,8 @@ namespace Tests
             Usuario2 = new Administrador(invitacion2);
             Usuario2.Id = Id;
             Administradores.AddAdministrador(Usuario2);
-            Publicacion publicacion = new Publicacion(Residuo, Ubicacion, Empresa, "Tener un camion", false);
-            Mercado.AddMercado(publicacion);
+            Publicacion = new Publicacion(Residuo, Ubicacion, Empresa, "Tener un camion", false);
+            Mercado.AddMercado(Publicacion);
         }
 
         /// <summary>
@@ -59,6 +60,7 @@ namespace Tests
             IHandler result = Handler.Handle(Message, Id, out response);
 
             Assert.That(response, Is.EqualTo("Estos son los residuos puntuales:\nmetal"));
+            Assert.That(Publicacion.Constante, Is.EqualTo(false));
         }
 
         /// <summary>

@@ -156,7 +156,7 @@
             El Setup de los test
             </summary>
         </member>
-        <member name="M:Tests.RegistrarseHandlerTests.RegitrarseCanHandleTest">
+        <member name="M:Tests.RegistrarseHandlerTests.RegistrarseCanHandleTest">
             <summary>
             Este test se encarga de comprobar que funciona el comando /ofertas.
             </summary>
@@ -166,7 +166,7 @@
             Este test se encarga de comprobar que funciona el comando /ofertas con un usuario que no es un emprendedor.
             </summary>
         </member>
-        <member name="M:Tests.RegistrarseHandlerTests.WithKeywordOfertasHandlerTest">
+        <member name="M:Tests.RegistrarseHandlerTests.WorkingRegistrarseHandlerTest">
             <summary>
             Este test se encarga de comprobar la funcionalidad de buscar una publicación con palabra clave.
             </summary>
@@ -236,7 +236,7 @@
             Este test se encarga de comprobar que el comando /verentregados no funciona con un usuario que no es un empresario.
             </summary>
         </member>
-        <member name="M:Tests.VerEntregadosHandlerTest.WorkingCambiarDatosHandlerTest">
+        <member name="M:Tests.VerEntregadosHandlerTest.WorkingVerEntregadosHandlerTest">
             <summary>
             Este test se encarga de comprobar la funcionalidad de crear una publicación.
             </summary>
@@ -252,17 +252,22 @@
             el set up de los test.
             </summary>
         </member>
-        <member name="M:Tests.VerPublicacionesHandlerTest.CambiarDatosCanHandleTest">
+        <member name="M:Tests.VerPublicacionesHandlerTest.VerPublicacionesCanHandleTest">
             <summary>
             Este test se encarga de comprobar que funciona el comando /publicar.
             </summary>
         </member>
-        <member name="M:Tests.VerPublicacionesHandlerTest.CambiarDatosCantHandleTest">
+        <member name="M:Tests.VerPublicacionesHandlerTest.VerPublicacionesCantHandleTest">
             <summary>
             Este test se encarga de comprobar que el comando /publicar no funciona con un usuario que no es un empresario.
             </summary>
         </member>
-        <member name="M:Tests.VerPublicacionesHandlerTest.WorkingCambiarDatosHandlerTest">
+        <member name="M:Tests.VerPublicacionesHandlerTest.WorkingEliminadoVerPublicacionesHandlerTest">
+            <summary>
+            Este test se encarga de comprobar la funcionalidad de crear una publicación.
+            </summary>
+        </member>
+        <member name="M:Tests.VerPublicacionesHandlerTest.WorkingEntregadoVerPublicacionesHandlerTest">
             <summary>
             Este test se encarga de comprobar la funcionalidad de crear una publicación.
             </summary>

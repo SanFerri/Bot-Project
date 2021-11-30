@@ -39,6 +39,8 @@ namespace ClassLibrary
 
         public string NombreEmpresa { get; private set; }
 
+        public Empresario Empresario { get; private set; }
+
         /// <summary>
         /// Es el contacto de la empresa.
         /// </summary>
@@ -170,8 +172,9 @@ namespace ClassLibrary
             }
             else if (State == InvitarState.AdministradorPrompt)
             {
-                this.Invitacion = InvitationGenerator.Generate();
-                Empresario Empresario = new Empresario(Invitacion, this.EmpresaData);
+                this.Invitacion = ListaInvitaciones.GetInstance().AddInvitacion();
+                this.Empresario = new Empresario(Invitacion, this.EmpresaData);
+                this.EmpresaData.Empresario = this.Empresario;
                 response = $"Se ha creado el empresario y esta es la invitacion que debe usar para acceder a su status: {this.Invitacion}";
                 this.State = InvitarState.Start;
 

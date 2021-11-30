@@ -27,13 +27,6 @@ namespace ClassLibrary
         public string ResiduoTipo { get; private set; }
 
         /// <summary>
-        /// Es el resultado de la busqueda del emprendedor.
-        /// </summary>
-        /// <value></value>
-
-        public Publicacion Result { get; private set; }
-
-        /// <summary>
         /// Es el usuario registrado de la empresa.
         /// </summary>
         /// <value></value>
@@ -197,6 +190,7 @@ namespace ClassLibrary
             {   
                 response = "";
                 /// <summary>
+
                 /// Utilizamos este bloque de código para atrapar dos excepciones (System.FormatExcepetion) y (System.ArgumentOutOfRangeException)
                 /// la cual la primera ocurre si el usuario ingresa una letra en vez de un número, y la segunda ocurre si el usuario ingresa un argumento 
                 /// cuyo valor este fuera de el rango de valores definidos por el método invocado.
@@ -357,7 +351,6 @@ namespace ClassLibrary
             this.UbicacionData = null;
             this.ResiduoTipo = null;
             this.EmpresaUsuario = null;
-            this.Result = null;
             this.OfertasData = null;
             this.LasClaves = null;
         }

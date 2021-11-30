@@ -51,6 +51,8 @@ namespace ClassLibrary
 
         public List<string> LasUnidades = new List<string>{"g", "kg", "t", "l"};
 
+        public Residuo Residuo { get; private set; }
+
         /// <summary>
         /// Son los empresarios que estan usando los handlers.
         /// </summary>
@@ -186,8 +188,8 @@ namespace ClassLibrary
                 if(message == "$" || message == "U$S")
                 {
                     this.MonedaResiduo = message;
-                    Residuo residuo = new Residuo(this.NombreResiduo, this.VolumenResiduo, this.UnidadResiduo, this.CostoResiduo, this.MonedaResiduo);
-                    this.EmpresaUsuario.Residuos.AddResiduo(residuo);
+                    this.Residuo = new Residuo(this.NombreResiduo, this.VolumenResiduo, this.UnidadResiduo, this.CostoResiduo, this.MonedaResiduo);
+                    this.EmpresaUsuario.Residuos.AddResiduo(this.Residuo);
                     Empresario.State = "start";
                     response = $"Se ha agregado el residuo {this.NombreResiduo}";
                     this.State = AgregarResiduoState.Start;

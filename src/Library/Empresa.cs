@@ -7,13 +7,13 @@ namespace ClassLibrary
     /// Empresa es una clase que conoce la información de las empresas, el nombre, la ubicación, el
     /// contacto, los residuos, sus publicaciones y a el empresario.
     /// </summary>
-    public class Empresa : IJsonConvertible
+    public class Empresa
     {
         /// <summary>
         /// Constructor de Empresa.
         /// </summary>
 
-        [JsonConstructor]
+
         public Empresa()
         {
             // Intencionalmente en blanco
@@ -22,45 +22,48 @@ namespace ClassLibrary
         /// Property nombre, es el nombre que tiene la empresa.
         /// </summary>
         /// <value></value>
-        public string Nombre{ get;set; }
-        
+        public string Nombre { get; set; }
+
         /// <summary>
         /// Property ubicacion, es la ubicación donde se encuentra la empresa. 
         /// </summary>
         /// <value></value>
-        public Ubicacion Ubicacion{get;set;}
-        
+        public Ubicacion Ubicacion { get; set; }
+
         /// <summary>
         /// Property contacto, es el contacto de la empresa.
         /// </summary>
         /// <value></value>
-        public string Contacto{get;set;}
-        
+        public string Contacto { get; set; }
+
         /// <summary>
         /// Es la lista de residuos que lleva el registro de todos los residuos que tiene la empresa 
         /// publicados.
         /// </summary>
         /// <returns></returns>
-        public ListaResiduos Residuos{get;set;} = new ListaResiduos();
-        
+        public ListaResiduos Residuos { get; set; } = new ListaResiduos();
+
         /// <summary>
         /// Es la lista que lleva el registro de todas las publicaciones que tiene la empresa
         /// realizadas. 
         /// </summary>
         /// <returns></returns>
-        public ListaPublicaciones Publicaciones{get;set;} = new ListaPublicaciones();
-        
+        public ListaPublicaciones Publicaciones { get; set; } = new ListaPublicaciones();
+
         /// <summary>
         /// Property empresario, es el encargado de la empresa. 
         /// </summary>
         /// <value></value>
-        public Empresario Empresario{get;set;}
+        public Empresario Empresario { get; set; }
+
+
         /// <summary>
         /// Constructor de una instancia de Empresa.
         /// </summary>
         /// <param name="nombre"></param>
         /// <param name="ubicacion"></param>
         /// <param name="contacto"></param>
+        [JsonConstructor]
         public Empresa(string nombre, Ubicacion ubicacion, string contacto)
         {
             this.Nombre = nombre;

@@ -105,11 +105,6 @@
             <param name="tiempo"></param>
             <returns></returns>
         </member>
-        <member name="T:ClassLibrary.ChatBot">
-            <summary>
-            Clase ChatBot vacia 
-            </summary>
-        </member>
         <member name="T:ClassLibrary.DistanciaUbicacion">
             <summary>
             DistanciaUbicacion es una clase que conoce las distancias.
@@ -150,13 +145,6 @@
             <summary>
             Constructor de Emprendedor.
             </summary>
-        </member>
-        <member name="P:ClassLibrary.Emprendedor.Invitacion">
-            <summary>
-            Property invitación, es la invitación que se le hace al emprendedor para ingresar y poder 
-            acceder a los residuos publicados por las empresas.
-            </summary>
-            <value></value>
         </member>
         <member name="P:ClassLibrary.Emprendedor.Id">
             <summary>
@@ -732,12 +720,6 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.OfertasHandler.Result">
-            <summary>
-            Es el resultado de la busqueda del emprendedor.
-            </summary>
-            <value></value>
-        </member>
         <member name="P:ClassLibrary.OfertasHandler.EmpresaUsuario">
             <summary>
             Es el usuario registrado de la empresa.
@@ -901,12 +883,6 @@
             <summary>
             Es la ubicación.
             </summary>
-        </member>
-        <member name="P:ClassLibrary.PublicarHandler.clave">
-            <summary>
-            Es una lista que alamacena las palabras claves que hay.
-            </summary>
-            <value></value>
         </member>
         <member name="P:ClassLibrary.PublicarHandler.ResiduoTipo">
             <summary>
@@ -1591,7 +1567,8 @@
             <summary>
             ListaInvitaciones es una clase que contiene invitaciones que posee dos metodos AddInvitacion y 
             RemoveInvitacion para añadir o remover invitaciones de una property de la clase llamada ListaInvitaciones, es el encargado
-            de llevar a cabo dichas tareas porque es el experto en conocer las invitaciones.
+            de llevar a cabo dichas tareas porque es el experto en conocer las invitaciones. ListaInvitaciones tambien usa creator, ya que contiene
+            instancias de invitacion y no tiene sentido que halla una invitacion fuera de su property invitaciones.
             </summary>
         </member>
         <member name="F:ClassLibrary.ListaInvitaciones.Invitaciones">
@@ -1601,11 +1578,10 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ClassLibrary.ListaInvitaciones.AddInvitacion(System.String)">
+        <member name="M:ClassLibrary.ListaInvitaciones.AddInvitacion">
             <summary>
-            AddInvitacion es un metodo que se encarga de agregar invitaciones a la lista.
+            AddInvitacion es un metodo que se encarga de agregar invitaciones a la lista. Ademas por creator crea una invitacion.
             </summary>
-            <param name="invitacion"></param>
         </member>
         <member name="M:ClassLibrary.ListaInvitaciones.RemoveInvitacion(System.String)">
             <summary>
@@ -1930,12 +1906,6 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:ClassLibrary.Publicacion.UsuarioEntregado">
-            <summary>
-            Property usuarioEntregado, indicar a que usuario se le entrego.
-            </summary>
-            <value></value>
-        </member>
         <member name="P:ClassLibrary.Publicacion.PalabraClave">
             <summary>
             Property palabraClave, es una palabra clave que pudo haber sido agregada por un empresario al crear la publicacion.
@@ -2016,11 +1986,6 @@
             de una publicacion hecha por una X empresa.
             </summary>
         </member>
-        <member name="M:ClassLibrary.Residuo.#ctor">
-            <summary>
-            Constructor de Residuo.
-            </summary>
-        </member>
         <member name="P:ClassLibrary.Residuo.Tipo">
             <summary>
             Es el encargado de conocer el tipo de material que se esta ofreciendo.
@@ -2070,6 +2035,24 @@
             <returns></returns>
             <summary>
             Metodo que convierte una clase en string Json (serializa).
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ClassLibrary.Serializer">
+            <summary>
+            ListaEmpresas es el experto en conocer a las empresas, y 
+            por el patron Expert este tambien es quien
+            posee la responsabilidad de agregar Empresas y/o remover Empresas.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.Serializer.#ctor">
+            <summary>
+            Constructor para sumarle instancia a la clasica.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.Serializer.ConvertToJson">
+            <summary>
+            Sirve para serializar la clase y todas sus property.
             </summary>
             <returns></returns>
         </member>
