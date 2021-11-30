@@ -49,6 +49,11 @@ namespace ClassLibrary
 
         public ListaEmpresarios LosEmpresarios = ListaEmpresarios.GetInstance();
 
+        /// <summary>
+        /// Lista que tiene las posibles unidades.
+        /// </summary>
+        /// <value></value>
+
         public List<string> LasUnidades = new List<string>{"g", "kg", "t", "l"};
 
         /// <summary>
