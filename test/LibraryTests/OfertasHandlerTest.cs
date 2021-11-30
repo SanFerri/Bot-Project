@@ -44,7 +44,9 @@ namespace Tests
             Mercado.GetInstance().Ofertas.Clear();
             Residuo = new Residuo("Metal", 100, "kg", 250, "$");
             Handler = new OfertasHandler(null);
-            string Invitacion = ListaInvitaciones.GetInstance().AddInvitacion();
+
+            InvitationGenerator generator = new InvitationGenerator();
+            string Invitacion = ListaInvitaciones.GetInstance(generator).AddInvitacion();
             Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             Ubicacion2 = new Ubicacion("Av. Italia 3479");
             Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
@@ -77,7 +79,9 @@ namespace Tests
             Mercado.GetInstance().Ofertas.Clear();
             Residuo = new Residuo("Metal", 100, "kg", 250, "$");
             Handler = new OfertasHandler(null);
-            string Invitacion = ListaInvitaciones.GetInstance().AddInvitacion();
+
+            InvitationGenerator generator = new InvitationGenerator();
+            string Invitacion = ListaInvitaciones.GetInstance(generator).AddInvitacion();
             Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             Ubicacion2 = new Ubicacion("Av. Italia 3479");
             Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
@@ -109,7 +113,9 @@ namespace Tests
             Mercado.GetInstance().Ofertas.Clear();
             Residuo = new Residuo("Metal", 100, "kg", 250, "$");
             Handler = new OfertasHandler(null);
-            string Invitacion = ListaInvitaciones.GetInstance().AddInvitacion();
+
+            InvitationGenerator generator = new InvitationGenerator();
+            string Invitacion = ListaInvitaciones.GetInstance(generator).AddInvitacion();
             Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             Ubicacion2 = new Ubicacion("Av. Italia 3479");
             Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
@@ -157,7 +163,9 @@ namespace Tests
             Mercado.GetInstance().Ofertas.Clear();
             Residuo = new Residuo("Metal", 100, "kg", 250, "$");
             Handler = new OfertasHandler(null);
-            string Invitacion = ListaInvitaciones.GetInstance().AddInvitacion();
+
+            InvitationGenerator generator = new InvitationGenerator();
+            string Invitacion = ListaInvitaciones.GetInstance(generator).AddInvitacion();
             Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             Ubicacion2 = new Ubicacion("Av. Italia 3479");
             Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");

@@ -37,7 +37,8 @@ namespace Tests
         {
             Residuo = new Residuo("Metal", 100, "kg", 250, "$");
             
-            Invitacion = ListaInvitaciones.GetInstance().AddInvitacion();
+            InvitationGenerator generator = new InvitationGenerator();
+            Invitacion = ListaInvitaciones.GetInstance(generator).AddInvitacion();
             Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
             Empresa.Residuos.AddResiduo(Residuo);

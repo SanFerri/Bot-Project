@@ -31,8 +31,10 @@ namespace Tests
         {
             Residuo = new Residuo("Metal", 100, "kg", 250, "$");
             Handler = new VerResiduosConsumidosHandler(null);
+
+            InvitationGenerator generator = new InvitationGenerator();
             
-            string invitacion = InvitationGenerator.Generate();
+            string invitacion = ListaInvitaciones.GetInstance(generator).AddInvitacion();
             Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
             Empresa.Residuos.AddResiduo(Residuo);
@@ -40,7 +42,7 @@ namespace Tests
             Id = 12345678;
             Usuario.Id = Id;
             Empresarios.AddEmpresario(Usuario);
-            string invitacion2 = InvitationGenerator.Generate();
+            string invitacion2 = ListaInvitaciones.GetInstance(generator).AddInvitacion();
             Usuario2 = new Administrador(invitacion2);
             Usuario2.Id = Id;
             Administradores.AddAdministrador(Usuario2);
@@ -65,7 +67,7 @@ namespace Tests
             Assert.That(response, Is.EqualTo("¿Residuos entregados desde hace cuantos dias quieres ver?"));
             Message = "90";
             Handler.Handle(Message, emprendedor.Id, out response);
-            Assert.That(response, Is.EqualTo("Estas son tus residuos consumidos:\n"));
+            Assert.That(response, Is.EqualTo("Estas son tus residuos consumidos:\nConsumio: 100 de Metal, el costo de este es 250$\n"));
         }
         
         /// <summary>

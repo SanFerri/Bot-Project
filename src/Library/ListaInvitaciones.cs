@@ -20,6 +20,7 @@ namespace ClassLibrary
         [JsonInclude]
         public List<string> Invitaciones = new List<string>();
 
+        public IGenerator Generator { get; private set; }
         private static ListaInvitaciones _instance;
 
         /// <summary>
@@ -27,7 +28,7 @@ namespace ClassLibrary
         /// </summary>
         public string AddInvitacion()
         {
-            string invitacion = InvitationGenerator.Generate();
+            string invitacion = this.Generator.Generate();
             this.Invitaciones.Add(invitacion);
 
             return invitacion;
@@ -49,17 +50,18 @@ namespace ClassLibrary
         /// devuelve el valor de la property.
         /// </summary>
         /// <returns></returns>
-        public static ListaInvitaciones GetInstance()
+        public static ListaInvitaciones GetInstance(IGenerator generator)
         {
             if (_instance == null)
             {
-                _instance = new ListaInvitaciones();
+                _instance = new ListaInvitaciones(generator);
             }
             return _instance;
         }
         [JsonConstructor]
-        private ListaInvitaciones()
+        private ListaInvitaciones(IGenerator generator)
         {
+            this.Generator = generator;
         }
 
 
