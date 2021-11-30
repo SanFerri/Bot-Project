@@ -166,9 +166,9 @@ namespace ClassLibrary
             else if (State == VerPublicacionesState.Entregado)
             {
                 bool correcto = false;
-                foreach(Emprendedor emprendedor in ListaUsuarios.GetInstance().Usuarios)
+                foreach(IUsuario emprendedor in ListaUsuarios.GetInstance().Usuarios)
                 {
-                    if (emprendedor.Id == id)
+                    if (emprendedor.Id == Convert.ToInt32(message))
                     {
                         correcto = true;
                     }
@@ -177,6 +177,8 @@ namespace ClassLibrary
                 {
                     Publicacion publicacionElegida = this.PublicacionesUsuario.Publicaciones[Elegido];
                     publicacionElegida.Entregado = true;
+                    ListaEntregadas.GetInstance().AddPublicacion(publicacionElegida);
+                    Mercado.GetInstance().RemoveMercado(publicacionElegida);
                     publicacionElegida.IdEntregado = id;
                     response = "Se ha puesto la publicacion como entregada";
                     this.Empresario.State = "start";

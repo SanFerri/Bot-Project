@@ -36,9 +36,14 @@ namespace ClassLibrary
             {
                 List<string> residuosConstantes = Buscador.ResiduosConstantes();
                 string unfinishedResponse = "Estos son los residuos constantes:\n";
+                List<string> constantes = new List<string>();
                 foreach(string residuo in residuosConstantes)
                 {
-                    unfinishedResponse += $"{residuo}";
+                    if(!constantes.Contains(residuo))
+                    {
+                        unfinishedResponse += $"{residuo}";
+                    }
+                    constantes.Add(residuo);
                 }
                 response = unfinishedResponse;
 

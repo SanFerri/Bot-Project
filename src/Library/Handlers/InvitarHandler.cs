@@ -172,7 +172,8 @@ namespace ClassLibrary
             }
             else if (State == InvitarState.AdministradorPrompt)
             {
-                this.Invitacion = ListaInvitaciones.GetInstance().AddInvitacion();
+                InvitationGenerator generator = new InvitationGenerator();
+                this.Invitacion = ListaInvitaciones.GetInstance(generator).AddInvitacion();
                 this.Empresario = new Empresario(Invitacion, this.EmpresaData);
                 this.EmpresaData.Empresario = this.Empresario;
                 response = $"Se ha creado el empresario y esta es la invitacion que debe usar para acceder a su status: {this.Invitacion}";

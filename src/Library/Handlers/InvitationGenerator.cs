@@ -6,7 +6,7 @@ namespace ClassLibrary
     /// Clase que se encarga de generar invitaciones, si en algun momento debemos cambiar el modo de la invitacion
     /// entonces solo tendremos que cambiar esta clase y no todas las otras.
     /// </summary>
-    public class InvitationGenerator
+    public class InvitationGenerator : IGenerator
     {
         
         /// <summary>
@@ -20,7 +20,7 @@ namespace ClassLibrary
         /// 7 digitos.
         /// </summary>
         /// <returns></returns>
-        public static string Generate()
+        public string Generate()
         {
             string invitacion = "";
             int invitation;
@@ -29,7 +29,7 @@ namespace ClassLibrary
             {
                 invitation = Random.Next(1000000);
                 invitacion = Convert.ToString(invitation); 
-                if(ListaInvitaciones.GetInstance().Invitaciones.Contains(invitacion))
+                if(ListaInvitaciones.GetInstance(this).Invitaciones.Contains(invitacion))
                 {
                 }
                 else

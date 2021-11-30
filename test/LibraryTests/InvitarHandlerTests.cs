@@ -28,7 +28,8 @@ namespace Tests
         {
             Residuo = new Residuo("metal", 100, "kg", 250, "$");
             
-            string invitacion = InvitationGenerator.Generate();
+            InvitationGenerator generator = new InvitationGenerator();
+            string invitacion = ListaInvitaciones.GetInstance(generator).AddInvitacion();
             Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
             Empresa.Residuos.AddResiduo(Residuo);
@@ -38,7 +39,7 @@ namespace Tests
             Empresarios.AddEmpresario(Usuario);
 
             Handler = new InvitarHandler(null);
-            string invitacion2 = InvitationGenerator.Generate();
+            string invitacion2 = ListaInvitaciones.GetInstance(generator).AddInvitacion();
             Usuario2 = new Administrador(invitacion2);
             Usuario2.Id = Id;
             Administradores.AddAdministrador(Usuario2);
@@ -79,6 +80,7 @@ namespace Tests
         [Test]
         public void WorkingInvitarHandlerTest()
         {
+            InvitationGenerator generator = new InvitationGenerator();
             Message = Handler.Keywords[0];
             string response;
 
@@ -95,7 +97,7 @@ namespace Tests
 
 
             Assert.That(response, Is.EqualTo($"Se ha creado el empresario y esta es la invitacion que debe usar para acceder a su status: {Handler.Invitacion}"));
-            Assert.That(ListaInvitaciones.GetInstance().Invitaciones.Contains(Handler.Invitacion));
+            Assert.That(ListaInvitaciones.GetInstance(generator).Invitaciones.Contains(Handler.Invitacion));
             Assert.That(Handler.Empresario.Empresa, Is.EqualTo(Handler.EmpresaData));
             Assert.That(Handler.Empresario.Invitacion, Is.EqualTo(Handler.Invitacion));
             Assert.That(ListaEmpresarios.GetInstance().Empresarios.Contains(Handler.Empresario));

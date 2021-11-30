@@ -31,9 +31,11 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            Residuo = new Residuo("metal", 100, "kg", 250, "$");
+            Residuo = new Residuo("Metal", 100, "kg", 250, "$");
+
+            InvitationGenerator generator = new InvitationGenerator();
             
-            string invitacion = InvitationGenerator.Generate();
+            string invitacion = ListaInvitaciones.GetInstance(generator).AddInvitacion();
             Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
             Empresa.Residuos.AddResiduo(Residuo);
@@ -43,7 +45,7 @@ namespace Tests
             Empresarios.AddEmpresario(Usuario);
 
             Handler = new VerEntregadosHandler(null);
-            string invitacion2 = InvitationGenerator.Generate();
+            string invitacion2 = ListaInvitaciones.GetInstance(generator).AddInvitacion();
             Usuario2 = new Administrador(invitacion2);
             Usuario2.Id = Id;
             Administradores.AddAdministrador(Usuario2);
@@ -75,7 +77,7 @@ namespace Tests
 
             IHandler result = Handler.Handle(Message, emprendedor.Id, out response);
 
-            Assert.That(response, Is.EqualTo("Usted no es un empresario, no puede hacer uso de este comand"));
+            Assert.That(response, Is.EqualTo("Usted no es un empresario, no puede hacer uso de este comando"));
         }
 
         /// <summary>
@@ -101,20 +103,9 @@ namespace Tests
 
             Message = "50";
             Handler.Handle(Message, empresario.Id, out response);
-            Assert.That(response, Is.EqualTo($"Estas son tus publicaciones ya entregadas:\n0. Ofrece: 100 kg de metal en Av. 8 de Octubre 2738. Ademas la habilitacion para conseguir estos residuos es: Permisos Fecha: {Publicacion.Fecha}\n"));
+            Assert.That(response, Is.EqualTo($"Estas son tus publicaciones ya entregadas:\n0. Ofrece: 100 kg de Metal en Av. 8 de Octubre 2738. Ademas la habilitacion para conseguir estos residuos es: Permisos Fecha: {Publicacion.Fecha}\n"));
 
-            Message = "Estados Unidos";
-            Handler.Handle(Message, empresario.Id, out response);
-            Assert.That(response, Is.EqualTo("Por ultimo dime el contacto de la empresa"));
-
-            Message = "099547123";
-            Handler.Handle(Message, empresario.Id, out response);
-            Assert.That(response, Is.EqualTo("Se han actualizado sus datos..."));
-
-
-            Assert.That(empresario.Empresa.Nombre, Is.EqualTo("TestNombre"));
-            Assert.That(empresario.Empresa.Ubicacion.Direccion, Is.EqualTo("Estados Unidos"));
-            Assert.That(empresario.Empresa.Contacto, Is.EqualTo("099547123"));
+            Assert.That(ListaEntregadas.GetInstance().ListaPublicaciones.Contains(Publicacion));
         }
     }
 }
