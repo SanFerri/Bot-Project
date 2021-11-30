@@ -93,7 +93,7 @@ namespace Tests
             Handler.Handle(Message, Usuario.Id, out response);
             Assert.That(response, Is.EqualTo("Porfavor ingrese la habilitacion para los residuos."));
 
-            Message = "Necesitara un camion o vehiculo";
+            Message = "Permiso para uso de metales";
             Handler.Handle(Message, Usuario.Id, out response);
             Assert.That(response, Is.EqualTo("Porfavor responda si o no, ¿Estos residuos que se generaron se generan de forma constante? Si fue puntual responda no."));
 
@@ -108,6 +108,12 @@ namespace Tests
             Message = "0";
             Handler.Handle(Message, Usuario.Id, out response);
             Assert.That(response, Is.EqualTo($"Se ha publicado la oferta de {Residuo.Tipo} de la empresa {Empresa.Nombre}. En la ubicacion {Ubicacion.Direccion}"));
+
+            Assert.That(Handler.Result.Constante, Is.EqualTo(true));
+            Assert.That(Handler.Result.Empresa, Is.EqualTo(Empresa));
+            Assert.That(Handler.Result.Entregado, Is.EqualTo(false));
+            Assert.That(Handler.Result.Habilitacion, Is.EqualTo("Permiso para uso de metales"));
+            Assert.That(Handler.Result.Ubicacion.Direccion, Is.EqualTo(Ubicacion.Direccion));
         }
     }
 }

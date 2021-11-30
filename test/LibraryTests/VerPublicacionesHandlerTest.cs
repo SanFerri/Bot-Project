@@ -10,7 +10,7 @@ namespace Tests
     public class VerPublicacionesHandlerTest
     {
         Residuo Residuo;
-        CambiarDatosHandler Handler;
+        VerPublicacionesHandler Handler;
         string Message;
         Empresa Empresa;
         Empresario Usuario;
@@ -37,9 +37,9 @@ namespace Tests
             Usuario = new Empresario(invitacion, Empresa);
             Id = 12345678;
             Usuario.Id = Id;
-            Empresarios.AddEmpresario(Usuario);
+            Empresa.Empresario = Usuario;
 
-            Handler = new CambiarDatosHandler(null);
+            Handler = new VerPublicacionesHandler(null);
             string invitacion2 = InvitationGenerator.Generate();
             Usuario2 = new Administrador(invitacion2);
             Usuario2.Id = Id;
@@ -50,21 +50,22 @@ namespace Tests
         /// Este test se encarga de comprobar que funciona el comando /publicar.
         /// </summary>
         [Test]
-        public void CambiarDatosCanHandleTest()
+        public void VerPublicacionesCanHandleTest()
         {
+            Publicacion Publicacion = new Publicacion(Residuo, Ubicacion, Empresa, "Permisos", false);
             Message = Handler.Keywords[0];
             string response;
 
-            IHandler result = Handler.Handle(Message, Id, out response);
+            IHandler result = Handler.Handle(Message, Usuario.Id, out response);
 
-            Assert.That(response, Is.EqualTo("Ingrese el nombre de su empresa."));
+            Assert.That(response, Is.EqualTo($"Estas son tus publicaciones:\n0. Ofrece: 100 kg de metal en Av. 8 de Octubre 2738. Ademas la habilitacion para conseguir estos residuos es: Permisos Fecha: {Publicacion.Fecha}\n¿Quieres eliminar alguna publicacion? o indicar que esta entregada? Responda elIminar, entregado, o no"));
         }
 
         /// <summary>
         /// Este test se encarga de comprobar que el comando /publicar no funciona con un usuario que no es un empresario.
         /// </summary>
         [Test]
-        public void CambiarDatosCantHandleTest()
+        public void VerPublicacionesCantHandleTest()
         {
             Emprendedor emprendedor = new Emprendedor(34314458);
             Message = Handler.Keywords[0];
@@ -72,38 +73,69 @@ namespace Tests
 
             IHandler result = Handler.Handle(Message, emprendedor.Id, out response);
 
-            Assert.That(response, Is.EqualTo("Usted no es un empresario, no puede usar el codigo..."));
+            Assert.That(response, Is.EqualTo("Usted no es un empresario, no puede hacer uso de este comando"));
         }
 
         /// <summary>
         /// Este test se encarga de comprobar la funcionalidad de crear una publicación.
         /// </summary>
         [Test]
-        public void WorkingCambiarDatosHandlerTest()
+        public void WorkingEliminadoVerPublicacionesHandlerTest()
         {
+            Publicacion Publicacion = new Publicacion(Residuo, Ubicacion, Empresa, "Permisos", false);
             Empresario empresario = new Empresario("323234", Empresa);
             Message = Handler.Keywords[0];
             string response;
 
+            Assert.That(empresario.Empresa.Publicaciones.Publicaciones.Contains(Publicacion));
+
             IHandler result = Handler.Handle(Message, empresario.Id, out response);
-            Assert.That(response, Is.EqualTo("Ingrese el nombre de su empresa."));
+            Assert.That(response, Is.EqualTo($"Estas son tus publicaciones:\n0. Ofrece: 100 kg de metal en Av. 8 de Octubre 2738. Ademas la habilitacion para conseguir estos residuos es: Permisos Fecha: {Publicacion.Fecha}\n¿Quieres eliminar alguna publicacion? o indicar que esta entregada? Responda eliminar, entregado, o no"));
 
-            Message = "TestNombre";
+            Message = "eliminar";
             Handler.Handle(Message, empresario.Id, out response);
-            Assert.That(response, Is.EqualTo("Ahora dime la ubicacion de dicha empresa"));
+            Assert.That(response, Is.EqualTo("Ingrese el numero de la publicacion que quiera eliminar."));
 
-            Message = "Estados Unidos";
+            Message = "0";
             Handler.Handle(Message, empresario.Id, out response);
-            Assert.That(response, Is.EqualTo("Por ultimo dime el contacto de la empresa"));
+            Assert.That(response, Is.EqualTo("Se ha eliminado la publicacion"));
 
-            Message = "099547123";
+            Assert.That(!empresario.Empresa.Publicaciones.Publicaciones.Contains(Publicacion));
+            Assert.That(!Mercado.GetInstance().Ofertas.Contains(Publicacion));
+        }
+
+        /// <summary>
+        /// Este test se encarga de comprobar la funcionalidad de crear una publicación.
+        /// </summary>
+        [Test]
+        public void WorkingEntregadoVerPublicacionesHandlerTest()
+        {
+            Publicacion Publicacion = new Publicacion(Residuo, Ubicacion, Empresa, "Permisos", false);
+            Empresario empresario = new Empresario("323234", Empresa);
+
+            Emprendedor emprendedor = new Emprendedor(323);
+            Message = Handler.Keywords[0];
+            string response;
+
+            Assert.That(empresario.Empresa.Publicaciones.Publicaciones.Contains(Publicacion));
+
+            IHandler result = Handler.Handle(Message, empresario.Id, out response);
+            Assert.That(response, Is.EqualTo($"Estas son tus publicaciones:\n0. Ofrece: 100 kg de metal en Av. 8 de Octubre 2738. Ademas la habilitacion para conseguir estos residuos es: Permisos Fecha: {Publicacion.Fecha}\n¿Quieres eliminar alguna publicacion? o indicar que esta entregada? Responda eliminar, entregado, o no"));
+
+            Message = "entregado";
             Handler.Handle(Message, empresario.Id, out response);
-            Assert.That(response, Is.EqualTo("Se han actualizado sus datos..."));
+            Assert.That(response, Is.EqualTo("Ingrese el numero de la publicacion que quiera indicar como entregada."));
 
+            Message = "0";
+            Handler.Handle(Message, empresario.Id, out response);
+            Assert.That(response, Is.EqualTo("¿Cual es el id del usuario al que le ha entregado esta publicacion?"));
 
-            Assert.That(empresario.Empresa.Nombre, Is.EqualTo("TestNombre"));
-            Assert.That(empresario.Empresa.Ubicacion.Direccion, Is.EqualTo("Estados Unidos"));
-            Assert.That(empresario.Empresa.Contacto, Is.EqualTo("099547123"));
+            Message = "323";
+            Handler.Handle(Message, empresario.Id, out response);
+            Assert.That(response, Is.EqualTo("¿Cual es el id del usuario al que le ha entregado esta publicacion?"));
+
+            Assert.That(ListaEntregadas.GetInstance().ListaPublicaciones.Contains(Publicacion));
+            Assert.That(!Mercado.GetInstance().Ofertas.Contains(Publicacion));
         }
     }
 }

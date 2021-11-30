@@ -23,6 +23,8 @@ namespace Tests
         ListaUsuarios Usuarios = ListaUsuarios.GetInstance();
         Mercado Mercado = Mercado.GetInstance();
 
+        Publicacion Publicacion;
+
         /// <summary>
         /// el set up de los test.
         /// </summary>
@@ -80,18 +82,26 @@ namespace Tests
         /// Este test se encarga de comprobar la funcionalidad de crear una publicación.
         /// </summary>
         [Test]
-        public void WorkingCambiarDatosHandlerTest()
+        public void WorkingVerEntregadosHandlerTest()
         {
+            Empresa.Publicaciones.Publicaciones.Clear();
+            ListaEntregadas.GetInstance().ListaPublicaciones.Clear();
+            Mercado.GetInstance().Ofertas.Clear();
+
+            Publicacion Publicacion2 = new Publicacion(Residuo, Ubicacion, Empresa, "Permisos", false);
+            Publicacion2.Entregado = true;
+            Publicacion2.IdEntregado = Id;
+            Empresa.Publicaciones.AddPublicacion(Publicacion2);
             Empresario empresario = new Empresario("323234", Empresa);
             Message = Handler.Keywords[0];
             string response;
 
             IHandler result = Handler.Handle(Message, empresario.Id, out response);
-            Assert.That(response, Is.EqualTo("Ingrese el nombre de su empresa."));
+            Assert.That(response, Is.EqualTo("¿Publicaciones entregadas desde hace cuantos dias quieres ver?"));
 
-            Message = "TestNombre";
+            Message = "50";
             Handler.Handle(Message, empresario.Id, out response);
-            Assert.That(response, Is.EqualTo("Ahora dime la ubicacion de dicha empresa"));
+            Assert.That(response, Is.EqualTo("Estas son tus publicaciones ya entregadas:\n0. Ofrece: 100 kg de metal en Av. 8 de Octubre 2738. Ademas la habilitacion para conseguir estos residuos es: Permisos Fecha: 30/11/2021 15:52:52\n"));
 
             Message = "Estados Unidos";
             Handler.Handle(Message, empresario.Id, out response);

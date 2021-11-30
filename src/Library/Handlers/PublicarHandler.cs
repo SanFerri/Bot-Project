@@ -19,13 +19,6 @@ namespace ClassLibrary
         public Ubicacion UbicacionData { get; private set; }
 
         /// <summary>
-        /// Es una lista que alamacena las palabras claves que hay.
-        /// </summary>
-        /// <value></value>
-
-        public ListaPalabrasClave clave { get; private set; }
-
-        /// <summary>
         /// Son el tipo de residuo publicado.
         /// </summary>
         /// <value></value>

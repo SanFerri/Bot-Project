@@ -10,26 +10,17 @@ namespace ClassLibrary
     /// </summary>
     public class Residuo : IJsonConvertible
     {
-        /// <summary>
-        /// Constructor de Residuo.
-        /// </summary>
-
-        [JsonConstructor]
-        public Residuo()
-        {
-            // Intencionalmente en blanco
-        }
 
         /// <summary>
         /// Es el encargado de conocer el tipo de material que se esta ofreciendo.
         /// </summary>
         /// <value></value>
-        public string Tipo{get; set;}
+        public string Tipo{ get; set; }
         /// <summary>
         /// Es el encargado de conocer la cantidad que hay de cada material.
         /// </summary>
         /// <value></value>
-        public int Cantidad{get; set;}
+        public int Cantidad{ get; set; }
 
         /// <summary>
         /// Es el encargado de conocer la unidad de la cual se esta haciendo referencia, por ejemplo 
@@ -60,6 +51,7 @@ namespace ClassLibrary
         /// <param name="unidad"></param>
         /// <param name="cost"></param>
         /// <param name="moneda"></param>
+        [JsonConstructor]
         public Residuo(string tipo, int cantidad, string unidad, int cost, string moneda)
         {
             this.Tipo = tipo;

@@ -17,7 +17,7 @@ namespace ClassLibrary
         /// </summary>
         /// <returns></returns>
         [JsonInclude]
-        public List<Empresa> Empresas {get; set;}
+        public List<Empresa> Empresas {get; private set;}
         private static ListaEmpresas _instance;
 
         /// <summary>

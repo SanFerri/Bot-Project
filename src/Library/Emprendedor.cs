@@ -23,12 +23,6 @@ namespace ClassLibrary
         {
             // Intencionalmente en blanco
         }
-        /// <summary>
-        /// Property invitación, es la invitación que se le hace al emprendedor para ingresar y poder 
-        /// acceder a los residuos publicados por las empresas.
-        /// </summary>
-        /// <value></value>
-        public int Invitacion{get;set;}
 
         /// <summary>
         /// Property id, es el id que se le asigna al emprededor para poder reconocerlo como tal.

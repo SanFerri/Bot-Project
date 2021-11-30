@@ -33,7 +33,7 @@ namespace Program
         {
             Residuo Residuo = new Residuo("Metal", 100, "kg", 250, "$");
             
-            string invitacion = InvitationGenerator.Generate();
+            string invitacion = ListaInvitaciones.GetInstance().AddInvitacion();
             Console.WriteLine(invitacion);
             Ubicacion Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
             Empresa Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
@@ -42,7 +42,7 @@ namespace Program
 
             Residuo Residuo1 = new Residuo("Plastico (PET)", 150, "kg", 150, "$");
 
-            string invitacion1 = InvitationGenerator.Generate();
+            string invitacion1 = ListaInvitaciones.GetInstance().AddInvitacion();
             Console.WriteLine(invitacion1);
             Ubicacion Ubicacion1 = new Ubicacion("Av. 18 de Julio");
             Empresa Empresa1 = new Empresa("PlasticAssets", Ubicacion, "098954786");
@@ -51,7 +51,7 @@ namespace Program
 
             Residuo Residuo2 = new Residuo("Plastico (PET)", 100, "kg", 50, "$");
 
-            string invitacion2 = InvitationGenerator.Generate();
+            string invitacion2 = ListaInvitaciones.GetInstance().AddInvitacion();
             Console.WriteLine(invitacion2);
             Ubicacion Ubicacion2 = new Ubicacion("Av. Luis Alberto Herrera 1290");
             Empresa Empresa2 = new Empresa("BagsCompany", Ubicacion, "099452698");
@@ -60,7 +60,7 @@ namespace Program
 
             Residuo Residuo3 = new Residuo("Plastico (PET)", 400, "kg", 450, "$");
 
-            string invitacion3 = InvitationGenerator.Generate();
+            string invitacion3 = ListaInvitaciones.GetInstance().AddInvitacion();
             Console.WriteLine(invitacion3);
             Ubicacion Ubicacion3 = new Ubicacion("Bv. Gral Artigas 1825");
             Empresa Empresa3 = new Empresa("DeliciousBettyCrackers", Ubicacion, "097219632");
@@ -69,7 +69,7 @@ namespace Program
 
             Residuo Residuo4 = new Residuo("Plastico (PET)", 300, "kg", 50, "$");
 
-            string invitacion4 = InvitationGenerator.Generate();
+            string invitacion4 = ListaInvitaciones.GetInstance().AddInvitacion();
             Console.WriteLine(invitacion4);
             Ubicacion Ubicacion4 = new Ubicacion("Av. Luis Alberto Herrera 3365");
             Empresa Empresa4 = new Empresa("MegaBottlesUY", Ubicacion, "094572984");
@@ -78,7 +78,7 @@ namespace Program
 
             Residuo Residuo5 = new Residuo("Goma", 600, "kg", 500, "$");
 
-            string invitacion5 = InvitationGenerator.Generate();
+            string invitacion5 = ListaInvitaciones.GetInstance().AddInvitacion();
             Console.WriteLine(invitacion5);
             Ubicacion Ubicacion5 = new Ubicacion("Magallanes 1721");
             Empresa Empresa5 = new Empresa("GomeriaRAD", Ubicacion, "096785482");
@@ -87,7 +87,7 @@ namespace Program
 
             Residuo Residuo6 = new Residuo("Cobre", 60, "kg", 300, "$");
 
-            string invitacion6 = InvitationGenerator.Generate();
+            string invitacion6 = ListaInvitaciones.GetInstance().AddInvitacion();
             Console.WriteLine(invitacion6);
             Ubicacion Ubicacion6 = new Ubicacion("Jose Eullari 350");
             Empresa Empresa6 = new Empresa("InterTECH", Ubicacion, "091536982");
@@ -96,7 +96,7 @@ namespace Program
 
             Residuo Residuo7 = new Residuo("Papel", 1000, "kg", 30, "$");
 
-            string invitacion7 = InvitationGenerator.Generate();
+            string invitacion7 = ListaInvitaciones.GetInstance().AddInvitacion();
             Console.WriteLine(invitacion7);
             Ubicacion Ubicacion7 = new Ubicacion("Av. Italia 5775");
             Empresa Empresa7 = new Empresa("Papeleria", Ubicacion, "097549621");
@@ -105,7 +105,7 @@ namespace Program
 
             Residuo Residuo8 = new Residuo("Algodon", 200, "kg", 50, "$");
 
-            string invitacion8 = InvitationGenerator.Generate();
+            string invitacion8 = ListaInvitaciones.GetInstance().AddInvitacion();
             Console.WriteLine(invitacion8);
             Ubicacion Ubicacion8 = new Ubicacion("Claudio Williman 626");
             Empresa Empresa8 = new Empresa("CottonTAP", Ubicacion, "097012958");
@@ -114,7 +114,7 @@ namespace Program
 
             Residuo Residuo9 = new Residuo("Cuero", 70, "kg", 1000, "$");
 
-            string invitacion9 = InvitationGenerator.Generate();
+            string invitacion9 = ListaInvitaciones.GetInstance().AddInvitacion();
             Console.WriteLine(invitacion9);
             Ubicacion Ubicacion9 = new Ubicacion("Av. Alfredo Arocena 1806");
             Empresa Empresa9 = new Empresa("LeatherSUR", Ubicacion, "097519862");
@@ -151,22 +151,30 @@ namespace Program
                     ReferenceHandler = MyReferenceHandler.Instance,
                     WriteIndented = true
                 };
-            //ListaEmpresas.GetInstance().LoadFromJson(JsonEmpresas);
+            // string json = FileReader.File.ReadAllText(@"../Library/Jsons/SerializerData.json");
+            // Serializer serializer = new Serializer();
+            // serializer.LoadFromJson(json);
+
+            // Console.WriteLine(ListaEmpresas.GetInstance().Empresas.Count);
+
+            // Serializer serializer = new Serializer();
+            // string JsonSerializer = serializer.ConvertToJson();
+            // FileReader.File.WriteAllText(@"../Library/Jsons/SerializerData.json", JsonSerializer);
             //ListaUsuarios Usuarios = ListaUsuarios.GetInstance();
             //Usuarios = JsonSerializer.Deserialize<ListaUsuarios>(JsonUsuarios, options);
 
 
-            string json2 = ListaAdministradores.GetInstance().ConvertToJson();
-            Console.WriteLine(json2);
-            FileReader.File.WriteAllText(@"../Library/Jsons/AdministradoresData.json", json2);
+        // string json2 = ListaAdministradores.GetInstance().ConvertToJson();
+        // Console.WriteLine(json2);
+        // FileReader.File.WriteAllText(@"../Library/Jsons/AdministradoresData.json", json2);
 
-            string json3 = ListaUsuarios.GetInstance().ConvertToJson();
-            Console.WriteLine(json3);
-            FileReader.File.WriteAllText(@"../Library/Jsons/UsuariosData.json", json3);
+        // string json3 = ListaUsuarios.GetInstance().ConvertToJson();
+        // Console.WriteLine(json3);
+        // FileReader.File.WriteAllText(@"../Library/Jsons/UsuariosData.json", json3);
 
-            string json4 = ListaEmpresas.GetInstance().ConvertToJson();
-            Console.WriteLine(json4);
-            FileReader.File.WriteAllText(@"../Library/Jsons/EmpresasData.json", json4);
+        // string json4 = ListaEmpresas.GetInstance().ConvertToJson();
+        // Console.WriteLine(json4);
+        // FileReader.File.WriteAllText(@"../Library/Jsons/EmpresasData.json", json4);
 
             handler1 = new OfertasHandler(null);
             handler2 = new AgregarResiduoHandler(handler1);
@@ -179,8 +187,6 @@ namespace Program
             handler9 = new VerEntregadosHandler(handler8);
             handler10 = new VerPublicacionesHandler(handler9);
             handler11 = new VerResiduosConsumidosHandler(handler10);
-
-            Console.WriteLine(invitacion4);
             
             //Obtengo una instancia de TelegramBot
             TelegramBot telegramBot = TelegramBot.Instance;
@@ -202,13 +208,13 @@ namespace Program
             //Detengo la escucha de mensajes 
             bot.StopReceiving();
 
-            string JsonEmpresa = ListaEmpresas.GetInstance().ConvertToJson();
-            Console.WriteLine(JsonEmpresa);
-            FileReader.File.WriteAllText(@"EmpresasData.json", JsonEmpresa);
+            // string JsonEmpresa = ListaEmpresas.GetInstance().ConvertToJson();
+            // Console.WriteLine(JsonEmpresa);
+            // FileReader.File.WriteAllText(@"EmpresasData.json", JsonEmpresa);
 
-            string JsonUsuario = ListaUsuarios.GetInstance().ConvertToJson();
-            Console.WriteLine(JsonUsuarios);
-            FileReader.File.WriteAllText(@"UsuariosData.json", JsonUsuario);
+            // string JsonUsuario = ListaUsuarios.GetInstance().ConvertToJson();
+            // Console.WriteLine(JsonUsuarios);
+            // FileReader.File.WriteAllText(@"UsuariosData.json", JsonUsuario);
             
         }
 
