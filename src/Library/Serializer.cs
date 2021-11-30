@@ -16,7 +16,7 @@ namespace ClassLibrary
         [JsonInclude]
         public List<Administrador> Administradores { get; set; }
         [JsonInclude]
-        public List<Emprendedor> Emprendedores { get; set; }
+        public List<IUsuario> Emprendedores { get; set; }
 
         /// <summary>
         /// Constructor para sumarle instancia a la clasica.

@@ -15,18 +15,20 @@ namespace ClassLibrary
     {
         /// <summary>
         /// Variable estatica Usuario, porque es una lista de instancias de Usuario
-        /// que lleva un registro de todos las Usuario que hay.
+        /// que lleva un registro de todos las Usuario que hay. Esta property hace uso de Polimorfismo, todos los usuarios
+        /// ya sean emprendedores, empresarios o administradores implementan IUsuario y esta clase al usarlos a todos ellos
+        /// usa como parametro IUsuario.
         /// </summary>
         /// <returns></returns>
         [JsonInclude]
-        public List<Emprendedor> Usuarios {get; set;}
+        public List<IUsuario> Usuarios {get; set;}
         private static ListaUsuarios _instance;
 
         /// <summary>
         /// AddUsuario es el encargado de agregar Usuario a la lista.
         /// </summary>
         /// <param name="usuario"></param>
-        public void AddUsuario(Emprendedor usuario)
+        public void AddUsuario(IUsuario usuario)
         {
             Usuarios.Add(usuario);
         }
@@ -38,7 +40,7 @@ namespace ClassLibrary
         /// RemoveUsuario es el encargado de remover Usuario de la lista.
         /// </summary>
         /// <param name="usuario"></param>
-        public void RemoveUsuario(Emprendedor usuario)
+        public void RemoveUsuario(IUsuario usuario)
         {
             Usuarios.Remove(usuario);
         }
@@ -49,7 +51,7 @@ namespace ClassLibrary
         [JsonConstructor]
         private ListaUsuarios()
         {
-            this.Usuarios = new List<Emprendedor>();
+            this.Usuarios = new List<IUsuario>();
         }
 
         /// <summary>
