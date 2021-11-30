@@ -120,7 +120,6 @@
             <summary>
             Constructor de una instancia de DistanciaUbicacion.
             </summary>
-            <param name="client"></param>
         </member>
         <member name="M:ClassLibrary.DistanciaUbicacion.Distancia(ClassLibrary.Ubicacion,ClassLibrary.Ubicacion)">
             <summary>
@@ -325,6 +324,12 @@
             Lista de todos los empresarios que hay.
             </summary>
             <returns></returns>
+        </member>
+        <member name="F:ClassLibrary.AgregarResiduoHandler.LasUnidades">
+            <summary>
+            Lista que tiene las posibles unidades.
+            </summary>
+            <value></value>
         </member>
         <member name="P:ClassLibrary.AgregarResiduoHandler.Empresario">
             <summary>
@@ -1504,6 +1509,14 @@
             Sirve para serializar la clase y todas sus property.
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:ClassLibrary.ListaEmpresas.LoadFromJson(System.String)">
+            <summary>
+            Sirve para deserializar un string de json para asi 
+            asignarle una nueva clase ListaEmpresarios los valores 
+            previos a ponerle un stop al program para asi mantener la información.
+            </summary>
+            <param name="json"></param>
         </member>
         <member name="M:ClassLibrary.ListaEmpresas.GetInstance">
             <summary>
