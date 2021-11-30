@@ -4,8 +4,7 @@ using ClassLibrary;
 namespace Tests
 {
     /// <summary>
-    /// Clase de test que se encarga de probar las distintas funciones del ResiduosConstantesHandler.
-    /// Los test individualmente utilizando "run test" funcionan correctamente, pero al intentar usar "run all tests" no detecta ninguno.
+    /// Clase de test que se encarga de probar las distintas funciones del VerResiduosConsumidosHandler.
     /// </summary>
     public class VerResiduosConsumidosTests
     {
@@ -51,7 +50,7 @@ namespace Tests
         }
 
         /// <summary>
-        /// Este test se encarga de comprobar que funciona el comando /residuosconstantes.
+        /// Este test se encarga de comprobar que funciona el comando /verresiduosconsumidos.
         /// </summary>
         [Test]
         public void VerResiduosConsumidosHandle()
@@ -72,7 +71,7 @@ namespace Tests
         
         /// <summary>
         /// Este test se encarga de comprobar que el handler no responde nada si se utiliza 
-        /// un comando distinto de /residuosconstantes.
+        /// un comando distinto de /verresiduosconsumidos.
         /// </summary>
         [Test]
         public void VerResiduosConsumidosCantHandle()

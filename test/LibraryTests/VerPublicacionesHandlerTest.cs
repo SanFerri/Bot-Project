@@ -4,8 +4,7 @@ using ClassLibrary;
 namespace Tests
 {
     /// <summary>
-    /// Clase de test que se encarga de probar las distintas funciones del PublicarHandler.
-    /// Los test individualmente utilizando "run test" funcionan correctamente, pero al intentar usar "run all tests" no detecta ninguno.
+    /// Clase de test que se encarga de probar las distintas funciones del VerPublicacionesHandler.
     /// </summary>
     public class VerPublicacionesHandlerTest
     {
@@ -49,7 +48,7 @@ namespace Tests
         }
 
         /// <summary>
-        /// Este test se encarga de comprobar que funciona el comando /publicar.
+        /// Este test se encarga de comprobar que funciona el comando /verpublicaciones.
         /// </summary>
         [Test]
         public void VerPublicacionesCanHandleTest()
@@ -64,7 +63,7 @@ namespace Tests
         }
 
         /// <summary>
-        /// Este test se encarga de comprobar que el comando /publicar no funciona con un usuario que no es un empresario.
+        /// Este test se encarga de comprobar que el comando /verpublicaciones no funciona con un usuario que no es un empresario.
         /// </summary>
         [Test]
         public void VerPublicacionesCantHandleTest()
@@ -79,7 +78,7 @@ namespace Tests
         }
 
         /// <summary>
-        /// Este test se encarga de comprobar la funcionalidad de crear una publicación.
+        /// Este test se encarga de comprobar la funcionalidad de ver las publicaciones y eliminar una.
         /// </summary>
         [Test]
         public void WorkingEliminadoVerPublicacionesHandlerTest()
@@ -107,7 +106,8 @@ namespace Tests
         }
 
         /// <summary>
-        /// Este test se encarga de comprobar la funcionalidad de crear una publicación.
+        /// Este test se encarga de comprobar la funcionalidad de ver las publicaciones y marcar como 
+        /// entregada una.
         /// </summary>
         [Test]
         public void WorkingEntregadoVerPublicacionesHandlerTest()

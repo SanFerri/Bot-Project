@@ -190,7 +190,6 @@ namespace ClassLibrary
             {   
                 response = "";
                 /// <summary>
-
                 /// Utilizamos este bloque de código para atrapar dos excepciones (System.FormatExcepetion) y (System.ArgumentOutOfRangeException)
                 /// la cual la primera ocurre si el usuario ingresa una letra en vez de un número, y la segunda ocurre si el usuario ingresa un argumento 
                 /// cuyo valor este fuera de el rango de valores definidos por el método invocado.

@@ -5,8 +5,7 @@ using System;
 namespace Tests
 {
     /// <summary>
-    /// Clase de test que se encarga de probar las distintas funciones del OfertasHandler.
-    /// Los test individualmente utilizando "run test" funcionan correctamente, pero al intentar usar "run all tests" no detecta ninguno.
+    /// Clase de test que se encarga de probar las distintas funciones del RegistrarseHandler.
     /// </summary>
     public class RegistrarseHandlerTests
     {
@@ -49,7 +48,7 @@ namespace Tests
         }
 
         /// <summary>
-        /// Este test se encarga de comprobar que funciona el comando /ofertas.
+        /// Este test se encarga de comprobar que funciona el comando /registrarse.
         /// </summary>
         [Test]
         public void RegistrarseCanHandleTest()
@@ -63,7 +62,7 @@ namespace Tests
         }
 
         /// <summary>
-        /// Este test se encarga de comprobar que funciona el comando /ofertas con un usuario que no es un emprendedor.
+        /// Este test se encarga de comprobar que funciona el comando /registrarse con un usuario que no es un emprendedor.
         /// </summary>
         [Test]
         public void RegistrarseCantHandleTest()
@@ -76,7 +75,7 @@ namespace Tests
             Assert.That(response, Is.EqualTo(string.Empty));
         }
         /// <summary>
-        /// Este test se encarga de comprobar la funcionalidad de buscar una publicación con palabra clave.
+        /// Este test se encarga de comprobar la funcionalidad de registrarse como un empresario.
         /// </summary>
         [Test]
         public void WorkingRegistrarseHandlerTest()

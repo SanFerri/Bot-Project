@@ -4,8 +4,7 @@ using ClassLibrary;
 namespace Tests
 {
     /// <summary>
-    /// Clase de test que se encarga de probar las distintas funciones del PublicarHandler.
-    /// Los test individualmente utilizando "run test" funcionan correctamente, pero al intentar usar "run all tests" no detecta ninguno.
+    /// Clase de test que se encarga de probar las distintas funciones del CambiarDatosHandler.
     /// </summary>
     public class CambiarDatosHandlerTests
     {
@@ -48,7 +47,7 @@ namespace Tests
         }
 
         /// <summary>
-        /// Este test se encarga de comprobar que funciona el comando /publicar.
+        /// Este test se encarga de comprobar que funciona el comando /cambiardatos.
         /// </summary>
         [Test]
         public void CambiarDatosCanHandleTest()
@@ -62,7 +61,7 @@ namespace Tests
         }
 
         /// <summary>
-        /// Este test se encarga de comprobar que el comando /publicar no funciona con un usuario que no es un empresario.
+        /// Este test se encarga de comprobar que el comando /cambiardatos no funciona con un usuario que no es un empresario.
         /// </summary>
         [Test]
         public void CambiarDatosCantHandleTest()
@@ -77,7 +76,7 @@ namespace Tests
         }
 
         /// <summary>
-        /// Este test se encarga de comprobar la funcionalidad de crear una publicación.
+        /// Este test se encarga de comprobar la funcionalidad de cambiar los datos de nuestra empresa.
         /// </summary>
         [Test]
         public void WorkingCambiarDatosHandlerTest()

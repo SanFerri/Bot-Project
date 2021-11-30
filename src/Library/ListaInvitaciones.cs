@@ -20,6 +20,12 @@ namespace ClassLibrary
         [JsonInclude]
         public List<string> Invitaciones = new List<string>();
 
+        /// <summary>
+        /// Property para usar OCP en caso de querer usar o cambiar la forma en la que se generan 
+        /// contraseñas simplemente se crea un nuevo generator (abierto extensión) sin tener que
+        /// cambiar el codigo (cerrado a modificación).
+        /// </summary>
+        /// <value></value>
         public IGenerator Generator { get; private set; }
         private static ListaInvitaciones _instance;
 
