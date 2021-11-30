@@ -58,7 +58,7 @@ namespace Tests
 
             IHandler result = Handler.Handle(Message, Usuario.Id, out response);
 
-            Assert.That(response, Is.EqualTo($"Estas son tus publicaciones:\n0. Ofrece: 100 kg de metal en Av. 8 de Octubre 2738. Ademas la habilitacion para conseguir estos residuos es: Permisos Fecha: {Publicacion.Fecha}\n¿Quieres eliminar alguna publicacion? o indicar que esta entregada? Responda elIminar, entregado, o no"));
+            Assert.That(response, Is.EqualTo($"Estas son tus publicaciones:\n0. Ofrece: 100 kg de metal en Av. 8 de Octubre 2738. Ademas la habilitacion para conseguir estos residuos es: Permisos Fecha: {Publicacion.Fecha}\n¿Quieres eliminar alguna publicacion? o indicar que esta entregada? Responda eliminar, entregado, o no"));
         }
 
         /// <summary>
@@ -114,6 +114,8 @@ namespace Tests
             Empresario empresario = new Empresario("323234", Empresa);
 
             Emprendedor emprendedor = new Emprendedor(323);
+
+            Assert.That(ListaUsuarios.GetInstance().Usuarios.Contains(emprendedor));
             Message = Handler.Keywords[0];
             string response;
 

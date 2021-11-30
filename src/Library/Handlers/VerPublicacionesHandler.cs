@@ -165,11 +165,10 @@ namespace ClassLibrary
             }
             else if (State == VerPublicacionesState.Entregado)
             {
-                ListaUsuarios usuarios = ListaUsuarios.GetInstance();
                 bool correcto = false;
-                foreach(IUsuario usuario in usuarios.Usuarios)
+                foreach(Emprendedor emprendedor in ListaUsuarios.GetInstance().Usuarios)
                 {
-                    if(usuario.Id == id)
+                    if (emprendedor.Id == id)
                     {
                         correcto = true;
                     }

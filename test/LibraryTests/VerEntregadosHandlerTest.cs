@@ -75,7 +75,7 @@ namespace Tests
 
             IHandler result = Handler.Handle(Message, emprendedor.Id, out response);
 
-            Assert.That(response, Is.EqualTo("Usted no es un empresario, no puede usar el codigo..."));
+            Assert.That(response, Is.EqualTo("Usted no es un empresario, no puede hacer uso de este comand"));
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Tests
 
             Message = "50";
             Handler.Handle(Message, empresario.Id, out response);
-            Assert.That(response, Is.EqualTo("Estas son tus publicaciones ya entregadas:\n0. Ofrece: 100 kg de metal en Av. 8 de Octubre 2738. Ademas la habilitacion para conseguir estos residuos es: Permisos Fecha: 30/11/2021 15:52:52\n"));
+            Assert.That(response, Is.EqualTo($"Estas son tus publicaciones ya entregadas:\n0. Ofrece: 100 kg de metal en Av. 8 de Octubre 2738. Ademas la habilitacion para conseguir estos residuos es: Permisos Fecha: {Publicacion.Fecha}\n"));
 
             Message = "Estados Unidos";
             Handler.Handle(Message, empresario.Id, out response);
