@@ -159,12 +159,44 @@ namespace ClassLibrary
             }
             else if (State == PublicarState.PalabrasClavePrompt)
             {
-                this.PalabraClave = this.LasClaves.Palabras[(Convert.ToInt32(message))];
-                this.Empresario.State = "PH-HP";
-                response = "Porfavor ingrese la habilitacion para los residuos.";
-                this.State = PublicarState.Start;
+                response = "";
+                /// <summary>
+                /// Utilizamos este bloque de código para atrapar dos excepciones (System.FormatExcepetion) y (System.ArgumentOutOfRangeException)
+                /// la cual la primera ocurre si el usuario ingresa una letra en vez de un número, y la segunda ocurre si el usuario ingresa un argumento 
+                /// cuyo valor este fuera de el rango de valores definidos por el método invocado.
+                /// Cualquiera de estas dos excepciones de no ser manejadas provocarían un error que terminaria con el funcionamiento del bot.
+                /// </summary>
+                /// <value></value>
+                try
+                {
+                    this.PalabraClave = this.LasClaves.Palabras[(Convert.ToInt32(message))];
+                }
+                catch (System.FormatException)
+                {
+                    response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
+                    this.State = PublicarState.Start;
+                    this.Empresario.State = "PH-PCP";
+                }
+                catch (System.ArgumentOutOfRangeException)
+                {
+                    response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
+                    this.State = PublicarState.Start;
+                    this.Empresario.State = "PH-PCP";
+                }
+                
+                if (response != "Usted no ha ingresado un número válido, porfavor intentelo nuevamente")
+                {
+                    this.PalabraClave = this.LasClaves.Palabras[(Convert.ToInt32(message))];
+                    this.Empresario.State = "PH-HP";
+                    response = "Porfavor ingrese la habilitacion para los residuos.";
+                    this.State = PublicarState.Start;
 
-                return true;
+                    return true;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else if (State == PublicarState.HabilitacionPrompt)
             {
@@ -211,25 +243,57 @@ namespace ClassLibrary
             }
             else if (State == PublicarState.ResiduoPrompt)
             {
-                this.ResiduoElegido = this.ResiduosUsuario.Residuos[Convert.ToInt32(message)];
-                this.Result = new Publicacion(this.ResiduoElegido, this.UbicacionData, this.EmpresaUsuario, this.HabilitacionData, this.Constante);
-                this.Result.AgregarPalabraClave(this.PalabraClave);
-                if(this.ResiduoElegido != null && this.Result != null)
+                response = "";
+                /// <summary>
+                /// Utilizamos este bloque de código para atrapar dos excepciones (System.FormatExcepetion) y (System.ArgumentOutOfRangeException)
+                /// la cual la primera ocurre si el usuario ingresa una letra en vez de un número, y la segunda ocurre si el usuario ingresa un argumento 
+                /// cuyo valor este fuera de el rango de valores definidos por el método invocado.
+                /// Cualquiera de estas dos excepciones de no ser manejadas provocarían un error que terminaria con el funcionamiento del bot.
+                /// </summary>
+                /// <value></value>
+                try
                 {
-                    response = $"Se ha publicado la oferta de {this.Result.Residuo.Tipo} de la empresa {this.Result.Empresa.Nombre}. En la ubicacion {this.Result.Ubicacion.Direccion}";
-                    this.Empresario.State = "start";
+                    this.ResiduoElegido = this.ResiduosUsuario.Residuos[Convert.ToInt32(message)];
+                }
+                catch (System.FormatException)
+                {
+                    response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
                     this.State = PublicarState.Start;
+                    this.Empresario.State = "PH-RP";
+                }
+                catch (System.ArgumentOutOfRangeException)
+                {
+                    response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
+                    this.State = PublicarState.Start;
+                    this.Empresario.State = "PH-RP";
+                }
+                
+                if (response != "Usted no ha ingresado un número válido, porfavor intentelo nuevamente")
+                {
+                    this.ResiduoElegido = this.ResiduosUsuario.Residuos[Convert.ToInt32(message)];
+                    this.Result = new Publicacion(this.ResiduoElegido, this.UbicacionData, this.EmpresaUsuario, this.HabilitacionData, this.Constante);
+                    this.Result.AgregarPalabraClave(this.PalabraClave);
+                    if(this.ResiduoElegido != null && this.Result != null)
+                    {
+                        response = $"Se ha publicado la oferta de {this.Result.Residuo.Tipo} de la empresa {this.Result.Empresa.Nombre}. En la ubicacion {this.Result.Ubicacion.Direccion}";
+                        this.Empresario.State = "start";
+                        this.State = PublicarState.Start;
 
-                    return true;
+                        return true;
+                    }
+                    else
+                    {
+                        // El estado PublicarState.Start responde cuando no se puede crear una publicación.
+                        response = "No se ha podido hacer crear la publicacion, vuelva a intentarlo.";
+                        this.Empresario.State = "start";
+                        this.State = PublicarState.Start;
+
+                        return false;
+                    }
                 }
                 else
                 {
-                    // El estado PublicarState.Start responde cuando no se puede crear una publicación.
-                    response = "No se ha podido hacer crear la publicacion, vuelva a intentarlo.";
-                    this.Empresario.State = "start";
-                    this.State = PublicarState.Start;
-
-                    return false;
+                    return true;
                 }
             }
             else if (realEmpresario == false && message == this.Keywords[0])
