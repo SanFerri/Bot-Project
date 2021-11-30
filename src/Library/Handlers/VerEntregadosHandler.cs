@@ -11,7 +11,7 @@ namespace ClassLibrary
         /// <summary>
         /// El estado del comando.
         /// </summary>
-        public VerPublicacionesState State { get; private set; }
+        public VerEntregadosState State { get; private set; }
 
         /// <summary>
         /// La empresa del usuario
@@ -72,45 +72,70 @@ namespace ClassLibrary
             {
                 if (Empresario.State == "VEH-E")
                 {
-                    State = VerPublicacionesState.Entregados;
+                    State = VerEntregadosState.Entregados;
                 }
             }
 
-            if (State == VerPublicacionesState.Start && message == "/verentregados" && realEmpresario == true)
+            if (State == VerEntregadosState.Start && message == "/verentregados" && realEmpresario == true)
             {
                 this.Empresario.State = "VEH-E";
                 response = "¿Publicaciones entregadas desde hace cuantos dias quieres ver?";
-                State = VerPublicacionesState.Start;
+                State = VerEntregadosState.Start;
 
                 return true;
             }
-            if (State == VerPublicacionesState.Entregados)
+            if (State == VerEntregadosState.Entregados)
             {
-                int contador = 0;
-                string unfinishedResponse = "Estas son tus publicaciones ya entregadas:\n";
-                List<Publicacion> entregados = Buscador.Buscar(EmpresaUsuario.Empresario, Convert.ToInt32(message));
-                foreach(Publicacion publicacion in entregados)
+                response = "";
+                /// <summary>
+                /// Utilizamos este bloque de código para atrapar la excepción (System.FormatExcepetion)
+                /// la cual ocurre si el usuario ingresa como argumento una letra en vez de un número, 
+                /// esta excepción de no ser manejada provocaría un error que terminaria con el funcionamiento del bot.
+                /// </summary>
+                /// <value></value>
+                try
                 {
-                    unfinishedResponse += $"{contador}. Ofrece: {publicacion.Residuo.Cantidad} kg de {publicacion.Residuo.Tipo} en {publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.Habilitacion} Fecha: {publicacion.Fecha}\n";
-                    contador += 1;
+                    Convert.ToInt32(message);
                 }
-                response = unfinishedResponse;
-                State = VerPublicacionesState.Start;
-                this.Empresario.State = "start";
+                catch (System.FormatException)
+                {
+                    response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
+                    this.State = VerEntregadosState.Start;
+                    this.Empresario.State = "VEH-E";
+                }
 
-                return true;
+                if (response != "Usted no ha ingresado un número válido, porfavor intentelo nuevamente")
+                {
+                    int contador = 0;
+                    string unfinishedResponse = "Estas son tus publicaciones ya entregadas:\n";
+                    List<Publicacion> entregados = Buscador.Buscar(EmpresaUsuario.Empresario, Convert.ToInt32(message));
+                    foreach(Publicacion publicacion in entregados)
+                    {
+                        unfinishedResponse += $"{contador}. Ofrece: {publicacion.Residuo.Cantidad} kg de {publicacion.Residuo.Tipo} en {publicacion.Ubicacion.Direccion}. Ademas la habilitacion para conseguir estos residuos es: {publicacion.Habilitacion} Fecha: {publicacion.Fecha}\n";
+                        contador += 1;
+                    }
+                    response = unfinishedResponse;
+                    State = VerEntregadosState.Start;
+                    this.Empresario.State = "start";
+
+                    return true;
+                }
+                else
+                {
+                    return true;
+                }
             } 
             else if (realEmpresario == false && message == this.Keywords[0])
             {
                 response = "Usted no es un empresario, no puede hacer uso de este comando";
-                State = VerPublicacionesState.Start;
+                State = VerEntregadosState.Start;
 
                 return false;
             }
             else
             {
                 response = string.Empty;
-                State = VerPublicacionesState.Start;
+                State = VerEntregadosState.Start;
 
                 return false;
             }
@@ -121,13 +146,13 @@ namespace ClassLibrary
         /// </summary>
         protected override void InternalCancel()
         {
-            this.State = VerPublicacionesState.Start;
+            this.State = VerEntregadosState.Start;
         }
 
         /// <summary>
-        /// Indica los diferentes estados de VerPublicacionesState.
+        /// Indica los diferentes estados de VerEntregadosState.
         /// </summary>
-        public enum VerPublicacionesState
+        public enum VerEntregadosState
         {
             ///-Start: Es el comando inicial.
             Start,
