@@ -20,7 +20,6 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de una instancia de DistanciaUbicacion.
         /// </summary>
-        /// <param name="client"></param>
 
         public DistanciaUbicacion()
         {
