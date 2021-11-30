@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using ClassLibrary;
+using System;
 
 namespace Tests
 {
@@ -10,7 +11,7 @@ namespace Tests
     public class RegistrarseHandlerTests
     {
         Residuo Residuo;
-        RegistrarseHandler Handler;
+        RegistrarseHandler Handler = new RegistrarseHandler(null);
         string Message;
         Empresa Empresa;
         Empresario UsuarioEmpresario;
@@ -34,32 +35,23 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            Residuo = new Residuo("metal", 100, "kg", 250, "$");
-            Handler = new RegistrarseHandler(null);
-            string Invitacion = InvitationGenerator.Generate();
+            Residuo = new Residuo("Metal", 100, "kg", 250, "$");
+            
+            Invitacion = ListaInvitaciones.GetInstance().AddInvitacion();
             Ubicacion = new Ubicacion("Av. 8 de Octubre 2738");
-            Ubicacion2 = new Ubicacion("Av. Italia 3479");
             Empresa = new Empresa("MercadoPrivado", Ubicacion, "099679938");
             Empresa.Residuos.AddResiduo(Residuo);
             UsuarioEmpresario = new Empresario(Invitacion, Empresa);
-            UsuarioEmprendedor = new Emprendedor(Id);
-            Id = 12345678;
-            Id2 = 87654321;
-            UsuarioEmprendedor.Id = Id;
-            
-            Empresarios.AddEmpresario(UsuarioEmpresario);
-            Usuarios.AddUsuario(UsuarioEmprendedor);
-            Contador = 0;
-            Publicacion = new Publicacion(Residuo, Ubicacion2, Empresa, "tener un camion", true);
-            Publicacion.AgregarPalabraClave("Envio Gratis");
-            Mercado.AddMercado(Publicacion);
+            UsuarioEmpresario.Id = 3439;
+
+            UsuarioEmprendedor = new Emprendedor(3582);
         }
 
         /// <summary>
         /// Este test se encarga de comprobar que funciona el comando /ofertas.
         /// </summary>
         [Test]
-        public void RegitrarseCanHandleTest()
+        public void RegistrarseCanHandleTest()
         {
             Message = Handler.Keywords[0];
             string response;
@@ -86,18 +78,29 @@ namespace Tests
         /// Este test se encarga de comprobar la funcionalidad de buscar una publicación con palabra clave.
         /// </summary>
         [Test]
-        public void WithKeywordOfertasHandlerTest()
+        public void WorkingRegistrarseHandlerTest()
         {
             Message = Handler.Keywords[0];
             string response;
+
+            Console.WriteLine(Invitacion);
 
             IHandler result = Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
             
             Assert.That(response, Is.EqualTo("Esta registrado como un emprendedor, ingrese una invitación si es parte de una empresa, en caso de no serlo responda con un no"));
             Message = Invitacion;
             Handler.Handle(Message, UsuarioEmprendedor.Id, out response);
-            Assert.That(response, Is.EqualTo("Ingrese el numero de la palabra clave que buscar:\n0. Barato.\n1. Envio Gratis.\n2. Usado.\n3. Nuevo.\n"));
-            Message = "1";
+            Assert.That(response, Is.EqualTo("Se te ha registrado correctamente, en caso de querer cambiar los datos predeterminados de la empresa use el comando /cambiardatos"));
+
+            bool RealEmpresario = false;
+            foreach(Empresario Empresario in ListaEmpresarios.GetInstance().Empresarios)
+            {
+                if(Empresario.Id == UsuarioEmprendedor.Id)
+                {
+                    RealEmpresario = true;
+                }
+            }
+            Assert.That(RealEmpresario, Is.EqualTo(true));
         }
     }
 }

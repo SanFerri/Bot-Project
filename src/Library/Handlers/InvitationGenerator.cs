@@ -8,7 +8,6 @@ namespace ClassLibrary
     /// </summary>
     public class InvitationGenerator
     {
-        private static List<int> invitaciones{get;set;} = new List<int>();
         
         /// <summary>
         /// Generamos un randomizer
@@ -38,7 +37,6 @@ namespace ClassLibrary
                     agregado = true;
                 }
             }
-            ListaInvitaciones.GetInstance().AddInvitacion(invitacion);
             return invitacion;
         }
     }

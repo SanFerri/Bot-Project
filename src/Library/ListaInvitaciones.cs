@@ -7,7 +7,8 @@ namespace ClassLibrary
     /// <summary>
     /// ListaInvitaciones es una clase que contiene invitaciones que posee dos metodos AddInvitacion y 
     /// RemoveInvitacion para añadir o remover invitaciones de una property de la clase llamada ListaInvitaciones, es el encargado
-    /// de llevar a cabo dichas tareas porque es el experto en conocer las invitaciones.
+    /// de llevar a cabo dichas tareas porque es el experto en conocer las invitaciones. ListaInvitaciones tambien usa creator, ya que contiene
+    /// instancias de invitacion y no tiene sentido que halla una invitacion fuera de su property invitaciones.
     /// </summary>
     public class ListaInvitaciones
     {
@@ -22,12 +23,14 @@ namespace ClassLibrary
         private static ListaInvitaciones _instance;
 
         /// <summary>
-        /// AddInvitacion es un metodo que se encarga de agregar invitaciones a la lista.
+        /// AddInvitacion es un metodo que se encarga de agregar invitaciones a la lista. Ademas por creator crea una invitacion.
         /// </summary>
-        /// <param name="invitacion"></param>
-        public void AddInvitacion(string invitacion)
+        public string AddInvitacion()
         {
+            string invitacion = InvitationGenerator.Generate();
             this.Invitaciones.Add(invitacion);
+
+            return invitacion;
         }
 
         //[JsonInclude]

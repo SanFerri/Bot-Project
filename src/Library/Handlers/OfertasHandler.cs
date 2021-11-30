@@ -27,13 +27,6 @@ namespace ClassLibrary
         public string ResiduoTipo { get; private set; }
 
         /// <summary>
-        /// Es el resultado de la busqueda del emprendedor.
-        /// </summary>
-        /// <value></value>
-
-        public Publicacion Result { get; private set; }
-
-        /// <summary>
         /// Es el usuario registrado de la empresa.
         /// </summary>
         /// <value></value>
@@ -197,7 +190,7 @@ namespace ClassLibrary
             {   
                 response = "";
                 /// <summary>
-                /// Utilizamos este bloque de código para atrapar una excepeción (System.FormatExcepetion)
+                /// Utilizamos este bloque de código para atrapar una excepción (System.FormatException)
                 /// la cual ocurre si el usuario ingresa una letra en vez de un número, lo cual provocaría un error que terminaria con el funcionamiento del bot.
                 /// </summary>
                 /// <value></value>
@@ -242,7 +235,7 @@ namespace ClassLibrary
                     else
                     {
                         response = builderResponse;
-                        this.Emprendedor.State = "start";
+                        this.Emprendedor.State = "OH-NP";
                         this.State = OfertasState.Start;
 
                         return false;
@@ -317,7 +310,6 @@ namespace ClassLibrary
             this.UbicacionData = null;
             this.ResiduoTipo = null;
             this.EmpresaUsuario = null;
-            this.Result = null;
             this.OfertasData = null;
             this.LasClaves = null;
         }

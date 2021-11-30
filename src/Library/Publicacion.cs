@@ -52,13 +52,6 @@ namespace ClassLibrary
         public bool Constante { get; set; }
 
         /// <summary>
-        /// Property usuarioEntregado, indicar a que usuario se le entrego.
-        /// </summary>
-        /// <value></value>
-
-        public int UsuarioEntregado { get; set; }
-
-        /// <summary>
         /// Property palabraClave, es una palabra clave que pudo haber sido agregada por un empresario al crear la publicacion.
         /// </summary>
         /// <value></value>
@@ -86,6 +79,7 @@ namespace ClassLibrary
         /// <summary>
         /// Constructor de una instancia de Publicacion.
         /// </summary>
+        [JsonConstructor]
         public Publicacion(Residuo residuo, Ubicacion ubicacion, Empresa empresa, string habilitacion, bool constante)
         {
             this.Constante = constante;

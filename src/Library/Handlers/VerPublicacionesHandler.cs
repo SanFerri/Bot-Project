@@ -109,7 +109,7 @@ namespace ClassLibrary
                         contador += 1;
                     }
                 }
-                unfinishedResponse += "¿Quieres eliminar alguna publicacion? o indicar que esta entregada? Responda elIminar, entregado, o no";
+                unfinishedResponse += "¿Quieres eliminar alguna publicacion? o indicar que esta entregada? Responda eliminar, entregado, o no";
                 response = unfinishedResponse;
                 this.Empresario.State = "VPH-CP";
                 State = VerPublicacionesState.Start;
