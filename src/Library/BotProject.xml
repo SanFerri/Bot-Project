@@ -91,8 +91,10 @@
         </member>
         <member name="M:ClassLibrary.Buscador.Buscar(ClassLibrary.IEmpresarioPublicaciones,System.Int32)">
             <summary>
-            Es un metodo que te devuelve la lista de elementos entregados.
-            </summary>
+            Es un metodo que te devuelve la lista de elementos entregados. Cumple el Principio de Inversión de
+            Dependencias(DIP), debído a que depende de una abstracción de empresario, en este caso una intrefaz
+            "IEmpresarioPublicaciones" ya que solo necesita la property publicaciones.
+            /// </summary>
             <param name="publicaciones"></param>
             <param name="tiempo"></param>
             <returns></returns>
@@ -328,6 +330,12 @@
         <member name="F:ClassLibrary.AgregarResiduoHandler.LasUnidades">
             <summary>
             Lista que tiene las posibles unidades.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.AgregarResiduoHandler.Residuo">
+            <summary>
+            Es el residuo que se agrego.
             </summary>
             <value></value>
         </member>
@@ -613,6 +621,12 @@
         <member name="P:ClassLibrary.InvitarHandler.NombreEmpresa">
             <summary>
             El nombre de la empresa.
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:ClassLibrary.InvitarHandler.Empresario">
+            <summary>
+            El empresario que se creo.
             </summary>
             <value></value>
         </member>
@@ -1337,6 +1351,17 @@
             </summary>
             <value></value>
         </member>
+        <member name="T:ClassLibrary.IGenerator">
+            <summary>
+            Generator es una interfaz para poder aplicar OCP con las invitaciones.
+            </summary>
+        </member>
+        <member name="M:ClassLibrary.IGenerator.Generate">
+            <summary>
+            Es un metodo que devuelve un string que debe tenerlo todo generador de invitaciones.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ClassLibrary.IJsonConvertible">
             <summary>
             Define el tipo que tienen los objetos que pueden ser serializados en y deserializados desde texto en formato
@@ -1590,6 +1615,14 @@
             que lleva el registro de las invitaciones.
             </summary>
             <returns></returns>
+        </member>
+        <member name="P:ClassLibrary.ListaInvitaciones.Generator">
+            <summary>
+            Property para usar OCP en caso de querer usar o cambiar la forma en la que se generan 
+            contraseñas simplemente se crea un nuevo generator (abierto extensión) sin tener que
+            cambiar el codigo (cerrado a modificación).
+            </summary>
+            <value></value>
         </member>
         <member name="M:ClassLibrary.ListaInvitaciones.AddInvitacion">
             <summary>
