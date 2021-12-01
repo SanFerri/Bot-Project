@@ -39,6 +39,10 @@ namespace ClassLibrary
 
         public string NombreEmpresa { get; private set; }
 
+        /// <summary>
+        /// El empresario que se creo.
+        /// </summary>
+        /// <value></value>
         public Empresario Empresario { get; private set; }
 
         /// <summary>

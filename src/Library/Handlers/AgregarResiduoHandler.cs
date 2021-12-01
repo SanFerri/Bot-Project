@@ -56,6 +56,10 @@ namespace ClassLibrary
 
         public List<string> LasUnidades = new List<string>{"g", "kg", "t", "l"};
 
+        /// <summary>
+        /// Es el residuo que se agrego.
+        /// </summary>
+        /// <value></value>
         public Residuo Residuo { get; private set; }
 
         /// <summary>

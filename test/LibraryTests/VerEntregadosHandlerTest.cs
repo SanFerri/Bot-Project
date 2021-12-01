@@ -5,8 +5,7 @@ using Ucu.Poo.Locations.Client;
 namespace Tests
 {
     /// <summary>
-    /// Clase de test que se encarga de probar las distintas funciones del PublicarHandler.
-    /// Los test individualmente utilizando "run test" funcionan correctamente, pero al intentar usar "run all tests" no detecta ninguno.
+    /// Clase de test que se encarga de probar las distintas funciones del VerEntregadosHandler.
     /// </summary>
     public class VerEntregadosHandlerTest
     {
@@ -69,7 +68,7 @@ namespace Tests
         /// Este test se encarga de comprobar que el comando /verentregados no funciona con un usuario que no es un empresario.
         /// </summary>
         [Test]
-        public void CambiarDatosCantHandleTest()
+        public void VerEntregadosCantHandleTest()
         {
             Emprendedor emprendedor = new Emprendedor(34314458);
             Message = Handler.Keywords[0];

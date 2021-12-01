@@ -88,7 +88,7 @@ namespace ClassLibrary
             {
                 response = "";
                 /// <summary>
-                /// Utilizamos este bloque de código para atrapar la excepción (System.FormatExcepetion)
+                /// Utilizamos este bloque de código para atrapar la excepción (System.FormatException)
                 /// la cual ocurre si el usuario ingresa como argumento una letra en vez de un número, 
                 /// esta excepción de no ser manejada provocaría un error que terminaria con el funcionamiento del bot.
                 /// </summary>
