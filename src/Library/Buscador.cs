@@ -101,8 +101,10 @@ namespace ClassLibrary
             return ofertas;
         }
         /// <summary>
-        /// Es un metodo que te devuelve la lista de elementos entregados.
-        /// </summary>
+        /// Es un metodo que te devuelve la lista de elementos entregados. Cumple el Principio de Inversión de
+        /// Dependencias(DIP), debído a que depende de una abstracción de empresario, en este caso una intrefaz
+        /// "IEmpresarioPublicaciones" ya que solo necesita la property publicaciones.
+        /// /// </summary>
         /// <param name="publicaciones"></param>
         /// <param name="tiempo"></param>
         /// <returns></returns>
