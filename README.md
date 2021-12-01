@@ -1,3 +1,30 @@
+ENTREGA FINAL
+
+En esta entrega final tuvimos el desafío de tomar todo el feedback entregado a nosotros en las correcciones
+de las dos entregas anteriores y asegurarnos de darle un buen uso a dicha información para conseguir un producto
+terminado y presentable tanto ante los profesores así como ante los colaboradores de la materia. Estas últimas
+semanas de desarrollo estuvieron llenas de altos y bajos, entre ellos la frustración de tener que hacer funcionar
+nuestro código en el bot de Telegram, la serializacion (la cual fue la más notable de nuestros problemas, de la 
+cual conseguimos serializar pero no deserializar los archivos), sin embargo no todo fueron malos momentos, pudimos
+vernos más eficientes a la hora de enfrentar las adversidades antes mencionadas, así como muchas otras, por ejemplo
+el añadir nuevos handlers a la Chain of Responsibility y los tests que dichos handlers requerian fue mucho más sencillo
+que en la entrega anterior, pudimos modificar los handlers de tal manera que el mismo usuario tuviera un estado "state",
+el cual le informa al programa en que handler y en que estado de dicho handler se encuentra el usuario, lo que permite que el bot 
+pueda ser utilizado por varios usuarios a la vez. También nos aseguramos de que los tests funcionaran correctamente, verificando 
+que los datos de las distintas clases cambian efectivamente (cosa que no pudimos realizar en la entrega anterior) así asegurandonos
+que clases que usamos como herramientas (por ej. la clase buscador) esten funcionando acorde a lo esperado, y nos llevamos la satisfacción 
+de que nuestro producto GreenResourceBot funcionara correctamente y pueda manejar muchos casos adversos con la inclusion de excepciones 
+las cuales no habíamos implementado en la etapa anterior del proyecto. 
+Nos aseguramos de mejorar tanto las convenciones (Usamos PascalCasing para las properties publicas y CamalCasing para las properties 
+privadas), así como de actualizar nuestro diagrama UML para que representar con mayor fidelidad el modelo actual del producto. 
+Tristemente no pudimos mantener la funcionalidad adecuada de la LocationApi después de la actualización a la misma brindada por los profesores 
+posterior a la segunda entrega, aún así la mayor lección que nos llevamos de este proyecto, es la experiencia de un desarrollo en el cual nos 
+vimos forzados a superarnos a nosotros mismos constantemente y adaptarnos a las distintas situaciones que enfrenatmos en el transcurso del 
+semestre, así como a la metodología de las convenciones y patrones de desarrollo para llevar a cabo un producto, sustentable, sólido, expandible, 
+y accesible para los otros desarrolladores a la hora de entenderlo (no solo para facilitar la evaluación del mismo, sino también en el hipotético 
+caso de que otros desarroladores tuvieran que integrarse al desarrollo del producto). Independientemente del resultado final que reciba esta entrega, 
+estamos orgullosos tanto de nuestro equipo como de nuestro trabajo.
+
 SEGUNDA ENTREGA
 
 En esta segunda entrega debido al hecho de tener que llevar a la práctica las ideas establecidas en la

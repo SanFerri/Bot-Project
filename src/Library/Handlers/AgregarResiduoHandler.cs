@@ -149,48 +149,159 @@ namespace ClassLibrary
             }
             else if (State == AgregarResiduoState.NombrePrompt)
             {
-                // En el estado AgregarResiduosState el mensaje recibido es la respuesta con la cantidad que posee del residuo en cuestion.
-                this.NombreResiduo = PosiblesResiduos.GetInstance().Residuos[Convert.ToInt32(message)];
-                Empresario.State = "ARH-CP";
-                response = "Ahora ingrese la cantidad que posees de dicho residuo (Sin la unidad)";
-                this.State = AgregarResiduoState.Start;
+                response = "";
+                /// <summary>
+                /// Utilizamos este bloque de código para atrapar dos excepciones (System.FormatExcepetion) y (System.ArgumentOutOfRangeException)
+                /// la cual la primera ocurre si el usuario ingresa una letra en vez de un número, y la segunda ocurre si el usuario ingresa un argumento 
+                /// cuyo valor este fuera de el rango de valores definidos por el método invocado.
+                /// Cualquiera de estas dos excepciones de no ser manejadas provocarían un error que terminaria con el funcionamiento del bot.
+                /// </summary>
+                /// <value></value>
+                try
+                {
+                    this.NombreResiduo = PosiblesResiduos.GetInstance().Residuos[Convert.ToInt32(message)];
+                }
+                catch (System.FormatException)
+                {
+                    response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
+                    this.State = AgregarResiduoState.Start;
+                    this.Empresario.State = "ARH-NP";
+                }
+                catch (System.ArgumentOutOfRangeException)
+                {
+                    response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
+                    this.State = AgregarResiduoState.Start;
+                    this.Empresario.State = "ARH-NP";
+                }
 
-                return true;
+                // En el estado AgregarResiduosState el mensaje recibido es la respuesta con la cantidad que posee del residuo en cuestion.
+                if (response != "Usted no ha ingresado un número válido, porfavor intentelo nuevamente")
+                {
+                    this.NombreResiduo = PosiblesResiduos.GetInstance().Residuos[Convert.ToInt32(message)];
+                    Empresario.State = "ARH-CP";
+                    response = "Ahora ingrese la cantidad que posees de dicho residuo (Sin la unidad)";
+                    this.State = AgregarResiduoState.Start;
+
+                    return true;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else if (State == AgregarResiduoState.CantidadPrompt)
             {
-                int contador = 0;
-                this.VolumenResiduo = Convert.ToInt32(message);;
-                Empresario.State = "ARH-UP";
-                string unfinishedResponse = "Ingrese el numero de la unidad:\n";
-                foreach(string palabra in this.LasUnidades)
+                response = "";
+                /// <summary>
+                /// Utilizamos este bloque de código para atrapar la excepción (System.FormatExcepetion)
+                /// la cual ocurre si el usuario ingresa como argumento una letra en vez de un número, 
+                /// esta excepción de no ser manejada provocaría un error que terminaria con el funcionamiento del bot.
+                /// </summary>
+                /// <value></value>
+                try
                 {
-                    unfinishedResponse += $"{contador}. {palabra}.\n";
-                    contador += 1;
+                    Convert.ToInt32(message);
                 }
-                response = unfinishedResponse;
+                catch (System.FormatException)
+                {
+                    response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
+                    this.State = AgregarResiduoState.Start;
+                    this.Empresario.State = "ARH-CP";
+                }
+                if (response != "Usted no ha ingresado un número válido, porfavor intentelo nuevamente")
+                {
+                    int contador = 0;
+                    this.VolumenResiduo = Convert.ToInt32(message);;
+                    Empresario.State = "ARH-UP";
+                    string unfinishedResponse = "Ingrese el numero de la unidad:\n";
+                    foreach(string palabra in this.LasUnidades)
+                    {
+                        unfinishedResponse += $"{contador}. {palabra}.\n";
+                        contador += 1;
+                    }
+                    response = unfinishedResponse;
 
-                this.State = AgregarResiduoState.Start;
+                    this.State = AgregarResiduoState.Start;
 
-                return true;
+                    return true;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else if (State == AgregarResiduoState.UnidadPrompt)
             {
-                this.UnidadResiduo = this.LasUnidades[Convert.ToInt32(message)];
-                Empresario.State = "ARH-CP2";
-                response = "Ingrese el costo y/o valor del residuo";
-                this.State = AgregarResiduoState.Start;
+                response = "";
+                /// <summary>
+                /// Utilizamos este bloque de código para atrapar dos excepciones (System.FormatExcepetion) y (System.ArgumentOutOfRangeException)
+                /// la cual la primera ocurre si el usuario ingresa una letra en vez de un número, y la segunda ocurre si el usuario ingresa un argumento 
+                /// cuyo valor este fuera de el rango de valores definidos por el método invocado.
+                /// Cualquiera de estas dos excepciones de no ser manejadas provocarían un error que terminaria con el funcionamiento del bot.
+                /// </summary>
+                /// <value></value>
+                try
+                {
+                    Convert.ToInt32(message);
+                }
+                catch (System.FormatException)
+                {
+                    response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
+                    this.State = AgregarResiduoState.Start;
+                    this.Empresario.State = "ARH-UP";
+                }
+                catch (System.ArgumentOutOfRangeException)
+                {
+                    response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
+                    this.State = AgregarResiduoState.Start;
+                    this.Empresario.State = "ARH-UP";
+                }
+                if (response != "Usted no ha ingresado un número válido, porfavor intentelo nuevamente")
+                {
+                    this.UnidadResiduo = this.LasUnidades[Convert.ToInt32(message)];
+                    Empresario.State = "ARH-CP2";
+                    response = "Ingrese el costo y/o valor del residuo";
+                    this.State = AgregarResiduoState.Start;
 
-                return true;
+                    return true;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else if (State == AgregarResiduoState.CostoPrompt)
             {
-                this.CostoResiduo = Convert.ToInt32(message);
-                Empresario.State = "ARH-MP";
-                response = "Ingrese la moneda $ o U$S";
-                this.State = AgregarResiduoState.Start;
+                response = "";
+                /// <summary>
+                /// Utilizamos este bloque de código para atrapar la excepción (System.FormatExcepetion)
+                /// la cual ocurre si el usuario ingresa como argumento una letra en vez de un número, 
+                /// esta excepción de no ser manejada provocaría un error que terminaria con el funcionamiento del bot.
+                /// </summary>
+                /// <value></value>
+                try
+                {
+                    Convert.ToInt32(message);
+                }
+                catch (System.FormatException)
+                {
+                    response = "Usted no ha ingresado un número válido, porfavor intentelo nuevamente";
+                    this.State = AgregarResiduoState.Start;
+                    this.Empresario.State = "ARH-CP2";
+                }
+                if(response != "Usted no ha ingresado un número válido, porfavor intentelo nuevamente")
+                {
+                    this.CostoResiduo = Convert.ToInt32(message);
+                    Empresario.State = "ARH-MP";
+                    response = "Ingrese la moneda $ o U$S";
+                    this.State = AgregarResiduoState.Start;
 
-                return true;
+                    return true;
+                }
+                else
+                {
+                    return true;
+                }
             }
             else if (State == AgregarResiduoState.MonedaPrompt)
             {
